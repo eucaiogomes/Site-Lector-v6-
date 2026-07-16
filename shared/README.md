@@ -1,16 +1,28 @@
 # Shared
 
-Peças reutilizáveis entre páginas do **site** (não confundir com o design system).
-
-Exemplos futuros:
+Peças reutilizáveis do **marketing site** (não o design system em `design-system/`).
 
 ```text
 shared/
-  header.dc.html
-  footer.dc.html
-  announcement.dc.html
-  contact-form.dc.html
+  lead-form.css    # modal de lead (branco, identidade Lector)
+  lead-form.js     # injeta o modal; abre em CTAs
+  README.md
 ```
 
-Enquanto o runtime for Design Canvas “página monólito”, o header/footer pode continuar embutido em cada `pages/<slug>/index.dc.html`.  
-Quando extrair partials, documente em `specs/components/`.
+Specs: `specs/components/lead-form.md`, `specs/components/header.md`.
+
+## Lead form modal
+
+Em cada página (helmet):
+
+```html
+<link rel="stylesheet" href="../../shared/lead-form.css">
+<script src="../../shared/lead-form.js" data-base="../.."></script>
+```
+
+Logo do modal: `assets/brand/logo-lector.svg`.
+
+Abre em CTAs de conversão, `#contato` / `#cta`, e announcement de diagnóstico.  
+API: `window.__LectorLeadForm.open({ interest: 'demonstracao' })`.
+
+Header/footer ainda embutidos por página; extrair aqui quando estabilizar.

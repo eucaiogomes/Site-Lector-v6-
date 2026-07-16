@@ -27,7 +27,12 @@ pages/<slug>/
   page.js       # opcional
 ```
 
-Copie o boilerplate de paths de `pages/home/index.dc.html` (helmet + design-system).
+Copie o boilerplate de paths de uma página existente (ex.: `pages/blog/index.dc.html`):
+
+- tokens + `design-system/styles.css` + `_ds_bundle.js`
+- Lucide CDN
+- **`shared/lead-form.css` + `shared/lead-form.js`** (`data-base="../.."`)
+- Logo em `../../assets/brand/`
 
 ## 4. Mídia (se houver)
 
@@ -58,11 +63,13 @@ Comente `<!-- SECTION: nome -->` em cada bloco.
 ## 7. Checklist de entrega
 
 - [ ] Spec alinhada com o que foi construído
-- [ ] Paths `../../` corretos
+- [ ] Paths `../../` corretos (DS, assets, shared)
+- [ ] Lead form no helmet se houver CTAs de conversão
 - [ ] Só tokens do DS para cor/tipo/espaço
 - [ ] Copy PT-BR, tom Lector, sem emoji
-- [ ] CTAs com destino real ou `#` documentado
+- [ ] CTAs abrem o modal (ou destino documentado)
 - [ ] Sem dependência de `references/`
+- [ ] Sem arquivos soltos na raiz do repo
 - [ ] Sitemap + `site.json` atualizados
 
 ## Exemplo rápido
@@ -84,3 +91,4 @@ assets/media/clientes/   (opcional — logos já estão em assets/clients/)
 | Copiar dump de `references/` | Reimplementar com DS Lector |
 | Página de 4k linhas sem seções | Seções comentadas + CSS local se preciso |
 | Nav hardcode divergente do JSON | Manter `content/site.json` como fonte |
+| Lixo na raiz (vídeos, HTML solto) | `references/raw/` ou `assets/media/<slug>/` |

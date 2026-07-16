@@ -33,6 +33,7 @@ npm-debug.log*
 # References = inspiração local (não produção; dumps pesados)
 references/inspiration/
 references/raw/
+references/prototypes/
 
 # Thumbnails gerados
 **/.thumbnail

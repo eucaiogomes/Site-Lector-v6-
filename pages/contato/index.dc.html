@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Contato | Fale com a Lector</title>
+<meta name="description" content="Fale com um especialista Lector. Agende demonstração, diagnóstico ou consultoria de educação corporativa.">
+<meta property="og:title" content="Contato | Fale com a Lector">
+<meta property="og:description" content="Fale com um especialista Lector. Agende demonstração, diagnóstico ou consultoria.">
+<link rel="stylesheet" href="../../design-system/tokens/fonts.css">
+<link rel="stylesheet" href="../../design-system/tokens/colors.css">
+<link rel="stylesheet" href="../../design-system/tokens/typography.css">
+<link rel="stylesheet" href="../../design-system/tokens/spacing.css">
+<link rel="stylesheet" href="../../design-system/tokens/effects.css">
+<link rel="stylesheet" href="../../design-system/tokens/base.css">
+<link rel="stylesheet" href="../../design-system/styles.css">
+<link rel="stylesheet" href="../../shared/lead-form.css">
+<script src="../../design-system/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="../../shared/lead-form.js" data-base="../.."></script>
+<style>
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--surface-page, #FBFAF7);
+    color: var(--text-body, #243653);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--brand); }
+  button { font-family: inherit; cursor: pointer; }
+  * { box-sizing: border-box; }
+  [data-lucide] { display: block; }
+  ::selection { background: var(--brand); color: #fff; }
+
+  .ct-wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+  .ct-h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    color: var(--accent-navy, #00204D);
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+  .ct-h2 em { font-style: italic; color: var(--brand); }
+  .ct-lead {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-500, #5C667C);
+    max-width: 520px;
+    margin: 0;
+  }
+  .ct-section { padding: 72px 0 96px; }
+  .ct-kicker {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0 0 12px;
+  }
+
+  /* Nav */
+  .lec-nav-wrap {
+    position: sticky; top: 0; z-index: 50; width: 100%;
+    display: flex; justify-content: center; padding: 11px 20px 0; background: transparent;
+  }
+  .lec-nav {
+    width: 100%; max-width: 1160px; display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; padding: 11px 11px 11px 22px; border-radius: var(--radius-pill, 999px);
+    background: rgba(255,255,255,.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(0,32,77,.08); box-shadow: 0 8px 28px -16px rgba(10,23,48,.12);
+    transition: box-shadow .3s ease, background .3s ease, border-color .3s ease;
+  }
+  .lec-nav.lec-nav-scrolled {
+    background: rgba(255,255,255,.97);
+    box-shadow: 0 16px 40px -16px rgba(10,23,48,.18);
+    border-color: rgba(0,32,77,.1);
+  }
+  .lec-nav-logo { display: flex; align-items: center; flex: none; }
+  .lec-nav-logo:hover { color: inherit; }
+  .lec-nav-logo img { height: 24px; width: auto; display: block; }
+  .lec-nav-links { display: flex; align-items: center; gap: 30px; font-size: 14.5px; font-weight: 600; }
+  .lec-nav-links > a { color: #243653; transition: color .2s; }
+  .lec-nav-links > a:hover,
+  .lec-nav-links > a.is-active { color: var(--brand); }
+  .lec-nav-links > a.is-active { font-weight: 700; }
+  .lec-dd { position: relative; }
+  .lec-dd__trigger {
+    display: inline-flex; align-items: center; gap: 5px; background: none; border: none;
+    padding: 0; margin: 0; font: inherit; font-size: 14.5px; font-weight: 600;
+    color: #243653; cursor: pointer;
+  }
+  .lec-dd__trigger:hover,
+  .lec-dd:hover .lec-dd__trigger,
+  .lec-dd:focus-within .lec-dd__trigger { color: var(--brand); }
+  .lec-dd__chev { display: inline-flex; width: 14px; height: 14px; transition: transform .25s ease; }
+  .lec-dd__chev i, .lec-dd__chev svg { width: 14px; height: 14px; }
+  .lec-dd:hover .lec-dd__chev, .lec-dd:focus-within .lec-dd__chev { transform: rotate(180deg); }
+  .lec-dd__menu {
+    position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(6px);
+    min-width: 360px; width: max(360px, min(420px, 92vw)); padding: 8px; border-radius: 16px;
+    background: rgba(255,255,255,.98); border: 1px solid #ECEDF2;
+    box-shadow: 0 18px 44px -12px rgba(10,20,40,.18);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease, visibility .18s; z-index: 80;
+  }
+  .lec-dd__menu::before { content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
+  .lec-dd:hover .lec-dd__menu, .lec-dd:focus-within .lec-dd__menu {
+    opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+  }
+  .lec-dd__item {
+    display: flex; align-items: flex-start; gap: 12px; padding: 12px; border-radius: 12px;
+    color: #1F2A3D; white-space: normal; transition: background .15s ease, color .15s;
+  }
+  .lec-dd__item:hover { background: #F7F8FA; color: inherit; }
+  .lec-dd__item:hover .lec-dd__item-title { color: var(--brand); }
+  .lec-dd__item-icon {
+    display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px;
+    margin-top: 1px; border-radius: 10px; background: rgba(246,107,10,.12); color: var(--brand); flex: none;
+  }
+  .lec-dd__item-icon i, .lec-dd__item-icon svg { width: 17px; height: 17px; }
+  .lec-dd__item-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .lec-dd__item-title {
+    font-size: 14px; font-weight: 700; line-height: 1.25; color: #1F2A3D; transition: color .15s ease;
+  }
+  .lec-dd__item-desc { font-size: 12.5px; font-weight: 500; line-height: 1.4; color: #5A6B84; }
+  .lec-nav-cta { display: flex; align-items: center; gap: 18px; flex: none; }
+  .lec-nav-cta__solid {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: rgba(0,32,77,.04); border: 1px solid rgba(0,32,77,.1);
+    border-radius: var(--radius-pill, 999px); padding: 6px 6px 6px 20px;
+    color: var(--accent-navy, #00204D); font-weight: 700; font-size: 14.5px; white-space: nowrap;
+  }
+  .lec-nav-cta__solid:hover { color: var(--accent-navy, #00204D); border-color: rgba(0,32,77,.16); }
+  .lec-nav-cta__solid-icon {
+    width: 32px; height: 32px; border-radius: 10px; background: var(--brand); color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .lec-nav-cta__solid-icon i, .lec-nav-cta__solid-icon svg { width: 16px; height: 16px; }
+  .lec-burger {
+    display: none; width: 40px; height: 40px; align-items: center; justify-content: center;
+    border: none; background: transparent; flex-direction: column; gap: 5px; border-radius: 10px;
+  }
+  .lec-burger span { display: block; width: 22px; height: 2px; background: #00204D; border-radius: 2px; }
+  .lec-mnav-overlay {
+    position: fixed; inset: 0; background: rgba(0,16,38,.32); opacity: 0; visibility: hidden;
+    transition: opacity .3s ease, visibility .3s; z-index: 90;
+  }
+  .lec-mnav-overlay.is-open { opacity: 1; visibility: visible; }
+  .lec-mnav {
+    position: fixed; top: 0; right: 0; height: 100%; width: min(310px, 85vw); background: #fff;
+    z-index: 91; transform: translateX(100%); transition: transform .4s cubic-bezier(.16,1,.3,1);
+    display: flex; flex-direction: column; padding: 26px 16px 32px; overflow-y: auto;
+    box-shadow: -12px 0 42px rgba(10,20,40,.16);
+  }
+  .lec-mnav.is-open { transform: translateX(0); }
+  .lec-mnav-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
+  .lec-mnav-head img { height: 26px; width: auto; }
+  .lec-mnav-close {
+    width: 40px; height: 40px; border: none; background: #F1F2F7; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; color: #243653;
+  }
+  .lec-mnav-link {
+    display: flex; align-items: center; padding: 16px 18px; font-size: 15.5px; font-weight: 600;
+    color: #1F2A3D; border-bottom: 1px solid #EBEDF3;
+  }
+  .lec-mnav-link:hover, .lec-mnav-link.is-active { color: var(--brand); }
+  .lec-mnav-sub { border-bottom: 1px solid #EBEDF3; padding: 4px 0 10px; }
+  .lec-mnav-sub a {
+    display: block; padding: 10px 18px 10px 26px; font-size: 14px; font-weight: 500; color: #52637F;
+  }
+  .lec-mnav-sub a:hover { color: var(--brand); }
+  .lec-mnav-cta { margin-top: auto; padding-top: 26px; display: flex; flex-direction: column; gap: 11px; }
+  @media (max-width: 880px) {
+    .lec-nav-links, .lec-nav-cta { display: none !important; }
+    .lec-burger { display: flex !important; }
+  }
+
+  /* Hero band */
+  .ct-hero {
+    background: var(--ink-950, #001026);
+    color: #fff;
+    padding: 64px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ct-hero::before {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(80% 60% at 85% 20%, rgba(246,107,10,.22), transparent 55%),
+      radial-gradient(50% 50% at 10% 80%, rgba(26,65,115,.4), transparent 55%);
+  }
+  .ct-hero .ct-wrap { position: relative; z-index: 1; max-width: 720px; }
+  .ct-hero h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 4.8vw, 48px);
+    line-height: 1.06;
+    letter-spacing: -.03em;
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .ct-hero h1 em { font-style: italic; color: var(--brand); }
+  .ct-hero p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.55;
+    color: rgba(230,238,250,.78);
+    max-width: 520px;
+  }
+
+  /* Grid form + aside */
+  .ct-grid {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 32px;
+    align-items: start;
+    margin-top: -40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ct-card {
+    background: #fff;
+    border: 1px solid var(--ink-100, #E7EAF1);
+    border-radius: 24px;
+    padding: 32px 28px;
+    box-shadow: 0 24px 60px -28px rgba(10,20,40,.22);
+  }
+  .ct-card h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--accent-navy);
+    margin: 0 0 8px;
+  }
+  .ct-card > .ct-card__sub {
+    margin: 0 0 24px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink-500);
+  }
+
+  .ct-form { display: flex; flex-direction: column; gap: 14px; }
+  .ct-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .ct-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .ct-field label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+  }
+  .ct-field input,
+  .ct-field select,
+  .ct-field textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--ink-200, #D8DDE8);
+    background: #F7F8FA;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink-800);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s, background .15s;
+  }
+  .ct-field textarea { min-height: 110px; resize: vertical; }
+  .ct-field select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235C667C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+  }
+  .ct-field input:focus,
+  .ct-field select:focus,
+  .ct-field textarea:focus {
+    border-color: var(--brand);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(246,107,10,.16);
+  }
+  .ct-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 4px;
+    padding: 15px 22px;
+    border: none;
+    border-radius: 999px;
+    background: var(--brand);
+    color: #fff;
+    font-family: inherit;
+    font-size: 15.5px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 12px 28px -10px rgba(246,107,10,.5);
+    transition: transform .15s, background .15s;
+  }
+  .ct-submit:hover { background: var(--brand-hover, #FF7D22); color: #fff; transform: translateY(-1px); }
+  .ct-submit i, .ct-submit svg { width: 17px; height: 17px; }
+  .ct-note {
+    margin: 4px 0 0;
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--ink-400);
+    text-align: center;
+  }
+  .ct-msg {
+    margin: 0;
+    min-height: 0;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--green-600, #1F9D55);
+  }
+  .ct-msg.is-error { color: var(--red-500, #E5484D); }
+  .ct-success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding: 36px 12px;
+  }
+  .ct-card.is-success .ct-form,
+  .ct-card.is-success .ct-card__head { display: none; }
+  .ct-card.is-success .ct-success { display: flex; }
+  .ct-success__icon {
+    width: 64px; height: 64px; border-radius: 20px;
+    background: rgba(31,157,85,.12); color: #1F9D55;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .ct-success__icon i, .ct-success__icon svg { width: 28px; height: 28px; }
+  .ct-success h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--accent-navy);
+    margin: 0;
+  }
+  .ct-success p {
+    margin: 0;
+    max-width: 320px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-500);
+  }
+
+  .ct-aside { display: flex; flex-direction: column; gap: 14px; }
+  .ct-info {
+    background: #fff;
+    border: 1px solid var(--ink-100);
+    border-radius: 18px;
+    padding: 20px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .ct-info__icon {
+    width: 40px; height: 40px; border-radius: 12px; flex: none;
+    background: rgba(246,107,10,.12); color: var(--brand);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .ct-info__icon i, .ct-info__icon svg { width: 20px; height: 20px; }
+  .ct-info strong {
+    display: block;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--accent-navy);
+    margin-bottom: 4px;
+  }
+  .ct-info p, .ct-info a {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--ink-500);
+  }
+  .ct-info a { font-weight: 600; color: var(--brand); }
+  .ct-info a:hover { color: var(--brand-hover, #FF7D22); }
+
+  .ct-next {
+    background: var(--ink-50, #F6F7FA);
+    border: 1px solid var(--ink-100);
+    border-radius: 18px;
+    padding: 22px 20px;
+  }
+  .ct-next h3 {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent-navy);
+    margin: 0 0 14px;
+  }
+  .ct-next ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ct-next li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--ink-600);
+  }
+  .ct-next li span {
+    width: 24px; height: 24px; border-radius: 8px; flex: none;
+    background: rgba(246,107,10,.12); color: var(--brand);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 900px) {
+    .ct-grid { grid-template-columns: 1fr; margin-top: -24px; }
+    .ct-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .ct-section { padding: 48px 0 72px; }
+    .ct-hero { padding: 48px 0 56px; }
+    .ct-card { padding: 24px 18px; }
+  }
+</style>
+</helmet>
+
+<!-- SECTION: nav -->
+<div class="lec-nav-wrap">
+<nav class="lec-nav" data-ct-nav="">
+  <a href="../home/index.dc.html" class="lec-nav-logo">
+    <img src="../../assets/brand/logo-lector.svg" alt="Lector">
+  </a>
+  <div class="lec-nav-links">
+    <div class="lec-dd">
+      <button type="button" class="lec-dd__trigger" aria-haspopup="true">
+        Nossas Soluções
+        <span class="lec-dd__chev" aria-hidden="true"><i data-lucide="chevron-down"></i></span>
+      </button>
+      <div class="lec-dd__menu" role="menu">
+        <a href="../plataforma-lector/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Plataforma Lector</span>
+            <span class="lec-dd__item-desc">Centralize LMS, IA, treinamento, trilhas, onboarding, universidade corporativa, lideranças, gestão de talentos, comunicação e gestão do conhecimento em um único ambiente.</span>
+          </span>
+        </a>
+        <a href="../copiloto-vendas/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="bot"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Copiloto de Vendas</span>
+            <span class="lec-dd__item-desc">Diagnóstico de técnica de venda com IA, trilhas e certificação para reduzir o ramp-up.</span>
+          </span>
+        </a>
+        <a href="../solucao-nr-1/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Solução NR-1</span>
+            <span class="lec-dd__item-desc">Automatize treinamentos, registros, evidências e a conformidade com a legislação.</span>
+          </span>
+        </a>
+        <a href="../conteudo-sob-demanda/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Criação de Conteúdo sob Demanda</span>
+            <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
+          </span>
+        </a>
+        <a href="../diagnostico-gaps/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="scan-search"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Diagnóstico de Gaps</span>
+            <span class="lec-dd__item-desc">Identifique lacunas por habilidade, prove resultado e entregue conhecimento cirúrgico.</span>
+          </span>
+        </a>
+        <a href="../servicos-especializados/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="briefcase"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Serviços Especializados</span>
+            <span class="lec-dd__item-desc">Consultoria, universidades corporativas, produção de conteúdo e gestão do conhecimento.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+    <a href="../blog/index.dc.html">Blog</a>
+    <a href="../home/index.dc.html#numeros">Clientes</a>
+    <a href="./index.dc.html" class="is-active" aria-current="page">Contato</a>
+  </div>
+  <div class="lec-nav-cta">
+    <a href="#form" class="lec-nav-cta__solid">Falar com especialista <span class="lec-nav-cta__solid-icon" aria-hidden="true"><i data-lucide="arrow-right"></i></span></a>
+  </div>
+  <button type="button" class="lec-burger" onClick="{{ openMobile }}" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+</div>
+
+<div class="lec-mnav-overlay {{ mobileOpenClass }}" onClick="{{ closeMobile }}"></div>
+<aside class="lec-mnav {{ mobileOpenClass }}" aria-label="Menu mobile">
+  <div class="lec-mnav-head">
+    <img src="../../assets/brand/logo-lector.svg" alt="Lector">
+    <button type="button" class="lec-mnav-close" onClick="{{ closeMobile }}" aria-label="Fechar menu">
+      <i data-lucide="x" style="width:16px;height:16px;"></i>
+    </button>
+  </div>
+  <div class="lec-mnav-sub">
+    <a href="../plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
+    <a href="../copiloto-vendas/index.dc.html" onClick="{{ closeMobile }}">Copiloto de Vendas</a>
+    <a href="../solucao-nr-1/index.dc.html" onClick="{{ closeMobile }}">Solução NR-1</a>
+    <a href="../conteudo-sob-demanda/index.dc.html" onClick="{{ closeMobile }}">Criação de Conteúdo sob Demanda</a>
+    <a href="../diagnostico-gaps/index.dc.html" onClick="{{ closeMobile }}">Diagnóstico de Gaps</a>
+    <a href="../servicos-especializados/index.dc.html" onClick="{{ closeMobile }}">Serviços Especializados</a>
+  </div>
+  <a href="../blog/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Blog</a>
+  <a href="../home/index.dc.html#numeros" class="lec-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
+  <a href="./index.dc.html" class="lec-mnav-link is-active" onClick="{{ closeMobile }}">Contato</a>
+  <div class="lec-mnav-cta">
+    <a href="#form" class="lec-nav-cta__solid" style="text-align:center;" onClick="{{ closeMobile }}">Falar com especialista</a>
+  </div>
+</aside>
+
+<!-- SECTION: hero -->
+<section class="ct-hero" id="hero" aria-label="Contato">
+  <div class="ct-wrap">
+    <p class="ct-kicker" style="color:rgba(255,197,155,.95);">Contato</p>
+    <h1>Vamos conversar sobre o aprendizado da <em>sua empresa</em>.</h1>
+    <p>Conte o desafio. Um especialista Lector responde com o próximo passo certo — demonstração, diagnóstico ou consultoria.</p>
+  </div>
+</section>
+
+<!-- SECTION: form -->
+<section class="ct-section" id="form" aria-label="Formulário de contato">
+  <div class="ct-wrap ct-grid">
+    <div class="ct-card {{ formCardClass }}">
+      <div class="ct-card__head">
+        <h2>Envie uma mensagem</h2>
+        <p class="ct-card__sub">Preencha os dados abaixo. Usamos só para entrar em contato com você — sem spam.</p>
+      </div>
+      <form class="ct-form" onSubmit="{{ onSubmit }}" novalidate>
+        <div class="ct-row">
+          <div class="ct-field">
+            <label for="ct-nome">Nome</label>
+            <input id="ct-nome" name="nome" type="text" required autocomplete="name" placeholder="Seu nome">
+          </div>
+          <div class="ct-field">
+            <label for="ct-empresa">Empresa</label>
+            <input id="ct-empresa" name="empresa" type="text" required autocomplete="organization" placeholder="Nome da empresa">
+          </div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-field">
+            <label for="ct-email">E-mail corporativo</label>
+            <input id="ct-email" name="email" type="email" required autocomplete="email" placeholder="voce@empresa.com.br">
+          </div>
+          <div class="ct-field">
+            <label for="ct-tel">Telefone / WhatsApp</label>
+            <input id="ct-tel" name="telefone" type="tel" autocomplete="tel" placeholder="(00) 00000-0000">
+          </div>
+        </div>
+        <div class="ct-field">
+          <label for="ct-interesse">Interesse</label>
+          <select id="ct-interesse" name="interesse">
+            <option value="demonstracao">Agendar demonstração</option>
+            <option value="especialista">Falar com especialista</option>
+            <option value="diagnostico">Diagnóstico de maturidade T&amp;D</option>
+            <option value="conteudo">Criação de conteúdo sob demanda</option>
+            <option value="nr1">Solução NR-1</option>
+            <option value="vendas">Copiloto de Vendas</option>
+            <option value="servicos">Serviços Especializados</option>
+            <option value="outro">Outro assunto</option>
+          </select>
+        </div>
+        <div class="ct-field">
+          <label for="ct-msg">Mensagem <span style="font-weight:500;text-transform:none;letter-spacing:0;opacity:.7;">(opcional)</span></label>
+          <textarea id="ct-msg" name="mensagem" placeholder="Conte um pouco do desafio da sua empresa"></textarea>
+        </div>
+        <button type="submit" class="ct-submit">
+          Enviar mensagem
+          <i data-lucide="arrow-right"></i>
+        </button>
+        <p class="ct-msg {{ formMsgClass }}">{{ formMsg }}</p>
+        <p class="ct-note">Ao enviar, você concorda em ser contatado pela equipe Lector.</p>
+      </form>
+      <div class="ct-success" role="status">
+        <div class="ct-success__icon" aria-hidden="true"><i data-lucide="check"></i></div>
+        <h3>Mensagem enviada</h3>
+        <p>Obrigado. Em breve um especialista Lector entra em contato no e-mail ou telefone informados.</p>
+      </div>
+    </div>
+
+    <aside class="ct-aside" aria-label="Canais de contato">
+      <div class="ct-info">
+        <div class="ct-info__icon" aria-hidden="true"><i data-lucide="mail"></i></div>
+        <div>
+          <strong>E-mail</strong>
+          <a href="mailto:contato@lector.com.br">contato@lector.com.br</a>
+        </div>
+      </div>
+      <div class="ct-info">
+        <div class="ct-info__icon" aria-hidden="true"><i data-lucide="layout-dashboard"></i></div>
+        <div>
+          <strong>Já é cliente?</strong>
+          <p><a href="https://app.lector.com.br/painel" target="_blank" rel="noopener noreferrer">Acessar o painel</a></p>
+        </div>
+      </div>
+      <div class="ct-info">
+        <div class="ct-info__icon" aria-hidden="true"><i data-lucide="clock"></i></div>
+        <div>
+          <strong>Horário de atendimento</strong>
+          <p>Segunda a sexta, 9h–18h</p>
+        </div>
+      </div>
+      <div class="ct-next">
+        <h3>O que acontece depois</h3>
+        <ol>
+          <li><span>1</span>Recebemos sua mensagem e entendemos o contexto</li>
+          <li><span>2</span>Um especialista entra em contato em horário comercial</li>
+          <li><span>3</span>Alinhamos demo, diagnóstico ou consultoria — sem compromisso</li>
+        </ol>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- SECTION: footer -->
+<footer style="background:var(--ink-950); color:rgba(230,238,250,.7); padding:76px 0 40px;">
+  <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
+    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
+      <div>
+        <img src="../../assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
+        <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Soluções</div>
+        <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;">
+          <a href="../plataforma-lector/index.dc.html">Plataforma Lector</a>
+          <a href="../copiloto-vendas/index.dc.html">Copiloto de Vendas</a>
+          <a href="../solucao-nr-1/index.dc.html">Solução NR-1</a>
+          <a href="../diagnostico-gaps/index.dc.html">Diagnóstico de Gaps</a>
+          <a href="../servicos-especializados/index.dc.html">Serviços Especializados</a>
+        </div>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Empresa</div>
+        <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;">
+          <a href="../blog/index.dc.html">Blog</a>
+          <a href="./index.dc.html">Contato</a>
+        </div>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Receba novidades</div>
+        <p style="font-size:14px; margin:0 0 14px;">L&amp;D, IA e aprendizado, sem ruído.</p>
+        <div style="display:flex; gap:8px;">
+          <input placeholder="seu@email.com" style="flex:1; min-width:0; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:var(--radius-pill); padding:11px 16px; color:#fff; font-size:14px; font-family:var(--font-sans);">
+          <button type="button" style="background:var(--brand); border:none; color:#fff; border-radius:var(--radius-pill); width:44px; height:44px; flex:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:18px;height:18px;"></i></button>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; justify-content:space-between; padding-top:26px; font-size:13px; color:rgba(230,238,250,.5); flex-wrap:wrap; gap:14px;">
+      <span>© 2026 Lector Tecnologia. Todos os direitos reservados.</span>
+      <div style="display:flex; gap:22px;"><a href="#">Privacidade</a><a href="#">Segurança</a><a href="#">Termos</a></div>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { mobileOpen: false, formMsg: '', formError: false, formOk: false };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const nav = document.querySelector('[data-ct-nav]');
+      if (!nav) return;
+      if (window.scrollY > 8) nav.classList.add('lec-nav-scrolled');
+      else nav.classList.remove('lec-nav-scrolled');
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+    this._icons(0);
+  }
+
+  componentDidUpdate() {
+    this._icons(0);
+  }
+
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+  }
+
+  _icons(n) {
+    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    else if (n < 25) setTimeout(() => this._icons(n + 1), 120);
+  }
+
+  renderVals() {
+    return {
+      mobileOpenClass: this.state.mobileOpen ? 'is-open' : '',
+      openMobile: () => this.setState({ mobileOpen: true }),
+      closeMobile: () => this.setState({ mobileOpen: false }),
+      formMsg: this.state.formMsg,
+      formMsgClass: this.state.formError ? 'is-error' : '',
+      formCardClass: this.state.formOk ? 'is-success' : '',
+      onSubmit: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        const form = e && e.target;
+        if (!form || !form.elements) return;
+        const nome = String(form.elements.nome && form.elements.nome.value || '').trim();
+        const email = String(form.elements.email && form.elements.email.value || '').trim();
+        const empresa = String(form.elements.empresa && form.elements.empresa.value || '').trim();
+        if (!nome || !email || !empresa) {
+          this.setState({
+            formMsg: 'Preencha nome, e-mail e empresa para continuar.',
+            formError: true,
+            formOk: false,
+          });
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          this.setState({
+            formMsg: 'Informe um e-mail válido.',
+            formError: true,
+            formOk: false,
+          });
+          return;
+        }
+        try {
+          const data = {};
+          Array.from(form.elements).forEach((el) => {
+            if (el.name) data[el.name] = el.value;
+          });
+          console.info('[Lector contato]', data);
+        } catch (err) {}
+        form.reset();
+        this.setState({ formMsg: '', formError: false, formOk: true });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

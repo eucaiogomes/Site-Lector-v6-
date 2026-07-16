@@ -13,13 +13,57 @@
       "label": "Nossas Soluções",
       "href": "#plataforma",
       "page": "solucoes",
-      "status": "planned"
+      "status": "planned",
+      "children": [
+        {
+          "label": "Plataforma Lector",
+          "description": "Centralize LMS, IA, treinamento, trilhas, onboarding, universidade corporativa, lideranças, gestão de talentos, comunicação e gestão do conhecimento em um único ambiente.",
+          "href": "pages/plataforma-lector/index.dc.html",
+          "page": "plataforma-lector",
+          "status": "wip"
+        },
+        {
+          "label": "Copiloto de Vendas",
+          "description": "Diagnóstico de técnica de venda com IA, trilhas e certificação para reduzir o ramp-up.",
+          "href": "pages/copiloto-vendas/index.dc.html",
+          "page": "copiloto-vendas",
+          "status": "wip"
+        },
+        {
+          "label": "Solução NR-1",
+          "description": "Automatize treinamentos, registros, evidências e a conformidade com a legislação.",
+          "href": "pages/solucao-nr-1/index.dc.html",
+          "page": "solucao-nr-1",
+          "status": "wip"
+        },
+        {
+          "label": "Criação de Conteúdo sob Demanda",
+          "description": "Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.",
+          "href": "pages/conteudo-sob-demanda/index.dc.html",
+          "page": "conteudo-sob-demanda",
+          "status": "wip"
+        },
+        {
+          "label": "Diagnóstico de Gaps",
+          "description": "Identifique lacunas por habilidade, prove resultado e entregue conhecimento cirúrgico.",
+          "href": "pages/diagnostico-gaps/index.dc.html",
+          "page": "diagnostico-gaps",
+          "status": "wip"
+        },
+        {
+          "label": "Serviços Especializados",
+          "description": "Consultoria, universidades corporativas, produção de conteúdo e gestão do conhecimento.",
+          "href": "pages/servicos-especializados/index.dc.html",
+          "page": "servicos-especializados",
+          "status": "wip"
+        }
+      ]
     },
     {
       "label": "Blog",
-      "href": "#capacidades",
+      "href": "pages/blog/index.dc.html",
       "page": "blog",
-      "status": "planned"
+      "status": "live"
     },
     {
       "label": "Clientes",
@@ -29,24 +73,20 @@
     },
     {
       "label": "Contato",
-      "href": "#contato",
+      "href": "pages/contato/index.dc.html",
       "page": "contato",
-      "status": "planned"
+      "status": "live"
     }
   ],
   "ctas": {
     "primary": {
-      "label": "Comece agora",
-      "href": "#contato"
-    },
-    "secondary": {
-      "label": "Entrar",
-      "href": "#entrar"
+      "label": "Falar com especialista",
+      "href": "pages/contato/index.dc.html"
     },
     "announce": {
       "label": "Quero meu diagnóstico",
       "text": "Diagnóstico gratuito de maturidade T&D da sua empresa — vagas limitadas este mês",
-      "href": "#contato"
+      "href": "pages/contato/index.dc.html"
     }
   },
   "pages": {
@@ -57,6 +97,38 @@
       "spec": "specs/pages/home.md",
       "status": "live",
       "route": "/"
+    },
+    "plataforma-lector": {
+      "slug": "plataforma-lector",
+      "title": "Plataforma Lector",
+      "path": "pages/plataforma-lector/index.dc.html",
+      "spec": "specs/pages/plataforma-lector.md",
+      "status": "wip",
+      "route": "/plataforma-lector"
+    },
+    "copiloto-vendas": {
+      "slug": "copiloto-vendas",
+      "title": "Copiloto de Vendas",
+      "path": "pages/copiloto-vendas/index.dc.html",
+      "spec": "specs/pages/copiloto-vendas.md",
+      "status": "wip",
+      "route": "/copiloto-vendas"
+    },
+    "solucao-nr-1": {
+      "slug": "solucao-nr-1",
+      "title": "Solução NR-1",
+      "path": "pages/solucao-nr-1/index.dc.html",
+      "spec": "specs/pages/solucao-nr-1.md",
+      "status": "wip",
+      "route": "/solucao-nr-1"
+    },
+    "conteudo-sob-demanda": {
+      "slug": "conteudo-sob-demanda",
+      "title": "Criação de Conteúdo sob Demanda",
+      "path": "pages/conteudo-sob-demanda/index.dc.html",
+      "spec": "specs/pages/conteudo-sob-demanda.md",
+      "status": "wip",
+      "route": "/conteudo-sob-demanda"
     },
     "solucoes": {
       "slug": "solucoes",
@@ -77,26 +149,34 @@
     "blog": {
       "slug": "blog",
       "title": "Blog",
-      "path": null,
-      "spec": null,
-      "status": "planned",
+      "path": "pages/blog/index.dc.html",
+      "spec": "specs/pages/blog.md",
+      "status": "live",
       "route": "/blog"
     },
     "contato": {
       "slug": "contato",
       "title": "Contato",
-      "path": null,
-      "spec": null,
-      "status": "planned",
+      "path": "pages/contato/index.dc.html",
+      "spec": "specs/pages/contato.md",
+      "status": "live",
       "route": "/contato"
     },
-    "servicos": {
-      "slug": "servicos",
-      "title": "Serviços",
-      "path": null,
-      "spec": null,
-      "status": "planned",
-      "route": "/servicos"
+    "servicos-especializados": {
+      "slug": "servicos-especializados",
+      "title": "Serviços Especializados",
+      "path": "pages/servicos-especializados/index.dc.html",
+      "spec": "specs/pages/servicos-especializados.md",
+      "status": "wip",
+      "route": "/servicos-especializados"
+    },
+    "diagnostico-gaps": {
+      "slug": "diagnostico-gaps",
+      "title": "Diagnóstico de Gaps",
+      "path": "pages/diagnostico-gaps/index.dc.html",
+      "spec": "specs/pages/diagnostico-gaps.md",
+      "status": "wip",
+      "route": "/diagnostico-gaps"
     }
   },
   "clients": [
@@ -117,6 +197,8 @@
     "assetsBrand": "assets/brand",
     "assetsClients": "assets/clients",
     "assetsMedia": "assets/media",
+    "shared": "shared",
+    "leadForm": "shared/lead-form.js",
     "support": "support.js"
   }
 }

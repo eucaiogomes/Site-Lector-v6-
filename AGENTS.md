@@ -21,6 +21,7 @@ Stack atual: HTML no formato Design Canvas (`.dc.html`) + design system próprio
 ├── AGENTS.md                 ← você está aqui
 ├── README.md
 ├── support.js                ← runtime DC (não editar manualmente)
+├── vercel.json
 │
 ├── specs/                    ← SPECS (leia antes de codar)
 │   ├── product.md
@@ -29,34 +30,30 @@ Stack atual: HTML no formato Design Canvas (`.dc.html`) + design system próprio
 │   ├── sitemap.md
 │   ├── how-to-add-page.md
 │   ├── pages/                ← 1 spec por página
-│   │   ├── _TEMPLATE.md
-│   │   └── home.md
-│   └── components/           ← specs de peças reutilizáveis
+│   └── components/           ← header, lead-form, …
 │
 ├── pages/                    ← CÓDIGO das páginas
 │   └── <slug>/
-│       ├── index.dc.html     ← entry da página
-│       ├── page.css          ← opcional, só se a página precisar
-│       └── page.js           ← opcional
+│       └── index.dc.html
 │
-├── design-system/            ← tokens, styles, bundle (não reinventar)
-│   ├── styles.css
-│   ├── tokens/
-│   └── _ds_bundle.js
+├── design-system/            ← tokens, styles, bundle
 │
 ├── assets/
-│   ├── brand/                ← logos, orbit, marca
-│   ├── clients/              ← logos de clientes
-│   └── media/                ← imagens/vídeos de produção
+│   ├── brand/                ← logos oficiais (logo-lector.svg, light, orbit)
+│   ├── clients/
+│   └── media/<slug>/         ← mídia de produção por página
 │
-├── content/                  ← conteúdo estruturado (nav, CTAs, copy global)
-│   └── site.json
+├── content/
+│   └── site.json             ← nav, CTAs, páginas
 │
-├── shared/                   ← partials / utilitários futuros
+├── shared/                   ← lead form e utilitários do site
+│   ├── lead-form.css
+│   └── lead-form.js
 │
-└── references/               ← NÃO é produção (inspiração, dumps, rascunhos)
+└── references/               ← NÃO é produção
     ├── inspiration/
-    └── raw/
+    ├── prototypes/           ← ex.: lector-blog antigo
+    └── raw/                  ← dumps, vídeos soltos, rascunhos
 ```
 
 ---
@@ -70,10 +67,11 @@ Stack atual: HTML no formato Design Canvas (`.dc.html`) + design system próprio
    - marca → `assets/brand/`
    - clientes → `assets/clients/`
    - mídia de página → `assets/media/<slug>/`
-5. **`references/` é sagrado de lixo útil.** Nunca copiar dumps de concorrentes para `pages/` ou `assets/` de produção sem curadoria.
+5. **`references/` é sagrado de lixo útil.** Nunca copiar dumps para `pages/` ou `assets/` de produção sem curadoria.
 6. **Não editar `support.js`** (gerado). Não mexer no bundle do DS sem necessidade.
 7. **Atualize o sitemap** (`specs/sitemap.md` + `content/site.json`) ao adicionar rota/página.
-8. **Cresça por adição**, não por monólito: novas seções → preferir partials/shared; páginas grandes → seções comentadas claras no HTML.
+8. **CTAs de lead** usam `shared/lead-form` — inclua CSS/JS no helmet de páginas novas.
+9. **Cresça por adição**, não por monólito: shared/partials; seções comentadas no HTML.
 
 ---
 
@@ -88,7 +86,10 @@ Stack atual: HTML no formato Design Canvas (`.dc.html`) + design system próprio
 <link rel="stylesheet" href="../../design-system/tokens/effects.css">
 <link rel="stylesheet" href="../../design-system/tokens/base.css">
 <link rel="stylesheet" href="../../design-system/styles.css">
+<link rel="stylesheet" href="../../shared/lead-form.css">
 <script src="../../design-system/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="../../shared/lead-form.js" data-base="../.."></script>
 <img src="../../assets/brand/logo-lector.svg" alt="Lector">
 ```
 
@@ -98,10 +99,10 @@ Stack atual: HTML no formato Design Canvas (`.dc.html`) + design system próprio
 
 1. Ler `specs/how-to-add-page.md`
 2. Criar `specs/pages/<slug>.md` a partir do template
-3. Criar `pages/<slug>/index.dc.html`
+3. Criar `pages/<slug>/index.dc.html` (com lead-form no helmet)
 4. Registrar em `specs/sitemap.md` e `content/site.json`
 5. Se precisar de mídia: `assets/media/<slug>/`
-6. Linkar a partir do nav (home / header global) quando a página estiver pronta
+6. Linkar na nav (dropdown Nossas Soluções / links) quando pronta
 
 ---
 
@@ -126,7 +127,8 @@ Detalhes: `specs/brand.md` e `design-system/readme.md`.
 - Criar CSS global paralelo ao design system
 - Duplicar logos em várias pastas
 - Colocar conteúdo de produção em `references/`
-- Páginas monólito de 5k linhas sem seções nomeadas
+- Deixar lixo (vídeos, HTML solto, dumps) na **raiz**
+- Páginas monólito sem seções nomeadas
 - Commitar dumps grandes de sites de referência sem `.gitignore`
 
 ---
@@ -134,9 +136,10 @@ Detalhes: `specs/brand.md` e `design-system/readme.md`.
 ## Checklist rápido antes de entregar
 
 - [ ] Spec da página existe e está coerente com o HTML
-- [ ] Paths `../../design-system` e `../../assets` corretos
+- [ ] Paths `../../design-system`, `../../assets`, `../../shared` corretos
 - [ ] Tokens CSS usados (não hex aleatórios)
-- [ ] Sitemap atualizado
+- [ ] Lead form incluído se a página tiver CTAs de conversão
+- [ ] Sitemap + `site.json` atualizados
 - [ ] Copy em PT-BR, tom Lector
 - [ ] Responsivo básico (mobile/desktop)
 - [ ] Sem dependência de arquivos em `references/`

@@ -7,6 +7,7 @@
 - Cada página = `pages/<slug>/` + `specs/pages/<slug>.md`
 - Visual compartilhado = `design-system/`
 - Conteúdo global = `content/site.json`
+- Utilitários de site = `shared/`
 - Inspiração / dumps = `references/` (nunca produção)
 
 ## Camadas
@@ -19,6 +20,8 @@
 ├─────────────────────────────────────────┤
 │  content/   dados e copy estruturados   │
 ├─────────────────────────────────────────┤
+│  shared/    lead form, partials futuros │
+├─────────────────────────────────────────┤
 │  design-system/  tokens + componentes   │
 ├─────────────────────────────────────────┤
 │  assets/    mídia de produção           │
@@ -27,13 +30,38 @@
 └─────────────────────────────────────────┘
 ```
 
+## Mapa de pastas (produção)
+
+```
+/
+├── AGENTS.md
+├── README.md
+├── support.js
+├── vercel.json
+├── content/site.json
+├── shared/
+│   ├── lead-form.css
+│   └── lead-form.js
+├── pages/<slug>/index.dc.html
+├── design-system/
+├── assets/
+│   ├── brand/
+│   ├── clients/
+│   └── media/<slug>/
+├── specs/
+└── references/          # NÃO é produção
+    ├── inspiration/
+    ├── prototypes/      # ex.: lector-blog antigo
+    └── raw/             # dumps, vídeos soltos, prints
+```
+
 ## Formato de página
 
 Arquivos `.dc.html` (Design Canvas):
 
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,65 +70,83 @@ Arquivos `.dc.html` (Design Canvas):
 <body>
 <x-dc>
   <helmet>
-    <!-- links do design-system + lucide + CSS da página -->
+    <!-- tokens DS + styles + shared/lead-form + lucide -->
   </helmet>
-  <!-- seções da página -->
+  <!-- seções -->
 </x-dc>
-<script type="text/dc" data-dc-script data-props='{}'>
-  // estado e handlers da página
+<script type="text/x-dc" data-dc-script data-props="{}">
+  // estado e handlers
 </script>
 </body>
 </html>
 ```
 
-## Convenções de seções no HTML
+Helmet típico (paths a partir de `pages/<slug>/`):
 
-Comente cada bloco para agentes e humanos:
+```html
+<link rel="stylesheet" href="../../design-system/tokens/fonts.css">
+<!-- … demais tokens … -->
+<link rel="stylesheet" href="../../design-system/styles.css">
+<link rel="stylesheet" href="../../shared/lead-form.css">
+<script src="../../design-system/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="../../shared/lead-form.js" data-base="../.."></script>
+```
+
+## Convenções de seções
 
 ```html
 <!-- SECTION: hero -->
-<!-- SECTION: clients -->
-<!-- SECTION: features -->
+<!-- SECTION: nav -->
 <!-- SECTION: cta -->
 <!-- SECTION: footer -->
 ```
 
 ## Design system
 
-- Entrada: `design-system/styles.css` (+ tokens em `tokens/`)
-- Bundle de componentes: `design-system/_ds_bundle.js`
-- Documentação interna: `design-system/readme.md`
+- Tokens: `design-system/tokens/*`
+- Styles: `design-system/styles.css`
+- Bundle: `design-system/_ds_bundle.js`
+- Doc: `design-system/readme.md`
 
-**Regra:** se o token existe, use o token. Só CSS local em `pages/<slug>/page.css` para layout único daquela página.
+**Regra:** se o token existe, use o token.
 
 ## Assets
 
 ```
 assets/
-  brand/           # logos e motifs oficiais
-  clients/         # logos de clientes (PNG)
+  brand/           # logo-lector.svg, logo-lector-light.svg, orbit, mark
+  clients/         # logos de clientes
   media/
-    <slug>/        # mídia específica de uma página
+    home/          # hero.mp4, video-autoria.mp4, lms.png, rede-social.png
+    <slug>/        # mídia de página (pode ter só .gitkeep no wip)
 ```
+
+## Shared
+
+| Arquivo | Função |
+|---------|--------|
+| `lead-form.css` / `lead-form.js` | Modal de lead (todas as páginas) |
+
+Header/footer ainda embutidos por página — extrair quando estabilizar.
 
 ## Referências
 
 ```
 references/
-  inspiration/     # sites de referência (ex.: heimdallpower)
-  raw/             # prints, vídeos baixados, colagens
+  inspiration/     # sites de referência
+  prototypes/      # protótipos descontinuados (ex. lector-blog)
+  raw/             # prints, vídeos soltos, HTML de rascunho
 ```
 
-Agentes **não** devem importar esses arquivos em páginas sem curadoria explícita do usuário.
+Agentes **não** linkam `references/` em produção.
 
-## Evolução futura (quando precisar)
+## Evolução futura
 
 | Necessidade | Onde encaixar |
 |-------------|----------------|
-| Next.js / Astro | `pages/` vira rotas do framework; specs permanecem |
-| CMS | `content/` vira API ou MDX |
+| Next.js / Astro | `pages/` vira rotas; specs permanecem |
+| CMS | `content/` |
 | i18n | `content/pt/`, `content/en/` |
-| Partials de header/footer | `shared/header.dc.html`, etc. |
-| Componentes custom do site | `shared/components/` ou specs em `specs/components/` |
-
-A estrutura atual já antecipa isso: **specs estáveis**, **código por página**, **DS central**.
+| Header/footer partial | `shared/header.*` |
+| Backend de leads | endpoint + `lead-form.js` onSubmit |

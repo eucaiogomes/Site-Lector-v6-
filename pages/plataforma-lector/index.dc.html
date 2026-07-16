@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Plataforma Lector — LMS, IA e universidade corporativa</title>
+<meta name="description" content="LMS, webconferência e IA nativa em um só ambiente. Transforme treinamento em performance medível e compliance NR-1 auditável.">
+<meta property="og:title" content="Plataforma Lector — LMS, IA e universidade corporativa">
+<meta property="og:description" content="LMS, webconferência e IA nativa em um só ambiente. Transforme treinamento em performance medível e compliance NR-1 auditável.">
+<link rel="stylesheet" href="../../design-system/tokens/fonts.css">
+<link rel="stylesheet" href="../../design-system/tokens/colors.css">
+<link rel="stylesheet" href="../../design-system/tokens/typography.css">
+<link rel="stylesheet" href="../../design-system/tokens/spacing.css">
+<link rel="stylesheet" href="../../design-system/tokens/effects.css">
+<link rel="stylesheet" href="../../design-system/tokens/base.css">
+<link rel="stylesheet" href="../../design-system/styles.css">
+<link rel="stylesheet" href="../../shared/lead-form.css">
+<script src="../../design-system/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="../../shared/lead-form.js" data-base="../.."></script>
+<style>
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--surface-page, #FBFAF7);
+    color: var(--text-body, #243653);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--brand); }
+  button { font-family: inherit; cursor: pointer; }
+  * { box-sizing: border-box; }
+  [data-lucide] { display: block; }
+  ::selection { background: var(--brand); color: #fff; }
+
+  .pl-wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+  .pl-h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    color: var(--accent-navy, #00204D);
+    margin: 12px 0 16px;
+    text-wrap: balance;
+  }
+  .pl-lead {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-500, #5C667C);
+    max-width: 640px;
+    margin: 0;
+  }
+  .pl-section { padding: 88px 0; }
+  .pl-section--alt { background: var(--ink-50, #F6F7FA); }
+  .pl-section--dark {
+    background: var(--ink-950, #001026);
+    color: rgba(255,255,255,.9);
+  }
+  .pl-section--dark .pl-h2 { color: #fff; }
+  .pl-section--dark .pl-lead { color: rgba(230,238,250,.72); }
+
+  /* Nav — padrão claro (blog) */
+  .lec-nav-wrap {
+    position: sticky; top: 0; z-index: 50; width: 100%;
+    display: flex; justify-content: center; padding: 11px 20px 0; background: transparent;
+  }
+  .lec-nav {
+    width: 100%; max-width: 1160px; display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; padding: 11px 11px 11px 22px; border-radius: var(--radius-pill, 999px);
+    background: rgba(255,255,255,.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(0,32,77,.08); box-shadow: 0 8px 28px -16px rgba(10,23,48,.12);
+    transition: box-shadow .3s ease, background .3s ease, border-color .3s ease;
+  }
+  .lec-nav.lec-nav-scrolled {
+    background: rgba(255,255,255,.97);
+    box-shadow: 0 16px 40px -16px rgba(10,23,48,.18);
+    border-color: rgba(0,32,77,.1);
+  }
+  .lec-nav-logo { display: flex; align-items: center; flex: none; }
+  .lec-nav-logo:hover { color: inherit; }
+  .lec-nav-logo img { height: 24px; width: auto; display: block; }
+  .lec-nav-links { display: flex; align-items: center; gap: 30px; font-size: 14.5px; font-weight: 600; }
+  .lec-nav-links > a { color: #243653; transition: color .2s; }
+  .lec-nav-links > a:hover { color: var(--brand); }
+  .lec-dd { position: relative; }
+  .lec-dd__trigger {
+    display: inline-flex; align-items: center; gap: 5px; background: none; border: none;
+    padding: 0; margin: 0; font: inherit; font-size: 14.5px; font-weight: 700;
+    color: var(--brand); cursor: pointer;
+  }
+  .lec-dd__chev { display: inline-flex; width: 14px; height: 14px; transition: transform .25s ease; }
+  .lec-dd__chev i, .lec-dd__chev svg { width: 14px; height: 14px; }
+  .lec-dd:hover .lec-dd__chev, .lec-dd:focus-within .lec-dd__chev { transform: rotate(180deg); }
+  .lec-dd__menu {
+    position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(6px);
+    min-width: 360px; width: max(360px, min(420px, 92vw)); padding: 8px; border-radius: 16px;
+    background: rgba(255,255,255,.98); border: 1px solid #ECEDF2;
+    box-shadow: 0 18px 44px -12px rgba(10,20,40,.18);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease, visibility .18s; z-index: 80;
+  }
+  .lec-dd__menu::before { content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
+  .lec-dd:hover .lec-dd__menu, .lec-dd:focus-within .lec-dd__menu {
+    opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+  }
+  .lec-dd__item {
+    display: flex; align-items: flex-start; gap: 12px; padding: 12px; border-radius: 12px;
+    color: #1F2A3D; white-space: normal; transition: background .15s ease, color .15s;
+  }
+  .lec-dd__item:hover, .lec-dd__item.is-active { background: #F7F8FA; color: inherit; }
+  .lec-dd__item:hover .lec-dd__item-title,
+  .lec-dd__item.is-active .lec-dd__item-title { color: var(--brand); }
+  .lec-dd__item-icon {
+    display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px;
+    margin-top: 1px; border-radius: 10px; background: rgba(246,107,10,.12); color: var(--brand); flex: none;
+  }
+  .lec-dd__item-icon i, .lec-dd__item-icon svg { width: 17px; height: 17px; }
+  .lec-dd__item-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .lec-dd__item-title {
+    font-size: 14px; font-weight: 700; line-height: 1.25; color: #1F2A3D; transition: color .15s ease;
+  }
+  .lec-dd__item-desc {
+    font-size: 12.5px; font-weight: 500; line-height: 1.4; color: #5A6B84;
+  }
+  .lec-nav-cta { display: flex; align-items: center; gap: 18px; flex: none; }
+  .lec-nav-cta__ghost {
+    font-size: 14.5px; font-weight: 700; color: var(--accent-navy, #00204D);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .lec-nav-cta__ghost:hover { color: var(--brand); }
+  .lec-nav-cta__solid {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: rgba(0,32,77,.04); border: 1px solid rgba(0,32,77,.1);
+    border-radius: var(--radius-pill, 999px); padding: 6px 6px 6px 20px;
+    color: var(--accent-navy, #00204D); font-weight: 700; font-size: 14.5px; white-space: nowrap;
+  }
+  .lec-nav-cta__solid:hover { color: var(--accent-navy, #00204D); border-color: rgba(0,32,77,.16); }
+  .lec-nav-cta__solid-icon {
+    width: 32px; height: 32px; border-radius: 10px; background: var(--brand); color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .lec-nav-cta__solid-icon i, .lec-nav-cta__solid-icon svg { width: 16px; height: 16px; }
+  .lec-burger {
+    display: none; width: 40px; height: 40px; align-items: center; justify-content: center;
+    border: none; background: transparent; flex-direction: column; gap: 5px; border-radius: 10px;
+  }
+  .lec-burger span { display: block; width: 22px; height: 2px; background: #00204D; border-radius: 2px; }
+  .lec-mnav-overlay {
+    position: fixed; inset: 0; background: rgba(0,16,38,.32); opacity: 0; visibility: hidden;
+    transition: opacity .3s ease, visibility .3s; z-index: 90;
+  }
+  .lec-mnav-overlay.is-open { opacity: 1; visibility: visible; }
+  .lec-mnav {
+    position: fixed; top: 0; right: 0; height: 100%; width: min(310px, 85vw); background: #fff;
+    z-index: 91; transform: translateX(100%); transition: transform .4s cubic-bezier(.16,1,.3,1);
+    display: flex; flex-direction: column; padding: 26px 16px 32px; overflow-y: auto;
+    box-shadow: -12px 0 42px rgba(10,20,40,.16);
+  }
+  .lec-mnav.is-open { transform: translateX(0); }
+  .lec-mnav-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
+  .lec-mnav-head img { height: 26px; width: auto; }
+  .lec-mnav-close {
+    width: 40px; height: 40px; border: none; background: #F1F2F7; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; color: #243653;
+  }
+  .lec-mnav-link {
+    display: flex; align-items: center; padding: 16px 18px; font-size: 15.5px; font-weight: 600;
+    color: #1F2A3D; border-bottom: 1px solid #EBEDF3;
+  }
+  .lec-mnav-link:hover, .lec-mnav-link.is-active { color: var(--brand); }
+  .lec-mnav-sub { border-bottom: 1px solid #EBEDF3; padding: 4px 0 10px; }
+  .lec-mnav-sub a {
+    display: block; padding: 10px 18px 10px 26px; font-size: 14px; font-weight: 500; color: #52637F;
+  }
+  .lec-mnav-sub a:hover, .lec-mnav-sub a.is-active { color: var(--brand); }
+  .lec-mnav-cta { margin-top: auto; padding-top: 26px; display: flex; flex-direction: column; gap: 11px; }
+  @media (max-width: 880px) {
+    .lec-nav-links, .lec-nav-cta { display: none !important; }
+    .lec-burger { display: flex !important; }
+  }
+
+  /* Buttons */
+  .pl-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    border-radius: var(--radius-pill, 999px); font-weight: 700; font-size: 15px;
+    padding: 14px 24px; border: none; transition: transform .15s ease, box-shadow .2s ease, background .2s;
+  }
+  .pl-btn:hover { color: inherit; transform: translateY(-1px); }
+  .pl-btn--primary {
+    background: var(--brand); color: #fff;
+    box-shadow: 0 12px 28px -12px rgba(246,107,10,.65);
+  }
+  .pl-btn--primary:hover { color: #fff; }
+  .pl-btn--ghost {
+    background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.35);
+  }
+  .pl-btn--ghost:hover { color: #fff; border-color: rgba(255,255,255,.6); }
+  .pl-btn--navy {
+    background: var(--accent-navy, #00204D); color: #fff;
+  }
+  .pl-btn--navy:hover { color: #fff; }
+  .pl-btn--outline {
+    background: #fff; color: var(--accent-navy, #00204D);
+    border: 1.5px solid rgba(0,32,77,.14);
+  }
+
+  /* Hero */
+  .pl-hero {
+    position: relative; overflow: hidden;
+    background: var(--ink-950, #001026);
+    color: #fff; padding: 72px 0 80px;
+  }
+  .pl-hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(90% 70% at 85% 10%, rgba(246,107,10,.28), transparent 55%),
+      radial-gradient(60% 50% at 10% 80%, rgba(26,65,115,.4), transparent 55%);
+  }
+  .pl-hero__grid {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center;
+  }
+  .pl-hero h1 {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(36px, 5.5vw, 56px); line-height: 1.02; letter-spacing: -.03em;
+    margin: 16px 0 20px; text-wrap: balance;
+  }
+  .pl-hero h1 em { font-style: italic; color: var(--brand); }
+  .pl-hero__sub {
+    font-size: 17px; line-height: 1.55; color: rgba(230,238,250,.78); max-width: 540px; margin: 0 0 18px;
+  }
+  .pl-hero__extra {
+    font-size: 15px; line-height: 1.55; color: rgba(230,238,250,.62); max-width: 540px; margin: 0 0 28px;
+  }
+  .pl-hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+  .pl-trust {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;
+  }
+  .pl-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border-radius: 999px;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+    font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    color: rgba(255,255,255,.88);
+  }
+  .pl-badge i, .pl-badge svg { width: 14px; height: 14px; color: var(--brand); }
+  .pl-hero__note {
+    font-size: 13.5px; line-height: 1.5; color: rgba(230,238,250,.55); max-width: 480px;
+  }
+  .pl-hero-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 24px;
+    padding: 28px;
+    backdrop-filter: blur(10px);
+  }
+  .pl-hero-card__label {
+    font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(255,255,255,.45); margin-bottom: 18px;
+  }
+  .pl-stat-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  .pl-stat {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px; padding: 18px 16px;
+  }
+  .pl-stat strong {
+    display: block; font-family: var(--font-mono); font-size: 28px; font-weight: 700;
+    color: #fff; margin-bottom: 6px;
+  }
+  .pl-stat span {
+    font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+    color: rgba(255,255,255,.5); line-height: 1.35;
+  }
+  .pl-stat--warn strong { color: var(--amber-400, #FFC04D); }
+  .pl-disclaimer {
+    margin-top: 16px; font-size: 11.5px; line-height: 1.45; color: rgba(255,255,255,.38);
+  }
+
+  /* Cards grid */
+  .pl-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px;
+  }
+  .pl-card {
+    background: #fff; border: 1px solid var(--ink-100, #E7EAF1);
+    border-radius: 18px; padding: 22px 20px;
+    box-shadow: 0 10px 30px -22px rgba(10,20,40,.18);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .pl-card:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -20px rgba(10,20,40,.22); }
+  .pl-card__icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: rgba(246,107,10,.12); color: var(--brand);
+    display: inline-flex; align-items: center; justify-content: center; margin-bottom: 14px;
+  }
+  .pl-card__icon i, .pl-card__icon svg { width: 20px; height: 20px; }
+  .pl-card h3 {
+    font-family: var(--font-display); font-size: 17px; font-weight: 700;
+    color: var(--accent-navy, #00204D); margin: 0 0 8px;
+  }
+  .pl-card p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-500, #5C667C); }
+
+  .pl-logos {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: 28px 40px; margin-top: 48px; padding-top: 36px;
+    border-top: 1px solid var(--ink-100, #E7EAF1);
+  }
+  .pl-logos img {
+    height: 28px; width: auto; max-width: 120px; object-fit: contain;
+    filter: grayscale(1); opacity: .7; transition: opacity .2s, filter .2s;
+  }
+  .pl-logos img:hover { filter: none; opacity: 1; }
+
+  /* University mock */
+  .pl-mock {
+    margin-top: 40px; border-radius: 22px; overflow: hidden;
+    border: 1px solid var(--ink-100, #E7EAF1);
+    background: #fff; box-shadow: 0 24px 60px -28px rgba(10,20,40,.28);
+  }
+  .pl-mock__bar {
+    display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+    background: var(--ink-50, #F6F7FA); border-bottom: 1px solid var(--ink-100, #E7EAF1);
+  }
+  .pl-mock__dots { display: flex; gap: 6px; }
+  .pl-mock__dots span { width: 10px; height: 10px; border-radius: 50%; background: var(--ink-200, #D3D8E2); }
+  .pl-mock__url {
+    flex: 1; text-align: center; font-family: var(--font-mono); font-size: 12.5px;
+    color: var(--ink-500); background: #fff; border-radius: 8px; padding: 6px 12px;
+    border: 1px solid var(--ink-100);
+  }
+  .pl-mock__body { display: grid; grid-template-columns: 220px 1fr; min-height: 360px; }
+  .pl-mock__nav {
+    background: var(--accent-navy, #00204D); color: rgba(255,255,255,.85); padding: 20px 14px;
+  }
+  .pl-mock__nav-title {
+    font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(255,255,255,.4); margin: 0 0 14px 8px;
+  }
+  .pl-mock__nav a {
+    display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px;
+    font-size: 13.5px; font-weight: 600; color: rgba(255,255,255,.82); margin-bottom: 4px;
+  }
+  .pl-mock__nav a:hover, .pl-mock__nav a.is-active {
+    background: rgba(255,255,255,.1); color: #fff;
+  }
+  .pl-mock__nav a i, .pl-mock__nav a svg { width: 16px; height: 16px; opacity: .85; }
+  .pl-mock__main { padding: 22px; background: var(--paper, #FBFAF7); }
+  .pl-ai-banner {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: linear-gradient(135deg, rgba(246,107,10,.1), rgba(246,107,10,.04));
+    border: 1px solid rgba(246,107,10,.22); border-radius: 14px; padding: 16px; margin-bottom: 18px;
+  }
+  .pl-ai-banner__icon {
+    width: 36px; height: 36px; border-radius: 10px; flex: none;
+    background: var(--brand); color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .pl-ai-banner__icon i, .pl-ai-banner__icon svg { width: 18px; height: 18px; }
+  .pl-ai-banner strong {
+    display: block; font-size: 12px; font-weight: 800; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--brand); margin-bottom: 6px;
+  }
+  .pl-ai-banner p { margin: 0; font-size: 14.5px; line-height: 1.45; color: var(--ink-700); }
+  .pl-progress-list { display: flex; flex-direction: column; gap: 12px; }
+  .pl-progress {
+    background: #fff; border: 1px solid var(--ink-100); border-radius: 14px; padding: 14px 16px;
+  }
+  .pl-progress__top {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px;
+  }
+  .pl-progress__title { font-size: 14px; font-weight: 700; color: var(--accent-navy); }
+  .pl-chip {
+    font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+    padding: 4px 8px; border-radius: 999px;
+  }
+  .pl-chip--trail { background: rgba(0,32,77,.08); color: var(--accent-navy); }
+  .pl-chip--req { background: rgba(246,107,10,.12); color: var(--orange-700, #C44700); }
+  .pl-bar { height: 8px; border-radius: 999px; background: var(--ink-100); overflow: hidden; }
+  .pl-bar > i { display: block; height: 100%; border-radius: 999px; background: var(--brand); }
+  .pl-live-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    margin-top: 14px; padding: 14px 16px; border-radius: 14px;
+    background: var(--accent-navy); color: #fff;
+  }
+  .pl-live-row span { font-size: 13.5px; font-weight: 600; }
+  .pl-live-row a {
+    background: var(--brand); color: #fff; border-radius: 999px; padding: 8px 14px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pl-live-row a:hover { color: #fff; }
+
+  /* Module grid */
+  .pl-mods {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 36px;
+  }
+  .pl-mod {
+    background: #fff; border: 1px solid var(--ink-100); border-radius: 16px; padding: 18px;
+  }
+  .pl-mod__code {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+    letter-spacing: .08em; color: var(--brand); margin-bottom: 8px;
+  }
+  .pl-mod h3 {
+    font-size: 15.5px; font-weight: 700; color: var(--accent-navy); margin: 0 0 6px;
+  }
+  .pl-mod p { margin: 0; font-size: 13.5px; line-height: 1.45; color: var(--ink-500); }
+
+  .pl-exclusive {
+    margin-top: 40px; border-radius: 22px; padding: 36px 32px;
+    background: var(--ink-950); color: #fff;
+  }
+  .pl-exclusive h3 {
+    font-family: var(--font-display); font-size: 24px; font-weight: 800; margin: 0 0 10px;
+  }
+  .pl-exclusive > p { margin: 0 0 24px; color: rgba(255,255,255,.65); max-width: 560px; line-height: 1.5; }
+  .pl-exclusive__grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+  }
+  .pl-exclusive__item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px; border-radius: 12px;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+    font-size: 13.5px; font-weight: 600; color: rgba(255,255,255,.88);
+  }
+  .pl-exclusive__item i, .pl-exclusive__item svg { width: 16px; height: 16px; color: var(--brand); flex: none; }
+
+  /* Social mock */
+  .pl-social-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; margin-top: 36px;
+  }
+  .pl-feed {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .pl-post {
+    background: #fff; border: 1px solid var(--ink-100); border-radius: 16px; padding: 18px;
+    box-shadow: 0 12px 28px -22px rgba(10,20,40,.2);
+  }
+  .pl-post__head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .pl-avatar {
+    width: 40px; height: 40px; border-radius: 12px; flex: none;
+    background: var(--brand); color: #fff; font-weight: 800; font-size: 13px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .pl-avatar--navy { background: var(--accent-navy); }
+  .pl-post__meta strong { display: block; font-size: 14px; color: var(--accent-navy); }
+  .pl-post__meta span { font-size: 12.5px; color: var(--ink-400); }
+  .pl-post p { margin: 0 0 12px; font-size: 14.5px; line-height: 1.5; color: var(--ink-700); }
+  .pl-post__stats {
+    display: flex; gap: 16px; font-size: 12.5px; font-weight: 600; color: var(--ink-400);
+  }
+  .pl-post__stats span { display: inline-flex; align-items: center; gap: 5px; }
+  .pl-post__stats i, .pl-post__stats svg { width: 14px; height: 14px; }
+
+  /* Onboarding pains */
+  .pl-pains {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 32px 0;
+  }
+  .pl-pain {
+    background: #fff; border: 1px solid var(--ink-100); border-radius: 16px; padding: 18px;
+    border-left: 3px solid var(--brand);
+  }
+  .pl-pain p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-700); }
+
+  /* Timeline chain */
+  .pl-chain {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 32px;
+  }
+  .pl-step {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px; padding: 14px 16px;
+  }
+  .pl-step__n {
+    font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+    color: var(--brand); min-width: 28px;
+  }
+  .pl-step p { margin: 0; font-size: 14px; line-height: 1.4; color: rgba(255,255,255,.82); }
+  .pl-nr1-note {
+    margin-top: 28px; padding: 18px 20px; border-radius: 14px;
+    background: rgba(246,107,10,.12); border: 1px solid rgba(246,107,10,.28);
+    font-size: 14.5px; line-height: 1.5; color: rgba(255,255,255,.88);
+  }
+  .pl-os {
+    margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.1);
+  }
+  .pl-os h3 {
+    font-family: var(--font-display); font-size: 22px; font-weight: 800; margin: 0 0 8px; color: #fff;
+  }
+  .pl-os > p { margin: 0 0 20px; color: rgba(255,255,255,.6); max-width: 520px; }
+  .pl-os__flow {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .pl-os__flow span {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 14px; border-radius: 999px;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+    font-size: 13px; font-weight: 700; color: #fff;
+  }
+  .pl-os__flow em {
+    font-style: normal; font-family: var(--font-mono); font-size: 11px; color: var(--brand);
+  }
+
+  /* Leadership */
+  .pl-two {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 36px;
+  }
+  .pl-offer {
+    background: #fff; border: 1px solid var(--ink-100); border-radius: 20px; padding: 28px 24px;
+  }
+  .pl-offer h3 {
+    font-family: var(--font-display); font-size: 22px; font-weight: 800;
+    color: var(--accent-navy); margin: 0 0 10px;
+  }
+  .pl-offer > p { margin: 0 0 18px; font-size: 14.5px; line-height: 1.5; color: var(--ink-500); }
+  .pl-offer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .pl-offer li {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 600; color: var(--ink-700);
+  }
+  .pl-offer li i, .pl-offer li svg { width: 16px; height: 16px; color: var(--brand); flex: none; }
+
+  /* Testimonials */
+  .pl-quotes {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px;
+  }
+  .pl-quote {
+    background: #fff; border: 1px solid var(--ink-100); border-radius: 18px; padding: 24px;
+  }
+  .pl-quote p {
+    margin: 0 0 18px; font-size: 14.5px; line-height: 1.55; color: var(--ink-700);
+  }
+  .pl-quote footer {
+    font-size: 13px; color: var(--ink-400); font-weight: 600;
+  }
+  .pl-note {
+    margin-top: 20px; font-size: 12.5px; color: var(--ink-400); font-style: italic;
+  }
+
+  /* Security */
+  .pl-sec-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 36px;
+  }
+  .pl-sec {
+    background: #fff; border: 1px solid var(--ink-100); border-radius: 16px; padding: 18px;
+  }
+  .pl-sec h3 {
+    font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent-navy); margin: 0 0 8px;
+  }
+  .pl-sec p { margin: 0; font-size: 14px; line-height: 1.45; color: var(--ink-500); }
+
+  /* Pricing */
+  .pl-price-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; align-items: stretch;
+  }
+  .pl-price {
+    background: #fff; border: 1px solid var(--ink-100); border-radius: 20px; padding: 28px 24px;
+    display: flex; flex-direction: column;
+  }
+  .pl-price--featured {
+    border-color: rgba(246,107,10,.35);
+    box-shadow: 0 18px 40px -22px rgba(246,107,10,.45);
+    position: relative;
+  }
+  .pl-price__name {
+    font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--brand); margin-bottom: 10px;
+  }
+  .pl-price__value {
+    font-family: var(--font-display); font-size: 36px; font-weight: 800;
+    color: var(--accent-navy); line-height: 1; margin-bottom: 4px;
+  }
+  .pl-price__unit { font-size: 13.5px; color: var(--ink-400); margin-bottom: 20px; }
+  .pl-price ul {
+    list-style: none; margin: 0 0 24px; padding: 0; flex: 1;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .pl-price li {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 14px; color: var(--ink-700);
+  }
+  .pl-price li i, .pl-price li svg { width: 16px; height: 16px; color: var(--brand); margin-top: 2px; flex: none; }
+
+  /* FAQ */
+  .pl-faq { margin-top: 28px; display: flex; flex-direction: column; gap: 8px; }
+  .pl-faq details {
+    background: #fff; border: 1px solid var(--ink-100); border-radius: 14px; padding: 0 18px;
+  }
+  .pl-faq summary {
+    list-style: none; cursor: pointer; padding: 16px 0;
+    font-size: 15px; font-weight: 700; color: var(--accent-navy);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .pl-faq summary::-webkit-details-marker { display: none; }
+  .pl-faq summary::after {
+    content: '+'; font-family: var(--font-mono); font-size: 18px; color: var(--brand); flex: none;
+  }
+  .pl-faq details[open] summary::after { content: '−'; }
+  .pl-faq details p {
+    margin: 0 0 16px; font-size: 14.5px; line-height: 1.55; color: var(--ink-500);
+  }
+
+  /* CTA form */
+  .pl-cta-box {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
+    background: #fff; border-radius: 24px; padding: 40px 36px;
+    border: 1px solid var(--ink-100);
+    box-shadow: 0 24px 60px -30px rgba(10,20,40,.25);
+  }
+  .pl-form { display: flex; flex-direction: column; gap: 14px; }
+  .pl-field label {
+    display: block; font-size: 12px; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ink-500); margin-bottom: 6px;
+  }
+  .pl-field input {
+    width: 100%; padding: 14px 16px; border-radius: 12px;
+    border: 1px solid var(--ink-200); background: var(--ink-50);
+    font-size: 15px; color: var(--ink-800); font-family: inherit;
+  }
+  .pl-field input:focus {
+    outline: none; border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(246,107,10,.15);
+  }
+  .pl-consent {
+    font-size: 12px; line-height: 1.45; color: var(--ink-400); margin: 0;
+  }
+  .pl-form-msg {
+    font-size: 14px; font-weight: 600; color: var(--green-500); min-height: 0;
+  }
+
+  @media (max-width: 960px) {
+    .pl-hero__grid, .pl-social-grid, .pl-two, .pl-cta-box, .pl-mock__body { grid-template-columns: 1fr; }
+    .pl-mock__nav { display: none; }
+    .pl-cards, .pl-mods, .pl-pains, .pl-quotes, .pl-sec-grid, .pl-price-grid { grid-template-columns: 1fr 1fr; }
+    .pl-exclusive__grid { grid-template-columns: 1fr 1fr; }
+    .pl-chain { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .pl-section { padding: 64px 0; }
+    .pl-cards, .pl-mods, .pl-pains, .pl-quotes, .pl-sec-grid, .pl-price-grid, .pl-stat-grid, .pl-exclusive__grid {
+      grid-template-columns: 1fr;
+    }
+    .pl-hero { padding: 48px 0 56px; }
+    .pl-cta-box { padding: 28px 20px; }
+  }
+</style>
+</helmet>
+
+<!-- SECTION: promo bar -->
+<div style="background:var(--brand);color:#fff;min-height:42px;display:flex;align-items:center;justify-content:center;gap:14px;padding:7px 20px;font-size:13px;font-weight:500;flex-wrap:wrap;">
+  <span style="display:inline-flex;align-items:center;gap:8px;text-align:center;">
+    <i data-lucide="zap" style="width:14px;height:14px;"></i>
+    Diagnóstico gratuito de maturidade T&amp;D da sua empresa — vagas limitadas este mês
+  </span>
+  <a href="#cta" style="border:1.5px solid rgba(255,255,255,.9);background:transparent;color:#fff;border-radius:22px;padding:5px 15px;font-size:12px;font-weight:700;white-space:nowrap;">Quero meu diagnóstico</a>
+</div>
+
+<!-- SECTION: nav -->
+<div class="lec-nav-wrap">
+<nav class="lec-nav" data-pl-nav="">
+  <a href="../home/index.dc.html" class="lec-nav-logo">
+    <img src="../../assets/brand/logo-lector.svg" alt="Lector">
+  </a>
+  <div class="lec-nav-links">
+    <div class="lec-dd">
+      <button type="button" class="lec-dd__trigger" aria-haspopup="true">
+        Nossas Soluções
+        <span class="lec-dd__chev" aria-hidden="true"><i data-lucide="chevron-down"></i></span>
+      </button>
+      <div class="lec-dd__menu" role="menu">
+        <a href="./index.dc.html" class="lec-dd__item is-active" role="menuitem" aria-current="page">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Plataforma Lector</span>
+            <span class="lec-dd__item-desc">Centralize LMS, IA, treinamento, trilhas, onboarding, universidade corporativa, lideranças, gestão de talentos, comunicação e gestão do conhecimento em um único ambiente.</span>
+          </span>
+        </a>
+        <a href="../copiloto-vendas/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="bot"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Copiloto de Vendas</span>
+            <span class="lec-dd__item-desc">Diagnóstico de técnica de venda com IA, trilhas e certificação para reduzir o ramp-up.</span>
+          </span>
+        </a>
+        <a href="../solucao-nr-1/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Solução NR-1</span>
+            <span class="lec-dd__item-desc">Automatize treinamentos, registros, evidências e a conformidade com a legislação.</span>
+          </span>
+        </a>
+        <a href="../conteudo-sob-demanda/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Criação de Conteúdo sob Demanda</span>
+            <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
+          </span>
+        </a>
+        <a href="../diagnostico-gaps/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="scan-search"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Diagnóstico de Gaps</span>
+            <span class="lec-dd__item-desc">Identifique lacunas por habilidade, prove resultado e entregue conhecimento cirúrgico.</span>
+          </span>
+        </a>
+        <a href="../servicos-especializados/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="briefcase"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Serviços Especializados</span>
+            <span class="lec-dd__item-desc">Consultoria, universidades corporativas, produção de conteúdo e gestão do conhecimento.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+    <a href="../blog/index.dc.html">Blog</a>
+    <a href="../home/index.dc.html#numeros">Clientes</a>
+    <a href="../contato/index.dc.html">Contato</a>
+  </div>
+  <div class="lec-nav-cta">
+    <a href="#cta" class="lec-nav-cta__solid">Falar com especialista <span class="lec-nav-cta__solid-icon" aria-hidden="true"><i data-lucide="arrow-right"></i></span></a>
+  </div>
+  <button type="button" class="lec-burger" onClick="{{ openMobile }}" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+</div>
+
+<div class="lec-mnav-overlay {{ mobileOpenClass }}" onClick="{{ closeMobile }}"></div>
+<aside class="lec-mnav {{ mobileOpenClass }}" aria-label="Menu mobile">
+  <div class="lec-mnav-head">
+    <img src="../../assets/brand/logo-lector.svg" alt="Lector">
+    <button type="button" class="lec-mnav-close" onClick="{{ closeMobile }}" aria-label="Fechar menu">
+      <i data-lucide="x" style="width:16px;height:16px;"></i>
+    </button>
+  </div>
+  <div class="lec-mnav-sub">
+    <a href="./index.dc.html" class="is-active" onClick="{{ closeMobile }}">Plataforma Lector</a>
+    <a href="../copiloto-vendas/index.dc.html" onClick="{{ closeMobile }}">Copiloto de Vendas</a>
+    <a href="../solucao-nr-1/index.dc.html" onClick="{{ closeMobile }}">Solução NR-1</a>
+    <a href="../conteudo-sob-demanda/index.dc.html" onClick="{{ closeMobile }}">Criação de Conteúdo sob Demanda</a>
+    <a href="../diagnostico-gaps/index.dc.html" onClick="{{ closeMobile }}">Diagnóstico de Gaps</a>
+    <a href="../servicos-especializados/index.dc.html" onClick="{{ closeMobile }}">Serviços Especializados</a>
+  </div>
+  <a href="../blog/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Blog</a>
+  <a href="../home/index.dc.html#numeros" class="lec-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
+  <a href="../contato/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Contato</a>
+  <div class="lec-mnav-cta">
+    <a href="#cta" class="lec-nav-cta__solid" style="text-align:center;" onClick="{{ closeMobile }}">Falar com especialista</a>
+  </div>
+</aside>
+
+<!-- SECTION: hero -->
+<section class="pl-hero" id="hero" aria-label="Plataforma Lector">
+  <div class="pl-wrap pl-hero__grid">
+    <div>
+      <h1>Pare de provar engajamento.<br>Comece a provar <em>resultado</em>.</h1>
+      <p class="pl-hero__sub">A Lector é a plataforma brasileira que une LMS, webconferência própria e IA nativa treinada no conhecimento da sua empresa — para transformar treinamento em performance medível e em evidência de compliance auditável.</p>
+      <p class="pl-hero__extra">Substitua seis contratos por um ambiente único: aprendizagem, comunicação corporativa, gestão de talentos e compliance NR‑1, com uma IA que aprende com o uso e recomenda o próximo passo certo — para o colaborador e para o RH.</p>
+      <div class="pl-hero__ctas">
+        <a href="#cta" class="pl-btn pl-btn--primary">Fazer diagnóstico gratuito <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+        <a href="#cta" class="pl-btn pl-btn--ghost">Agendar demonstração</a>
+      </div>
+      <div class="pl-trust">
+        <span class="pl-badge"><i data-lucide="badge-check"></i> Lector certificado</span>
+        <span class="pl-badge"><i data-lucide="calendar"></i> +20 anos</span>
+        <span class="pl-badge"><i data-lucide="handshake"></i> Parceira Microsoft</span>
+      </div>
+      <p class="pl-hero__note">Tecnologia 100% proprietária, em nuvem, usada por empresas como Philips (13 anos de parceria), Unimed e Sicoob.</p>
+    </div>
+    <div class="pl-hero-card" id="numeros">
+      <div class="pl-hero-card__label">Resultados em escala</div>
+      <div class="pl-stat-grid">
+        <div class="pl-stat pl-stat--warn">
+          <strong>—</strong>
+          <span>Empresas atendidas</span>
+        </div>
+        <div class="pl-stat pl-stat--warn">
+          <strong>—</strong>
+          <span>Colaboradores desenvolvidos</span>
+        </div>
+        <div class="pl-stat">
+          <strong>20+</strong>
+          <span>Anos em T&amp;D</span>
+        </div>
+        <div class="pl-stat pl-stat--warn">
+          <strong>—</strong>
+          <span>Treinamentos realizados</span>
+        </div>
+      </div>
+      <p class="pl-disclaimer">Números reais a confirmar com o comercial antes de publicar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: por que lector -->
+<section class="pl-section" id="por-que" aria-label="Por que Lector">
+  <div class="pl-wrap">
+    <h2 class="pl-h2">O diferencial não são as funcionalidades.<br>É a inteligência que conecta tudo.</h2>
+    <p class="pl-lead">Um documento novo publicado dispara uma cadeia inteira de aprendizagem — atualiza a base de conhecimento, ajusta trilhas, notifica gestores — automaticamente, dentro do mesmo ambiente.</p>
+    <div class="pl-cards">
+      <article class="pl-card">
+        <div class="pl-card__icon" aria-hidden="true"><i data-lucide="layers"></i></div>
+        <h3>Nativo, não integrado</h3>
+        <p>Ferramentas totalmente integradas desde a origem — não um mosaico de plugins conectados por API.</p>
+      </article>
+      <article class="pl-card">
+        <div class="pl-card__icon" aria-hidden="true"><i data-lucide="heart-handshake"></i></div>
+        <h3>Implantação humanizada</h3>
+        <p>Suporte totalmente humanizado. Focamos no que realmente é importante e faz diferença para o cliente.</p>
+      </article>
+      <article class="pl-card">
+        <div class="pl-card__icon" aria-hidden="true"><i data-lucide="briefcase"></i></div>
+        <h3>Serviços especializados</h3>
+        <p>Apoio em todas as fases do projeto — não só na implantação inicial.</p>
+      </article>
+      <article class="pl-card">
+        <div class="pl-card__icon" aria-hidden="true"><i data-lucide="code-2"></i></div>
+        <h3>Tecnologia 100% proprietária</h3>
+        <p>Nada de white-label de terceiros remendado. O código é da Lector, ponta a ponta.</p>
+      </article>
+      <article class="pl-card">
+        <div class="pl-card__icon" aria-hidden="true"><i data-lucide="cloud"></i></div>
+        <h3>100% em nuvem</h3>
+        <p>Sem necessidade de instalação — aplicações e dados armazenados com segurança.</p>
+      </article>
+      <article class="pl-card">
+        <div class="pl-card__icon" aria-hidden="true"><i data-lucide="smartphone"></i></div>
+        <h3>Funciona em qualquer dispositivo</h3>
+        <p>Plataforma totalmente responsiva, do desktop do RH ao celular do colaborador de campo.</p>
+      </article>
+      <article class="pl-card" style="grid-column:1 / -1; max-width:380px;">
+        <div class="pl-card__icon" aria-hidden="true"><i data-lucide="sliders-horizontal"></i></div>
+        <h3>Sob medida quando necessário</h3>
+        <p>Relatórios, novas funcionalidades e integrações ajustados às necessidades específicas de cada cliente.</p>
+      </article>
+    </div>
+    <div class="pl-logos" aria-label="Clientes e parceiros">
+      <img src="../../assets/clients/microsoft.png" alt="Microsoft">
+      <img src="../../assets/clients/philips.png" alt="Philips">
+      <img src="../../assets/clients/unimed.png" alt="Unimed">
+      <img src="../../assets/clients/sicoob.png" alt="Sicoob">
+      <img src="../../assets/clients/koch.png" alt="Koch">
+      <img src="../../assets/clients/sesi-senai.png" alt="SESI SENAI">
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: por dentro -->
+<section class="pl-section pl-section--alt" id="por-dentro" aria-label="Por dentro da plataforma">
+  <div class="pl-wrap">
+    <h2 class="pl-h2">universidade.suaempresa.com</h2>
+    <p class="pl-lead">Cada empresa tem a sua própria universidade corporativa — com domínio, marca e identidade próprios.</p>
+
+    <div class="pl-mock" aria-hidden="false">
+      <div class="pl-mock__bar">
+        <div class="pl-mock__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="pl-mock__url">universidade.suaempresa.com</div>
+      </div>
+      <div class="pl-mock__body">
+        <aside class="pl-mock__nav" aria-label="Navegação da universidade">
+          <p class="pl-mock__nav-title">Menu</p>
+          <a href="#por-dentro" class="is-active"><i data-lucide="graduation-cap"></i> Meus cursos</a>
+          <a href="#por-dentro"><i data-lucide="map"></i> Trilhas</a>
+          <a href="#por-dentro"><i data-lucide="library"></i> Conhecimento</a>
+          <a href="#por-dentro"><i data-lucide="users"></i> Comunidade</a>
+          <a href="#por-dentro"><i data-lucide="radio"></i> Ao vivo</a>
+          <a href="#por-dentro"><i data-lucide="bar-chart-3"></i> Analytics</a>
+        </aside>
+        <div class="pl-mock__main">
+          <div class="pl-ai-banner">
+            <div class="pl-ai-banner__icon" aria-hidden="true"><i data-lucide="sparkles"></i></div>
+            <div>
+              <strong>Assistente Lector IA</strong>
+              <p>“Identifiquei uma lacuna em Gestão de Conflitos. Recomendo a trilha Liderança 4.0 — 3h.”</p>
+            </div>
+          </div>
+          <div class="pl-progress-list">
+            <div class="pl-progress">
+              <div class="pl-progress__top">
+                <span class="pl-progress__title">Onboarding Comercial</span>
+                <span class="pl-chip pl-chip--trail">Trilha · 82%</span>
+              </div>
+              <div class="pl-bar" aria-hidden="true"><i style="width:82%"></i></div>
+            </div>
+            <div class="pl-progress">
+              <div class="pl-progress__top">
+                <span class="pl-progress__title">Compliance 2025</span>
+                <span class="pl-chip pl-chip--req">Obrigatório · 40%</span>
+              </div>
+              <div class="pl-bar" aria-hidden="true"><i style="width:40%"></i></div>
+            </div>
+          </div>
+          <div class="pl-live-row">
+            <span><i data-lucide="radio" style="width:16px;height:16px;display:inline;vertical-align:-3px;margin-right:6px;"></i> Ao vivo agora — Workshop · Cultura de Feedback</span>
+            <a href="#cta">Entrar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: ecossistema -->
+<section class="pl-section" id="ecossistema" aria-label="Ecossistema completo">
+  <div class="pl-wrap">
+    <h2 class="pl-h2">Tudo conectado em uma única plataforma.</h2>
+    <p class="pl-lead">Em vez de contratar diversas ferramentas separadas, a Lector reúne aprendizagem, conhecimento, comunicação e compliance em um único ambiente.</p>
+    <div class="pl-mods">
+      <article class="pl-mod"><div class="pl-mod__code">LMS</div><h3>Gestão da Aprendizagem</h3><p>Faça da aprendizagem uma rotina colaborativa: catálogos de cursos, trilhas e relatórios completos.</p></article>
+      <article class="pl-mod"><div class="pl-mod__code">KB</div><h3>Base de Conhecimento &amp; Documentos</h3><p>Gestão, fluxo de aprovação e compartilhamento de documentos, políticas e manuais — sempre pesquisáveis.</p></article>
+      <article class="pl-mod"><div class="pl-mod__code">IA</div><h3>Inteligência Artificial</h3><p>Responde dúvidas, recomenda conteúdos, cria treinamentos, identifica lacunas e aprende com o uso.</p></article>
+      <article class="pl-mod"><div class="pl-mod__code">SOCIAL</div><h3>Rede Social Corporativa</h3><p>Comunicação interna com gerenciamento de grupos de usuários — agilidade na informação e gestão do conhecimento.</p></article>
+      <article class="pl-mod"><div class="pl-mod__code">LIVE</div><h3>Webconferência</h3><p>Contato visual entre todos os participantes, com rapidez e sem perdas na qualidade de imagem e áudio.</p></article>
+      <article class="pl-mod"><div class="pl-mod__code">REC</div><h3>Gravação de Eventos</h3><p>Treinamentos e reuniões podem ser gravados, editados e disponibilizados depois.</p></article>
+      <article class="pl-mod"><div class="pl-mod__code">CHAT</div><h3>Chat</h3><p>Chat seguro e controlado de perfil corporativo — comunicação interna mais eficiente e dinâmica.</p></article>
+      <article class="pl-mod"><div class="pl-mod__code">EVAL</div><h3>Avaliações e Certificados</h3><p>Avalie e certifique o desempenho de colaboradores e clientes através de questionários.</p></article>
+      <article class="pl-mod"><div class="pl-mod__code">PERM</div><h3>Controle e Permissões</h3><p>Colaboradores, gestores, RH, instrutores, parceiros, clientes, fornecedores e franqueados — cada um no seu lugar.</p></article>
+      <article class="pl-mod"><div class="pl-mod__code">BI</div><h3>Relatórios Gerenciais</h3><p>Gerencie quem, quando e com que frequência acessou cada conteúdo.</p></article>
+      <article class="pl-mod"><div class="pl-mod__code">TRILHA</div><h3>Trilhas Inteligentes</h3><p>Jornadas personalizadas por cargo, área, competência e plano de carreira — recomendadas pela IA.</p></article>
+      <article class="pl-mod"><div class="pl-mod__code">VIT</div><h3>Vitrines Personalizadas</h3><p>Páginas iniciais, campanhas internas e banners, sem depender de desenvolvimento técnico.</p></article>
+      <article class="pl-mod"><div class="pl-mod__code">INT</div><h3>Integrações</h3><p>ERP, CRM, RH, SSO, Active Directory, APIs e automações — a Lector entra na rotina da organização.</p></article>
+      <article class="pl-mod"><div class="pl-mod__code">ATIV</div><h3>Gestão de Atividades</h3><p>Entregas, projetos, aulas presenciais, treinamentos híbridos e evidências de aprendizagem registradas.</p></article>
+    </div>
+
+    <div class="pl-exclusive" id="ambiente-exclusivo">
+      <h3>Um ambiente criado exclusivamente para a sua empresa.</h3>
+      <p>Cada empresa possui sua própria universidade — personalizada com identidade, cultura, processos e forma de trabalhar. Nada de plataforma genérica com sua logo colada em cima.</p>
+      <div class="pl-exclusive__grid">
+        <div class="pl-exclusive__item"><i data-lucide="tag"></i> Sua marca</div>
+        <div class="pl-exclusive__item"><i data-lucide="globe"></i> Seu domínio</div>
+        <div class="pl-exclusive__item"><i data-lucide="palette"></i> Sua identidade visual</div>
+        <div class="pl-exclusive__item"><i data-lucide="sprout"></i> Sua cultura</div>
+        <div class="pl-exclusive__item"><i data-lucide="messages-square"></i> Sua comunicação</div>
+        <div class="pl-exclusive__item"><i data-lucide="settings"></i> Suas regras</div>
+        <div class="pl-exclusive__item"><i data-lucide="book-open"></i> Seus processos</div>
+        <div class="pl-exclusive__item"><i data-lucide="brain"></i> Seu conhecimento</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: rede social -->
+<section class="pl-section pl-section--alt" id="rede-social" aria-label="Rede social corporativa">
+  <div class="pl-wrap">
+    <h2 class="pl-h2">A sua empresa também tem a própria rede social — dentro da universidade.</h2>
+    <div class="pl-social-grid">
+      <div>
+        <p class="pl-lead">Colaboradores publicam, interagem, comentam, curtem, criam comunidades e constroem cultura — sem depender de apps externos. O conhecimento gerado nas conversas do dia a dia deixa de se perder em grupos paralelos e passa a fazer parte do ecossistema de aprendizagem.</p>
+      </div>
+      <div class="pl-feed">
+        <article class="pl-post">
+          <div class="pl-post__head">
+            <div class="pl-avatar" aria-hidden="true">JR</div>
+            <div class="pl-post__meta">
+              <strong>Juliana Rocha · RH</strong>
+              <span>há 12 min</span>
+            </div>
+          </div>
+          <p>Concluí a trilha Liderança 4.0. Recomendo demais para quem está começando a gestão de times.</p>
+          <div class="pl-post__stats">
+            <span><i data-lucide="heart"></i> 28</span>
+            <span><i data-lucide="message-circle"></i> 6</span>
+            <span><i data-lucide="share-2"></i> 3</span>
+          </div>
+        </article>
+        <article class="pl-post">
+          <div class="pl-post__head">
+            <div class="pl-avatar pl-avatar--navy" aria-hidden="true">#</div>
+            <div class="pl-post__meta">
+              <strong>Comunidade Comercial</strong>
+              <span>342 membros</span>
+            </div>
+          </div>
+          <p>Nova política comercial publicada. A IA já criou um resumo em vídeo de 3 min na Base de Conhecimento. Vale conferir.</p>
+          <div class="pl-post__stats">
+            <span><i data-lucide="heart"></i> 41</span>
+            <span><i data-lucide="message-circle"></i> 12</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: onboarding -->
+<section class="pl-section" id="onboarding" aria-label="Onboarding">
+  <div class="pl-wrap">
+    <h2 class="pl-h2">Onboarding que não depende de quem está de plantão naquele dia.</h2>
+    <p class="pl-lead">Sem processo padronizado, cada área integra do seu jeito, e é o grupo sem clareza sobre o que a empresa espera dele que mais pede demissão nos primeiros 90 dias.</p>
+    <div class="pl-pains">
+      <div class="pl-pain"><p>Cada área integra do seu próprio jeito — a experiência do novo colaborador vira loteria.</p></div>
+      <div class="pl-pain"><p>Turnover concentrado nos primeiros 90 dias por falta de clareza.</p></div>
+      <div class="pl-pain"><p>RH refazendo o mesmo material a cada nova contratação.</p></div>
+    </div>
+    <div class="pl-cards" style="margin-top:8px;">
+      <article class="pl-card">
+        <div class="pl-card__icon" aria-hidden="true"><i data-lucide="route"></i></div>
+        <h3>LMS &amp; Trilhas</h3>
+        <p>Trilha padronizada por cargo, atribuída automaticamente no primeiro dia.</p>
+      </article>
+      <article class="pl-card">
+        <div class="pl-card__icon" aria-hidden="true"><i data-lucide="wand-2"></i></div>
+        <h3>Autoria com IA</h3>
+        <p>Trilha de boas-vindas montada em horas a partir de materiais que a empresa já tem.</p>
+      </article>
+      <article class="pl-card">
+        <div class="pl-card__icon" aria-hidden="true"><i data-lucide="layout-dashboard"></i></div>
+        <h3>Dashboard por turma</h3>
+        <p>RH acompanha quem está atrasado e quem concluiu, em tempo real.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: universidade inteligente -->
+<section class="pl-section pl-section--dark" id="universidade" aria-label="Universidade corporativa inteligente">
+  <div class="pl-wrap">
+    <h2 class="pl-h2">Enquanto seus colaboradores aprendem, a plataforma aprende junto com eles.</h2>
+    <p class="pl-lead">Um único evento dispara uma cadeia inteira de aprendizagem — automaticamente, dentro do mesmo ecossistema.</p>
+    <div class="pl-chain">
+      <div class="pl-step"><span class="pl-step__n">01</span><p>Um documento novo é publicado.</p></div>
+      <div class="pl-step"><span class="pl-step__n">02</span><p>A IA identifica que ele impacta um processo existente.</p></div>
+      <div class="pl-step"><span class="pl-step__n">03</span><p>Atualiza a Base de Conhecimento automaticamente.</p></div>
+      <div class="pl-step"><span class="pl-step__n">04</span><p>Sugere alterações nos treinamentos afetados.</p></div>
+      <div class="pl-step"><span class="pl-step__n">05</span><p>Cria um curso resumido sobre a mudança.</p></div>
+      <div class="pl-step"><span class="pl-step__n">06</span><p>Atualiza as trilhas dos colaboradores impactados.</p></div>
+      <div class="pl-step"><span class="pl-step__n">07</span><p>Notifica os gestores responsáveis.</p></div>
+      <div class="pl-step"><span class="pl-step__n">08</span><p>Recomenda avaliações para validar o entendimento.</p></div>
+      <div class="pl-step"><span class="pl-step__n">09</span><p>Disponibiliza um webinar para dúvidas.</p></div>
+      <div class="pl-step"><span class="pl-step__n">10</span><p>Monitora aplicação e lacunas remanescentes.</p></div>
+    </div>
+    <div class="pl-nr1-note">
+      NR‑1 em fiscalização ativa desde 26/05/2026. Empresas com empregados CLT já precisam manter inventário de riscos psicossociais, plano de ação e trilha de evidências auditável — a Lector gera as três a partir do que sua empresa já publica.
+    </div>
+    <div class="pl-os">
+      <h3>O verdadeiro produto da Lector</h3>
+      <p>Não é uma Universidade Corporativa. É o Sistema Operacional do conhecimento da sua empresa.</p>
+      <div class="pl-os__flow">
+        <span><em>01</em> Criado</span>
+        <span><em>02</em> Organizado</span>
+        <span><em>03</em> Compartilhado</span>
+        <span><em>04</em> Aplicado</span>
+        <span><em>05</em> Medido</span>
+        <span><em>06</em> Aprimorado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: liderança -->
+<section class="pl-section" id="lideranca" aria-label="Liderança e talentos">
+  <div class="pl-wrap">
+    <h2 class="pl-h2">Decisões de sucessão com dado, não com achismo.</h2>
+    <p class="pl-lead">Do diagnóstico de competências à trilha de formação contínua — para líderes prontos para o próximo nível e talentos identificados antes de saírem pela porta.</p>
+    <div class="pl-two">
+      <article class="pl-offer">
+        <h3>Desenvolvimento de lideranças</h3>
+        <p>Avaliação 360 de gestão de pessoas, trilhas por senioridade (primeira liderança → C‑level) e mentoria especializada, na plataforma whitelabel.</p>
+        <ul>
+          <li><i data-lucide="check"></i> 1 diagnóstico antes de cada trilha</li>
+          <li><i data-lucide="check"></i> 3 níveis de trilha</li>
+          <li><i data-lucide="check"></i> 100% com sua marca</li>
+        </ul>
+      </article>
+      <article class="pl-offer">
+        <h3>Gestão de talentos</h3>
+        <p>Mapeamento de competências com critério único entre áreas, PDI conectado a trilha real de conteúdo e trilhas de sucessão para cargos críticos.</p>
+        <ul>
+          <li><i data-lucide="check"></i> 1 critério único de mapeamento</li>
+          <li><i data-lucide="check"></i> 100% PDI conectado à trilha</li>
+          <li><i data-lucide="check"></i> 0 decisão só por percepção</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: depoimentos -->
+<section class="pl-section pl-section--alt" id="depoimentos" aria-label="O que dizem">
+  <div class="pl-wrap">
+    <h2 class="pl-h2">Resultado, na voz de quem usa.</h2>
+    <div class="pl-quotes">
+      <blockquote class="pl-quote">
+        <p>“Reduzimos o tempo de produção da trilha de integração de semanas para dias, usando os próprios materiais de treinamento que já tínhamos. O time novo hoje entende a empresa antes de terminar a primeira semana.”</p>
+        <footer>[Placeholder — substituir por depoimento real], Coordenador(a) de RH</footer>
+      </blockquote>
+      <blockquote class="pl-quote">
+        <p>“Promovíamos por performance técnica e torcíamos para dar certo. Com o diagnóstico e a trilha de liderança da Lector, hoje sabemos quem está pronto para o próximo passo antes de promover.”</p>
+        <footer>[Placeholder — substituir por depoimento real], Head de Gente &amp; Gestão</footer>
+      </blockquote>
+      <blockquote class="pl-quote">
+        <p>“A gente perdia talento sem entender o porquê. O mapeamento de competências da Lector nos deu visibilidade real: hoje sabemos quem está pronto para crescer e agimos antes da saída, não depois.”</p>
+        <footer>[Placeholder — substituir por depoimento real], Head de RH</footer>
+      </blockquote>
+    </div>
+    <p class="pl-note">Citações de exemplo do briefing — validar e assinar com o cliente real antes de publicar.</p>
+  </div>
+</section>
+
+<!-- SECTION: segurança -->
+<section class="pl-section" id="seguranca" aria-label="Segurança e LGPD">
+  <div class="pl-wrap">
+    <h2 class="pl-h2">Dado psicossocial é dado sensível. Tratado como tal.</h2>
+    <div class="pl-sec-grid">
+      <article class="pl-sec"><h3>LGPD</h3><p>Tratamento de dados com finalidade declarada e canal de encarregado (DPO) — [detalhar processo real].</p></article>
+      <article class="pl-sec"><h3>Hospedagem</h3><p>[Provedor e região de hospedagem a confirmar com o time técnico].</p></article>
+      <article class="pl-sec"><h3>Autenticação</h3><p>SSO / SAML para integração com o provedor de identidade da empresa.</p></article>
+      <article class="pl-sec"><h3>Criptografia</h3><p>Dados protegidos em trânsito e em repouso — [especificar padrão utilizado].</p></article>
+      <article class="pl-sec"><h3>Backup</h3><p>[Política de backup e retenção a confirmar].</p></article>
+      <article class="pl-sec"><h3>Disponibilidade</h3><p>[Uptime / SLA contratual a confirmar].</p></article>
+    </div>
+    <p class="pl-note">Seção incompleta de propósito — preencher com dado técnico real antes de publicar.</p>
+  </div>
+</section>
+
+<!-- SECTION: investimento -->
+<section class="pl-section pl-section--alt" id="investimento" aria-label="Investimento">
+  <div class="pl-wrap">
+    <h2 class="pl-h2">Quanto custa a Lector.</h2>
+    <p class="pl-lead">Modelo SaaS por colaborador ativo/mês, com módulos adicionais. Faixas abaixo são placeholder — validar com o comercial antes de publicar.</p>
+    <div class="pl-price-grid">
+      <article class="pl-price">
+        <div class="pl-price__name">Essencial</div>
+        <div class="pl-price__value">R$ —</div>
+        <div class="pl-price__unit">por colaborador / mês</div>
+        <ul>
+          <li><i data-lucide="check"></i> LMS completo</li>
+          <li><i data-lucide="check"></i> Trilhas e certificações</li>
+          <li><i data-lucide="check"></i> Relatórios gerenciais</li>
+        </ul>
+        <a href="#cta" class="pl-btn pl-btn--outline">Fazer diagnóstico</a>
+      </article>
+      <article class="pl-price pl-price--featured">
+        <div class="pl-price__name">Compliance NR‑1</div>
+        <div class="pl-price__value">R$ —</div>
+        <div class="pl-price__unit">por colaborador / mês</div>
+        <ul>
+          <li><i data-lucide="check"></i> Tudo do Essencial</li>
+          <li><i data-lucide="check"></i> Inventário de riscos psicossociais</li>
+          <li><i data-lucide="check"></i> Trilha de evidências auditável</li>
+        </ul>
+        <a href="#cta" class="pl-btn pl-btn--primary">Fazer diagnóstico</a>
+      </article>
+      <article class="pl-price">
+        <div class="pl-price__name">Enterprise</div>
+        <div class="pl-price__value" style="font-size:28px;">Sob consulta</div>
+        <div class="pl-price__unit">volume + integrações</div>
+        <ul>
+          <li><i data-lucide="check"></i> Gestão de talentos e liderança</li>
+          <li><i data-lucide="check"></i> Whitelabel completo</li>
+          <li><i data-lucide="check"></i> Consultoria especializada dedicada</li>
+        </ul>
+        <a href="#cta" class="pl-btn pl-btn--navy">Agendar demonstração</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: faq -->
+<section class="pl-section" id="faq" aria-label="Dúvidas frequentes">
+  <div class="pl-wrap" style="max-width:820px;">
+    <h2 class="pl-h2">Tudo o que você precisa saber.</h2>
+    <div class="pl-faq">
+      <details>
+        <summary>Quanto tempo leva para montar uma trilha de onboarding do zero?</summary>
+        <p>Com a autoria assistida por IA, a trilha de boas-vindas pode ser montada em horas a partir de materiais que a empresa já tem — políticas, manuais e treinamentos existentes — em vez de semanas de produção manual.</p>
+      </details>
+      <details>
+        <summary>A trilha de onboarding pode variar por cargo ou área?</summary>
+        <p>Sim. Você define trilhas padronizadas por cargo e área, com atribuição automática no primeiro dia, sem depender de quem está de plantão para “passar o bastão”.</p>
+      </details>
+      <details>
+        <summary>Como o RH acompanha o progresso sem ficar cobrando gestor por e-mail?</summary>
+        <p>O dashboard por turma mostra, em tempo real, quem concluiu, quem está atrasado e onde há lacuna — para o RH agir com dado, não com cobrança manual.</p>
+      </details>
+      <details>
+        <summary>Isso integra com nosso sistema de RH ou folha de pagamento?</summary>
+        <p>Sim. A Lector se conecta a ERP, CRM, RH, SSO, Active Directory, APIs e automações para entrar na rotina da organização sem virar mais um silo.</p>
+      </details>
+      <details>
+        <summary>O programa de liderança serve só para quem vai ser promovido, ou também para quem já é gestor?</summary>
+        <p>Para os dois. Há trilhas por senioridade — da primeira liderança ao C‑level — com diagnóstico antes de cada etapa e mentoria especializada.</p>
+      </details>
+      <details>
+        <summary>Como funciona o diagnóstico de competências de liderança?</summary>
+        <p>Avaliação 360 de gestão de pessoas e diagnóstico de competências antes de cada trilha, com critério único entre áreas para decisões de desenvolvimento e sucessão.</p>
+      </details>
+      <details>
+        <summary>O diagnóstico de liderança ajuda no planejamento de sucessão?</summary>
+        <p>Sim. Você identifica quem está pronto para o próximo passo com base em competência e trilha — não só em performance técnica ou percepção informal.</p>
+      </details>
+      <details>
+        <summary>Precisamos ter conteúdo de liderança pronto para começar?</summary>
+        <p>Não necessariamente. A autoria com IA acelera a criação a partir do que a empresa já publica e do conhecimento interno, e o time Lector apoia nas fases do projeto.</p>
+      </details>
+      <details>
+        <summary>Precisamos ter uma matriz de competências pronta antes de começar a gestão de talentos?</summary>
+        <p>Ajuda, mas não é bloqueante. A Lector estrutura mapeamento com critério único entre áreas e conecta PDI a trilha real de conteúdo desde o início.</p>
+      </details>
+      <details>
+        <summary>Como o PDI se conecta com a plataforma de aprendizagem?</summary>
+        <p>O PDI deixa de ser planilha solta: fica ligado a trilhas e conteúdos reais, com acompanhamento de progresso e evidências de aplicação.</p>
+      </details>
+      <details>
+        <summary>Isso ajuda a reduzir o turnover de talentos críticos?</summary>
+        <p>Sim. Visibilidade de quem está pronto para crescer permite agir antes da saída — com trilhas de sucessão para cargos críticos e desenvolvimento contínuo.</p>
+      </details>
+      <details>
+        <summary>A gestão de talentos se integra com o programa de liderança?</summary>
+        <p>Sim. Mapeamento, PDI, trilhas de liderança e sucessão vivem no mesmo ambiente — o Sistema Operacional do conhecimento da empresa.</p>
+      </details>
+      <details>
+        <summary>O que a NR‑1 exige sobre riscos psicossociais?</summary>
+        <p>Empresas com empregados CLT precisam manter inventário de riscos psicossociais, plano de ação e trilha de evidências auditável. A Lector gera as três a partir do que a empresa já publica na plataforma.</p>
+      </details>
+      <details>
+        <summary>A Lector substitui quais ferramentas?</summary>
+        <p>Em um único ambiente: LMS, base de conhecimento, IA, rede social corporativa, webconferência, gravação, chat, avaliações, permissões, BI, trilhas, vitrines, integrações e gestão de atividades — em vez de vários contratos soltos.</p>
+      </details>
+      <details>
+        <summary>Quanto custa a Lector?</summary>
+        <p>Modelo SaaS por colaborador ativo/mês, com módulos adicionais. Os planos Essencial, Compliance NR‑1 e Enterprise estão em validação comercial — use o diagnóstico ou a demonstração para uma proposta alinhada ao seu volume.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: cta -->
+<section class="pl-section pl-section--alt" id="cta" aria-label="Próximo passo">
+  <div class="pl-wrap">
+    <div class="pl-cta-box">
+      <div>
+        <h2 class="pl-h2">Não é sorte. É diagnóstico e trilha.</h2>
+        <p class="pl-lead">Converse com um especialista e receba um diagnóstico gratuito de maturidade — aprendizagem, liderança, talentos ou compliance NR‑1 — antes de estruturar qualquer programa.</p>
+      </div>
+      <form class="pl-form" onSubmit="{{ onSubmit }}">
+        <div class="pl-field">
+          <label for="pl-nome">Nome</label>
+          <input id="pl-nome" name="nome" type="text" required autocomplete="name" placeholder="Seu nome">
+        </div>
+        <div class="pl-field">
+          <label for="pl-email">E-mail corporativo</label>
+          <input id="pl-email" name="email" type="email" required autocomplete="email" placeholder="voce@empresa.com.br">
+        </div>
+        <div class="pl-field">
+          <label for="pl-empresa">Empresa</label>
+          <input id="pl-empresa" name="empresa" type="text" required autocomplete="organization" placeholder="Nome da empresa">
+        </div>
+        <p class="pl-consent">Ao enviar, você concorda com o tratamento dos seus dados para fins de contato comercial, conforme nossa Política de Privacidade. [texto de consentimento a validar com jurídico]</p>
+        <button type="submit" class="pl-btn pl-btn--primary" style="width:100%;">Fazer diagnóstico gratuito <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></button>
+        <p class="pl-form-msg">{{ formMsg }}</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: footer -->
+<footer style="background:var(--ink-950); color:rgba(230,238,250,.7); padding:76px 0 40px;">
+  <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
+    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
+      <div>
+        <img src="../../assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
+        <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Produto</div>
+        <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;">
+          <a href="../home/index.dc.html#ia">IA Lector</a>
+          <a href="../home/index.dc.html#plataforma">Plataforma</a>
+          <a href="../home/index.dc.html#autoria">Autoria</a>
+          <a href="../home/index.dc.html#lms">LMS</a>
+          <a href="../home/index.dc.html#rede-social">Rede social</a>
+          <a href="../home/index.dc.html#webconferencia">Webconferência</a>
+          <a href="../home/index.dc.html#numeros">Resultados</a>
+        </div>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Empresa</div>
+        <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;">
+          <a href="#">Sobre</a>
+          <a href="../blog/index.dc.html">Blog</a>
+          <a href="#">Carreiras</a>
+          <a href="../contato/index.dc.html">Contato</a>
+        </div>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Receba novidades</div>
+        <p style="font-size:14px; margin:0 0 14px;">L&amp;D, IA e aprendizado, sem ruído.</p>
+        <div style="display:flex; gap:8px;">
+          <input placeholder="seu@email.com" style="flex:1; min-width:0; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:var(--radius-pill); padding:11px 16px; color:#fff; font-size:14px; font-family:var(--font-sans);">
+          <button type="button" style="background:var(--brand); border:none; color:#fff; border-radius:var(--radius-pill); width:44px; height:44px; flex:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:18px;height:18px;"></i></button>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; justify-content:space-between; padding-top:26px; font-size:13px; color:rgba(230,238,250,.5); flex-wrap:wrap; gap:14px;">
+      <span>© 2026 Lector Tecnologia. Todos os direitos reservados.</span>
+      <div style="display:flex; gap:22px;"><a href="#">Privacidade</a><a href="#">Segurança</a><a href="#">Termos</a></div>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = {
+    mobileOpen: false,
+    formMsg: '',
+  };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const nav = document.querySelector('[data-pl-nav]');
+      if (!nav) return;
+      if (window.scrollY > 8) nav.classList.add('lec-nav-scrolled');
+      else nav.classList.remove('lec-nav-scrolled');
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+    this._icons(0);
+  }
+
+  componentDidUpdate() {
+    this._icons(0);
+  }
+
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+  }
+
+  _icons(n) {
+    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    else if (n < 25) setTimeout(() => this._icons(n + 1), 120);
+  }
+
+  renderVals() {
+    return {
+      mobileOpenClass: this.state.mobileOpen ? 'is-open' : '',
+      openMobile: () => this.setState({ mobileOpen: true }),
+      closeMobile: () => this.setState({ mobileOpen: false }),
+      formMsg: this.state.formMsg,
+      onSubmit: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        this.setState({
+          formMsg: 'Recebemos seu interesse. Em breve um especialista da Lector entra em contato.',
+        });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

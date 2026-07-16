@@ -30,16 +30,19 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 
 | # | ID | Nome | Notas |
 |---|-----|------|--------|
-| 0 | — | Announcement + header fixos | Pill laranja (diagnóstico) + nav pill |
-| 1 | `top` | Hero dark | Background imagem/vídeo, CTA “Explore a plataforma” |
-| 2 | — | Kinetic words | Faixa tipográfica inferior do hero |
-| 3 | `plataforma` | Soluções / plataforma | Showcase ferramentas |
-| 4 | — | Depoimento / parceiro | Microsoft e narrativa de parceria |
-| 5 | `numeros` | Clientes | Marquee / logos em `assets/clients/` |
-| 6 | — | Pilares | Diferenciais |
-| 7 | `contato` | Formulário / CTA | Captura de lead |
-| 8 | — | Blog teaser / newsletter | (se presente no HTML) |
-| 9 | — | Footer | Logo light + links |
+| 0 | — | Announcement + header fixos | Marquee diagnóstico + nav dark pill |
+| 1 | `top` | Hero dark | Vídeo `hero.mp4`, CTA “Explore a plataforma” |
+| 2 | `depoimento` | Depoimentos | Carrossel Microsoft ↔ Philips + marquee de logos |
+| 2b | `ia` | IA Lector | Grafo + copy + 3 capacidades; **só** CTA Agendar demonstração |
+| 3 | `plataforma` | Soluções / plataforma | Statement + showcase |
+| 4 | `autoria` | Ferramenta de autoria | Spotlight; CTA Agendar demonstração |
+| 5 | `lms` | LMS completo | Spotlight flip; imagem `lms.png` |
+| 6 | `rede-social` | Rede social corporativa | Spotlight + `rede-social.png` |
+| 7 | `webconferencia` | Webconferência | Spotlight flip + mock de sala |
+| 8 | — | Módulos bento | 6 módulos |
+| 9 | `numeros` | Resultados | Stats + count-up |
+| 10 | `contato` | CTA final | “Falar com especialista” → lead form |
+| 11 | — | Footer | Logo light + links |
 
 > Ao editar, mantenha comentários `<!-- SECTION: … -->` alinhados a esta tabela.
 
@@ -47,17 +50,23 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 
 | Label | Destino | Tipo |
 |-------|---------|------|
-| Explore a plataforma | `#contato` / `#plataforma` | primary hero |
-| Comece agora | `#contato` | primary header |
-| Quero meu diagnóstico | (announcement) | banner |
-| Entrar | `#entrar` | secondary |
+| Falar com especialista | Lead form modal | primary nav + CTA final |
+| Agendar demonstração | Lead form modal | IA + product spotlights |
+| Explore a plataforma | Lead form modal | hero |
+| Quero meu diagnóstico | Lead form modal (announcement) | banner |
+
+Formulário: `shared/lead-form.js` — ver `specs/components/lead-form.md`.
 
 ## Conteúdo e dados
 
-- Logos clientes: `assets/clients/*.png` (lista montada no script da página)
-- Logo header/footer: `assets/brand/logo-lector-light.svg`
-- Orbit decorativo: `assets/brand/orbit.svg`
-- Nav global ideal: sincronizar com `content/site.json`
+- Logos clientes: `assets/clients/*.png`
+- Logo header dark: `assets/brand/logo-lector-light.svg`
+- Logo footer: `assets/brand/logo-lector-light.svg`
+- Orbit: `assets/brand/orbit.svg`
+- Hero vídeo: `assets/media/home/hero.mp4`
+- Autoria: `assets/media/home/video-autoria.mp4`
+- LMS / rede: `assets/media/home/lms.png`, `rede-social.png`
+- Nav: sincronizar com `content/site.json`
 
 ## SEO
 
@@ -70,31 +79,29 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 ## Design
 
 - Hero e header: **dark premium** navy
-- Seções de conteúdo: paper / claro com acentos brand
-- Tokens: `design-system/tokens/*`
-- Ícones Lucide via CDN
-- Referência de direção: `design-system/readme.md` (premium / editorial)
+- Conteúdo: paper / claro
+- Tokens DS; Lucide; sem emoji
+- Product spotlights (`.lk-spotlight`): um CTA por seção (Agendar demonstração)
 
 ## Estados e interações
 
-- Fechar announcement (`announceOpen`)
-- Header pill style dinâmico no scroll (se implementado)
+- Fechar announcement
+- Header pill no scroll
+- Lead form modal (CTAs)
 - Reveal on scroll (`data-reveal`)
-- Hover CTA hero (`.lk-hero-cta`)
-- Marquee de logos
+- Marquee de logos + depoimentos
 
-## Fora de escopo (nesta versão)
+## Fora de escopo
 
 - App LMS logado
-- Blog completo (só teaser/âncora)
-- CMS headless
+- Backend de lead (só UI + log)
 - i18n
 
 ## Critérios de aceite
 
-- [x] Página renderiza com DS e assets nos paths novos
-- [x] Logos de clientes resolvem em `../../assets/clients/`
+- [x] Paths `../../` para DS e assets
+- [x] Logos clientes em `assets/clients/`
+- [x] CTAs abrem lead form
+- [x] Dropdown soluções com descrições
 - [ ] Meta title/description no helmet
-- [ ] Nav aponta para páginas reais quando existirem (`solucoes`, `blog`, etc.)
-- [ ] Mobile: header e CTAs usáveis
-- [ ] Sem links quebrados para `assets/` antigos na raiz
+- [ ] Mobile: header usável (drawer na home)

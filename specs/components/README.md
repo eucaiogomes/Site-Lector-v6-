@@ -1,36 +1,14 @@
 # Specs de componentes (site)
 
-Use esta pasta para documentar **peças reutilizáveis do site** (não o design system inteiro).
+Peças reutilizáveis do **marketing site** (não o design system em `design-system/`).
 
-O design system oficial vive em `design-system/` (Button, Card, Modal, etc.).  
-Aqui ficam apenas componentes ou padrões **específicos do marketing site**, por exemplo:
-
-- Header institucional
-- Footer
-- Client logo marquee
-- Form de diagnóstico / contato
-- Announcement pill
+| Spec | Status | Código |
+|------|--------|--------|
+| [header.md](./header.md) | wip (duplicado por página) | embutido em `pages/*/index.dc.html` |
+| [lead-form.md](./lead-form.md) | live | `shared/lead-form.{js,css}` |
 
 ## Como adicionar
 
 1. Crie `specs/components/<nome>.md`
-2. Se virar código compartilhado, coloque em `shared/` (ex.: `shared/header.dc.html`)
-3. Referencie nas specs de página que usam a peça
-
-## Template mínimo
-
-```markdown
-# Componente: Nome
-
-## Onde é usado
-- pages/home, pages/…
-
-## Props / variantes
-- …
-
-## Markup / paths de assets
-- …
-
-## Não fazer
-- …
-```
+2. Código compartilhado em `shared/`
+3. Referencie nas specs de página

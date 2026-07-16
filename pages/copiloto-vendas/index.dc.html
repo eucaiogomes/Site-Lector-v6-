@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Treinamento de Vendas com IA | Copiloto Lector</title>
+<meta name="description" content="Diagnóstico de técnica comercial com IA, trilhas e certificação para reduzir ramp-up e elevar a performance do time de vendas.">
+<meta property="og:title" content="Treinamento de Vendas com IA | Copiloto Lector">
+<meta property="og:description" content="Diagnóstico de técnica comercial com IA, trilhas e certificação para reduzir ramp-up e elevar a performance do time de vendas.">
+<link rel="stylesheet" href="../../design-system/tokens/fonts.css">
+<link rel="stylesheet" href="../../design-system/tokens/colors.css">
+<link rel="stylesheet" href="../../design-system/tokens/typography.css">
+<link rel="stylesheet" href="../../design-system/tokens/spacing.css">
+<link rel="stylesheet" href="../../design-system/tokens/effects.css">
+<link rel="stylesheet" href="../../design-system/tokens/base.css">
+<link rel="stylesheet" href="../../design-system/styles.css">
+<link rel="stylesheet" href="../../shared/lead-form.css">
+<script src="../../design-system/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="../../shared/lead-form.js" data-base="../.."></script>
+<style>
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--surface-page, #FBFAF7);
+    color: var(--text-body, #243653);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--brand); }
+  button { font-family: inherit; cursor: pointer; }
+  * { box-sizing: border-box; }
+  [data-lucide] { display: block; }
+  ::selection { background: var(--brand); color: #fff; }
+
+  @keyframes cvPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .55; transform: scale(.92); }
+  }
+
+  .cv-wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+  .cv-h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    color: var(--accent-navy, #00204D);
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+  .cv-h2 em {
+    font-style: normal;
+    background: var(--gradient-brand, linear-gradient(135deg, #FF8526, #F0590A));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .cv-lead {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-500, #5C667C);
+    max-width: 560px;
+    margin: 0;
+  }
+  .cv-section { padding: 96px 0; }
+  .cv-section--dark {
+    background: var(--ink-950, #001026);
+    color: rgba(255,255,255,.9);
+    position: relative;
+  }
+  .cv-section--dark .cv-h2 { color: #fff; }
+  .cv-section--dark .cv-lead { color: rgba(230,238,250,.7); }
+  .cv-grid-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.022) 0 1px, transparent 1px 52px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.022) 0 1px, transparent 1px 52px);
+  }
+
+  /* Nav */
+  .lec-nav-wrap {
+    position: sticky; top: 0; z-index: 50; width: 100%;
+    display: flex; justify-content: center; padding: 11px 20px 0; background: transparent;
+  }
+  .lec-nav {
+    width: 100%; max-width: 1160px; display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; padding: 11px 11px 11px 22px; border-radius: var(--radius-pill, 999px);
+    background: rgba(255,255,255,.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(0,32,77,.08); box-shadow: 0 8px 28px -16px rgba(10,23,48,.12);
+    transition: box-shadow .3s ease, background .3s ease, border-color .3s ease;
+  }
+  .lec-nav.lec-nav-scrolled {
+    background: rgba(255,255,255,.97);
+    box-shadow: 0 16px 40px -16px rgba(10,23,48,.18);
+    border-color: rgba(0,32,77,.1);
+  }
+  .lec-nav-logo { display: flex; align-items: center; flex: none; }
+  .lec-nav-logo:hover { color: inherit; }
+  .lec-nav-logo img { height: 24px; width: auto; display: block; }
+  .lec-nav-links { display: flex; align-items: center; gap: 30px; font-size: 14.5px; font-weight: 600; }
+  .lec-nav-links > a { color: #243653; transition: color .2s; }
+  .lec-nav-links > a:hover { color: var(--brand); }
+  .lec-dd { position: relative; }
+  .lec-dd__trigger {
+    display: inline-flex; align-items: center; gap: 5px; background: none; border: none;
+    padding: 0; margin: 0; font: inherit; font-size: 14.5px; font-weight: 700;
+    color: var(--brand); cursor: pointer;
+  }
+  .lec-dd__chev { display: inline-flex; width: 14px; height: 14px; transition: transform .25s ease; }
+  .lec-dd__chev i, .lec-dd__chev svg { width: 14px; height: 14px; }
+  .lec-dd:hover .lec-dd__chev, .lec-dd:focus-within .lec-dd__chev { transform: rotate(180deg); }
+  .lec-dd__menu {
+    position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(6px);
+    min-width: 360px; width: max(360px, min(420px, 92vw)); padding: 8px; border-radius: 16px;
+    background: rgba(255,255,255,.98); border: 1px solid #ECEDF2;
+    box-shadow: 0 18px 44px -12px rgba(10,20,40,.18);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease, visibility .18s; z-index: 80;
+  }
+  .lec-dd__menu::before { content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
+  .lec-dd:hover .lec-dd__menu, .lec-dd:focus-within .lec-dd__menu {
+    opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+  }
+  .lec-dd__item {
+    display: flex; align-items: flex-start; gap: 12px; padding: 12px; border-radius: 12px;
+    color: #1F2A3D; white-space: normal; transition: background .15s ease, color .15s;
+  }
+  .lec-dd__item:hover, .lec-dd__item.is-active { background: #F7F8FA; color: inherit; }
+  .lec-dd__item:hover .lec-dd__item-title,
+  .lec-dd__item.is-active .lec-dd__item-title { color: var(--brand); }
+  .lec-dd__item-icon {
+    display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px;
+    margin-top: 1px; border-radius: 10px; background: rgba(246,107,10,.12); color: var(--brand); flex: none;
+  }
+  .lec-dd__item-icon i, .lec-dd__item-icon svg { width: 17px; height: 17px; }
+  .lec-dd__item-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .lec-dd__item-title {
+    font-size: 14px; font-weight: 700; line-height: 1.25; color: #1F2A3D; transition: color .15s ease;
+  }
+  .lec-dd__item-desc {
+    font-size: 12.5px; font-weight: 500; line-height: 1.4; color: #5A6B84;
+  }
+  .lec-nav-cta { display: flex; align-items: center; gap: 18px; flex: none; }
+  .lec-nav-cta__ghost {
+    font-size: 14.5px; font-weight: 700; color: var(--accent-navy, #00204D);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .lec-nav-cta__ghost:hover { color: var(--brand); }
+  .lec-nav-cta__solid {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: rgba(0,32,77,.04); border: 1px solid rgba(0,32,77,.1);
+    border-radius: var(--radius-pill, 999px); padding: 6px 6px 6px 20px;
+    color: var(--accent-navy, #00204D); font-weight: 700; font-size: 14.5px; white-space: nowrap;
+  }
+  .lec-nav-cta__solid:hover { color: var(--accent-navy, #00204D); border-color: rgba(0,32,77,.16); }
+  .lec-nav-cta__solid-icon {
+    width: 32px; height: 32px; border-radius: 10px; background: var(--brand); color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .lec-nav-cta__solid-icon i, .lec-nav-cta__solid-icon svg { width: 16px; height: 16px; }
+  .lec-burger {
+    display: none; width: 40px; height: 40px; align-items: center; justify-content: center;
+    border: none; background: transparent; flex-direction: column; gap: 5px; border-radius: 10px;
+  }
+  .lec-burger span { display: block; width: 22px; height: 2px; background: #00204D; border-radius: 2px; }
+  .lec-mnav-overlay {
+    position: fixed; inset: 0; background: rgba(0,16,38,.32); opacity: 0; visibility: hidden;
+    transition: opacity .3s ease, visibility .3s; z-index: 90;
+  }
+  .lec-mnav-overlay.is-open { opacity: 1; visibility: visible; }
+  .lec-mnav {
+    position: fixed; top: 0; right: 0; height: 100%; width: min(310px, 85vw); background: #fff;
+    z-index: 91; transform: translateX(100%); transition: transform .4s cubic-bezier(.16,1,.3,1);
+    display: flex; flex-direction: column; padding: 26px 16px 32px; overflow-y: auto;
+    box-shadow: -12px 0 42px rgba(10,20,40,.16);
+  }
+  .lec-mnav.is-open { transform: translateX(0); }
+  .lec-mnav-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
+  .lec-mnav-head img { height: 26px; width: auto; }
+  .lec-mnav-close {
+    width: 40px; height: 40px; border: none; background: #F1F2F7; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; color: #243653;
+  }
+  .lec-mnav-link {
+    display: flex; align-items: center; padding: 16px 18px; font-size: 15.5px; font-weight: 600;
+    color: #1F2A3D; border-bottom: 1px solid #EBEDF3;
+  }
+  .lec-mnav-link:hover { color: var(--brand); }
+  .lec-mnav-sub { border-bottom: 1px solid #EBEDF3; padding: 4px 0 10px; }
+  .lec-mnav-sub a {
+    display: block; padding: 10px 18px 10px 26px; font-size: 14px; font-weight: 500; color: #52637F;
+  }
+  .lec-mnav-sub a:hover, .lec-mnav-sub a.is-active { color: var(--brand); }
+  .lec-mnav-cta { margin-top: auto; padding-top: 26px; display: flex; flex-direction: column; gap: 11px; }
+  @media (max-width: 880px) {
+    .lec-nav-links, .lec-nav-cta { display: none !important; }
+    .lec-burger { display: flex !important; }
+  }
+
+  /* Buttons */
+  .cv-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    border-radius: 12px; font-weight: 700; font-size: 15px; padding: 13px 26px;
+    border: none; transition: opacity .15s, transform .15s, background .15s;
+  }
+  .cv-btn:hover { color: inherit; transform: translateY(-1px); }
+  .cv-btn--primary {
+    background: var(--gradient-brand, linear-gradient(135deg, #FF8526, #F0590A));
+    color: #fff; box-shadow: 0 12px 28px -12px rgba(246,107,10,.65);
+  }
+  .cv-btn--primary:hover { color: #fff; opacity: .95; }
+  .cv-btn--ghost {
+    background: rgba(255,255,255,.05); color: #fff;
+    border: 1px solid rgba(255,255,255,.16);
+  }
+  .cv-btn--ghost:hover { color: #fff; background: rgba(255,255,255,.09); }
+
+  /* Hero */
+  .cv-hero {
+    position: relative; overflow: hidden;
+    background: var(--ink-950, #001026); color: #fff; padding: 72px 0 100px;
+  }
+  .cv-hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(circle at 70% 30%, rgba(246,107,10,.18) 0%, transparent 55%),
+      radial-gradient(circle at 20% 85%, rgba(26,65,115,.5) 0%, transparent 60%);
+  }
+  .cv-hero__grid {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  }
+  .cv-hero h1 {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(34px, 5vw, 54px); line-height: 1.05; letter-spacing: -.03em;
+    margin: 0 0 18px; text-wrap: balance;
+  }
+  .cv-hero h1 em {
+    font-style: normal;
+    background: var(--gradient-brand, linear-gradient(135deg, #FF8526, #F0590A));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .cv-hero__sub {
+    font-size: 17px; line-height: 1.55; color: rgba(255,255,255,.82);
+    max-width: 520px; margin: 0 0 16px;
+  }
+  .cv-hero__extra {
+    font-size: 16px; line-height: 1.55; color: rgba(255,255,255,.65);
+    max-width: 500px; margin: 0 0 28px;
+  }
+  .cv-hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+  .cv-stats {
+    display: grid; grid-template-columns: repeat(3, auto); gap: 32px; width: fit-content;
+  }
+  .cv-stat strong {
+    display: block; font-family: var(--font-mono); font-size: 30px; font-weight: 700; line-height: 1;
+    background: var(--gradient-brand, linear-gradient(135deg, #FF8526, #F0590A));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .cv-stat span {
+    display: block; font-size: 12px; color: rgba(255,255,255,.55); margin-top: 6px; line-height: 1.35;
+  }
+  .cv-hero-media { position: relative; }
+  .cv-hero-media::before {
+    content: ''; position: absolute; inset: -40px; pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, rgba(246,107,10,.22), transparent 65%);
+    border-radius: 50%;
+  }
+  .cv-hero-media img {
+    position: relative; width: 100%; display: block;
+    border-radius: 22px; border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 28px 60px -24px rgba(0,0,0,.55);
+  }
+  .cv-hero-badge {
+    position: absolute; bottom: -16px; left: -12px;
+    display: flex; align-items: center; gap: 12px;
+    background: var(--navy-900, #001A3D); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 16px; padding: 14px 16px; max-width: 270px;
+    box-shadow: 0 16px 40px -18px rgba(0,0,0,.5);
+  }
+  .cv-hero-badge i, .cv-hero-badge svg { width: 28px; height: 28px; color: var(--brand); flex: none; }
+  .cv-hero-badge p { margin: 0; font-size: 13px; line-height: 1.45; color: rgba(255,255,255,.85); }
+  .cv-hero-badge strong { color: #fff; }
+
+  .cv-dot {
+    width: 5px; height: 5px; border-radius: 50%; background: var(--brand);
+    animation: cvPulse 1.5s ease-in-out infinite; flex: none;
+  }
+
+  /* Steps */
+  .cv-steps { margin-top: 64px; display: flex; flex-direction: column; gap: 88px; }
+  .cv-step {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  }
+  .cv-step--flip .cv-step__media { order: 1; }
+  .cv-step--flip .cv-step__copy { order: 2; }
+  .cv-step h3 {
+    margin: 0; font-family: var(--font-display);
+    font-size: clamp(22px, 2.5vw, 30px); font-weight: 700; line-height: 1.15;
+    color: var(--accent-navy, #00204D);
+    text-wrap: balance;
+  }
+  .cv-step h3 em {
+    font-style: normal;
+    background: var(--gradient-brand, linear-gradient(135deg, #FF8526, #F0590A));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .cv-step > .cv-step__copy > p {
+    margin: 12px 0 0; font-size: 16px; color: var(--ink-600, #3C4A63); line-height: 1.55;
+  }
+  .cv-checks { margin: 20px 0 0; list-style: none; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+  .cv-checks li {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 14px; color: var(--ink-700, #243653);
+  }
+  .cv-checks li i, .cv-checks li svg {
+    width: 18px; height: 18px; color: var(--brand); flex: none; margin-top: 1px;
+  }
+  .cv-step__media { position: relative; }
+  .cv-step__media::before {
+    content: ''; position: absolute; inset: -24px; pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, rgba(246,107,10,.14), transparent 65%);
+  }
+  .cv-step__media img {
+    position: relative; width: 100%; display: block;
+    border-radius: 18px; border: 1px solid var(--ink-100, #E7EAF1);
+    box-shadow: 0 20px 48px -24px rgba(10,20,40,.28);
+  }
+
+  /* Live timeline */
+  .cv-timeline { margin: 28px 0 0; position: relative; }
+  .cv-timeline::before {
+    content: ''; position: absolute; left: 23px; top: 14px; bottom: 14px; width: 1px;
+    background: linear-gradient(to bottom, var(--brand), rgba(246,107,10,.2), transparent);
+  }
+  .cv-timeline__list { display: flex; flex-direction: column; gap: 14px; }
+  .cv-tl {
+    display: flex; gap: 14px;
+  }
+  .cv-tl__icon {
+    position: relative; z-index: 1; width: 47px; height: 47px; flex: none;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; background: #fff; border: 1px solid rgba(246,107,10,.35);
+    box-shadow: 0 0 0 4px rgba(246,107,10,.06); color: var(--brand);
+  }
+  .cv-tl__icon i, .cv-tl__icon svg { width: 17px; height: 17px; }
+  .cv-tl__ping {
+    position: absolute; top: -1px; right: -1px; width: 10px; height: 10px;
+    border-radius: 50%; background: var(--brand); border: 2px solid var(--paper, #FBFAF7);
+    animation: cvPulse 2s ease-in-out infinite;
+  }
+  .cv-tl__card {
+    flex: 1; background: #fff; border: 1px solid var(--ink-100, #E7EAF1);
+    border-radius: 12px; padding: 13px 15px;
+  }
+  .cv-tl__top {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .cv-tl__top strong {
+    font-size: 11px; font-weight: 700; color: var(--brand);
+    text-transform: uppercase; letter-spacing: .08em;
+  }
+  .cv-tl__live {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(246,107,10,.12); border-radius: 999px; padding: 2px 8px;
+    font-size: 9px; font-weight: 700; color: var(--brand);
+    text-transform: uppercase; letter-spacing: .06em;
+  }
+  .cv-tl__card p {
+    margin: 5px 0 0; font-size: 13px; color: var(--ink-600, #3C4A63); line-height: 1.5;
+  }
+
+  /* Features */
+  .cv-feats {
+    margin-top: 48px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .cv-feat {
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 18px; padding: 24px;
+    transition: border-color .2s, transform .2s, background .2s;
+  }
+  .cv-feat:hover {
+    border-color: rgba(246,107,10,.4); transform: translateY(-3px);
+    background: rgba(255,255,255,.08);
+  }
+  .cv-feat__icon {
+    width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+    border-radius: 12px; background: rgba(246,107,10,.14); color: var(--brand);
+  }
+  .cv-feat__icon i, .cv-feat__icon svg { width: 20px; height: 20px; }
+  .cv-feat h3 {
+    margin: 16px 0 0; font-family: var(--font-display);
+    font-size: 16px; font-weight: 700; color: #fff;
+  }
+  .cv-feat p {
+    margin: 8px 0 0; font-size: 13.5px; color: rgba(255,255,255,.68); line-height: 1.5;
+  }
+
+  /* Gestão */
+  .cv-gestao {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+  }
+  .cv-gestao__checks {
+    margin: 24px 0 0; list-style: none; padding: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  .cv-gestao__checks li {
+    display: flex; gap: 9px; align-items: flex-start;
+    font-size: 13.5px; color: var(--ink-700, #243653);
+  }
+  .cv-gestao__checks li i, .cv-gestao__checks li svg {
+    width: 17px; height: 17px; color: var(--brand); flex: none; margin-top: 1px;
+  }
+
+  /* CTA */
+  .cv-cta-card {
+    position: relative; overflow: hidden; text-align: center;
+    border-radius: 24px; border: 1px solid rgba(255,255,255,.12);
+    background: rgba(4,42,86,.55); padding: 72px 48px;
+    box-shadow: 0 28px 60px -28px rgba(0,0,0,.5);
+  }
+  .cv-cta-card::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at 70% 30%, rgba(246,107,10,.28), transparent 55%);
+  }
+  .cv-cta-card > * { position: relative; }
+  .cv-cta-icon {
+    display: inline-flex; width: 56px; height: 56px; align-items: center; justify-content: center;
+    background: var(--gradient-brand, linear-gradient(135deg, #FF8526, #F0590A));
+    border-radius: 14px; color: #fff; margin: 0 auto 20px;
+    box-shadow: 0 12px 28px -10px rgba(246,107,10,.6);
+  }
+  .cv-cta-icon i, .cv-cta-icon svg { width: 22px; height: 22px; }
+  .cv-cta-card h2 {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(28px, 4vw, 42px); line-height: 1.08; color: #fff; margin: 0 0 14px;
+  }
+  .cv-cta-card h2 em {
+    font-style: normal;
+    background: var(--gradient-brand, linear-gradient(135deg, #FF8526, #F0590A));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .cv-cta-card p {
+    margin: 0 auto 28px; font-size: 17px; color: rgba(255,255,255,.7);
+    max-width: 540px; line-height: 1.55;
+  }
+  .cv-cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+  @media (max-width: 960px) {
+    .cv-hero__grid, .cv-step, .cv-gestao { grid-template-columns: 1fr; }
+    .cv-step--flip .cv-step__media,
+    .cv-step--flip .cv-step__copy { order: unset; }
+    .cv-feats { grid-template-columns: 1fr 1fr; }
+    .cv-hero-badge { left: 12px; bottom: 12px; }
+  }
+  @media (max-width: 640px) {
+    .cv-section { padding: 64px 0; }
+    .cv-hero { padding: 48px 0 72px; }
+    .cv-feats, .cv-gestao__checks, .cv-stats { grid-template-columns: 1fr; }
+    .cv-cta-card { padding: 48px 24px; }
+    .cv-steps { gap: 56px; }
+  }
+</style>
+</helmet>
+
+<!-- SECTION: promo bar -->
+<div style="background:var(--brand);color:#fff;min-height:42px;display:flex;align-items:center;justify-content:center;gap:14px;padding:7px 20px;font-size:13px;font-weight:500;flex-wrap:wrap;">
+  <span style="display:inline-flex;align-items:center;gap:8px;text-align:center;">
+    <i data-lucide="zap" style="width:14px;height:14px;"></i>
+    Diagnóstico gratuito de maturidade T&amp;D da sua empresa — vagas limitadas este mês
+  </span>
+  <a href="#cta" style="border:1.5px solid rgba(255,255,255,.9);background:transparent;color:#fff;border-radius:22px;padding:5px 15px;font-size:12px;font-weight:700;white-space:nowrap;">Quero meu diagnóstico</a>
+</div>
+
+<!-- SECTION: nav -->
+<div class="lec-nav-wrap">
+<nav class="lec-nav" data-cv-nav="">
+  <a href="../home/index.dc.html" class="lec-nav-logo">
+    <img src="../../assets/brand/logo-lector.svg" alt="Lector">
+  </a>
+  <div class="lec-nav-links">
+    <div class="lec-dd">
+      <button type="button" class="lec-dd__trigger" aria-haspopup="true">
+        Nossas Soluções
+        <span class="lec-dd__chev" aria-hidden="true"><i data-lucide="chevron-down"></i></span>
+      </button>
+      <div class="lec-dd__menu" role="menu">
+        <a href="../plataforma-lector/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Plataforma Lector</span>
+            <span class="lec-dd__item-desc">Centralize LMS, IA, treinamento, trilhas, onboarding, universidade corporativa, lideranças, gestão de talentos, comunicação e gestão do conhecimento em um único ambiente.</span>
+          </span>
+        </a>
+        <a href="./index.dc.html" class="lec-dd__item is-active" role="menuitem" aria-current="page">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="trending-up"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Copiloto de Vendas</span>
+            <span class="lec-dd__item-desc">Diagnóstico de técnica de venda com IA, trilhas e certificação para reduzir o ramp-up.</span>
+          </span>
+        </a>
+        <a href="../solucao-nr-1/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Solução NR-1</span>
+            <span class="lec-dd__item-desc">Automatize treinamentos, registros, evidências e a conformidade com a legislação.</span>
+          </span>
+        </a>
+        <a href="../conteudo-sob-demanda/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Criação de Conteúdo sob Demanda</span>
+            <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
+          </span>
+        </a>
+        <a href="../diagnostico-gaps/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="scan-search"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Diagnóstico de Gaps</span>
+            <span class="lec-dd__item-desc">Identifique lacunas por habilidade, prove resultado e entregue conhecimento cirúrgico.</span>
+          </span>
+        </a>
+        <a href="../servicos-especializados/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="briefcase"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Serviços Especializados</span>
+            <span class="lec-dd__item-desc">Consultoria, universidades corporativas, produção de conteúdo e gestão do conhecimento.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+    <a href="../blog/index.dc.html">Blog</a>
+    <a href="../home/index.dc.html#numeros">Clientes</a>
+    <a href="../contato/index.dc.html">Contato</a>
+  </div>
+  <div class="lec-nav-cta">
+    <a href="#cta" class="lec-nav-cta__solid">Falar com especialista <span class="lec-nav-cta__solid-icon" aria-hidden="true"><i data-lucide="arrow-right"></i></span></a>
+  </div>
+  <button type="button" class="lec-burger" onClick="{{ openMobile }}" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+</div>
+
+<div class="lec-mnav-overlay {{ mobileOpenClass }}" onClick="{{ closeMobile }}"></div>
+<aside class="lec-mnav {{ mobileOpenClass }}" aria-label="Menu mobile">
+  <div class="lec-mnav-head">
+    <img src="../../assets/brand/logo-lector.svg" alt="Lector">
+    <button type="button" class="lec-mnav-close" onClick="{{ closeMobile }}" aria-label="Fechar menu">
+      <i data-lucide="x" style="width:16px;height:16px;"></i>
+    </button>
+  </div>
+  <div class="lec-mnav-sub">
+    <a href="../plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
+    <a href="./index.dc.html" class="is-active" onClick="{{ closeMobile }}">Copiloto de Vendas</a>
+    <a href="../solucao-nr-1/index.dc.html" onClick="{{ closeMobile }}">Solução NR-1</a>
+    <a href="../conteudo-sob-demanda/index.dc.html" onClick="{{ closeMobile }}">Criação de Conteúdo sob Demanda</a>
+    <a href="../diagnostico-gaps/index.dc.html" onClick="{{ closeMobile }}">Diagnóstico de Gaps</a>
+    <a href="../servicos-especializados/index.dc.html" onClick="{{ closeMobile }}">Serviços Especializados</a>
+  </div>
+  <a href="../blog/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Blog</a>
+  <a href="../home/index.dc.html#numeros" class="lec-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
+  <a href="../contato/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Contato</a>
+  <div class="lec-mnav-cta">
+    <a href="#cta" class="lec-nav-cta__solid" style="text-align:center;" onClick="{{ closeMobile }}">Falar com especialista</a>
+  </div>
+</aside>
+
+<!-- SECTION: hero -->
+<section class="cv-hero" id="hero" aria-label="Copiloto de Vendas">
+  <div class="cv-wrap cv-hero__grid">
+    <div>
+      <h1>A IA que prepara, acompanha e evolui <em>cada vendedor do seu time.</em></h1>
+      <p class="cv-hero__sub">O Copiloto de Vendas da Lector diagnostica técnica comercial com IA, treina o time e reduz ramp-up com trilhas e certificação mensuráveis.</p>
+      <p class="cv-hero__extra">Antes, durante e depois da reunião, uma IA treinada no conhecimento da sua empresa direciona o vendedor — dentro da própria webconferência da Lector, com alertas e sugestões ao vivo.</p>
+      <div class="cv-hero__ctas">
+        <a href="#cta" class="cv-btn cv-btn--primary">Ver o copiloto em ação <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+        <a href="#jornada" class="cv-btn cv-btn--ghost">Como funciona</a>
+      </div>
+      <div class="cv-stats">
+        <div class="cv-stat"><strong>3x</strong><span>mais reuniões produtivas</span></div>
+        <div class="cv-stat"><strong>-42%</strong><span>tempo de rampagem</span></div>
+        <div class="cv-stat"><strong>24/7</strong><span>coaching contínuo</span></div>
+      </div>
+    </div>
+    <div class="cv-hero-media">
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="IA copiloto Lector Sales em reunião comercial">
+      <div class="cv-hero-badge">
+        <i data-lucide="brain-circuit" aria-hidden="true"></i>
+        <p><strong>IA treinada</strong> no conhecimento e nas conversas do seu time comercial.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: jornada -->
+<section class="cv-section" id="jornada" aria-label="Jornada do vendedor">
+  <div class="cv-wrap">
+    <div style="max-width:600px;">
+      <h2 class="cv-h2">Um copiloto do <em>briefing ao follow-up</em>.</h2>
+      <p class="cv-lead">Cada etapa da venda com uma IA que aprende com o seu time e direciona a próxima ação certa.</p>
+    </div>
+
+    <div class="cv-steps">
+      <!-- Passo 1 -->
+      <div class="cv-step">
+        <div class="cv-step__copy">
+          <h3><em>Antes da reunião.</em> Briefing inteligente que prepara o vendedor</h3>
+          <p>A IA analisa o cliente, sugere a melhor forma de apresentar o produto, revisa objeções prováveis e monta a agenda ideal. O vendedor entra na reunião preparado — sempre.</p>
+          <ul class="cv-checks">
+            <li><i data-lucide="check-circle-2"></i> Contexto do cliente e histórico consolidado</li>
+            <li><i data-lucide="check-circle-2"></i> Sugestão do melhor pitch e materiais de apoio</li>
+            <li><i data-lucide="check-circle-2"></i> Roteiro personalizado pelo perfil do comprador</li>
+          </ul>
+        </div>
+        <div class="cv-step__media">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=1100&amp;q=80" alt="Briefing inteligente com dados do cliente">
+        </div>
+      </div>
+
+      <!-- Passo 2 -->
+      <div class="cv-step cv-step--flip">
+        <div class="cv-step__media">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&amp;fit=crop&amp;w=1100&amp;q=80" alt="Copiloto ao vivo na webconferência">
+        </div>
+        <div class="cv-step__copy">
+          <h3><em>Durante a reunião.</em> Copiloto ao vivo dentro da webconferência da Lector</h3>
+          <p>Acompanha o vendedor sem sair da tela da reunião. Alertas em tempo real, sugestões de talking points, tratamento de objeções e captura automática de decisões.</p>
+
+          <div class="cv-timeline">
+            <div class="cv-timeline__list">
+              <div class="cv-tl">
+                <div class="cv-tl__icon">
+                  <i data-lucide="bell"></i>
+                  <span class="cv-tl__ping" aria-hidden="true"></span>
+                </div>
+                <div class="cv-tl__card">
+                  <div class="cv-tl__top">
+                    <strong>Alerta</strong>
+                    <span class="cv-tl__live"><span class="cv-dot"></span> Ao vivo</span>
+                  </div>
+                  <p>Cliente demonstra resistência sobre preço. A IA sugere o reframing de valor ideal.</p>
+                </div>
+              </div>
+              <div class="cv-tl">
+                <div class="cv-tl__icon">
+                  <i data-lucide="target"></i>
+                  <span class="cv-tl__ping" aria-hidden="true" style="animation-delay:.4s;"></span>
+                </div>
+                <div class="cv-tl__card">
+                  <div class="cv-tl__top">
+                    <strong>Direcionamento</strong>
+                    <span class="cv-tl__live"><span class="cv-dot"></span> Ao vivo</span>
+                  </div>
+                  <p>Momento certo para apresentar o case da mesma vertical, com script de transição.</p>
+                </div>
+              </div>
+              <div class="cv-tl">
+                <div class="cv-tl__icon">
+                  <i data-lucide="check-circle-2"></i>
+                  <span class="cv-tl__ping" aria-hidden="true" style="animation-delay:.8s;"></span>
+                </div>
+                <div class="cv-tl__card">
+                  <div class="cv-tl__top">
+                    <strong>Checagem</strong>
+                    <span class="cv-tl__live"><span class="cv-dot"></span> Ao vivo</span>
+                  </div>
+                  <p>Confirma entendimento, captura a decisão e agenda o próximo passo automaticamente.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passo 3 -->
+      <div class="cv-step">
+        <div class="cv-step__copy">
+          <h3><em>Depois da reunião.</em> Feedback, coaching e próximos passos</h3>
+          <p>Um diagnóstico completo da conversa, sugestões de melhoria, treinamentos recomendados e o follow-up já pronto para disparar ao cliente.</p>
+          <ul class="cv-checks">
+            <li><i data-lucide="check-circle-2"></i> Score de performance e pontos de melhoria</li>
+            <li><i data-lucide="check-circle-2"></i> Follow-up com e-mail e tarefas já preparadas</li>
+            <li><i data-lucide="check-circle-2"></i> Treinamentos sugeridos para fechar gaps</li>
+          </ul>
+        </div>
+        <div class="cv-step__media">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=1100&amp;q=80" alt="Feedback e coaching pós-reunião">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: recursos -->
+<section class="cv-section cv-section--dark" id="recursos" aria-label="Recursos">
+  <div class="cv-grid-bg" aria-hidden="true"></div>
+  <div class="cv-wrap" style="position:relative;">
+    <div style="max-width:600px;">
+      <h2 class="cv-h2">Um agente que <em>evolui com o vendedor</em>.</h2>
+    </div>
+    <div class="cv-feats">
+      <article class="cv-feat">
+        <div class="cv-feat__icon" aria-hidden="true"><i data-lucide="brain-circuit"></i></div>
+        <h3>IA que aprende com seu time</h3>
+        <p>Começa treinada no conteúdo da plataforma e evolui com cada reunião, criando novos treinamentos com base na performance real dos vendedores.</p>
+      </article>
+      <article class="cv-feat">
+        <div class="cv-feat__icon" aria-hidden="true"><i data-lucide="book-open"></i></div>
+        <h3>Nutre a base de conhecimento</h3>
+        <p>Sugere um treinamento existente ou cria um novo automaticamente quando identifica um gap coletivo do time.</p>
+      </article>
+      <article class="cv-feat">
+        <div class="cv-feat__icon" aria-hidden="true"><i data-lucide="bell"></i></div>
+        <h3>Alertas ao vivo</h3>
+        <p>Durante a reunião, sinaliza objeções, oportunidades de upsell e momentos ideais para o próximo passo.</p>
+      </article>
+      <article class="cv-feat">
+        <div class="cv-feat__icon" aria-hidden="true"><i data-lucide="target"></i></div>
+        <h3>Direcionamento por deal</h3>
+        <p>Cada oportunidade recebe uma estratégia personalizada — o vendedor sabe exatamente o que apresentar e como.</p>
+      </article>
+      <article class="cv-feat">
+        <div class="cv-feat__icon" aria-hidden="true"><i data-lucide="zap"></i></div>
+        <h3>Follow-up automático</h3>
+        <p>E-mails, tarefas e próximas ações prontas em segundos após o fim da reunião.</p>
+      </article>
+      <article class="cv-feat">
+        <div class="cv-feat__icon" aria-hidden="true"><i data-lucide="users"></i></div>
+        <h3>Coaching individual</h3>
+        <p>Percebe os gaps de cada vendedor e sugere revisões de conhecimento no momento certo da rotina.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: gestão -->
+<section class="cv-section" id="gestao" aria-label="Gestão do time">
+  <div class="cv-wrap cv-gestao">
+    <div class="cv-step__media">
+      <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&amp;fit=crop&amp;w=1100&amp;q=80" alt="Dashboard de gestão do time de vendas">
+    </div>
+    <div>
+      <h2 class="cv-h2"><em>Gestão.</em> O time comercial sob controle — sem planilha.</h2>
+      <p class="cv-lead">A IA identifica onde cada vendedor precisa melhorar, analisa follow-ups e traz diagnósticos prontos. O gestor tem o operacional inteiro automatizado e funcional.</p>
+      <ul class="cv-gestao__checks">
+        <li><i data-lucide="check-circle-2"></i> Diagnóstico automático dos gaps do time</li>
+        <li><i data-lucide="check-circle-2"></i> Ranking de performance por vendedor</li>
+        <li><i data-lucide="check-circle-2"></i> Análise de follow-ups em aberto</li>
+        <li><i data-lucide="check-circle-2"></i> Sugestão de treinamentos por competência</li>
+        <li><i data-lucide="check-circle-2"></i> Alertas de deals em risco</li>
+        <li><i data-lucide="check-circle-2"></i> Operacional 100% automatizado</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: cta -->
+<section class="cv-section cv-section--dark" id="cta" aria-label="Agendar demonstração">
+  <div class="cv-grid-bg" aria-hidden="true"></div>
+  <div class="cv-wrap" style="position:relative;max-width:960px;">
+    <div class="cv-cta-card">
+      <div class="cv-cta-icon" aria-hidden="true"><i data-lucide="sparkles"></i></div>
+      <h2>Pronto para colocar um <em>copiloto</em> em cada vendedor?</h2>
+      <p>Agende uma demonstração e veja a IA da Lector preparando, acompanhando e evoluindo um time de vendas em tempo real.</p>
+      <div class="cv-cta-actions">
+        <a href="../home/index.dc.html#contato" class="cv-btn cv-btn--primary">Agendar demonstração <i data-lucide="arrow-right" style="width:17px;height:17px;"></i></a>
+        <a href="../home/index.dc.html#contato" class="cv-btn cv-btn--ghost">Falar com um consultor</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: footer -->
+<footer style="background:var(--ink-950); color:rgba(230,238,250,.7); padding:76px 0 40px;">
+  <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
+    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
+      <div>
+        <img src="../../assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
+        <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Produto</div>
+        <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;">
+          <a href="../home/index.dc.html#ia">IA Lector</a>
+          <a href="../home/index.dc.html#plataforma">Plataforma</a>
+          <a href="../home/index.dc.html#autoria">Autoria</a>
+          <a href="../home/index.dc.html#lms">LMS</a>
+          <a href="../home/index.dc.html#rede-social">Rede social</a>
+          <a href="../home/index.dc.html#webconferencia">Webconferência</a>
+          <a href="../home/index.dc.html#numeros">Resultados</a>
+        </div>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Empresa</div>
+        <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;">
+          <a href="#">Sobre</a>
+          <a href="../blog/index.dc.html">Blog</a>
+          <a href="#">Carreiras</a>
+          <a href="../contato/index.dc.html">Contato</a>
+        </div>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Receba novidades</div>
+        <p style="font-size:14px; margin:0 0 14px;">L&amp;D, IA e aprendizado, sem ruído.</p>
+        <div style="display:flex; gap:8px;">
+          <input placeholder="seu@email.com" style="flex:1; min-width:0; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:var(--radius-pill); padding:11px 16px; color:#fff; font-size:14px; font-family:var(--font-sans);">
+          <button type="button" style="background:var(--brand); border:none; color:#fff; border-radius:var(--radius-pill); width:44px; height:44px; flex:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:18px;height:18px;"></i></button>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; justify-content:space-between; padding-top:26px; font-size:13px; color:rgba(230,238,250,.5); flex-wrap:wrap; gap:14px;">
+      <span>© 2026 Lector Tecnologia. Todos os direitos reservados.</span>
+      <div style="display:flex; gap:22px;"><a href="#">Privacidade</a><a href="#">Segurança</a><a href="#">Termos</a></div>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { mobileOpen: false };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const nav = document.querySelector('[data-cv-nav]');
+      if (!nav) return;
+      if (window.scrollY > 8) nav.classList.add('lec-nav-scrolled');
+      else nav.classList.remove('lec-nav-scrolled');
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+    this._icons(0);
+  }
+
+  componentDidUpdate() {
+    this._icons(0);
+  }
+
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+  }
+
+  _icons(n) {
+    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    else if (n < 25) setTimeout(() => this._icons(n + 1), 120);
+  }
+
+  renderVals() {
+    return {
+      mobileOpenClass: this.state.mobileOpen ? 'is-open' : '',
+      openMobile: () => this.setState({ mobileOpen: true }),
+      closeMobile: () => this.setState({ mobileOpen: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Diagnóstico de Gaps por Habilidade | Lector</title>
+<meta name="description" content="Diagnóstico por habilidade, trilha cirúrgica e certificação com prova de resultado — ROI e evidência, não engajamento de fachada.">
+<meta property="og:title" content="Diagnóstico de Gaps por Habilidade | Lector">
+<meta property="og:description" content="Diagnóstico por habilidade, trilha cirúrgica e certificação com prova de resultado.">
+<link rel="stylesheet" href="../../design-system/tokens/fonts.css">
+<link rel="stylesheet" href="../../design-system/tokens/colors.css">
+<link rel="stylesheet" href="../../design-system/tokens/typography.css">
+<link rel="stylesheet" href="../../design-system/tokens/spacing.css">
+<link rel="stylesheet" href="../../design-system/tokens/effects.css">
+<link rel="stylesheet" href="../../design-system/tokens/base.css">
+<link rel="stylesheet" href="../../design-system/styles.css">
+<link rel="stylesheet" href="../../shared/lead-form.css">
+<script src="../../design-system/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="../../shared/lead-form.js" data-base="../.."></script>
+<style>
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--surface-page, #FBFAF7);
+    color: var(--text-body, #243653);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--brand); }
+  button { font-family: inherit; cursor: pointer; }
+  * { box-sizing: border-box; }
+  [data-lucide] { display: block; }
+  ::selection { background: var(--brand); color: #fff; }
+
+  .dg-wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+  .dg-h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    color: var(--accent-navy, #00204D);
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .dg-h2 em {
+    font-style: italic;
+    color: var(--brand);
+  }
+  .dg-lead {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-500, #5C667C);
+    max-width: 640px;
+    margin: 0;
+  }
+  .dg-section { padding: 88px 0; }
+  .dg-section--alt { background: var(--ink-50, #F6F7FA); }
+  .dg-section--dark {
+    background: var(--ink-950, #001026);
+    color: rgba(255,255,255,.9);
+  }
+  .dg-section--dark .dg-h2 { color: #fff; }
+  .dg-section--dark .dg-lead { color: rgba(230,238,250,.72); }
+  .dg-kicker {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0 0 14px;
+  }
+  .dg-section--dark .dg-kicker { color: rgba(255,197,155,.95); }
+
+  /* Nav */
+  .lec-nav-wrap {
+    position: sticky; top: 0; z-index: 50; width: 100%;
+    display: flex; justify-content: center; padding: 11px 20px 0; background: transparent;
+  }
+  .lec-nav {
+    width: 100%; max-width: 1160px; display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; padding: 11px 11px 11px 22px; border-radius: var(--radius-pill, 999px);
+    background: rgba(255,255,255,.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(0,32,77,.08); box-shadow: 0 8px 28px -16px rgba(10,23,48,.12);
+    transition: box-shadow .3s ease, background .3s ease, border-color .3s ease;
+  }
+  .lec-nav.lec-nav-scrolled {
+    background: rgba(255,255,255,.97);
+    box-shadow: 0 16px 40px -16px rgba(10,23,48,.18);
+    border-color: rgba(0,32,77,.1);
+  }
+  .lec-nav-logo { display: flex; align-items: center; flex: none; }
+  .lec-nav-logo:hover { color: inherit; }
+  .lec-nav-logo img { height: 24px; width: auto; display: block; }
+  .lec-nav-links { display: flex; align-items: center; gap: 30px; font-size: 14.5px; font-weight: 600; }
+  .lec-nav-links > a { color: #243653; transition: color .2s; }
+  .lec-nav-links > a:hover { color: var(--brand); }
+  .lec-dd { position: relative; }
+  .lec-dd__trigger {
+    display: inline-flex; align-items: center; gap: 5px; background: none; border: none;
+    padding: 0; margin: 0; font: inherit; font-size: 14.5px; font-weight: 700;
+    color: var(--brand); cursor: pointer;
+  }
+  .lec-dd__chev { display: inline-flex; width: 14px; height: 14px; transition: transform .25s ease; }
+  .lec-dd__chev i, .lec-dd__chev svg { width: 14px; height: 14px; }
+  .lec-dd:hover .lec-dd__chev, .lec-dd:focus-within .lec-dd__chev { transform: rotate(180deg); }
+  .lec-dd__menu {
+    position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(6px);
+    min-width: 360px; width: max(360px, min(420px, 92vw)); padding: 8px; border-radius: 16px;
+    background: rgba(255,255,255,.98); border: 1px solid #ECEDF2;
+    box-shadow: 0 18px 44px -12px rgba(10,20,40,.18);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease, visibility .18s; z-index: 80;
+  }
+  .lec-dd__menu::before { content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
+  .lec-dd:hover .lec-dd__menu, .lec-dd:focus-within .lec-dd__menu {
+    opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+  }
+  .lec-dd__item {
+    display: flex; align-items: flex-start; gap: 12px; padding: 12px; border-radius: 12px;
+    color: #1F2A3D; white-space: normal; transition: background .15s ease, color .15s;
+  }
+  .lec-dd__item:hover, .lec-dd__item.is-active { background: #F7F8FA; color: inherit; }
+  .lec-dd__item:hover .lec-dd__item-title,
+  .lec-dd__item.is-active .lec-dd__item-title { color: var(--brand); }
+  .lec-dd__item-icon {
+    display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px;
+    margin-top: 1px; border-radius: 10px; background: rgba(246,107,10,.12); color: var(--brand); flex: none;
+  }
+  .lec-dd__item-icon i, .lec-dd__item-icon svg { width: 17px; height: 17px; }
+  .lec-dd__item-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .lec-dd__item-title {
+    font-size: 14px; font-weight: 700; line-height: 1.25; color: #1F2A3D; transition: color .15s ease;
+  }
+  .lec-dd__item-desc { font-size: 12.5px; font-weight: 500; line-height: 1.4; color: #5A6B84; }
+  .lec-nav-cta { display: flex; align-items: center; gap: 18px; flex: none; }
+  .lec-nav-cta__solid {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: rgba(0,32,77,.04); border: 1px solid rgba(0,32,77,.1);
+    border-radius: var(--radius-pill, 999px); padding: 6px 6px 6px 20px;
+    color: var(--accent-navy, #00204D); font-weight: 700; font-size: 14.5px; white-space: nowrap;
+  }
+  .lec-nav-cta__solid:hover { color: var(--accent-navy, #00204D); border-color: rgba(0,32,77,.16); }
+  .lec-nav-cta__solid-icon {
+    width: 32px; height: 32px; border-radius: 10px; background: var(--brand); color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .lec-nav-cta__solid-icon i, .lec-nav-cta__solid-icon svg { width: 16px; height: 16px; }
+  .lec-burger {
+    display: none; width: 40px; height: 40px; align-items: center; justify-content: center;
+    border: none; background: transparent; flex-direction: column; gap: 5px; border-radius: 10px;
+  }
+  .lec-burger span { display: block; width: 22px; height: 2px; background: #00204D; border-radius: 2px; }
+  .lec-mnav-overlay {
+    position: fixed; inset: 0; background: rgba(0,16,38,.32); opacity: 0; visibility: hidden;
+    transition: opacity .3s ease, visibility .3s; z-index: 90;
+  }
+  .lec-mnav-overlay.is-open { opacity: 1; visibility: visible; }
+  .lec-mnav {
+    position: fixed; top: 0; right: 0; height: 100%; width: min(310px, 85vw); background: #fff;
+    z-index: 91; transform: translateX(100%); transition: transform .4s cubic-bezier(.16,1,.3,1);
+    display: flex; flex-direction: column; padding: 26px 16px 32px; overflow-y: auto;
+    box-shadow: -12px 0 42px rgba(10,20,40,.16);
+  }
+  .lec-mnav.is-open { transform: translateX(0); }
+  .lec-mnav-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
+  .lec-mnav-head img { height: 26px; width: auto; }
+  .lec-mnav-close {
+    width: 40px; height: 40px; border: none; background: #F1F2F7; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; color: #243653;
+  }
+  .lec-mnav-link {
+    display: flex; align-items: center; padding: 16px 18px; font-size: 15.5px; font-weight: 600;
+    color: #1F2A3D; border-bottom: 1px solid #EBEDF3;
+  }
+  .lec-mnav-link:hover { color: var(--brand); }
+  .lec-mnav-sub { border-bottom: 1px solid #EBEDF3; padding: 4px 0 10px; }
+  .lec-mnav-sub a {
+    display: block; padding: 10px 18px 10px 26px; font-size: 14px; font-weight: 500; color: #52637F;
+  }
+  .lec-mnav-sub a:hover, .lec-mnav-sub a.is-active { color: var(--brand); }
+  .lec-mnav-cta { margin-top: auto; padding-top: 26px; display: flex; flex-direction: column; gap: 11px; }
+  @media (max-width: 880px) {
+    .lec-nav-links, .lec-nav-cta { display: none !important; }
+    .lec-burger { display: flex !important; }
+  }
+
+  .dg-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    border-radius: var(--radius-pill, 999px); font-weight: 700; font-size: 15px;
+    padding: 14px 24px; border: none; transition: transform .15s, background .15s, border-color .15s;
+  }
+  .dg-btn:hover { color: inherit; transform: translateY(-1px); }
+  .dg-btn--primary {
+    background: var(--brand); color: #fff;
+    box-shadow: 0 12px 28px -12px rgba(246,107,10,.65);
+  }
+  .dg-btn--primary:hover { color: #fff; }
+  .dg-btn--ghost {
+    background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.35);
+  }
+  .dg-btn--ghost:hover { color: #fff; border-color: rgba(255,255,255,.6); }
+  .dg-btn--navy { background: var(--accent-navy, #00204D); color: #fff; }
+  .dg-btn--navy:hover { color: #fff; }
+  .dg-btn--outline {
+    background: #fff; color: var(--accent-navy); border: 1.5px solid rgba(0,32,77,.14);
+  }
+  .dg-btn--outline:hover { border-color: var(--brand); color: var(--brand); }
+
+  /* Hero */
+  .dg-hero {
+    position: relative; overflow: hidden;
+    background: var(--ink-950, #001026); color: #fff; padding: 72px 0 80px;
+  }
+  .dg-hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(90% 70% at 80% 15%, rgba(246,107,10,.22), transparent 55%),
+      radial-gradient(55% 50% at 15% 80%, rgba(26,65,115,.45), transparent 55%);
+  }
+  .dg-hero__grid {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center;
+  }
+  .dg-hero h1 {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(32px, 4.8vw, 48px); line-height: 1.06; letter-spacing: -.03em;
+    margin: 0 0 18px; text-wrap: balance;
+  }
+  .dg-hero h1 em { font-style: italic; color: var(--brand); }
+  .dg-hero__sub {
+    font-size: 16.5px; line-height: 1.55; color: rgba(230,238,250,.78);
+    max-width: 520px; margin: 0 0 28px;
+  }
+  .dg-hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Panel mock */
+  .dg-panel {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 22px;
+    padding: 22px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 24px 60px -28px rgba(0,0,0,.55);
+  }
+  .dg-panel--light {
+    background: #fff;
+    border: 1px solid var(--ink-100, #E7EAF1);
+    box-shadow: 0 24px 60px -28px rgba(10,20,40,.22);
+    color: var(--ink-800);
+  }
+  .dg-panel__head {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+    margin-bottom: 18px;
+  }
+  .dg-panel__label {
+    font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(255,255,255,.45); margin-bottom: 6px;
+  }
+  .dg-panel--light .dg-panel__label { color: var(--ink-400); }
+  .dg-panel__title {
+    font-family: var(--font-display); font-size: 18px; font-weight: 700; margin: 0;
+    color: #fff;
+  }
+  .dg-panel--light .dg-panel__title { color: var(--accent-navy); }
+  .dg-panel__meta {
+    font-size: 13px; color: rgba(255,255,255,.55); margin: 4px 0 0;
+  }
+  .dg-panel--light .dg-panel__meta { color: var(--ink-500); }
+  .dg-panel__trend {
+    flex: none; font-size: 12px; font-weight: 800;
+    padding: 6px 10px; border-radius: 999px;
+    background: rgba(31,157,85,.18); color: #6EE7A0;
+    border: 1px solid rgba(31,157,85,.35);
+  }
+  .dg-panel--light .dg-panel__trend {
+    background: rgba(31,157,85,.1); color: #1F9D55; border-color: rgba(31,157,85,.25);
+  }
+  .dg-panel__kpis {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px;
+  }
+  .dg-kpi {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px; padding: 14px 12px;
+  }
+  .dg-panel--light .dg-kpi {
+    background: var(--ink-50, #F6F7FA);
+    border-color: var(--ink-100);
+  }
+  .dg-kpi__l {
+    font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: rgba(255,255,255,.45); margin-bottom: 6px;
+  }
+  .dg-panel--light .dg-kpi__l { color: var(--ink-400); }
+  .dg-kpi__v {
+    font-family: var(--font-display); font-weight: 800; font-size: 26px;
+    color: #fff; letter-spacing: -.02em;
+  }
+  .dg-panel--light .dg-kpi__v { color: var(--accent-navy); }
+  .dg-kpi__v span { color: var(--brand); }
+  .dg-kpi__s { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 4px; }
+  .dg-panel--light .dg-kpi__s { color: var(--ink-500); }
+  .dg-panel__foot {
+    font-size: 12.5px; color: rgba(255,255,255,.55);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .dg-panel--light .dg-panel__foot { color: var(--ink-500); }
+  .dg-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #3DDC84; flex: none;
+    box-shadow: 0 0 0 3px rgba(61,220,132,.2);
+  }
+
+  .dg-strip {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--ink-100);
+    background: #fff;
+  }
+  .dg-strip p {
+    margin: 0; text-align: center; font-size: 15px; line-height: 1.55;
+    color: var(--ink-600); max-width: 820px; margin-inline: auto;
+  }
+  .dg-strip a {
+    font-weight: 700; color: var(--brand);
+  }
+
+  /* Steps */
+  .dg-steps {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 36px;
+  }
+  .dg-step {
+    background: #fff; border: 1px solid var(--ink-100);
+    border-radius: 18px; padding: 24px 22px;
+    box-shadow: 0 10px 30px -22px rgba(10,20,40,.18);
+  }
+  .dg-step__n {
+    font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+    color: var(--brand); letter-spacing: .08em; margin-bottom: 10px;
+  }
+  .dg-step h3 {
+    font-family: var(--font-display); font-size: 18px; font-weight: 700;
+    color: var(--accent-navy); margin: 0 0 8px;
+  }
+  .dg-step p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-500); }
+  .dg-note {
+    margin: 28px 0 0; font-size: 15.5px; font-weight: 600;
+    color: var(--accent-navy); max-width: 640px;
+  }
+
+  /* Live panel section */
+  .dg-live {
+    display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: start;
+  }
+  .dg-bars {
+    display: flex; align-items: flex-end; gap: 10px; height: 120px; margin: 18px 0 8px;
+  }
+  .dg-bars span {
+    flex: 1; border-radius: 8px 8px 4px 4px;
+    background: linear-gradient(180deg, var(--brand), rgba(246,107,10,.35));
+    min-height: 20%;
+  }
+  .dg-bars-labels {
+    display: flex; gap: 10px; font-size: 11px; font-weight: 600; color: var(--ink-400);
+  }
+  .dg-bars-labels span { flex: 1; text-align: center; }
+  .dg-rows { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  .dg-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 12px 14px; border-radius: 12px; background: var(--ink-50); border: 1px solid var(--ink-100);
+  }
+  .dg-row strong { display: block; font-size: 13.5px; color: var(--accent-navy); }
+  .dg-row span { font-size: 12.5px; color: var(--ink-500); }
+  .dg-status {
+    flex: none; font-size: 11px; font-weight: 800; letter-spacing: .04em;
+    padding: 5px 9px; border-radius: 999px;
+  }
+  .dg-status--ok { background: rgba(31,157,85,.12); color: #1F9D55; }
+  .dg-status--run { background: rgba(246,107,10,.12); color: var(--brand); }
+  .dg-status--wait { background: rgba(0,32,77,.06); color: var(--ink-600); }
+  .dg-nr-line {
+    margin-top: 14px; font-size: 13px; font-weight: 600; color: var(--ink-600);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  /* Why now */
+  .dg-stats {
+    display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 16px; margin-top: 32px;
+  }
+  .dg-stat {
+    background: #fff; border: 1px solid var(--ink-100); border-radius: 18px; padding: 24px 20px;
+  }
+  .dg-stat--wide { grid-column: 1 / -1; }
+  @media (min-width: 901px) {
+    .dg-stat--wide { grid-column: auto; }
+  }
+  .dg-stat__date {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+    color: var(--brand); letter-spacing: .06em; margin-bottom: 10px;
+  }
+  .dg-stat__num {
+    font-family: var(--font-display); font-weight: 800; font-size: 42px;
+    color: var(--accent-navy); letter-spacing: -.03em; line-height: 1; margin-bottom: 10px;
+  }
+  .dg-stat p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-500); }
+  .dg-sources {
+    margin: 20px 0 0; font-size: 12.5px; color: var(--ink-400);
+  }
+
+  /* Benefits */
+  .dg-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px;
+  }
+  .dg-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 18px; padding: 24px 20px;
+  }
+  .dg-card__icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: rgba(246,107,10,.16); color: var(--brand);
+    display: inline-flex; align-items: center; justify-content: center; margin-bottom: 14px;
+  }
+  .dg-card__icon i, .dg-card__icon svg { width: 20px; height: 20px; }
+  .dg-card h3 {
+    font-family: var(--font-display); font-size: 18px; font-weight: 700;
+    color: #fff; margin: 0 0 8px;
+  }
+  .dg-card p { margin: 0; font-size: 14.5px; line-height: 1.5; color: rgba(230,238,250,.7); }
+
+  /* CTA */
+  .dg-cta-box {
+    text-align: center; max-width: 720px; margin: 0 auto;
+  }
+  .dg-cta-box .dg-lead { margin: 0 auto 28px; max-width: 520px; }
+  .dg-cta-box .dg-hero__ctas { justify-content: center; }
+
+  @media (max-width: 960px) {
+    .dg-hero__grid, .dg-live, .dg-steps, .dg-stats, .dg-cards, .dg-panel__kpis {
+      grid-template-columns: 1fr;
+    }
+    .dg-panel__kpis { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .dg-section { padding: 64px 0; }
+    .dg-hero { padding: 48px 0 56px; }
+    .dg-panel__kpis { grid-template-columns: 1fr; }
+  }
+</style>
+</helmet>
+
+<!-- SECTION: promo bar -->
+<div style="background:var(--brand);color:#fff;min-height:42px;display:flex;align-items:center;justify-content:center;gap:14px;padding:7px 20px;font-size:13px;font-weight:500;flex-wrap:wrap;">
+  <span style="display:inline-flex;align-items:center;gap:8px;text-align:center;">
+    <i data-lucide="scan-search" style="width:14px;height:14px;"></i>
+    Diagnóstico por habilidade — prove resultado, não engajamento de fachada
+  </span>
+  <a href="#cta" data-open-lead data-lead-interest="diagnostico" style="border:1.5px solid rgba(255,255,255,.9);background:transparent;color:#fff;border-radius:22px;padding:5px 15px;font-size:12px;font-weight:700;white-space:nowrap;">Agendar demonstração</a>
+</div>
+
+<!-- SECTION: nav -->
+<div class="lec-nav-wrap">
+<nav class="lec-nav" data-dg-nav="">
+  <a href="../home/index.dc.html" class="lec-nav-logo">
+    <img src="../../assets/brand/logo-lector.svg" alt="Lector">
+  </a>
+  <div class="lec-nav-links">
+    <div class="lec-dd">
+      <button type="button" class="lec-dd__trigger" aria-haspopup="true">
+        Nossas Soluções
+        <span class="lec-dd__chev" aria-hidden="true"><i data-lucide="chevron-down"></i></span>
+      </button>
+      <div class="lec-dd__menu" role="menu">
+        <a href="../plataforma-lector/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Plataforma Lector</span>
+            <span class="lec-dd__item-desc">Centralize LMS, IA, treinamento, trilhas, onboarding, universidade corporativa, lideranças, gestão de talentos, comunicação e gestão do conhecimento em um único ambiente.</span>
+          </span>
+        </a>
+        <a href="../copiloto-vendas/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="bot"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Copiloto de Vendas</span>
+            <span class="lec-dd__item-desc">Diagnóstico de técnica de venda com IA, trilhas e certificação para reduzir o ramp-up.</span>
+          </span>
+        </a>
+        <a href="../solucao-nr-1/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Solução NR-1</span>
+            <span class="lec-dd__item-desc">Automatize treinamentos, registros, evidências e a conformidade com a legislação.</span>
+          </span>
+        </a>
+        <a href="../conteudo-sob-demanda/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Criação de Conteúdo sob Demanda</span>
+            <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
+          </span>
+        </a>
+        <a href="./index.dc.html" class="lec-dd__item is-active" role="menuitem" aria-current="page">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="scan-search"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Diagnóstico de Gaps</span>
+            <span class="lec-dd__item-desc">Identifique lacunas por habilidade, prove resultado e entregue conhecimento cirúrgico.</span>
+          </span>
+        </a>
+        <a href="../servicos-especializados/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="briefcase"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Serviços Especializados</span>
+            <span class="lec-dd__item-desc">Consultoria, universidades corporativas, produção de conteúdo e gestão do conhecimento.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+    <a href="../blog/index.dc.html">Blog</a>
+    <a href="../home/index.dc.html#numeros">Clientes</a>
+    <a href="../contato/index.dc.html">Contato</a>
+  </div>
+  <div class="lec-nav-cta">
+    <a href="#cta" class="lec-nav-cta__solid" data-open-lead data-lead-interest="diagnostico">Falar com especialista <span class="lec-nav-cta__solid-icon" aria-hidden="true"><i data-lucide="arrow-right"></i></span></a>
+  </div>
+  <button type="button" class="lec-burger" onClick="{{ openMobile }}" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+</div>
+
+<div class="lec-mnav-overlay {{ mobileOpenClass }}" onClick="{{ closeMobile }}"></div>
+<aside class="lec-mnav {{ mobileOpenClass }}" aria-label="Menu mobile">
+  <div class="lec-mnav-head">
+    <img src="../../assets/brand/logo-lector.svg" alt="Lector">
+    <button type="button" class="lec-mnav-close" onClick="{{ closeMobile }}" aria-label="Fechar menu">
+      <i data-lucide="x" style="width:16px;height:16px;"></i>
+    </button>
+  </div>
+  <div class="lec-mnav-sub">
+    <a href="../plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
+    <a href="../copiloto-vendas/index.dc.html" onClick="{{ closeMobile }}">Copiloto de Vendas</a>
+    <a href="../solucao-nr-1/index.dc.html" onClick="{{ closeMobile }}">Solução NR-1</a>
+    <a href="../conteudo-sob-demanda/index.dc.html" onClick="{{ closeMobile }}">Criação de Conteúdo sob Demanda</a>
+    <a href="./index.dc.html" class="is-active" onClick="{{ closeMobile }}">Diagnóstico de Gaps</a>
+    <a href="../servicos-especializados/index.dc.html" onClick="{{ closeMobile }}">Serviços Especializados</a>
+  </div>
+  <a href="../blog/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Blog</a>
+  <a href="../home/index.dc.html#numeros" class="lec-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
+  <a href="../contato/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Contato</a>
+  <div class="lec-mnav-cta">
+    <a href="#cta" class="lec-nav-cta__solid" style="text-align:center;" onClick="{{ closeMobile }}" data-open-lead data-lead-interest="diagnostico">Falar com especialista</a>
+  </div>
+</aside>
+
+<!-- SECTION: hero -->
+<section class="dg-hero" id="hero" aria-label="Diagnóstico de Gaps">
+  <div class="dg-wrap dg-hero__grid">
+    <div>
+      <p class="dg-kicker" style="color:rgba(255,197,155,.95);">Diagnóstico por habilidade</p>
+      <h1>Pare de provar engajamento.<br>Comece a provar <em>resultado</em>.</h1>
+      <p class="dg-hero__sub">A Lector diagnostica o gap real de cada colaborador por habilidade, entrega conhecimento cirúrgico alinhado ao plano estratégico da empresa e certifica o resultado — para vocês saberem, em número, quanto isso virou em receita ou redução de custo. Sem hora de curso. Sem engajamento de fachada.</p>
+      <div class="dg-hero__ctas">
+        <a href="#cta" class="dg-btn dg-btn--primary" data-open-lead data-lead-interest="diagnostico">Agendar demonstração <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+        <a href="#painel" class="dg-btn dg-btn--ghost">Ver Painel de Competências <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+      </div>
+    </div>
+    <div class="dg-panel" aria-label="Preview Painel de Competências">
+      <div class="dg-panel__head">
+        <div>
+          <div class="dg-panel__label">Painel de Competências</div>
+          <p class="dg-panel__title">Junho 2026 · 248 colaboradores</p>
+        </div>
+        <span class="dg-panel__trend">+12% mês</span>
+      </div>
+      <div class="dg-panel__kpis">
+        <div class="dg-kpi">
+          <div class="dg-kpi__l">Conclusão</div>
+          <div class="dg-kpi__v">84<span>%</span></div>
+        </div>
+        <div class="dg-kpi">
+          <div class="dg-kpi__l">Certificados</div>
+          <div class="dg-kpi__v">197</div>
+        </div>
+        <div class="dg-kpi">
+          <div class="dg-kpi__l">ROI estimado</div>
+          <div class="dg-kpi__v">3.2<span>x</span></div>
+        </div>
+      </div>
+      <div class="dg-panel__foot">
+        <span class="dg-dot" aria-hidden="true"></span>
+        Diagnóstico de competência · 248 colaboradores · 100% ativo
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: setores -->
+<section class="dg-strip" aria-label="Setores">
+  <div class="dg-wrap">
+    <p>Bancos, cooperativas, hospitais, indústrias, empresas de tecnologia — não importa o setor nem o tamanho: se a operação não pode parar, a Lector já está pronta. <a href="https://app.lector.com.br/painel" target="_blank" rel="noopener noreferrer">app.lector.com.br/painel</a></p>
+  </div>
+</section>
+
+<!-- SECTION: método -->
+<section class="dg-section" id="metodo" aria-label="Método">
+  <div class="dg-wrap">
+    <p class="dg-kicker">O gap é identificado por habilidade</p>
+    <h2 class="dg-h2">Rodamos um diagnóstico por habilidades e identificamos os <em>gaps</em> por habilidade.</h2>
+    <p class="dg-lead">Não medimos “engajamento geral”. Medimos a distância entre o que a estratégia exige e o que cada colaborador domina — habilidade por habilidade. O resultado é um mapa claro, acionável e mensurável.</p>
+
+    <div class="dg-steps">
+      <article class="dg-step">
+        <div class="dg-step__n">01</div>
+        <h3>Mapeamento estratégico</h3>
+        <p>Definimos com a empresa as habilidades críticas para cada cargo e área, alinhadas ao plano de negócio e à estratégia futura.</p>
+      </article>
+      <article class="dg-step">
+        <div class="dg-step__n">02</div>
+        <h3>Diagnóstico por habilidade</h3>
+        <p>Cada colaborador passa por avaliação focada nas habilidades definidas. O gap é calculado individualmente, por competência específica.</p>
+      </article>
+      <article class="dg-step">
+        <div class="dg-step__n">03</div>
+        <h3>Mapa de lacunas</h3>
+        <p>Visualize gaps por pessoa, por time e por habilidade. Priorização automática por impacto estratégico e risco de não conformidade.</p>
+      </article>
+      <article class="dg-step">
+        <div class="dg-step__n">04</div>
+        <h3>Trilha cirúrgica + certificação</h3>
+        <p>Conteúdo exato para fechar o gap. Conclusão gera certificado rastreável. Evidência pronta para auditoria e compliance (NR-1 inclusive).</p>
+      </article>
+    </div>
+    <p class="dg-note">Sem treinamento genérico. Sem perda de tempo. Apenas o conhecimento que fecha a lacuna.</p>
+  </div>
+</section>
+
+<!-- SECTION: painel -->
+<section class="dg-section dg-section--alt" id="painel" aria-label="Painel de Competências">
+  <div class="dg-wrap dg-live">
+    <div>
+      <p class="dg-kicker">Em tempo real</p>
+      <h2 class="dg-h2">Painel de Competências</h2>
+      <p class="dg-lead">Junho 2026 · 248 colaboradores · +12% mês — visão de conclusão, certificados e ROI estimado no mesmo lugar.</p>
+      <div style="margin-top:24px;">
+        <a href="https://app.lector.com.br/painel" class="dg-btn dg-btn--navy" target="_blank" rel="noopener noreferrer">Acessar painel completo <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+      </div>
+    </div>
+
+    <div class="dg-panel dg-panel--light">
+      <div class="dg-panel__head">
+        <div>
+          <div class="dg-panel__label">Painel de Competências</div>
+          <p class="dg-panel__title">Junho 2026 · 248 colaboradores</p>
+          <p class="dg-panel__meta">+12% mês</p>
+        </div>
+      </div>
+      <div class="dg-panel__kpis">
+        <div class="dg-kpi">
+          <div class="dg-kpi__l">Conclusão</div>
+          <div class="dg-kpi__v">84<span>%</span></div>
+        </div>
+        <div class="dg-kpi">
+          <div class="dg-kpi__l">Certificados emitidos</div>
+          <div class="dg-kpi__v">197</div>
+          <div class="dg-kpi__s">+31 esta semana</div>
+        </div>
+        <div class="dg-kpi">
+          <div class="dg-kpi__l">ROI estimado</div>
+          <div class="dg-kpi__v">3.2<span>x</span></div>
+          <div class="dg-kpi__s">R$ 2,1M impacto projetado</div>
+        </div>
+      </div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-400);margin-top:4px;">Engajamento semanal · últimas 7 semanas</div>
+      <div class="dg-bars" aria-hidden="true">
+        <span style="height:42%"></span>
+        <span style="height:55%"></span>
+        <span style="height:48%"></span>
+        <span style="height:68%"></span>
+        <span style="height:74%"></span>
+        <span style="height:82%"></span>
+        <span style="height:90%"></span>
+      </div>
+      <div class="dg-bars-labels" aria-hidden="true">
+        <span>S1</span><span>S2</span><span>S3</span><span>S4</span><span>S5</span><span>S6</span><span>S7</span>
+      </div>
+      <div class="dg-rows">
+        <div class="dg-row">
+          <div>
+            <strong>Diagnóstico de competência</strong>
+            <span>248 colaboradores · 100%</span>
+          </div>
+          <span class="dg-status dg-status--ok">Ativo</span>
+        </div>
+        <div class="dg-row">
+          <div>
+            <strong>Trilha de auditoria interna</strong>
+            <span>87 colaboradores · 63%</span>
+          </div>
+          <span class="dg-status dg-status--run">Em curso</span>
+        </div>
+        <div class="dg-row">
+          <div>
+            <strong>Certificações a revalidar</strong>
+            <span>34 colaboradores · aguardando</span>
+          </div>
+          <span class="dg-status dg-status--wait">Pendente</span>
+        </div>
+      </div>
+      <p class="dg-nr-line"><i data-lucide="shield-check" style="width:16px;height:16px;color:var(--brand);"></i> NR-1 em conformidade · 12 certificados emitidos hoje</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: por que agora -->
+<section class="dg-section" id="por-que-agora" aria-label="Por que agora">
+  <div class="dg-wrap">
+    <p class="dg-kicker">Por que agora</p>
+    <h2 class="dg-h2">A lei também está cobrando <em>agora</em>.</h2>
+    <p class="dg-lead">A NR-1 já está em vigor, com penalidade para quem não comprova treinamento — e a maioria das empresas vai precisar resolver isso sem aumentar o time de RH nem contratar mais ferramentas.</p>
+
+    <div class="dg-stats">
+      <article class="dg-stat">
+        <div class="dg-stat__date">Maio/2026</div>
+        <p>NR-1 em vigor — fiscalização passa a cobrar comprovação de treinamento e gestão de risco psicossocial. Diagnóstico por habilidade vira evidência obrigatória.</p>
+      </article>
+      <article class="dg-stat">
+        <div class="dg-stat__num">28%</div>
+        <p>das empresas apontam restrição orçamentária como maior obstáculo para se adequar à NR-1 — consolidar ferramentas deixou de ser luxo.</p>
+      </article>
+      <article class="dg-stat">
+        <div class="dg-stat__num">74%</div>
+        <p>dos acessos a LMS na América Latina já acontecem pelo celular — sua comprovação de treinamento NR-1 precisa caber no bolso do colaborador.</p>
+      </article>
+    </div>
+    <p class="dg-sources">Fontes: pesquisas setoriais de RH e EdTech, 2026</p>
+    <div style="margin-top:28px;">
+      <a href="#cta" class="dg-btn dg-btn--primary" data-open-lead data-lead-interest="nr1">Quero adequar minha empresa à NR-1 <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: benefícios -->
+<section class="dg-section dg-section--dark" id="beneficios" aria-label="Benefícios">
+  <div class="dg-wrap">
+    <p class="dg-kicker">Muito mais que um LMS</p>
+    <h2 class="dg-h2">Prove <em>resultado</em>, não cliques</h2>
+    <div class="dg-cards">
+      <article class="dg-card">
+        <div class="dg-card__icon" aria-hidden="true"><i data-lucide="line-chart"></i></div>
+        <h3>Prove resultado, não cliques</h3>
+        <p>Cada trilha fechada vira certificado + dado de impacto. Você mostra para a diretoria quanto de receita aumentou ou quanto de custo caiu.</p>
+      </article>
+      <article class="dg-card">
+        <div class="dg-card__icon" aria-hidden="true"><i data-lucide="crosshair"></i></div>
+        <h3>Conhecimento cirúrgico</h3>
+        <p>O colaborador só recebe o que ele precisa. Sem cursos de 40 horas quando o gap é em uma habilidade específica.</p>
+      </article>
+      <article class="dg-card">
+        <div class="dg-card__icon" aria-hidden="true"><i data-lucide="scan-search"></i></div>
+        <h3>Gaps por habilidade</h3>
+        <p>Cada diagnóstico é granular. Você sabe exatamente qual habilidade está faltando em cada pessoa e quanto isso custa para o negócio.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: cta -->
+<section class="dg-section" id="cta" aria-label="Agendar demonstração">
+  <div class="dg-wrap">
+    <div class="dg-cta-box">
+      <h2 class="dg-h2">Saiba exatamente onde está o gap de cada colaborador.</h2>
+      <p class="dg-lead">Agende uma demonstração e veja na prática como o diagnóstico por habilidade funciona no seu contexto.</p>
+      <div class="dg-hero__ctas">
+        <a href="#cta" class="dg-btn dg-btn--primary" data-open-lead data-lead-interest="diagnostico">Agendar demonstração <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+        <a href="../solucao-nr-1/index.dc.html" class="dg-btn dg-btn--outline">Conhecer a Solução NR-1</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: footer -->
+<footer style="background:var(--ink-950); color:rgba(230,238,250,.7); padding:76px 0 40px;">
+  <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
+    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
+      <div>
+        <img src="../../assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
+        <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Soluções</div>
+        <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;">
+          <a href="../plataforma-lector/index.dc.html">Plataforma Lector</a>
+          <a href="../copiloto-vendas/index.dc.html">Copiloto de Vendas</a>
+          <a href="../solucao-nr-1/index.dc.html">Solução NR-1</a>
+          <a href="./index.dc.html">Diagnóstico de Gaps</a>
+          <a href="../conteudo-sob-demanda/index.dc.html">Conteúdo sob Demanda</a>
+        </div>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Empresa</div>
+        <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;">
+          <a href="../blog/index.dc.html">Blog</a>
+          <a href="../contato/index.dc.html">Contato</a>
+        </div>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Receba novidades</div>
+        <p style="font-size:14px; margin:0 0 14px;">L&amp;D, IA e aprendizado, sem ruído.</p>
+        <div style="display:flex; gap:8px;">
+          <input placeholder="seu@email.com" style="flex:1; min-width:0; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:var(--radius-pill); padding:11px 16px; color:#fff; font-size:14px; font-family:var(--font-sans);">
+          <button type="button" style="background:var(--brand); border:none; color:#fff; border-radius:var(--radius-pill); width:44px; height:44px; flex:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:18px;height:18px;"></i></button>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; justify-content:space-between; padding-top:26px; font-size:13px; color:rgba(230,238,250,.5); flex-wrap:wrap; gap:14px;">
+      <span>© 2026 Lector Tecnologia. Todos os direitos reservados.</span>
+      <div style="display:flex; gap:22px;"><a href="#">Privacidade</a><a href="#">Segurança</a><a href="#">Termos</a></div>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { mobileOpen: false };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const nav = document.querySelector('[data-dg-nav]');
+      if (!nav) return;
+      if (window.scrollY > 8) nav.classList.add('lec-nav-scrolled');
+      else nav.classList.remove('lec-nav-scrolled');
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+    this._icons(0);
+  }
+
+  componentDidUpdate() {
+    this._icons(0);
+  }
+
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+  }
+
+  _icons(n) {
+    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    else if (n < 25) setTimeout(() => this._icons(n + 1), 120);
+  }
+
+  renderVals() {
+    return {
+      mobileOpenClass: this.state.mobileOpen ? 'is-open' : '',
+      openMobile: () => this.setState({ mobileOpen: true }),
+      closeMobile: () => this.setState({ mobileOpen: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>
