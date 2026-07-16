@@ -1,0 +1,122 @@
+{
+  "$schema_comment": "Fonte de dados global do site. Agentes devem atualizar este arquivo ao mudar nav ou páginas.",
+  "brand": {
+    "name": "Lector",
+    "tagline": "O poder de aprender de verdade",
+    "primaryColor": "#F66B0A",
+    "secondaryColor": "#00204D"
+  },
+  "locales": ["pt-BR"],
+  "defaultLocale": "pt-BR",
+  "nav": [
+    {
+      "label": "Nossas Soluções",
+      "href": "#plataforma",
+      "page": "solucoes",
+      "status": "planned"
+    },
+    {
+      "label": "Blog",
+      "href": "#capacidades",
+      "page": "blog",
+      "status": "planned"
+    },
+    {
+      "label": "Clientes",
+      "href": "#numeros",
+      "page": "clientes",
+      "status": "planned"
+    },
+    {
+      "label": "Contato",
+      "href": "#contato",
+      "page": "contato",
+      "status": "planned"
+    }
+  ],
+  "ctas": {
+    "primary": {
+      "label": "Comece agora",
+      "href": "#contato"
+    },
+    "secondary": {
+      "label": "Entrar",
+      "href": "#entrar"
+    },
+    "announce": {
+      "label": "Quero meu diagnóstico",
+      "text": "Diagnóstico gratuito de maturidade T&D da sua empresa — vagas limitadas este mês",
+      "href": "#contato"
+    }
+  },
+  "pages": {
+    "home": {
+      "slug": "home",
+      "title": "Home",
+      "path": "pages/home/index.dc.html",
+      "spec": "specs/pages/home.md",
+      "status": "live",
+      "route": "/"
+    },
+    "solucoes": {
+      "slug": "solucoes",
+      "title": "Nossas Soluções",
+      "path": null,
+      "spec": null,
+      "status": "planned",
+      "route": "/solucoes"
+    },
+    "clientes": {
+      "slug": "clientes",
+      "title": "Clientes",
+      "path": null,
+      "spec": null,
+      "status": "planned",
+      "route": "/clientes"
+    },
+    "blog": {
+      "slug": "blog",
+      "title": "Blog",
+      "path": null,
+      "spec": null,
+      "status": "planned",
+      "route": "/blog"
+    },
+    "contato": {
+      "slug": "contato",
+      "title": "Contato",
+      "path": null,
+      "spec": null,
+      "status": "planned",
+      "route": "/contato"
+    },
+    "servicos": {
+      "slug": "servicos",
+      "title": "Serviços",
+      "path": null,
+      "spec": null,
+      "status": "planned",
+      "route": "/servicos"
+    }
+  },
+  "clients": [
+    "microsoft",
+    "philips",
+    "unimed",
+    "sicoob",
+    "sesi-senai",
+    "ache",
+    "koch",
+    "cnmp",
+    "acats",
+    "lideranca",
+    "hospital-sapiranga"
+  ],
+  "paths": {
+    "designSystem": "design-system",
+    "assetsBrand": "assets/brand",
+    "assetsClients": "assets/clients",
+    "assetsMedia": "assets/media",
+    "support": "support.js"
+  }
+}

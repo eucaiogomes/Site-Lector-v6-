@@ -1,0 +1,38 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / agents
+.idea/
+.vscode/
+*.swp
+.cursor/
+.claude/
+.codex/
+.grok/
+
+# Dependencies
+node_modules/
+.bun/
+dist/
+build/
+.next/
+.out/
+.cache/
+.vercel
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# References = inspiração local (não produção; dumps pesados)
+references/inspiration/
+references/raw/
+
+# Thumbnails gerados
+**/.thumbnail

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="../../design-system/tokens/fonts.css">
+<link rel="stylesheet" href="../../design-system/tokens/colors.css">
+<link rel="stylesheet" href="../../design-system/tokens/typography.css">
+<link rel="stylesheet" href="../../design-system/tokens/spacing.css">
+<link rel="stylesheet" href="../../design-system/tokens/effects.css">
+<link rel="stylesheet" href="../../design-system/tokens/base.css">
+<link rel="stylesheet" href="../../design-system/styles.css">
+<script src="../../design-system/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--surface-page); color: var(--text-body); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--brand); }
+  * { box-sizing: border-box; }
+  ::selection { background: var(--brand); color: #fff; }
+  @keyframes lkBurns { 0% { transform: scale(1.02); } 100% { transform: scale(1.14); } }
+  @keyframes lkFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(9px); } }
+  @keyframes lkMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  @keyframes lkAnnounceMarquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .lk-announce {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: var(--brand);
+    color: #fff;
+    height: 40px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px -14px rgba(246,107,10,.65);
+  }
+  .lk-announce-close {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    flex: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,.24);
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--dur-fast) var(--ease-out);
+  }
+  .lk-announce-close:hover { background: rgba(255,255,255,.36); }
+  .lk-announce-track-wrap {
+    flex: 1;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 24px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 24px), transparent 100%);
+  }
+  .lk-announce-track {
+    display: flex;
+    width: max-content;
+    white-space: nowrap;
+    animation: lkAnnounceMarquee 48s linear infinite;
+    will-change: transform;
+  }
+  .lk-announce-track:hover { animation-play-state: paused; }
+  .lk-announce-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 28px;
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: .01em;
+  }
+  .lk-announce-item strong {
+    font-weight: 800;
+    letter-spacing: .04em;
+  }
+  .lk-announce-item u {
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+  }
+  .lk-announce-bolt {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    color: rgba(255,255,255,.92);
+    opacity: .9;
+  }
+  .lk-announce-bolt i,
+  .lk-announce-bolt svg {
+    width: 15px;
+    height: 15px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lk-announce-track { animation: none; }
+  }
+
+  /* Hero CTA — premium, vivo, sem gimmick */
+  @keyframes lkCtaGlow {
+    0%, 100% {
+      box-shadow:
+        0 1px 0 rgba(255,255,255,.18) inset,
+        0 -1px 0 rgba(0,0,0,.12) inset,
+        0 14px 36px -12px rgba(246,107,10,.55),
+        0 0 0 0 rgba(246,107,10,0);
+    }
+    50% {
+      box-shadow:
+        0 1px 0 rgba(255,255,255,.22) inset,
+        0 -1px 0 rgba(0,0,0,.12) inset,
+        0 18px 44px -10px rgba(246,107,10,.72),
+        0 0 28px -6px rgba(246,107,10,.35);
+    }
+  }
+  @keyframes lkCtaSheen {
+    0%   { transform: translateX(-140%) skewX(-18deg); opacity: 0; }
+    8%   { opacity: .55; }
+    28%  { transform: translateX(160%) skewX(-18deg); opacity: 0; }
+    100% { transform: translateX(160%) skewX(-18deg); opacity: 0; }
+  }
+  @keyframes lkCtaArrow {
+    0%, 100% { transform: translateX(0); }
+    50%      { transform: translateX(3px); }
+  }
+  [data-lucide] { display: block; }
+  .lk-hero-cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    height: 58px;
+    padding: 0 28px 0 32px;
+    border-radius: var(--radius-pill);
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -.01em;
+    border: none;
+    overflow: hidden;
+    isolation: isolate;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    animation: lkCtaGlow 3.6s var(--ease-in-out) infinite;
+    transition:
+      transform var(--dur-base) var(--ease-out),
+      background var(--dur-base) var(--ease-out),
+      filter var(--dur-base) var(--ease-out);
+    will-change: transform, box-shadow;
+  }
+  .lk-hero-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 48%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .lk-cta-sheen {
+    position: absolute;
+    top: -20%;
+    bottom: -20%;
+    left: 0;
+    width: 42%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255,255,255,.08) 35%,
+      rgba(255,255,255,.32) 50%,
+      rgba(255,255,255,.08) 65%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: lkCtaSheen 4.8s var(--ease-in-out) infinite;
+  }
+  .lk-cta-label,
+  .lk-cta-icon {
+    position: relative;
+    z-index: 2;
+  }
+  .lk-cta-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.16);
+    transition: background var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-spring);
+    animation: lkCtaArrow 2.4s var(--ease-in-out) infinite;
+  }
+  .lk-hero-cta:hover {
+    color: #fff;
+    background: var(--brand-hover);
+    transform: translateY(-2px);
+    filter: brightness(1.04);
+    animation-duration: 2.2s;
+  }
+  .lk-hero-cta:hover .lk-cta-icon {
+    background: rgba(255,255,255,.26);
+    transform: translateX(4px);
+    animation: none;
+  }
+  .lk-hero-cta:active {
+    transform: translateY(0) scale(.98);
+    filter: brightness(.98);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lk-hero-cta,
+    .lk-cta-sheen,
+    .lk-cta-icon { animation: none; }
+  }
+</style>
+</helmet>
+
+<div style="position:relative; overflow-x:hidden; background:var(--surface-page);">
+
+  <!-- FLOATING TOP: full-width announce marquee + header pill -->
+  <div style="position:fixed; top:0; left:0; right:0; z-index:60; display:flex; flex-direction:column; align-items:center;">
+    <sc-if value="{{ announceOpen }}" hint-placeholder-val="{{ true }}">
+    <div class="lk-announce" role="region" aria-label="Anúncio">
+      <button class="lk-announce-close" onClick="{{ closeAnnounce }}" aria-label="Fechar anúncio">
+        <i data-lucide="x" style="width:13px;height:13px;"></i>
+      </button>
+      <div class="lk-announce-track-wrap">
+        <div class="lk-announce-track">
+          <!-- bloco 1 -->
+          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
+          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
+          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
+          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
+          <!-- bloco 2 (duplicado para loop contínuo) -->
+          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
+          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
+          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
+          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+    <div style="width:100%; display:flex; justify-content:center; padding:11px 20px 0;">
+    <header style="{{ headerPillStyle }}">
+      <a href="#top" style="display:flex; align-items:center; flex:none;">
+        <img src="../../assets/brand/logo-lector-light.svg" alt="Lector" style="height:24px; display:block;">
+      </a>
+      <nav style="display:flex; align-items:center; gap:30px; font-size:14.5px; font-weight:600;">
+        <a href="#plataforma" style="{{ navLinkStyle }}">Nossas Soluções</a>
+        <a href="#capacidades" style="{{ navLinkStyle }}">Blog</a>
+        <a href="#numeros" style="{{ navLinkStyle }}">Clientes</a>
+        <a href="#depoimento" style="{{ navLinkStyle }}">Contato<br></a>
+      </nav>
+      <div style="display:flex; align-items:center; gap:18px; flex:none;">
+        <a href="#entrar" style="{{ navLinkStyle }} font-weight:700; display:inline-flex; align-items:center; gap:4px;">Entrar <i data-lucide="arrow-up-right" style="width:14px;height:14px;"></i></a>
+        <a href="#contato" style="display:inline-flex; align-items:center; gap:12px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); border-radius:var(--radius-pill); padding:6px 6px 6px 20px; color:#fff; font-weight:700; font-size:14.5px;">Comece agora <span style="width:32px; height:32px; border-radius:10px; background:var(--brand); display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span></a>
+      </div>
+    </header>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section id="top" style="position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--ink-950);">
+    <!-- media layer -->
+    <div style="position:absolute; inset:0; z-index:0;">
+      <div style="position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=2100&amp;q=80'); background-size:cover; background-position:center; animation:lkBurns 26s ease-in-out infinite alternate;"></div>
+      <sc-if value="{{ hasVideo }}" hint-placeholder-val="{{ true }}">
+        <video data-hero="" src="../../assets/media/YTDown.com_YouTube_Media_fkkqLayjr6I_001_1080p-2-2.mp4" autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=2100&amp;q=80" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></video>
+      </sc-if>
+      <!-- navy grade + vignette -->
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,16,38,.82) 0%, rgba(0,16,38,.34) 34%, rgba(0,16,38,.62) 72%, rgba(0,16,38,.96) 100%);"></div>
+      <div style="position:absolute; inset:0; background:radial-gradient(120% 90% at 78% 18%, rgba(246,107,10,.30), rgba(246,107,10,0) 55%);"></div>
+      <div style="position:absolute; inset:0; box-shadow:inset 0 0 320px 60px rgba(0,6,20,.7);"></div>
+    </div>
+
+    <!-- content (centered) -->
+    <div style="position:relative; z-index:3; width:100%; max-width:1040px; margin:0 auto; padding:96px 28px 0; text-align:center;">
+      <div data-reveal="">
+        <span style="display:inline-flex; align-items:center; gap:9px; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:26px;">
+          
+          Plataforma de aprendizado com IA nativa
+        </span>
+        <h1 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(52px,8vw,120px); line-height: .94; letter-spacing: -.03em; color: rgba(255,255,255,.94); margin: 0 0 30px; text-wrap: balance; text-shadow: 0 4px 40px rgba(0,10,30,.4); position: relative">
+          O poder de<br>aprender <span style="color:var(--brand); font-style:italic;">de verdade</span>.
+        </h1>
+        <p style="font-size:19px; line-height:1.5; color:rgba(230,238,250,.8); max-width:520px; margin:0 auto 40px;">
+          Uma só plataforma para criar, ensinar, engajar e medir. Menos ferramentas soltas, mais gente aprendendo.
+        </p>
+        <div style="display:flex; justify-content:center;">
+          <a href="#contato" class="lk-hero-cta">
+            <span class="lk-cta-sheen" aria-hidden="true"></span>
+            <span class="lk-cta-label">Explore a plataforma</span>
+            <span class="lk-cta-icon" aria-hidden="true"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- kinetic words along the bottom -->
+    <div style="position:absolute; bottom:44px; left:0; right:0; z-index:2; display:flex; align-items:center; justify-content:space-between; padding:0 clamp(28px,6vw,88px); font-family:var(--font-display); font-weight:800; font-size:clamp(12px,1.35vw,17px); letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.4); pointer-events:none;">
+      <span>MAS TEMPO</span>
+      <span>NO</span>
+      <span style="color:rgba(246,107,10,.7);">SEU TEMPO<br></span>
+    </div>
+  </section>
+
+  <!-- KINETIC MEGA BAND -->
+  <section style="background:var(--ink-950); padding:64px 0 70px; overflow:hidden; border-top:1px solid rgba(255,255,255,.06);">
+    <div style="white-space:nowrap; display:flex; width:max-content; animation:lkMarquee 34s linear infinite; opacity:.9;">
+      <span style="font-family:var(--font-display); font-weight:800; font-size:clamp(64px,11vw,150px); letter-spacing:-.02em; text-transform:uppercase; line-height:.9; color:transparent; -webkit-text-stroke:1.4px rgba(255,255,255,.16); padding-right:56px;">O futuro do aprendizado&nbsp;&nbsp;•&nbsp;&nbsp;<span style="-webkit-text-stroke:1.4px rgba(246,107,10,.7);">Lector</span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+      <span style="font-family:var(--font-display); font-weight:800; font-size:clamp(64px,11vw,150px); letter-spacing:-.02em; text-transform:uppercase; line-height:.9; color:transparent; -webkit-text-stroke:1.4px rgba(255,255,255,.16); padding-right:56px;">O futuro do aprendizado&nbsp;&nbsp;•&nbsp;&nbsp;<span style="-webkit-text-stroke:1.4px rgba(246,107,10,.7);">Lector</span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+    </div>
+  </section>
+
+  <!-- NEWS STRIP -->
+  <section style="background:var(--ink-950); padding:12px 0 92px;">
+    <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
+      <div data-reveal="" style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:34px;">
+        <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(28px,3.4vw,42px); letter-spacing:-.02em; color:#fff; margin:0;">Novidades</h2>
+        <a href="#" style="color:rgba(255,255,255,.7); font-weight:700; font-size:14.5px; display:inline-flex; align-items:center; gap:7px;">Ver tudo <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;">
+        <sc-for list="{{ news }}" as="n" hint-placeholder-count="4">
+          <a href="#" data-reveal="" style="display:flex; flex-direction:column; border-radius:var(--radius-lg); overflow:hidden; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); transition:transform .35s var(--ease-out), border-color .35s;" style-hover="transform:translateY(-6px); border-color:rgba(246,107,10,.5);">
+            <div style="height:150px; background-image:url('{{ n.img }}'); background-size:cover; background-position:center;"></div>
+            <div style="padding:18px 18px 22px;">
+              <span style="font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--brand);">{{ n.tag }}</span>
+              <p style="font-size:15px; line-height:1.4; font-weight:600; color:#EAF1FB; margin:9px 0 14px;">{{ n.title }}</p>
+              <span style="font-size:12.5px; color:rgba(255,255,255,.5);">{{ n.date }}</span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM / STATEMENT -->
+  <section id="plataforma" style="background:var(--surface-page); padding:120px 0 40px;">
+    <div style="max-width:1040px; margin:0 auto; padding:0 28px;">
+      <p data-reveal="" style="font-family:var(--font-display); font-weight:800; font-size:clamp(30px,4.4vw,58px); line-height:1.08; letter-spacing:-.025em; color:var(--navy-800); margin:0; text-wrap:balance;">
+        Aprender bem deixou de ser um diferencial. Virou <span style="color:var(--brand);">o pré-requisito</span> de qualquer empresa que quer crescer.
+      </p>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES (tabbed) -->
+  <section id="capacidades" style="background:var(--surface-page); padding:56px 0 120px;">
+    <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
+      <div data-reveal="" style="display:flex; gap:10px; flex-wrap:wrap; border-bottom:1px solid var(--border-default); margin-bottom:44px;">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+          <button onClick="{{ t.onSelect }}" style="{{ t.tabStyle }}">
+            <i data-lucide="{{ t.icon }}" style="width:18px;height:18px;"></i>
+            {{ t.label }}
+          </button>
+        </sc-for>
+      </div>
+      <div data-reveal="" style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;">
+        <div>
+          <span style="font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--brand);">{{ active.eyebrow }}</span>
+          <h3 style="font-family:var(--font-display); font-weight:800; font-size:clamp(28px,3.4vw,44px); line-height:1.06; letter-spacing:-.02em; color:var(--navy-800); margin:14px 0 18px;">{{ active.title }}</h3>
+          <p style="font-size:18px; line-height:1.6; color:var(--text-body); margin:0 0 26px;">{{ active.body }}</p>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <sc-for list="{{ active.bullets }}" as="b" hint-placeholder-count="3">
+              <div style="display:flex; align-items:flex-start; gap:12px;">
+                <span style="flex:none; width:24px; height:24px; border-radius:50%; background:var(--brand-soft); color:var(--brand); display:inline-flex; align-items:center; justify-content:center; margin-top:1px;"><i data-lucide="check" style="width:14px;height:14px;"></i></span>
+                <span style="font-size:16px; line-height:1.5; color:var(--text-strong); font-weight:600;">{{ b }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="position:relative; border-radius:var(--radius-2xl); overflow:hidden; box-shadow:var(--shadow-lg); aspect-ratio:4/3; background:var(--ink-100);">
+          <div style="position:absolute; inset:0; background-image:url('{{ active.img }}'); background-size:cover; background-position:center;"></div>
+          <div style="position:absolute; inset:0; background:linear-gradient(140deg, rgba(0,32,77,.12), rgba(0,32,77,0) 50%);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULES BENTO -->
+  <section style="background:var(--navy-800); padding:110px 0; position:relative; overflow:hidden;">
+    <img src="../../assets/brand/orbit.svg" alt="" style="position:absolute; top:-120px; right:-120px; width:520px; opacity:.10; pointer-events:none;">
+    <div style="max-width:1240px; margin:0 auto; padding:0 28px; position:relative;">
+      <div data-reveal="" style="max-width:640px; margin-bottom:56px;">
+        <span style="font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--brand);">Uma plataforma</span>
+        <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(32px,4vw,54px); line-height:1.04; letter-spacing:-.025em; color:#fff; margin:14px 0 16px;">Tudo o que o aprendizado precisa. Conectado.</h2>
+        <p style="font-size:18px; line-height:1.6; color:rgba(230,238,250,.72); margin:0;">Do primeiro rascunho ao relatório de impacto, sem trocar de ferramenta.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+        <sc-for list="{{ modules }}" as="m" hint-placeholder-count="6">
+          <div data-reveal="" style="padding:30px 28px 32px; border-radius:var(--radius-xl); background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.09); transition:transform .35s var(--ease-out), background .35s;" style-hover="transform:translateY(-5px); background:rgba(255,255,255,.09);">
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:14px; background:var(--brand); color:#fff; margin-bottom:20px; box-shadow:0 8px 22px -8px rgba(246,107,10,.8);"><i data-lucide="{{ m.icon }}" style="width:24px;height:24px;"></i></span>
+            <h3 style="font-family:var(--font-display); font-weight:700; font-size:20px; letter-spacing:-.01em; color:#fff; margin:0 0 10px;">{{ m.title }}</h3>
+            <p style="font-size:15px; line-height:1.55; color:rgba(230,238,250,.68); margin:0;">{{ m.body }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="numeros" style="background:var(--surface-page); padding:110px 0;">
+    <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
+      <div data-reveal="" style="text-align:center; max-width:680px; margin:0 auto 64px;">
+        <span style="font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--brand);">Resultados reais</span>
+        <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(32px,4vw,54px); line-height:1.04; letter-spacing:-.025em; color:var(--navy-800); margin:14px 0 0;">Aprendizado que vira número.</h2>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px;">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+          <div data-reveal="" style="text-align:left; border-top:2px solid var(--navy-800); padding-top:22px;">
+            <div style="font-family:var(--font-mono); font-weight:700; font-size:clamp(44px,4.8vw,64px); line-height:1; letter-spacing:-.03em; color:var(--navy-800);">{{ s.value }}</div>
+            <div style="font-size:15.5px; line-height:1.45; color:var(--text-body); font-weight:600; margin-top:14px;">{{ s.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT LOGOS -->
+  <section style="background:var(--surface-page); padding:0 0 100px;">
+    <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
+      <p data-reveal="" style="text-align:center; font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-muted); margin:0 0 40px;">Empresas que aprendem com a Lector</p>
+      <div data-reveal="" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:52px;">
+        <sc-for list="{{ logos }}" as="l" hint-placeholder-count="6">
+          <div style="height:34px; width:120px; background-image:url('{{ l.src }}'); background-size:contain; background-position:center; background-repeat:no-repeat; opacity:.62; filter:grayscale(1); transition:opacity .3s, filter .3s;" style-hover="opacity:1; filter:grayscale(0);"></div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section id="depoimento" style="background:var(--ink-950); padding:120px 0; position:relative; overflow:hidden;">
+    <div style="max-width:960px; margin:0 auto; padding:0 28px; position:relative;">
+      <div data-reveal="">
+        <i data-lucide="quote" style="width:52px; height:52px; color:var(--brand); margin-bottom:26px;"></i>
+        <p style="font-family:var(--font-display); font-weight:700; font-size:clamp(26px,3.2vw,42px); line-height:1.24; letter-spacing:-.02em; color:#fff; margin:0 0 34px; text-wrap:balance;">
+          A Lector nos deu uma leitura do aprendizado que planilha nenhuma alcançava. Passamos a ver, em tempo real, o que engaja e o que trava — e agir antes do problema virar rotatividade.
+        </p>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&amp;fit=crop&amp;w=160&amp;q=80" alt="" style="width:52px; height:52px; border-radius:50%; object-fit:cover;">
+          <div>
+            <div style="font-weight:700; color:#fff; font-size:16px;">Marina Duarte</div>
+            <div style="font-size:14px; color:rgba(230,238,250,.6);">Head de Pessoas &amp; Cultura, Koch Group</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="contato" style="background:var(--brand); padding:110px 0; position:relative; overflow:hidden;">
+    <img src="../../assets/brand/orbit.svg" alt="" style="position:absolute; bottom:-160px; left:-120px; width:560px; opacity:.16; filter:brightness(0) invert(1); pointer-events:none;">
+    <div style="max-width:900px; margin:0 auto; padding:0 28px; text-align:center; position:relative;">
+      <h2 data-reveal="" style="font-family:var(--font-display); font-weight:800; font-size:clamp(36px,5vw,68px); line-height:1.02; letter-spacing:-.03em; color:#fff; margin:0 0 22px; text-wrap:balance;">Comece a ensinar de verdade.</h2>
+      <p data-reveal="" style="font-size:19px; line-height:1.55; color:rgba(255,255,255,.9); max-width:520px; margin:0 auto 38px;">Monte sua conta em minutos. Fale com o time e veja a Lector aplicada ao seu contexto.</p>
+      <div data-reveal="" style="display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
+        <a href="#" style="display:inline-flex; align-items:center; gap:10px; background:#fff; color:var(--navy-800); font-weight:700; font-size:16px; padding:16px 32px; border-radius:var(--radius-pill); box-shadow:0 14px 34px -10px rgba(0,16,38,.5);">Comece agora <i data-lucide="arrow-up-right" style="width:18px;height:18px;"></i></a>
+        <a href="#" style="display:inline-flex; align-items:center; gap:10px; color:#fff; font-weight:700; font-size:16px; padding:15px 28px; border:1.5px solid rgba(255,255,255,.6); border-radius:var(--radius-pill);">Falar com vendas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:var(--ink-950); color:rgba(230,238,250,.7); padding:76px 0 40px;">
+    <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
+      <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
+        <div>
+          <img src="../../assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
+          <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+        </div>
+        <div>
+          <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Produto</div>
+          <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;"><a href="#plataforma">Plataforma</a><a href="#capacidades">Capacidades</a><a href="#numeros">Resultados</a><a href="#">Preços</a></div>
+        </div>
+        <div>
+          <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Empresa</div>
+          <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;"><a href="#">Sobre</a><a href="#">Blog</a><a href="#">Carreiras</a><a href="#contato">Contato</a></div>
+        </div>
+        <div>
+          <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Receba novidades</div>
+          <p style="font-size:14px; margin:0 0 14px;">L&amp;D, IA e aprendizado, sem ruído.</p>
+          <div style="display:flex; gap:8px;">
+            <input placeholder="seu@email.com" style="flex:1; min-width:0; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:var(--radius-pill); padding:11px 16px; color:#fff; font-size:14px; font-family:var(--font-sans);">
+            <button style="background:var(--brand); border:none; color:#fff; border-radius:var(--radius-pill); width:44px; height:44px; flex:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:18px;height:18px;"></i></button>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; padding-top:26px; font-size:13px; color:rgba(230,238,250,.5); flex-wrap:wrap; gap:14px;">
+        <span>© 2026 Lector Tecnologia. Todos os direitos reservados.</span>
+        <div style="display:flex; gap:22px;"><a href="#">Privacidade</a><a href="#">Segurança</a><a href="#">Termos</a></div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;announcement&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;heroVideoSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;../../assets/media/YTDown.com_YouTube_Media_fkkqLayjr6I_001_1080p-2-2.mp4&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
+class Component extends DCLogic {
+  state = { scrolled: false, tab: 0, announceClosed: false };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const s = window.scrollY > 40;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+
+    // reveal on scroll
+    if ('IntersectionObserver' in window) {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'none';
+            this._io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }
+    this._wireReveal();
+    this._icons(0);
+    this._loadVideo();
+  }
+
+  _loadVideo() {
+    setTimeout(() => {
+      const el = document.querySelector('video[data-hero]');
+      if (!el || el._lkWired) return;
+      el._lkWired = true;
+      const fallback = '../../assets/media/YTDown.com_YouTube_Media_fkkqLayjr6I_001_1080p-2-2.mp4';
+      const src = (this.props.heroVideoSrc ?? fallback).trim() || fallback;
+      el.muted = true;
+      el.defaultMuted = true;
+      el.setAttribute('muted', '');
+      el.playsInline = true;
+      el.loop = true;
+      el.autoplay = true;
+      const kick = () => { const p = el.play(); if (p && p.catch) p.catch(() => {}); };
+      el.addEventListener('loadeddata', kick);
+      el.addEventListener('canplay', kick);
+      // Set src directly first (works over http/file); blob fetch as fallback for stricter hosts
+      if (!el.getAttribute('src') || el.getAttribute('src') !== src) {
+        el.src = src;
+        el.load();
+      } else {
+        kick();
+      }
+      // Re-kick on first user interaction if autoplay was blocked
+      const unlock = () => { kick(); window.removeEventListener('pointerdown', unlock); window.removeEventListener('touchstart', unlock); };
+      window.addEventListener('pointerdown', unlock, { once: true });
+      window.addEventListener('touchstart', unlock, { once: true });
+    }, 30);
+  }
+
+  componentDidUpdate() { this._wireReveal(); this._icons(0); }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._io) this._io.disconnect();
+  }
+
+  _wireReveal() {
+    setTimeout(() => {
+      document.querySelectorAll('[data-reveal]').forEach((el) => {
+        if (el._lkWired) return;
+        el._lkWired = true;
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(26px)';
+        el.style.transition = 'opacity .7s var(--ease-out), transform .7s var(--ease-out)';
+        if (this._io) this._io.observe(el);
+        else { el.style.opacity = '1'; el.style.transform = 'none'; }
+      });
+    }, 20);
+  }
+
+  _icons(n) {
+    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    else if (n < 25) setTimeout(() => this._icons(n + 1), 120);
+  }
+
+  renderVals() {
+    const scrolled = this.state.scrolled;
+    const heroVid = '../../assets/media/YTDown.com_YouTube_Media_fkkqLayjr6I_001_1080p-2-2.mp4';
+
+    const headerPillStyle = [
+      'width:100%; max-width:1160px', 'display:flex', 'align-items:center', 'justify-content:space-between',
+      'gap:24px', 'padding:11px 11px 11px 22px', 'border-radius:var(--radius-pill)',
+      'border:1px solid rgba(255,255,255,.1)', 'backdrop-filter:blur(14px)',
+      'transition:background .3s var(--ease-out), box-shadow .3s',
+      scrolled
+        ? 'background:rgba(2,16,38,.92); box-shadow:0 16px 40px -16px rgba(0,8,24,.7)'
+        : 'background:rgba(2,16,38,.55)',
+    ].join(';');
+
+    const navLinkStyle = 'transition:color .2s; color:rgba(255,255,255,.85);';
+
+    const news = [
+      { tag: 'Lançamento', title: 'Autoria com IA: crie um curso completo em minutos', date: '14 jul 2026', img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80' },
+      { tag: 'Cliente', title: 'Como a Unimed triplicou a conclusão de treinamentos', date: '02 jul 2026', img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80' },
+      { tag: 'Produto', title: 'Novos relatórios de impacto por competência', date: '21 jun 2026', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80' },
+      { tag: 'Evento', title: 'Lector Connect 2026: as inscrições estão abertas', date: '09 jun 2026', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80' },
+    ];
+
+    const caps = [
+      { key: 'criar', label: 'Criar', icon: 'sparkles', eyebrow: 'Autoria com IA',
+        title: 'Do rascunho ao curso publicado em um dia.',
+        body: 'Descreva o objetivo e a IA monta a trilha, os roteiros e as avaliações. Você refina, aprova e publica — sem depender de um time de produção.',
+        bullets: ['Geração de trilhas e roteiros por IA', 'Editor de vídeo e SCORM integrado', 'Templates de marca prontos'],
+        img: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=1000&q=80' },
+      { key: 'ensinar', label: 'Ensinar', icon: 'graduation-cap', eyebrow: 'Entrega',
+        title: 'Cada aluno no ritmo certo, na hora certa.',
+        body: 'Trilhas adaptativas, turmas ao vivo e conteúdo sob demanda no mesmo lugar. A plataforma recomenda o próximo passo para cada pessoa.',
+        bullets: ['Trilhas adaptativas por perfil', 'Aulas ao vivo e webconferência', 'App mobile com modo offline'],
+        img: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80' },
+      { key: 'engajar', label: 'Engajar', icon: 'flame', eyebrow: 'Engajamento',
+        title: 'Gente que volta porque quer — não porque manda.',
+        body: 'Trilhas gamificadas, comunidade e nudges inteligentes mantêm o aprendizado vivo depois da primeira aula.',
+        bullets: ['Missões, ranking e conquistas', 'Comunidade e fóruns integrados', 'Lembretes inteligentes por IA'],
+        img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1000&q=80' },
+      { key: 'medir', label: 'Medir', icon: 'bar-chart-3', eyebrow: 'Analytics',
+        title: 'Prove o impacto, não só a presença.',
+        body: 'Painéis de competência, conclusão e retenção conectam o aprendizado ao resultado do negócio — em tempo real.',
+        bullets: ['Painéis de competência e conclusão', 'Relatórios de impacto exportáveis', 'Integração com seu BI e RH'],
+        img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80' },
+    ];
+    const tab = this.state.tab;
+    const tabBase = 'display:inline-flex; align-items:center; gap:9px; font-family:var(--font-sans); font-size:15.5px; font-weight:700; padding:14px 20px 16px; background:none; border:none; cursor:pointer; margin-bottom:-1px; border-bottom:2.5px solid transparent; transition:color .2s, border-color .2s;';
+    const tabs = caps.map((c, i) => ({
+      label: c.label, icon: c.icon,
+      onSelect: () => this.setState({ tab: i }),
+      tabStyle: tabBase + (i === tab
+        ? 'color:var(--brand); border-bottom-color:var(--brand);'
+        : 'color:var(--text-muted);'),
+    }));
+    const active = caps[tab];
+
+    const modules = [
+      { icon: 'sparkles', title: 'Autoria com IA', body: 'Crie cursos, quizzes e roteiros a partir de um objetivo. A IA faz o primeiro rascunho.' },
+      { icon: 'graduation-cap', title: 'LMS completo', body: 'Trilhas, turmas, certificados e app mobile. O núcleo do seu aprendizado.' },
+      { icon: 'video', title: 'Aulas ao vivo', body: 'Webconferência nativa com gravação, presença e material — sem plugins.' },
+      { icon: 'users', title: 'Gestão de talentos', body: 'Mapas de competência, PDI e trilhas de carreira ligados ao aprendizado.' },
+      { icon: 'message-circle', title: 'Comunidade', body: 'Fóruns, grupos e mentoria para o aprendizado que acontece entre pessoas.' },
+      { icon: 'bar-chart-3', title: 'Analytics de impacto', body: 'Do engajamento ao resultado de negócio, em painéis que o RH entende.' },
+    ];
+
+    const stats = [
+      { value: '3×', label: 'mais conclusão de trilhas vs. LMS tradicional' },
+      { value: '48h', label: 'para publicar um curso completo com IA' },
+      { value: '+500k', label: 'alunos ativos na plataforma' },
+      { value: '97%', label: 'de satisfação dos administradores' },
+    ];
+
+    const clients = ['unimed', 'sicoob', 'ache', 'philips', 'koch', 'sesi-senai', 'microsoft', 'lideranca'];
+    const logos = clients.map((c) => ({ src: '../../assets/clients/' + c + '.png', name: c }));
+
+    return {
+      announceOpen: (this.props.announcement ?? true) && !this.state.announceClosed,
+      closeAnnounce: () => this.setState({ announceClosed: true }),
+      headerPillStyle,
+      hasVideo: (this.props.heroVideoSrc ?? heroVid).trim() !== '',
+      heroVideoSrc: (this.props.heroVideoSrc ?? heroVid).trim(),
+      navLinkStyle,
+
+      news, tabs, active, modules, stats, logos,
+    };
+  }
+}
+</script>
+</body>
+</html>
