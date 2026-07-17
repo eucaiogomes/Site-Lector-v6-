@@ -25325,7 +25325,7 @@ try { (() => {
 /* Lector — floating WhatsApp button (bottom-right, all site pages).
    Self-mounting: creates its own node so it works alongside the page's #root.
    Troque WA_NUMBER pelo número real (formato internacional, só dígitos). */
-const WA_NUMBER = '5551999999999';
+const WA_NUMBER = '5547988061278';
 const WA_MESSAGE = 'Olá! Gostaria de saber mais sobre a Plataforma Lector Live.';
 function WhatsAppFab() {
   const [hover, setHover] = React.useState(false);
