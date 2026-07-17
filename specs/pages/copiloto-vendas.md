@@ -55,7 +55,7 @@ Converter líderes comerciais e de T&D que precisam treinar o time de vendas: ap
 - Mídia em `assets/media/copiloto-vendas/`:
   - `hero.jpg` — hero
   - `antes-reuniao.jpg` — jornada (antes)
-  - `durante-reuniao.jpg` — jornada (durante)
+  - `durante-reuniao.png` — jornada (durante)
   - `depois-reuniao.jpg` — jornada (depois)
   - `gestao.jpg` — seção gestão
 - Interest lead form: `vendas`

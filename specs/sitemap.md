@@ -109,7 +109,7 @@ Descrições canônicas: `content/site.json` → `nav[0].children`.
 |------|-------------------------------------|
 | `home` | `hero.mp4`, `video-autoria.mp4`, `gestao-documentos.mp4`, `gestao-talentos.png`, `lms.png`, `rede-social.png`, `webconferencia.png`, `conhecimento-scroll.mp4` (+ poster) |
 | `plataforma-lector` | `mandala-girando.mp4`, `hero-poster.jpg`, `onboarding.png` (também reutiliza mídia da home em spotlights) |
-| `copiloto-vendas` | `hero.jpg`, `antes-reuniao.jpg`, `durante-reuniao.jpg`, `depois-reuniao.jpg`, `gestao.jpg` |
+| `copiloto-vendas` | `hero.jpg`, `antes-reuniao.jpg`, `durante-reuniao.png`, `depois-reuniao.jpg`, `gestao.jpg` |
 | `conteudo-sob-demanda` | `criacao-de-conteudo.mp4`, `video-demonstracao-1..4.mp4` + posters |
 | `clientes` | só `.gitkeep` (usa logos em `assets/clients/`) |
 | `contato`, `diagnostico-gaps`, `servicos-especializados`, `solucao-nr-1` | só `.gitkeep` (mocks HTML ou placeholders) |
