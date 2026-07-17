@@ -24,13 +24,15 @@ Estado e rotas: `specs/sitemap.md` + `content/site.json`.
 ├── AGENTS.md                 ← você está aqui
 ├── README.md
 ├── support.js                ← runtime DC (não editar manualmente)
-├── vercel.json
+├── vercel.json               ← rewrites + headers
+├── llms.txt · robots.txt · sitemap.xml   ← foundation GEO/SEO
 │
 ├── specs/                    ← SPECS (leia antes de codar)
 │   ├── product.md
 │   ├── brand.md
 │   ├── architecture.md
 │   ├── sitemap.md
+│   ├── geo.md
 │   ├── how-to-add-page.md
 │   ├── pages/                ← 1 spec por página
 │   └── components/           ← header, lead-form, …
@@ -42,7 +44,7 @@ Estado e rotas: `specs/sitemap.md` + `content/site.json`.
 ├── design-system/            ← tokens, styles, bundle
 │
 ├── assets/
-│   ├── brand/                ← logos oficiais (logo-lector.svg, light, orbit)
+│   ├── brand/                ← logos oficiais (logo-lector, light, mark, orbit)
 │   ├── clients/
 │   └── media/<slug>/         ← mídia de produção por página
 │
@@ -51,7 +53,8 @@ Estado e rotas: `specs/sitemap.md` + `content/site.json`.
 │
 ├── shared/                   ← lead form e utilitários do site
 │   ├── lead-form.css
-│   └── lead-form.js
+│   ├── lead-form.js
+│   └── schema-organization.json
 │
 └── references/               ← NÃO é produção
     ├── inspiration/
@@ -88,12 +91,13 @@ Estado e rotas: `specs/sitemap.md` + `content/site.json`.
 
 ## Duas famílias de layout
 
-| Família | Páginas | Header |
-|---------|---------|--------|
-| Dark home | `home` | Glass navy + dropdown `.lk-nav-dd` |
-| Light sticky | blog, contato, 6 soluções | `.lec-nav` + `.lec-dd` + drawer `.lec-mnav` |
+| Família | Páginas atuais | Header |
+|---------|----------------|--------|
+| Dark | `home`, `plataforma-lector`, `solucao-nr-1`, `conteudo-sob-demanda`, `diagnostico-gaps` | Glass navy + dropdown `.lk-nav-dd` |
+| Light sticky | `blog`, `contato`, `copiloto-vendas`, `servicos-especializados`, `clientes` | `.lec-nav` + `.lec-dd` + drawer `.lec-mnav` |
 
-Boilerplate de solução: copiar de `blog` ou `servicos-especializados`, não da home.
+Boilerplate **light**: copiar de `blog` ou `servicos-especializados`.  
+Boilerplate **dark de solução**: copiar de `solucao-nr-1` ou `diagnostico-gaps` — **não** da home monólito.
 
 ---
 
@@ -151,10 +155,10 @@ Detalhes: `specs/brand.md` e `design-system/readme.md`.
 | Status | Significado |
 |--------|-------------|
 | `live` | Home, Blog, Contato |
-| `wip` | 6 soluções (HTML completo e linkável; mídia/placeholders comerciais abertos) |
-| `planned` | Hub Soluções, página Clientes |
+| `wip` | 6 soluções + Clientes (HTML completo e linkável; mídia/placeholders comerciais abertos) |
+| `planned` | Hub Soluções |
 
-Detalhe: `specs/sitemap.md`.
+Detalhe e inventário de mídia: `specs/sitemap.md`.
 
 ---
 
@@ -163,12 +167,13 @@ Detalhe: `specs/sitemap.md`.
 - Criar CSS global paralelo ao design system
 - Duplicar logos em várias pastas
 - Colocar conteúdo de produção em `references/`
-- Deixar lixo (vídeos, HTML solto, dumps) na **raiz**
+- Deixar lixo (vídeos, PNG, HTML solto, dumps) na **raiz** — use `assets/media/<slug>/` ou `references/raw/`
 - Páginas monólito sem seções nomeadas
 - Commitar dumps grandes de sites de referência sem `.gitignore`
 - Atualizar nav em só uma página e esquecer as outras
 - Tratar `design-system/readme.md` legado de monorepo React como mapa de pastas deste site
 - Usar **badge / eyebrow / kicker** como título de seção (rótulo pequeno acima do H2)
+- Reintroduzir “vagas limitadas” / escassez sem lastro real (nem em `content/site.json`)
 
 ---
 

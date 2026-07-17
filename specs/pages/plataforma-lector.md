@@ -116,5 +116,5 @@ A página segue a **mesma família visual da home**, não o shell light das dema
 - [x] Lead form nos CTAs  
 - [x] Paths `../../` corretos  
 - [x] Copy PT-BR, tom Lector  
-- [ ] Assets exclusivos em `assets/media/plataforma-lector/`  
+- [x] Assets em `assets/media/plataforma-lector/` (`mandala-girando.mp4`, `hero-poster.jpg`, `onboarding.png`)  
 - [ ] Mobile drawer (hoje nav desktop some em &lt;960px como na home)  

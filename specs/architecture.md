@@ -22,7 +22,7 @@
 ├─────────────────────────────────────────┤
 │  content/   dados e copy estruturados   │
 ├─────────────────────────────────────────┤
-│  shared/    lead form, partials futuros │
+│  shared/    lead form, schema, partials │
 ├─────────────────────────────────────────┤
 │  design-system/  tokens + componentes   │
 ├─────────────────────────────────────────┤
@@ -40,10 +40,14 @@
 ├── README.md
 ├── support.js              # runtime Design Canvas — não editar
 ├── vercel.json             # rewrites + headers
-├── content/site.json       # nav, ctas, pages, clients
+├── llms.txt                # resumo para crawlers de IA
+├── robots.txt
+├── sitemap.xml             # URLs públicas limpas
+├── content/site.json       # nav, ctas, pages, clients (agentes; não runtime)
 ├── shared/
 │   ├── lead-form.css
-│   └── lead-form.js
+│   ├── lead-form.js
+│   └── schema-organization.json
 ├── pages/<slug>/index.dc.html
 ├── design-system/
 │   ├── tokens/             # fonts, colors, typography, spacing, effects, base
@@ -51,14 +55,11 @@
 │   ├── _ds_bundle.js
 │   └── readme.md
 ├── assets/
-│   ├── brand/
+│   ├── brand/              # logo-lector.svg, light, mark, orbit
 │   ├── clients/
 │   └── media/<slug>/
 ├── specs/
-└── references/             # NÃO é produção
-    ├── inspiration/
-    ├── prototypes/
-    └── raw/
+└── references/             # NÃO é produção (inspiration / prototypes / raw)
 ```
 
 ## Formato de página
@@ -76,7 +77,7 @@ Arquivos `.dc.html` (Design Canvas):
 <body>
 <x-dc>
   <helmet>
-    <!-- title, meta description, tokens DS, styles, lead-form, lucide -->
+    <!-- title, meta description, tokens DS, styles, lead-form, lucide, JSON-LD -->
   </helmet>
   <!-- seções com <!-- SECTION: nome --> -->
 </x-dc>
@@ -101,14 +102,17 @@ Helmet típico (paths a partir de `pages/<slug>/`):
 <script src="../../shared/lead-form.js" data-base="../.."></script>
 ```
 
-### Duas famílias de layout
+### Duas famílias de layout (header)
 
-| Família | Páginas | Header | Prefixo CSS local |
-|---------|---------|--------|-------------------|
-| Home dark | `home` | Glass navy + dropdown `.lk-nav-dd` | `lk-*` |
-| Light sticky | blog, contato, 6 soluções | `.lec-nav` + `.lec-dd` + drawer `.lec-mnav` | por página (`pl-`, `cv-`, `nr-`, `dg-`, `se-`, `ct-`, `blog-`) |
+| Família | Prefixo CSS | Páginas atuais |
+|---------|-------------|----------------|
+| **Dark** (glass navy + `.lk-nav-dd`) | `lk-*` | `home`, `plataforma-lector`, `solucao-nr-1`, `conteudo-sob-demanda`, `diagnostico-gaps` |
+| **Light** sticky (`.lec-nav` + drawer `.lec-mnav`) | `lec-*` / prefixo da página | `blog`, `contato`, `copiloto-vendas`, `servicos-especializados`, `clientes` |
 
-Ao copiar boilerplate, escolha a família certa. **Não misture** classes `lk-` da home com o shell light sem adaptar.
+Ao copiar boilerplate, escolha a família certa. **Não misture** classes `lk-` da família dark com o shell light sem adaptar.
+
+Boilerplate light: copiar de `blog` ou `servicos-especializados`.  
+Boilerplate dark de solução: copiar de `solucao-nr-1` ou `diagnostico-gaps` (não da home monólito).
 
 ## Convenções de seções
 
@@ -139,49 +143,56 @@ Neste monorepo o DS é consumido como **tokens CSS + bundle**:
 
 ```
 assets/
-  brand/           # logo-lector.svg, logo-lector-light.svg, orbit, mark
-  clients/         # logos PNG de clientes
+  brand/           # logo-lector.svg, logo-lector-light.svg, logo-mark.svg, orbit.svg
+  clients/         # logos PNG de clientes (11 arquivos)
   media/
-    home/          # únicos arquivos de produção hoje
-    <slug>/        # .gitkeep nas soluções até mídia final
+    home/                    # hero, scrubs, spotlights de produto
+    plataforma-lector/       # mandala, poster, onboarding
+    copiloto-vendas/         # fotos de jornada comercial
+    conteudo-sob-demanda/    # showreel + 4 demos + posters
+    clientes/ | contato/ | diagnostico-gaps/ | servicos-especializados/ | solucao-nr-1/
+                             # .gitkeep até mídia final
 ```
+
+**Higiene:** nunca commitar vídeos/PNG soltos na raiz. Produção → `assets/media/<slug>/`. Dumps → `references/raw/`.
 
 ## Shared
 
 | Arquivo | Função |
 |---------|--------|
 | `lead-form.css` / `lead-form.js` | Modal de lead (todas as páginas) |
+| `schema-organization.json` | Cópia de referência do JSON-LD Organization (fonte no HTML de cada página) |
 
 Header e footer ainda **embutidos por página** — extrair para `shared/` quando estabilizar (ver `specs/components/header.md`).
 
 ## Deploy e rotas
 
 - Estático, sem build  
-- `vercel.json`: rewrites de rotas limpas (`/`, `/blog`, `/contato`, 6 soluções…) → `pages/<slug>/index.dc.html`; `Content-Type` para `.dc.html`; cache longo em `assets/media/`  
-- Links internos de **páginas** usam paths absolutos do arquivo (`/pages/<slug>/index.dc.html`) — não quebram na Vercel  
-- Assets/CSS/JS no helmet usam paths absolutos da raiz (`/design-system/…`, `/assets/…`, `/support.js`)  
+- `vercel.json`: rewrites de rotas limpas → `pages/<slug>/index.dc.html`; `Content-Type` para `.dc.html`; cache longo em `assets/media/`; headers para `llms.txt` / `robots.txt` / `sitemap.xml`  
+- Links internos de **páginas** usam paths absolutos do arquivo (`/pages/<slug>/index.dc.html`)  
+- Assets no HTML frequentemente usam paths absolutos da raiz (`/assets/…`)  
 
 ## Dívida técnica relevante
 
 | Item | Impacto |
 |------|---------|
-| Header/footer duplicados (~9×) | Qualquer mudança de nav exige editar todas as páginas |
+| Header/footer duplicados (~10×) | Qualquer mudança de nav exige editar todas as páginas |
 | `site.json` não é lido em runtime | Fonte de verdade para agentes; HTML pode divergir se não sincronizar |
 | Lead form sem backend | Conversão só UI |
-| Assets relativos `../../` | Funcionam nas rotas limpas de 1 segmento; preferir `/assets/…` se surgir path aninhado |
-| Design system readme legado | Descrevia monorepo React/kits; doc alinhada ao consumo local |
+| Home monólito (~5.6k linhas) | Preferir seções comentadas; extrair partials quando estabilizar |
+| Design system readme legado | Já alinhado ao consumo local (tokens + bundle) |
 
 ## Referências
 
 ```
 references/
-  inspiration/     # sites de referência (ex. Heimdall)
-  prototypes/      # protótipos descontinuados (ex. lector-blog)
-  raw/             # prints, vídeos, HTML de rascunho
-  raw/raiz-2026-07/  # arquivos que estavam na raiz (limpeza)
+  inspiration/     # sites de referência (ex. Heimdall) — gitignored
+  prototypes/      # protótipos descontinuados — gitignored
+  raw/             # prints, vídeos, HTML de rascunho — gitignored
+  raw/raiz-2026-07/  # arquivos que estavam na raiz (limpeza anterior)
 ```
 
-Agentes **não** linkam `references/` em produção.
+Agentes **não** linkam `references/` em produção. Ver `references/README.md`.
 
 ## Evolução futura
 
@@ -192,4 +203,3 @@ Agentes **não** linkam `references/` em produção.
 | i18n | `content/pt/`, `content/en/` |
 | Header/footer partial | `shared/header.*` / `shared/footer.*` |
 | Backend de leads | endpoint + `lead-form.js` onSubmit + forms embutidos |
-| Assets root-absolute | Trocar `../../assets` e `../../design-system` por `/assets`, `/design-system` |

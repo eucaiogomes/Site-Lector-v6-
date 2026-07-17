@@ -69,9 +69,9 @@
     },
     {
       "label": "Clientes",
-      "href": "/pages/home/index.dc.html#numeros",
+      "href": "/pages/clientes/index.dc.html",
       "page": "clientes",
-      "status": "planned"
+      "status": "wip"
     },
     {
       "label": "Contato",
@@ -91,7 +91,7 @@
     },
     "announce": {
       "label": "Quero meu diagnóstico",
-      "text": "Diagnóstico gratuito de maturidade T&D da sua empresa — vagas limitadas este mês",
+      "text": "Fiscalização NR-1 em vigor desde 26/05/2026 — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação",
       "href": "/pages/contato/index.dc.html"
     }
   },
@@ -147,9 +147,9 @@
     "clientes": {
       "slug": "clientes",
       "title": "Clientes",
-      "path": null,
-      "spec": null,
-      "status": "planned",
+      "path": "pages/clientes/index.dc.html",
+      "spec": "specs/pages/clientes.md",
+      "status": "wip",
       "route": "/clientes"
     },
     "blog": {

@@ -50,11 +50,11 @@ Legenda: `feito` · `parcial` · `bloqueado` (precisa dado externo) · `pendente
 | Item | Notas |
 |------|--------|
 | HTML 100% estático em listagens (`sc-for` logos/módulos/stats) | Crawler não expande templates DC; priorizar FAQ e prova crítica (já ok em NR-1 FAQ) |
-| Rewrites Vercel para URLs limpas (`/blog`, `/solucao-nr-1`) | **feito** — `vercel.json` + `sitemap.xml` + `llms.txt` + nav absoluta |
-| BreadcrumbList schema | Após rotas limpas |
+| BreadcrumbList schema | Rotas limpas já existem; falta markup |
 | Article schema no blog | Quando posts forem páginas reais (não só mock JS) |
 | Unificar CTA label “Fazer diagnóstico gratuito” em todos os heróis | Parcial — formulário já prioriza diagnóstico |
 | Extrair header shared | Reduz drift de nav (não é GEO, mas facilita) |
+| Domínio absoluto em `sitemap.xml` / Schema | Aguardando domínio definitivo de produção |
 
 ---
 
@@ -96,7 +96,7 @@ Legenda: `feito` · `parcial` · `bloqueado` (precisa dado externo) · `pendente
 | `shared/schema-organization.json` | Cópia de referência do Organization (fonte no HTML) |
 | `vercel.json` | Headers de content-type para txt/xml |
 
-**Nota:** `sitemap.xml` usa paths relativos ao host (`/pages/...`). No deploy Vercel, o host final completa a URL. Quando houver domínio definitivo e rewrites limpos, **atualizar loc para URLs absolutas** `https://dominio/...`.
+**Nota:** `sitemap.xml` usa **rotas limpas** relativas ao host (`/`, `/blog`, `/plataforma-lector`, …). No deploy Vercel, o host final completa a URL. Quando houver domínio definitivo, preferir **URLs absolutas** `https://dominio/...` no sitemap.
 
 ### Bots liberados em `robots.txt`
 

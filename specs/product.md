@@ -52,8 +52,9 @@ Uma só plataforma para **criar, ensinar, engajar e medir**:
 |------|--------|
 | Blog | Atração e autoridade (T&D, NR-1, carreira, tech) |
 | Contato | Canal único de lead (form full-page) |
+| Clientes | Prova social, valor de ser cliente e cases (Philips / Microsoft) |
 | Lead form modal | CTAs de conversão em todas as páginas |
-| Diagnóstico gratuito | Banner/announcement na home e páginas light |
+| Announcement / diagnóstico | Banner marquee (NR-1 ou oferta da página) — sem escassez fabricada |
 
 ## Prova social (assets)
 
@@ -80,6 +81,6 @@ Depoimentos em destaque na home: **Microsoft** e **Philips** (carrossel).
 ## Prioridades de produto no marketing (dívida)
 
 1. Validar números, preços e depoimentos da página Plataforma  
-2. Mídia final em `assets/media/<slug>/` para soluções  
+2. Mídia final em `assets/media/<slug>/` onde ainda há só `.gitkeep` (NR-1, gaps, serviços, contato)  
 3. Integrar backend de leads  
-4. Páginas hub Soluções e Clientes (hoje âncoras)  
+4. Página hub Soluções (`/solucoes`) — Clientes já existe como `wip`  

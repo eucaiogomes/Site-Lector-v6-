@@ -31,8 +31,9 @@ pages/<slug>/
 
 | Tipo de página | Copiar de | Header |
 |----------------|-----------|--------|
-| Marketing / solução (nav clara) | `pages/blog/` ou `pages/servicos-especializados/` | `.lec-nav` light + mobile drawer |
-| Landing dark full-bleed | `pages/home/` | dark glass (caso especial) |
+| Marketing light (nav clara + drawer) | `pages/blog/` ou `pages/servicos-especializados/` | `.lec-nav` light + mobile drawer |
+| Solução dark (announce + glass navy) | `pages/solucao-nr-1/` ou `pages/diagnostico-gaps/` | dark glass `.lk-nav-dd` |
+| Home monólito | **não copiar** — só editar `pages/home/` | dark especial (~5.6k linhas) |
 
 Inclua sempre:
 

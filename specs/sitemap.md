@@ -3,7 +3,7 @@
 Atualize este arquivo sempre que criar, renomear ou descontinuar uma página.  
 Fonte de dados paralela: `content/site.json`.
 
-**Última revisão:** 2026-07-17
+**Última revisão:** 2026-07-17 (higiene + docs alinhadas ao repo)
 
 ## Status
 
@@ -16,19 +16,19 @@ Fonte de dados paralela: `content/site.json`.
 
 ## Mapa
 
-| Rota (slug) | Título | Spec | Código | Status |
-|-------------|--------|------|--------|--------|
-| `home` | Home | `specs/pages/home.md` | `pages/home/index.dc.html` | `live` |
-| `blog` | Blog | `specs/pages/blog.md` | `pages/blog/index.dc.html` | `live` |
-| `contato` | Contato | `specs/pages/contato.md` | `pages/contato/index.dc.html` | `live` |
-| `plataforma-lector` | Plataforma Lector | `specs/pages/plataforma-lector.md` | `pages/plataforma-lector/index.dc.html` | `wip` |
-| `copiloto-vendas` | Copiloto de Vendas | `specs/pages/copiloto-vendas.md` | `pages/copiloto-vendas/index.dc.html` | `wip` |
-| `solucao-nr-1` | Solução NR-1 | `specs/pages/solucao-nr-1.md` | `pages/solucao-nr-1/index.dc.html` | `wip` |
-| `conteudo-sob-demanda` | Criação de Conteúdo sob Demanda | `specs/pages/conteudo-sob-demanda.md` | `pages/conteudo-sob-demanda/index.dc.html` | `wip` |
-| `diagnostico-gaps` | Diagnóstico de Gaps | `specs/pages/diagnostico-gaps.md` | `pages/diagnostico-gaps/index.dc.html` | `wip` |
-| `servicos-especializados` | Serviços Especializados | `specs/pages/servicos-especializados.md` | `pages/servicos-especializados/index.dc.html` | `wip` |
-| `solucoes` | Hub Nossas Soluções | — | — | `planned` |
-| `clientes` | Clientes | — | — | `planned` |
+| Rota (slug) | Título | Spec | Código | Status | Header |
+|-------------|--------|------|--------|--------|--------|
+| `home` | Home | `specs/pages/home.md` | `pages/home/index.dc.html` | `live` | dark |
+| `blog` | Blog | `specs/pages/blog.md` | `pages/blog/index.dc.html` | `live` | light |
+| `contato` | Contato | `specs/pages/contato.md` | `pages/contato/index.dc.html` | `live` | light |
+| `plataforma-lector` | Plataforma Lector | `specs/pages/plataforma-lector.md` | `pages/plataforma-lector/index.dc.html` | `wip` | dark |
+| `copiloto-vendas` | Copiloto de Vendas | `specs/pages/copiloto-vendas.md` | `pages/copiloto-vendas/index.dc.html` | `wip` | light |
+| `solucao-nr-1` | Solução NR-1 | `specs/pages/solucao-nr-1.md` | `pages/solucao-nr-1/index.dc.html` | `wip` | dark |
+| `conteudo-sob-demanda` | Criação de Conteúdo sob Demanda | `specs/pages/conteudo-sob-demanda.md` | `pages/conteudo-sob-demanda/index.dc.html` | `wip` | dark |
+| `diagnostico-gaps` | Diagnóstico de Gaps | `specs/pages/diagnostico-gaps.md` | `pages/diagnostico-gaps/index.dc.html` | `wip` | dark |
+| `servicos-especializados` | Serviços Especializados | `specs/pages/servicos-especializados.md` | `pages/servicos-especializados/index.dc.html` | `wip` | light |
+| `clientes` | Clientes | `specs/pages/clientes.md` | `pages/clientes/index.dc.html` | `wip` | light |
+| `solucoes` | Hub Nossas Soluções | — | — | `planned` | — |
 
 ### Rotas no deploy
 
@@ -44,8 +44,11 @@ Fonte de dados paralela: `content/site.json`.
 | `/conteudo-sob-demanda` | `pages/conteudo-sob-demanda/index.dc.html` |
 | `/diagnostico-gaps` | `pages/diagnostico-gaps/index.dc.html` |
 | `/servicos-especializados` | `pages/servicos-especializados/index.dc.html` |
+| `/clientes` | `pages/clientes/index.dc.html` |
 
 Nav e CTAs no HTML usam **paths absolutos do arquivo estático** (`/pages/<slug>/index.dc.html`), que funcionam na Vercel sem depender do rewrite. Rewrites limpos (`/blog`, …) continuam no `vercel.json` como alias amigável.
+
+`sitemap.xml` e `llms.txt` listam as **URLs públicas limpas** (não os paths `/pages/...`).
 
 ## Navegação principal (atual)
 
@@ -54,7 +57,7 @@ Nossas Soluções ▾ · Blog · Clientes · Contato
 CTA: Falar com especialista  →  lead form modal (ou #form na página contato)
 ```
 
-- **Clientes** → `#numeros` na home (página dedicada `planned`)
+- **Clientes** → `/clientes` (`pages/clientes/index.dc.html`)
 - **Nossas Soluções** (rótulo) → `#plataforma` na home; filhos são páginas próprias
 
 ### Dropdown Nossas Soluções
@@ -76,44 +79,58 @@ Descrições canônicas: `content/site.json` → `nav[0].children`.
 |--------|--------|
 | `#top` | Hero |
 | `#depoimento` | Depoimentos (Microsoft / Philips) |
+| `#conhecimento` | Conhecimento invisível (scroll-scrub) |
+| `#diagnostico-home` | Diagnóstico de Gaps na home (scroll-scrub) |
+| `#jornada` | Jornada personalizada (canvas) |
 | `#ia` | IA Lector |
 | `#plataforma` | Statement “todas num só lugar” + entrada para soluções |
 | `#autoria` | Ferramenta de autoria |
 | `#lms` | LMS |
 | `#rede-social` | Rede social corporativa |
 | `#webconferencia` | Webconferência |
-| `#numeros` | Resultados / clientes (também alvo de “Clientes” no nav) |
+| `#documentos` | Gestão de documentos |
+| `#talentos` | Gestão de talentos |
+| `#modulos` | Módulos bento |
+| `#numeros` | Resultados / stats |
 | `#contato` | CTA final (também abre lead form) |
-
-Home também tem bloco de **módulos bento** (6 cards) entre webconferência e `#numeros` (sem id de âncora dedicado).
 
 ## Shared / componentes de site
 
 | Peça | Path | Spec |
 |------|------|------|
 | Lead form modal | `shared/lead-form.{js,css}` | `specs/components/lead-form.md` |
-| Header | embutido por página (dark home / light demais) | `specs/components/header.md` |
+| Schema Organization (ref.) | `shared/schema-organization.json` | `specs/geo.md` |
+| Header | embutido por página (dark / light) | `specs/components/header.md` |
 | Footer | embutido por página | — (ainda sem spec; padrão ink-950 + colunas) |
 
 ## Mídia por página
 
-| Slug | `assets/media/<slug>/` |
-|------|------------------------|
-| `home` | `hero.mp4`, `video-autoria.mp4`, `lms.png`, `rede-social.png` |
-| demais | só `.gitkeep` — mocks HTML ou placeholders |
+| Slug | Conteúdo em `assets/media/<slug>/` |
+|------|-------------------------------------|
+| `home` | `hero.mp4`, `video-autoria.mp4`, `lms.png`, `rede-social.png`, `webconferencia.png`, `conhecimento-scroll.mp4` (+ poster), `diagnostico-scroll.mp4` (+ poster) |
+| `plataforma-lector` | `mandala-girando.mp4`, `hero-poster.jpg`, `onboarding.png` (também reutiliza mídia da home em spotlights) |
+| `copiloto-vendas` | `hero.jpg`, `antes-reuniao.jpg`, `durante-reuniao.jpg`, `depois-reuniao.jpg`, `gestao.jpg` |
+| `conteudo-sob-demanda` | `criacao-de-conteudo.mp4`, `video-demonstracao-1..4.mp4` + posters |
+| `clientes` | só `.gitkeep` (usa logos em `assets/clients/`) |
+| `contato`, `diagnostico-gaps`, `servicos-especializados`, `solucao-nr-1` | só `.gitkeep` (mocks HTML ou placeholders) |
+
+**Regra:** mídia de produção **nunca** na raiz do repo. Dumps → `references/raw/`.
 
 ## Dívida conhecida (sitemap)
 
-- [ ] Rewrites Vercel para rotas limpas (`/blog`, `/contato`, soluções)
-- [ ] Página hub `solucoes` e página `clientes`
+- [x] Rewrites Vercel para rotas limpas (`/blog`, `/contato`, soluções, `/clientes`)
+- [x] Página `clientes`
+- [x] Meta title/description na home (e demais páginas)
+- [ ] Página hub `solucoes`
 - [ ] Extrair header/footer para `shared/`
-- [ ] Meta title/description na home
 - [ ] Backend de leads (modal + forms embutidos)
+- [ ] Mídia final em soluções ainda com `.gitkeep` (NR-1, gaps, serviços, contato)
 
 ## Como registrar página nova
 
 1. Linha na tabela acima  
 2. Entry em `content/site.json` → `nav` e `pages`  
 3. Spec + pasta em `pages/`  
-4. Link no dropdown/nav em **todas** as páginas HTML (header ainda duplicado)  
-5. Pasta `assets/media/<slug>/` se houver mídia  
+4. URL em `sitemap.xml` + rewrite em `vercel.json`  
+5. Link no dropdown/nav em **todas** as páginas HTML (header ainda duplicado)  
+6. Pasta `assets/media/<slug>/` se houver mídia  

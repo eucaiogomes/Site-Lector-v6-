@@ -41,6 +41,11 @@
     <priority>0.75</priority>
   </url>
   <url>
+    <loc>/clientes</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>/contato</loc>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>

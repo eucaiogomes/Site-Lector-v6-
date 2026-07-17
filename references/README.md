@@ -2,12 +2,14 @@
 
 Material de **inspiração e pesquisa**. Agentes e o site publicado **não** devem depender destes arquivos.
 
+Pastas pesadas (`inspiration/`, `prototypes/`, `raw/`) estão no **`.gitignore`** — ficam só na máquina local.
+
 | Pasta | Conteúdo |
 |-------|----------|
 | `inspiration/` | Sites de referência (ex.: dump Heimdall Power) |
 | `prototypes/` | Protótipos descontinuados (ex.: `lector-blog/`) |
 | `raw/` | Prints, vídeos soltos, HTML de rascunho |
-| `raw/raiz-2026-07/` | Arquivos que estavam soltos na raiz do repo (limpeza 2026-07) — ex.: `treinar-equipe-de-vendas.html`, vídeos de autoria, prints |
+| `raw/raiz-2026-07/` | Arquivos que estavam soltos na raiz do repo (limpeza 2026-07) |
 | `raw/Checklist-Site-Lector-GEO-Conversao.pdf` | Checklist v6 (P0/P1/P2) — fonte do `specs/geo.md` |
 
 ## Como usar
@@ -21,3 +23,4 @@ Material de **inspiração e pesquisa**. Agentes e o site publicado **não** dev
 1. Não linkar paths de `references/` em `pages/`  
 2. Não mover dumps brutos para produção sem curadoria  
 3. Preferir nomes estáveis em `assets/` (`hero.mp4`, não `video autoria final.mp4`)  
+4. **Nunca** deixar mídia solta na raiz do monorepo — se for rascunho, coloque em `raw/`; se for produção, em `assets/media/<slug>/`  

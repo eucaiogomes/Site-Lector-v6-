@@ -2,6 +2,11 @@
 .DS_Store
 Thumbs.db
 
+# Dumps acidentais na raiz (mídia de produção → assets/media/<slug>/)
+/*.mp4
+/*.mov
+/*.webm
+
 # Editors / agents
 .idea/
 .vscode/

@@ -11,7 +11,8 @@
     { "source": "/solucao-nr-1", "destination": "/pages/solucao-nr-1/index.dc.html" },
     { "source": "/conteudo-sob-demanda", "destination": "/pages/conteudo-sob-demanda/index.dc.html" },
     { "source": "/diagnostico-gaps", "destination": "/pages/diagnostico-gaps/index.dc.html" },
-    { "source": "/servicos-especializados", "destination": "/pages/servicos-especializados/index.dc.html" }
+    { "source": "/servicos-especializados", "destination": "/pages/servicos-especializados/index.dc.html" },
+    { "source": "/clientes", "destination": "/pages/clientes/index.dc.html" }
   ],
   "headers": [
     {

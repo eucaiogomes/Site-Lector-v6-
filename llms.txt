@@ -52,6 +52,7 @@ Diagnóstico gratuito de maturidade T&D: solicitar via formulário de contato ou
 - Conteúdo sob Demanda: /conteudo-sob-demanda
 - Serviços Especializados: /servicos-especializados
 - Blog: /blog
+- Clientes: /clientes
 - Contato: /contato
 
 Arquivos no repositório: pages/<slug>/index.dc.html (rewrites em vercel.json).

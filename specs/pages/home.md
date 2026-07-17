@@ -4,7 +4,7 @@
 |-------|--------|
 | **Slug** | `home` |
 | **Status** | `live` |
-| **Código** | `pages/home/index.dc.html` (~3.8k linhas) |
+| **Código** | `pages/home/index.dc.html` (~5.6k linhas) |
 | **Rota pública** | `/` (rewrite Vercel; arquivo em `pages/home/`) |
 | **Última atualização** | 2026-07-17 |
 | **Lead form** | `shared/lead-form` (CTAs → modal) |
@@ -45,10 +45,12 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 | 9 | `lms` | LMS (tema no H2) | Spotlight flip; `lms.png` |
 | 10 | `rede-social` | Rede social (tema no H2) | Spotlight; `rede-social.png` |
 | 11 | `webconferencia` | Webconferência (tema no H2) | Spotlight flip; `webconferencia.png` |
-| 12 | — | Módulos bento | 6 módulos; sem eyebrow de seção |
-| 13 | `numeros` | Resultados reais (tema no H2) | Stats + count-up; alvo do nav “Clientes” |
-| 14 | `contato` | CTA final | “Falar com especialista” → lead form |
-| 15 | — | Footer | Logo light + links |
+| 12 | `documentos` | Gestão de documentos (tema no H2) | Spotlight; mock biblioteca + reuso com IA |
+| 13 | `talentos` | Gestão de talentos (tema no H2) | Spotlight flip; mock competências + PDI |
+| 14 | — | Módulos bento (`#modulos`) | 6 módulos; sem eyebrow de seção |
+| 15 | `numeros` | Resultados reais (tema no H2) | Stats + count-up |
+| 16 | `contato` | CTA final | “Falar com especialista” → lead form |
+| 17 | — | Footer | Logo light + links |
 
 > Sem badges/eyebrows de título de seção — ver `AGENTS.md` e `specs/brand.md`.
 
@@ -92,10 +94,10 @@ Formulário: `shared/lead-form.js` — ver `specs/components/lead-form.md`.
 | Campo | Valor |
 |-------|--------|
 | Title | Lector — Plataforma de aprendizado com IA nativa |
-| Meta description | Uma só plataforma para criar, ensinar, engajar e medir capacitação corporativa. |
+| Meta description | Uma só plataforma para criar, ensinar, engajar e medir capacitação corporativa. LMS, webconferência, IA nativa e compliance NR-1. |
 | OG image | a definir em `assets/media/home/` |
 
-**Implementação:** home **ainda não** tem `<title>` / `<meta name="description">` no helmet (pendente).
+**Implementação:** `<title>` e `<meta name="description">` presentes no helmet.
 
 ## Design
 

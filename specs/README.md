@@ -11,28 +11,28 @@ Atualizado em **2026-07-17** com base no estado real do repositório.
 | `product.md` | O que é o produto e o mapa de oferta no site |
 | `brand.md` | Marca, tom, tokens resumidos |
 | `architecture.md` | Pastas, camadas, formato DC, dívida técnica |
-| `sitemap.md` | Rotas, status e âncoras |
-| `geo.md` | **GEO** — ser recomendado/citado por IAs (llms.txt, schema, cápsulas, prompts) |
+| `sitemap.md` | Rotas, status, mídia e âncoras |
+| `geo.md` | **GEO** — ser recomendado/citado por IAs (llms.txt, schema, cápsulas) |
 | `how-to-add-page.md` | Fluxo de nova página |
 | `pages/_TEMPLATE.md` | Modelo de spec de página |
 | `pages/<slug>.md` | Spec de cada página |
-| `components/` | header, lead-form |
-| `components/lead-form.md` | Modal de captura de leads |
 | `components/header.md` | Navbar / dropdown soluções |
+| `components/lead-form.md` | Modal de captura de leads |
 
 ## Páginas com spec
 
-| Spec | Status | Código | Observação |
-|------|--------|--------|------------|
-| `pages/home.md` | live | ~3.8k linhas | Falta meta SEO no helmet; drawer mobile pendente |
-| `pages/blog.md` | live | ~940 linhas | Posts mock em JS; imagens Unsplash |
-| `pages/contato.md` | live | ~760 linhas | Form embutido; backend a integrar |
-| `pages/plataforma-lector.md` | wip | ~1.3k linhas | Placeholders: números, preços, segurança, depoimentos |
-| `pages/copiloto-vendas.md` | wip | ~870 linhas | Mídia final ausente |
-| `pages/solucao-nr-1.md` | wip | ~740 linhas | Mídia final ausente |
-| `pages/conteudo-sob-demanda.md` | wip | ~740 linhas | Inclui FAQ; mídia final ausente |
-| `pages/diagnostico-gaps.md` | wip | ~870 linhas | Mock do painel em HTML |
-| `pages/servicos-especializados.md` | wip | ~630 linhas | Página mais enxuta |
+| Spec | Status | Código (aprox.) | Observação |
+|------|--------|-----------------|------------|
+| `pages/home.md` | live | ~5.6k linhas | Meta SEO ok; drawer mobile home pendente |
+| `pages/blog.md` | live | ~1.0k linhas | Posts mock em JS; imagens Unsplash |
+| `pages/contato.md` | live | ~830 linhas | Form embutido; backend a integrar |
+| `pages/plataforma-lector.md` | wip | ~2.1k linhas | Mídia parcial; polish comercial |
+| `pages/copiloto-vendas.md` | wip | ~950 linhas | Fotos de jornada presentes |
+| `pages/solucao-nr-1.md` | wip | ~970 linhas | FAQ + FAQPage; mídia dedicada ausente |
+| `pages/conteudo-sob-demanda.md` | wip | ~1.6k linhas | Showreel + 4 demos em assets |
+| `pages/diagnostico-gaps.md` | wip | ~1.4k linhas | Mock do painel em HTML |
+| `pages/servicos-especializados.md` | wip | ~710 linhas | Página mais enxuta |
+| `pages/clientes.md` | wip | ~840 linhas | Logos em `assets/clients/` |
 
 **Significado de status**
 
@@ -55,4 +55,5 @@ Atualizado em **2026-07-17** com base no estado real do repositório.
 ## Manutenção
 
 Ao mudar HTML de uma página, **atualize a spec** (seções, CTAs, critérios de aceite).  
-Ao mudar nav, atualize `sitemap.md` + `content/site.json` + HTML de **todas** as páginas (header ainda não é shared).
+Ao mudar nav, atualize `sitemap.md` + `content/site.json` + HTML de **todas** as páginas (header ainda não é shared).  
+Ao mudar rotas públicas, atualize também `sitemap.xml` e `vercel.json`.
