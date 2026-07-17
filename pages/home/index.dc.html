@@ -1549,6 +1549,9 @@
       grid-template-columns: 1fr;
       min-height: 0;
     }
+    /* mídia sempre depois do texto da própria seção (seções --flip têm mídia antes no DOM) */
+    .lk-spotlight__grid > .lk-spotlight__copy { order: 1; }
+    .lk-spotlight__grid > .lk-spotlight__stage { order: 2; }
     .lk-spotlight__copy,
     .lk-spotlight--flip .lk-spotlight__copy {
       max-width: none;

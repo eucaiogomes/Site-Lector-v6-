@@ -963,6 +963,9 @@
 
   @media (max-width: 960px) {
     .lk-spotlight__grid, .lk-spotlight--flip .lk-spotlight__grid { grid-template-columns: 1fr; }
+    /* mídia sempre depois do texto da própria seção (seções --flip têm mídia antes no DOM) */
+    .lk-spotlight__grid > .lk-spotlight__copy { order: 1; }
+    .lk-spotlight__grid > .lk-spotlight__stage { order: 2; }
     .lk-spotlight__copy, .lk-spotlight--flip .lk-spotlight__copy {
       margin: 0; padding: 56px 28px; max-width: none;
     }
