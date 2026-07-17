@@ -56,8 +56,8 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 
 | Seção | Headline | Visual | Punch |
 |-------|----------|--------|-------|
-| `conhecimento` | O maior ativo da sua empresa é invisível. Até agora. | **Scroll-scrub + idle loop** (`.lk-scrub`): `conhecimento-scroll.mp4` (~720p, ~0.6MB) | O problema nunca foi falta de treinamento… |
-| `diagnostico-home` | Antes de ensinar, nós entendemos sua empresa. | **Scroll-scrub + idle loop** (`.lk-scrub--long`): `diagnostico-scroll.mp4` (~720p, ~2MB) | Antes de desenvolver pessoas… compreender o negócio |
+| `conhecimento` | O maior ativo da sua empresa é invisível. Até agora. | **Scroll-scrub only** (`.lk-scrub`): `conhecimento-scroll.mp4` (~720p, ~0.6MB) — sem autoplay/loop | O problema nunca foi falta de treinamento… |
+| `diagnostico-home` | Antes de ensinar, nós entendemos sua empresa. | **Scroll-scrub only** (`.lk-scrub--long`): `diagnostico-scroll.mp4` (~720p, ~2MB) — sem autoplay/loop | Antes de desenvolver pessoas… compreender o negócio |
 | `jornada` | Quando cada pessoa aprende exatamente o que precisa… | Canvas `journey` — competências se iluminando → rede + anéis Lector | O verdadeiro resultado não é um certificado… |
 
 Scrubs: sticky 100vh, `currentTime` = progresso do scroll; texto fixo. Canvas na seção 3 pausa off-screen. Respeitam `prefers-reduced-motion`.

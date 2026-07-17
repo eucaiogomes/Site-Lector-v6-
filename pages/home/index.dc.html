@@ -3262,7 +3262,7 @@ class Component extends DCLogic {
     this._teardownIaGraph();
   }
 
-  /* —— Scroll-scrub videos (leve + idle play + robusto) —— */
+  /* —— Scroll-scrub videos (só avança com a rolagem — sem autoplay/loop) —— */
   _initScrollScrub() {
     const sections = Array.from(document.querySelectorAll('[data-scrub-section]'));
     if (!sections.length) return;
@@ -3280,7 +3280,6 @@ class Component extends DCLogic {
     const clamp01 = (v) => Math.min(1, Math.max(0, v));
     this._scrubs = [];
 
-    // Shared scroll handler (1 listener for all sections)
     this._scrubSharedScroll = () => {
       (this._scrubs || []).forEach((s) => { if (s.onUserScroll) s.onUserScroll(); });
     };
@@ -3295,14 +3294,14 @@ class Component extends DCLogic {
       video.muted = true;
       video.defaultMuted = true;
       video.playsInline = true;
-      video.loop = true;
+      video.loop = false;
+      video.autoplay = false;
       video.setAttribute('muted', '');
       video.setAttribute('playsinline', '');
       video.setAttribute('webkit-playsinline', '');
-      video.setAttribute('loop', '');
-      // Near sections load fully; far ones wait for IO
-      video.preload = 'metadata';
+      video.removeAttribute('loop');
       video.removeAttribute('autoplay');
+      video.preload = 'auto';
       video.controls = false;
       try { video.pause(); } catch (_) {}
 
@@ -3317,14 +3316,10 @@ class Component extends DCLogic {
         seeking: false,
         targetT: 0,
         lastApplied: -1,
-        mode: 'idle', // 'scrub' | 'play' | 'idle'
-        visible: false,
-        idleTimer: 0,
-        recoverTimer: 0,
+        pendingSeek: null,
+        seekTimeout: 0,
         onMeta: null,
         onUserScroll: null,
-        onEnded: null,
-        onError: null,
         io: null,
       };
 
@@ -3343,8 +3338,11 @@ class Component extends DCLogic {
         if (!scrub.ready || scrub.reduce) return;
         const d = durationOf();
         if (!d) return;
+        // Always keep paused — motion comes only from seeking
+        if (!video.paused) {
+          try { video.pause(); } catch (_) {}
+        }
         const t = Math.min(d * 0.999, Math.max(0, scrub.targetT));
-        // Skip tiny deltas unless forced (saves decode thrash)
         if (!force && Math.abs(t - scrub.lastApplied) < 1 / 30) return;
         if (scrub.seeking) {
           scrub.pendingSeek = t;
@@ -3356,6 +3354,9 @@ class Component extends DCLogic {
         const finish = () => {
           scrub.seeking = false;
           video.removeEventListener('seeked', finish);
+          if (!video.paused) {
+            try { video.pause(); } catch (_) {}
+          }
           if (scrub.pendingSeek != null && Math.abs(scrub.pendingSeek - video.currentTime) > 1 / 30) {
             scrub.targetT = scrub.pendingSeek;
             scrub.pendingSeek = null;
@@ -3368,7 +3369,6 @@ class Component extends DCLogic {
         } catch (_) {
           scrub.seeking = false;
         }
-        // Safety unlock if seeked never fires
         clearTimeout(scrub.seekTimeout);
         scrub.seekTimeout = setTimeout(() => {
           if (scrub.seeking) {
@@ -3378,49 +3378,18 @@ class Component extends DCLogic {
         }, 180);
       };
 
-      const enterPlay = () => {
-        if (!scrub.wired || scrub.reduce || !scrub.visible || !scrub.ready) return;
-        scrub.mode = 'play';
-        video.loop = true;
-        // Keep animation alive while user rests on the section
-        const p = video.play();
-        if (p && typeof p.then === 'function') p.catch(() => {});
-      };
-
-      const enterScrub = () => {
-        if (!scrub.wired || scrub.reduce || !scrub.ready) return;
-        scrub.mode = 'scrub';
-        try { video.pause(); } catch (_) {}
-        const d = durationOf();
-        scrub.targetT = getProgress() * d;
-        applySeek(true);
-        if (progressEl) progressEl.style.width = `${(getProgress() * 100).toFixed(2)}%`;
-      };
-
-      const scheduleIdlePlay = () => {
-        clearTimeout(scrub.idleTimer);
-        if (!scrub.visible || scrub.reduce) return;
-        // After user stops scrolling, keep the clip gently looping
-        scrub.idleTimer = setTimeout(() => {
-          if (!scrub.wired || !scrub.visible) return;
-          enterPlay();
-        }, 420);
-      };
-
       scrub.onUserScroll = () => {
         if (scrub.reduce || !scrub.ready) return;
-        // Only scrub while the pin is meaningfully on screen
         const rect = section.getBoundingClientRect();
         const near = rect.bottom > 0 && rect.top < (window.innerHeight || 1);
-        scrub.visible = near;
         if (!near) {
           try { video.pause(); } catch (_) {}
-          scrub.mode = 'idle';
-          clearTimeout(scrub.idleTimer);
           return;
         }
-        enterScrub();
-        scheduleIdlePlay();
+        const p = getProgress();
+        scrub.targetT = p * durationOf();
+        if (progressEl) progressEl.style.width = `${(p * 100).toFixed(2)}%`;
+        applySeek(false);
       };
 
       scrub.onMeta = () => {
@@ -3428,51 +3397,14 @@ class Component extends DCLogic {
         if (!d || !isFinite(d) || d <= 0) return;
         scrub.duration = d;
         scrub.ready = true;
+        try { video.pause(); } catch (_) {}
         if (scrub.reduce) {
           try { video.currentTime = 0; } catch (_) {}
           if (progressEl) progressEl.style.width = '100%';
           return;
         }
-        try { video.currentTime = 0; } catch (_) {}
-        // If already in view, start animated
-        const rect = section.getBoundingClientRect();
-        if (rect.bottom > 0 && rect.top < (window.innerHeight || 1)) {
-          scrub.visible = true;
-          enterPlay();
-        }
-      };
-
-      scrub.onEnded = () => {
-        // loop attribute should handle this; force restart if browser drops it after long sessions
-        if (!scrub.wired || !scrub.visible || scrub.mode !== 'play') return;
-        try {
-          video.currentTime = 0;
-          const p = video.play();
-          if (p && typeof p.then === 'function') p.catch(() => {});
-        } catch (_) {}
-      };
-
-      scrub.onError = () => {
-        // Recover from decode glitches after long idle
-        if (!scrub.wired) return;
-        clearTimeout(scrub.recoverTimer);
-        scrub.recoverTimer = setTimeout(() => {
-          if (!scrub.wired) return;
-          try {
-            const src = video.currentSrc || video.src;
-            const t = video.currentTime || 0;
-            video.load();
-            const resume = () => {
-              video.removeEventListener('loadeddata', resume);
-              scrub.ready = true;
-              scrub.duration = video.duration || scrub.duration;
-              try { video.currentTime = Math.min(t, (video.duration || t) * 0.99); } catch (_) {}
-              if (scrub.visible && !scrub.reduce) enterPlay();
-            };
-            video.addEventListener('loadeddata', resume);
-            if (src && !video.getAttribute('src')) video.src = src;
-          } catch (_) {}
-        }, 250);
+        // Sync frame to current scroll position (no playback)
+        scrub.onUserScroll();
       };
 
       if (video.readyState >= 1 && video.duration && isFinite(video.duration)) scrub.onMeta();
@@ -3480,66 +3412,31 @@ class Component extends DCLogic {
         video.addEventListener('loadedmetadata', scrub.onMeta);
         video.addEventListener('durationchange', scrub.onMeta);
       }
-      video.addEventListener('ended', scrub.onEnded);
-      video.addEventListener('error', scrub.onError);
-      // If browser pauses for power saving, resume when visible
-      video.addEventListener('pause', () => {
-        if (!scrub.wired || scrub.mode !== 'play' || !scrub.visible || scrub.reduce) return;
-        // Ignore intentional pause during scrub
-        if (scrub.mode === 'scrub') return;
-        clearTimeout(scrub.recoverTimer);
-        scrub.recoverTimer = setTimeout(() => {
-          if (scrub.mode === 'play' && scrub.visible) {
-            const p = video.play();
-            if (p && typeof p.then === 'function') p.catch(() => {});
-          }
-        }, 80);
+
+      // Kill any accidental playback (browser policies, residual autoplay)
+      video.addEventListener('play', () => {
+        if (!scrub.wired) return;
+        try { video.pause(); } catch (_) {}
       });
 
       if ('IntersectionObserver' in window) {
         scrub.io = new IntersectionObserver((entries) => {
           entries.forEach((e) => {
-            scrub.visible = e.isIntersecting;
             if (e.isIntersecting) {
-              if (video.preload !== 'auto') {
-                video.preload = 'auto';
-                try { video.load(); } catch (_) {}
-              }
-              if (scrub.ready && !scrub.reduce) {
-                // Prefer play when entering; scroll handler will scrub if moving
-                enterPlay();
-              }
+              if (video.preload !== 'auto') video.preload = 'auto';
+              if (scrub.ready) scrub.onUserScroll();
             } else {
-              clearTimeout(scrub.idleTimer);
-              scrub.mode = 'idle';
               try { video.pause(); } catch (_) {}
             }
           });
-        }, { rootMargin: '20% 0px', threshold: 0.01 });
+        }, { rootMargin: '15% 0px', threshold: 0.01 });
         scrub.io.observe(section);
-      } else {
-        video.preload = 'auto';
-        try { video.load(); } catch (_) {}
       }
-
-      // Unlock element once for Safari
-      const unlock = () => {
-        const p = video.play();
-        if (p && typeof p.then === 'function') {
-          p.then(() => {
-            if (scrub.mode !== 'play') {
-              try { video.pause(); } catch (_) {}
-            }
-          }).catch(() => {});
-        }
-      };
-      video.addEventListener('loadeddata', unlock, { once: true });
 
       this._scrubs.push(scrub);
     });
 
     this._scrubReady = this._scrubs.length > 0;
-    // Initial pass
     if (this._scrubSharedScroll) this._scrubSharedScroll();
   }
 
@@ -3547,8 +3444,6 @@ class Component extends DCLogic {
     const list = this._scrubs || [];
     list.forEach((s) => {
       s.wired = false;
-      clearTimeout(s.idleTimer);
-      clearTimeout(s.recoverTimer);
       clearTimeout(s.seekTimeout);
       if (s.io) s.io.disconnect();
       if (s.video) {
@@ -3557,8 +3452,6 @@ class Component extends DCLogic {
           s.video.removeEventListener('loadedmetadata', s.onMeta);
           s.video.removeEventListener('durationchange', s.onMeta);
         }
-        if (s.onEnded) s.video.removeEventListener('ended', s.onEnded);
-        if (s.onError) s.video.removeEventListener('error', s.onError);
       }
     });
     if (this._scrubSharedScroll) {
