@@ -422,7 +422,7 @@
     align-items: stretch;
     gap: 10px 12px;
     margin: 40px auto 0;
-    max-width: 720px;
+    max-width: 820px;
   }
   .lk-hero-tool {
     display: inline-flex;
@@ -996,6 +996,26 @@
     object-fit: cover;
     display: block;
   }
+  /* Imagem inteira visível (sem crop) */
+  .lk-spotlight__stage--contain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 40%, rgba(0, 42, 96, .45) 0%, transparent 60%),
+      var(--ink-950);
+    padding: 28px;
+  }
+  .lk-spotlight__stage--contain .lk-spotlight__img {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    max-height: min(560px, 72vh);
+    object-fit: contain;
+    object-position: center;
+    border-radius: 16px;
+  }
 
   /* Stage com mock de UI (rede social) — insp. product cards / gradient */
   .lk-spotlight__stage--social {
@@ -1536,6 +1556,13 @@
     }
     .lk-spotlight__stage {
       min-height: 420px;
+    }
+    .lk-spotlight__stage--contain {
+      min-height: 0;
+      padding: 24px 20px 32px;
+    }
+    .lk-spotlight__stage--contain .lk-spotlight__img {
+      max-height: min(420px, 58vh);
     }
     .lk-spotlight__stage--social,
     .lk-spotlight__stage--webconf {
@@ -2672,7 +2699,7 @@
           </a>
         </div>
         <div class="lk-hero-tools" aria-label="Ferramentas da plataforma">
-          <sc-for list="{{ heroTools }}" as="tool" hint-placeholder-count="6">
+          <sc-for list="{{ heroTools }}" as="tool" hint-placeholder-count="7">
             <a href="{{ tool.href }}" class="lk-hero-tool">
               <span class="lk-hero-tool__icon" aria-hidden="true"><i data-lucide="{{ tool.icon }}"></i></span>
               <span class="lk-hero-tool__label">{{ tool.label }}</span>
@@ -3026,69 +3053,17 @@
     </div>
   </section>
 
-  <!-- SECTION: Webconferência — product spotlight invertido (mock | texto) -->
+  <!-- SECTION: Webconferência — product spotlight invertido (imagem | texto) -->
   <section id="webconferencia" class="lk-spotlight lk-spotlight--flip" aria-label="Webconferência">
     <div class="lk-spotlight__grid">
-      <div class="lk-spotlight__stage lk-spotlight__stage--webconf" aria-hidden="true">
-        <div class="lk-webconf-stage">
-          <span class="lk-webconf-float lk-webconf-float--tr">
-            <i data-lucide="users"></i>
-            48 na sala
-          </span>
-          <span class="lk-webconf-float lk-webconf-float--bl">
-            <i data-lucide="circle-dot"></i>
-            Gravando
-          </span>
-
-          <div class="lk-webconf-main">
-            <div class="lk-webconf-main__screen">
-              <span class="lk-webconf-main__live">Ao vivo</span>
-              <span class="lk-webconf-main__avatar">CS</span>
-              <span class="lk-webconf-main__name">
-                <i data-lucide="mic"></i>
-                Camila Santos · Instrutora
-              </span>
-            </div>
-            <div class="lk-webconf-main__bar">
-              <span class="lk-webconf-ctrl"><i data-lucide="mic"></i></span>
-              <span class="lk-webconf-ctrl"><i data-lucide="video"></i></span>
-              <span class="lk-webconf-ctrl lk-webconf-ctrl--brand"><i data-lucide="monitor-up"></i></span>
-              <span class="lk-webconf-ctrl"><i data-lucide="message-square"></i></span>
-              <span class="lk-webconf-ctrl lk-webconf-ctrl--end"><i data-lucide="phone-off"></i></span>
-            </div>
-          </div>
-
-          <div class="lk-webconf-side">
-            <div class="lk-webconf-tile">
-              <span class="lk-webconf-tile__av">RL</span>
-              <span class="lk-webconf-tile__name">Rafael</span>
-            </div>
-            <div class="lk-webconf-tile">
-              <span class="lk-webconf-tile__av lk-webconf-tile__av--alt">AN</span>
-              <span class="lk-webconf-tile__name">Ana</span>
-            </div>
-            <div class="lk-webconf-tile">
-              <span class="lk-webconf-tile__av">+45</span>
-              <span class="lk-webconf-tile__name">Participantes</span>
-            </div>
-          </div>
-
-          <div class="lk-webconf-ai">
-            <div class="lk-webconf-ai__label">
-              <i data-lucide="sparkles"></i>
-              Resumo com IA
-            </div>
-            <p class="lk-webconf-ai__title">Ata gerada em tempo real</p>
-            <div class="lk-webconf-ai__line">
-              <span>02:14</span>
-              Decisão: recertificar NR-12 até sexta.
-            </div>
-            <div class="lk-webconf-ai__line">
-              <span>08:41</span>
-              3 tarefas atribuídas ao time de planta.
-            </div>
-          </div>
-        </div>
+      <div class="lk-spotlight__stage lk-spotlight__stage--contain">
+        <img
+          class="lk-spotlight__img"
+          src="/assets/media/home/webconferencia.png"
+          alt="Interface de webconferência Lector — sala ao vivo com participantes e controles"
+          loading="lazy"
+          decoding="async"
+        >
       </div>
 
       <div class="lk-spotlight__copy" data-reveal="">
@@ -3115,7 +3090,7 @@
   </section>
 
   <!-- MODULES BENTO — planeta Terra (mesma foto do hero) no fundo -->
-  <section class="lk-modules" aria-label="Módulos da plataforma">
+  <section id="modulos" class="lk-modules" aria-label="Módulos da plataforma">
     <div class="lk-modules__media" aria-hidden="true">
       <div
         class="lk-modules__earth"
@@ -5184,11 +5159,12 @@ class Component extends DCLogic {
     ];
 
     const heroTools = [
-      { icon: 'graduation-cap', label: 'LMS & Trilhas', href: '#lms' },
+      { icon: 'graduation-cap', label: 'LMS', href: '#lms' },
       { icon: 'video', label: 'Webconferência', href: '#webconferencia' },
       { icon: 'film', label: 'Autoria', href: '#autoria' },
       { icon: 'sparkles', label: 'IA Lector', href: '#ia' },
       { icon: 'message-circle', label: 'Rede social', href: '#rede-social' },
+      { icon: 'target', label: 'Gestão de Talentos', href: '#modulos' },
       { icon: 'library', label: 'Gestão de documentos', href: '#plataforma' },
     ];
 

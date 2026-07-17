@@ -34,7 +34,7 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 | # | ID | Nome | Notas |
 |---|-----|------|--------|
 | 0 | — | Announcement + header fixos | Marquee diagnóstico + nav dark pill |
-| 1 | `top` | Hero dark | Vídeo `hero.mp4`, CTA “Explore a plataforma”, ícones das ferramentas (LMS, Webconf, Autoria, IA, Rede, Documentos) |
+| 1 | `top` | Hero dark | Vídeo `hero.mp4`, CTA “Explore a plataforma”, ícones das ferramentas (LMS, Webconf, Autoria, IA, Rede, Gestão de Talentos, Documentos) |
 | 2 | `depoimento` | Depoimentos | Carrossel Microsoft ↔ Philips + marquee de logos |
 | 3 | `conhecimento` | Conhecimento invisível (trilogia 1/3) | Vídeo scroll-scrub `conhecimento-scroll.mp4` (sticky + avança com a rolagem) |
 | 4 | `diagnostico-home` | Diagnóstico de Gaps (trilogia 2/3) | Vídeo scroll-scrub `diagnostico-scroll.mp4` (sticky + avança com a rolagem) |
@@ -44,7 +44,7 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 | 8 | `autoria` | Autoria (tema no H2; sem badge) | Spotlight; `video-autoria.mp4` |
 | 9 | `lms` | LMS (tema no H2) | Spotlight flip; `lms.png` |
 | 10 | `rede-social` | Rede social (tema no H2) | Spotlight; `rede-social.png` |
-| 11 | `webconferencia` | Webconferência (tema no H2) | Spotlight flip + mock de sala |
+| 11 | `webconferencia` | Webconferência (tema no H2) | Spotlight flip; `webconferencia.png` |
 | 12 | — | Módulos bento | 6 módulos; sem eyebrow de seção |
 | 13 | `numeros` | Resultados reais (tema no H2) | Stats + count-up; alvo do nav “Clientes” |
 | 14 | `contato` | CTA final | “Falar com especialista” → lead form |
@@ -84,7 +84,7 @@ Formulário: `shared/lead-form.js` — ver `specs/components/lead-form.md`.
 - Scrub sessão 1: `assets/media/home/conhecimento-scroll.mp4` (+ poster)  
 - Scrub sessão 2: `assets/media/home/diagnostico-scroll.mp4` (+ poster)  
 - Autoria: `assets/media/home/video-autoria.mp4`  
-- LMS / rede: `assets/media/home/lms.png`, `rede-social.png`  
+- LMS / rede / webconf: `assets/media/home/lms.png`, `rede-social.png`, `webconferencia.png`  
 - Nav: sincronizar com `content/site.json` e com as outras páginas  
 
 ## SEO

@@ -552,6 +552,18 @@
     visibility: hidden;
     pointer-events: none;
   }
+  /* Camada de clique para pausar (deixa a barra nativa livre embaixo) */
+  .cd-carousel__hit {
+    position: absolute;
+    inset: 0 0 44px 0;
+    z-index: 1;
+    display: none;
+    cursor: pointer;
+    background: transparent;
+  }
+  .cd-carousel__frame.is-playing .cd-carousel__hit {
+    display: block;
+  }
   .cd-carousel__play {
     width: 64px;
     height: 64px;
@@ -1093,6 +1105,7 @@
                 >
                   Seu navegador não suporta vídeo HTML5.
                 </video>
+                <div class="cd-carousel__hit" data-cd-hit="" aria-hidden="true"></div>
                 <div class="cd-carousel__overlay" data-cd-sample-overlay="" role="button" tabindex="0" aria-label="Reproduzir conteúdo de demonstração 1">
                   <button type="button" class="cd-carousel__play" aria-hidden="true" tabindex="-1">
                     <i data-lucide="play"></i>
@@ -1114,6 +1127,7 @@
                 >
                   Seu navegador não suporta vídeo HTML5.
                 </video>
+                <div class="cd-carousel__hit" data-cd-hit="" aria-hidden="true"></div>
                 <div class="cd-carousel__overlay" data-cd-sample-overlay="" role="button" tabindex="0" aria-label="Reproduzir conteúdo de demonstração 2">
                   <button type="button" class="cd-carousel__play" aria-hidden="true" tabindex="-1">
                     <i data-lucide="play"></i>
@@ -1135,6 +1149,7 @@
                 >
                   Seu navegador não suporta vídeo HTML5.
                 </video>
+                <div class="cd-carousel__hit" data-cd-hit="" aria-hidden="true"></div>
                 <div class="cd-carousel__overlay" data-cd-sample-overlay="" role="button" tabindex="0" aria-label="Reproduzir conteúdo de demonstração 3">
                   <button type="button" class="cd-carousel__play" aria-hidden="true" tabindex="-1">
                     <i data-lucide="play"></i>
@@ -1156,6 +1171,7 @@
                 >
                   Seu navegador não suporta vídeo HTML5.
                 </video>
+                <div class="cd-carousel__hit" data-cd-hit="" aria-hidden="true"></div>
                 <div class="cd-carousel__overlay" data-cd-sample-overlay="" role="button" tabindex="0" aria-label="Reproduzir conteúdo de demonstração 4">
                   <button type="button" class="cd-carousel__play" aria-hidden="true" tabindex="-1">
                     <i data-lucide="play"></i>
@@ -1416,7 +1432,7 @@ class Component extends DCLogic {
     if (this._io) this._io.disconnect();
   }
 
-  /** Galeria de conteúdos criados (lado a lado + play com áudio; ao terminar, dispara o próximo). */
+  /** Galeria de conteúdos: play/pause, overlay, controls nativos; ao terminar, inicia o próximo. */
   _wireCarousel() {
     const root = document.querySelector('[data-cd-carousel]');
     if (!root || root._cdWired) return;
@@ -1425,57 +1441,112 @@ class Component extends DCLogic {
     const videos = Array.from(root.querySelectorAll('[data-cd-sample-video]'));
     if (!videos.length) return;
 
+    const uiFor = (video) => {
+      const frame = video.closest('.cd-carousel__frame');
+      const overlay = frame ? frame.querySelector('[data-cd-sample-overlay]') : null;
+      const hit = frame ? frame.querySelector('[data-cd-hit]') : null;
+      return { frame, overlay, hit };
+    };
+
+    const setPlayingUi = (video, playing) => {
+      const { frame, overlay } = uiFor(video);
+      if (frame) frame.classList.toggle('is-playing', !!playing);
+      if (overlay) {
+        if (playing) {
+          overlay.classList.add('is-hidden');
+          overlay.setAttribute('aria-label', 'Pausar vídeo');
+        } else {
+          overlay.classList.remove('is-hidden');
+          overlay.setAttribute('aria-label', 'Reproduzir vídeo');
+        }
+      }
+    };
+
     const pauseOthers = (active) => {
       videos.forEach((v) => {
         if (v === active) return;
         try { v.pause(); } catch (_) {}
+        setPlayingUi(v, false);
       });
     };
 
-    const startVideo = (video) => {
+    const startVideo = (video, { restart = false } = {}) => {
       if (!video) return;
-      const frame = video.closest('.cd-carousel__frame');
-      const overlay = frame ? frame.querySelector('[data-cd-sample-overlay]') : null;
-      const hideOverlay = () => { if (overlay) overlay.classList.add('is-hidden'); };
-      const showOverlay = () => { if (overlay) overlay.classList.remove('is-hidden'); };
-
       pauseOthers(video);
-      try { video.currentTime = 0; } catch (_) {}
+      if (restart || video.ended) {
+        try { video.currentTime = 0; } catch (_) {}
+      }
       video.muted = false;
+      video.defaultMuted = false;
       video.volume = 1;
       const p = video.play();
       if (p && typeof p.then === 'function') {
-        p.then(hideOverlay).catch(showOverlay);
-      } else hideOverlay();
+        p.then(() => setPlayingUi(video, true)).catch(() => setPlayingUi(video, false));
+      } else {
+        setPlayingUi(video, !video.paused);
+      }
+    };
+
+    const pauseVideo = (video) => {
+      if (!video) return;
+      try { video.pause(); } catch (_) {}
+      setPlayingUi(video, false);
+    };
+
+    const toggleVideo = (video) => {
+      if (!video) return;
+      if (video.paused || video.ended) {
+        startVideo(video, { restart: !!video.ended });
+      } else {
+        pauseVideo(video);
+      }
     };
 
     videos.forEach((video, index) => {
       if (video._cdSampleWired) return;
       video._cdSampleWired = true;
-      const frame = video.closest('.cd-carousel__frame');
-      const overlay = frame ? frame.querySelector('[data-cd-sample-overlay]') : null;
+      const { overlay, hit } = uiFor(video);
       video.muted = false;
       video.defaultMuted = false;
       video.removeAttribute('muted');
-
-      const hideOverlay = () => { if (overlay) overlay.classList.add('is-hidden'); };
-      const showOverlay = () => { if (overlay) overlay.classList.remove('is-hidden'); };
+      setPlayingUi(video, false);
 
       if (overlay) {
-        overlay.addEventListener('click', (e) => { e.preventDefault(); startVideo(video); });
+        overlay.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleVideo(video);
+        });
         overlay.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startVideo(video); }
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleVideo(video);
+          }
         });
       }
+
+      // Clique no vídeo (fora da barra de controls) = pausar
+      if (hit) {
+        hit.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (!video.paused) pauseVideo(video);
+        });
+      }
+
       video.addEventListener('play', () => {
         pauseOthers(video);
-        hideOverlay();
+        setPlayingUi(video, true);
+      });
+      video.addEventListener('pause', () => {
+        // Não trata como "fim da fila" — só mostra overlay de play de novo
+        if (!video.ended) setPlayingUi(video, false);
       });
       video.addEventListener('ended', () => {
-        showOverlay();
+        setPlayingUi(video, false);
         try { video.currentTime = 0; } catch (_) {}
         const next = videos[index + 1];
-        if (next) startVideo(next);
+        if (next) startVideo(next, { restart: true });
       });
     });
   }
