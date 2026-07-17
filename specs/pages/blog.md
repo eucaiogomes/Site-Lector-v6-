@@ -4,11 +4,13 @@
 |-------|--------|
 | **Slug** | `blog` |
 | **Status** | `live` |
-| **Código** | `pages/blog/index.dc.html` |
+| **Código** | `pages/blog/index.dc.html` (~940 linhas) |
 | **Rota pública** | `/blog` |
-| **Última atualização** | 2026-07-16 |
+| **Última atualização** | 2026-07-17 |
 | **Lead form** | `shared/lead-form` (CTA nav) |
-| **Fonte visual** | `lector-blog/` (kit de referência) |
+| **Nav** | Item principal “Blog” ativo |
+| **Variante de header** | `light` (`.lec-nav`) |
+| **Fonte visual** | `references/prototypes/lector-blog/` (não linkar em produção) |
 
 ---
 
@@ -18,21 +20,21 @@ Publicar conteúdo de educação corporativa, carreira e T&D para atrair e nutri
 
 ## Público
 
-- Gestores de RH e T&D
-- Lideranças e profissionais em desenvolvimento
-- Visitantes que chegam por SEO / conteúdo
+- Gestores de RH e T&D  
+- Lideranças e profissionais em desenvolvimento  
+- Visitantes que chegam por SEO / conteúdo  
 
 ## Mensagem principal
 
-**Headline:** Ideias para aprender, crescer e fazer acontecer  
+**Headline:** Blog da Lector: ideias para aprender, crescer e fazer acontecer  
 **Sub:** Histórias, guias e ideias sobre carreira, design, dados e tecnologia — escritos por quem ensina na Lector.  
-**Eyebrow:** Blog da Lector
+**Nota:** sem eyebrow/badge acima do H1.  
 
 ## Seções (ordem)
 
 | # | ID | Nome | Conteúdo / notas |
 |---|-----|------|------------------|
-| 0 | — | Promo bar + nav sticky | Nav clara (estilo lector-blog); Blog ativo |
+| 0 | — | Promo bar + nav sticky | Nav clara; Blog ativo |
 | 1 | `hero` | Masthead | Eyebrow + headline + sub |
 | 2 | `featured` | Em alta | Card overlay grande + 3 horizontais |
 | 3 | `publicacoes` | Grade + filtros | Tabs: Todos, Carreira, Design, Tecnologia, Dados, Produtividade |
@@ -44,15 +46,15 @@ Publicar conteúdo de educação corporativa, carreira e T&D para atrair e nutri
 
 | Label | Destino | Tipo |
 |-------|---------|------|
-| Fazer diagnóstico gratuito | `../home/index.dc.html#contato` | primary |
-| Falar com a Lector | `../home/index.dc.html#contato` | primary (artigo) |
+| Falar com especialista | Lead form modal | primary nav |
+| Fazer diagnóstico gratuito | Lead form / home `#contato` | primary |
 | Inscrever newsletter | `#` (placeholder) | form |
 
 ## Conteúdo e dados
 
-- Posts mock em JS (`POSTS`) — 6 artigos de exemplo
-- Imagens Unsplash (placeholder até mídia própria)
-- Corpo de artigo: texto de demonstração compartilhado
+- Posts mock em JS (`POSTS`) — artigos de exemplo  
+- Imagens Unsplash (placeholder até mídia própria)  
+- Corpo de artigo: texto de demonstração compartilhado  
 
 ## SEO
 
@@ -62,32 +64,45 @@ Publicar conteúdo de educação corporativa, carreira e T&D para atrair e nutri
 | Meta description | Artigos sobre LMS, NR-1, treinamento corporativo, IA e performance de equipes. Conteúdo prático da Lector para RH e T&D no Brasil. |
 | OG image | — |
 
+**Implementação:** title e meta description presentes no helmet.
+
 ## Design
 
-- Tema dominante: claro (fundo page, nav sticky branca)
-- Base visual: `lector-blog/index.html` + tokens do design system
-- Sem emoji; ícones Lucide quando necessário
+- Tema dominante: claro (fundo page, nav sticky branca)  
+- Base visual: protótipo lector-blog + tokens do design system  
+- Sem emoji; ícones Lucide quando necessário  
 
 ## Estados e interações
 
-- Filtro por categoria (client-side)
-- Abrir artigo / voltar à home do blog
-- Dropdown Nossas Soluções + menu mobile
-- Nav com sombra ao scroll
+- Filtro por categoria (client-side)  
+- Abrir artigo / voltar à home do blog  
+- Dropdown Nossas Soluções + menu mobile  
+- Nav com sombra ao scroll  
 
 ## Fora de escopo
 
-- CMS / posts reais em Markdown
-- Comentários, likes, compartilhamento real
-- Autenticação / área logada
-- SEO por artigo individual (rotas dinâmicas)
+- CMS / posts reais em Markdown  
+- Comentários, likes, compartilhamento real  
+- Autenticação / área logada  
+- SEO por artigo individual (rotas dinâmicas)  
+
+
+## GEO / cápsula
+
+| Campo | Valor |
+|-------|--------|
+| Pergunta-alvo | O que é o blog da Lector? |
+| Cápsula | O blog da Lector publica guias e ideias sobre educação corporativa, NR-1, LMS, IA e T&D para RH e lideranças no Brasil. |
+| Schema | Organization (Article por post quando CMS real) |
 
 ## Critérios de aceite
 
-- [x] Spec alinhada com o HTML
-- [x] Link Blog na navbar da home leva a esta página
-- [x] Paths `../../design-system` e `../../assets` corretos
-- [x] Tokens / identidade Lector
-- [x] Copy PT-BR, sem emoji
-- [x] Responsivo básico (mobile nav)
-- [x] Sitemap + site.json atualizados
+- [x] Spec alinhada com o HTML  
+- [x] Link Blog na navbar da home leva a esta página  
+- [x] Paths `../../design-system` e `../../assets` corretos  
+- [x] Tokens / identidade Lector  
+- [x] Copy PT-BR, sem emoji  
+- [x] Title + meta description  
+- [x] Responsivo básico (mobile nav)  
+- [x] Sitemap + site.json atualizados  
+- [ ] CMS / conteúdo real  

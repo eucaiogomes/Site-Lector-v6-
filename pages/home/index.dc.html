@@ -1,24 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="../../support.js"></script>
+<script src="/support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="../../design-system/tokens/fonts.css">
-<link rel="stylesheet" href="../../design-system/tokens/colors.css">
-<link rel="stylesheet" href="../../design-system/tokens/typography.css">
-<link rel="stylesheet" href="../../design-system/tokens/spacing.css">
-<link rel="stylesheet" href="../../design-system/tokens/effects.css">
-<link rel="stylesheet" href="../../design-system/tokens/base.css">
-<link rel="stylesheet" href="../../design-system/styles.css">
-<link rel="stylesheet" href="../../shared/lead-form.css">
-<script src="../../design-system/_ds_bundle.js"></script>
+<title>Lector — Plataforma de aprendizado com IA nativa</title>
+<meta name="description" content="Uma só plataforma para criar, ensinar, engajar e medir capacitação corporativa. LMS, webconferência, IA nativa e compliance NR-1.">
+<meta property="og:title" content="Lector — Plataforma de aprendizado com IA nativa">
+<meta property="og:description" content="Uma só plataforma para criar, ensinar, engajar e medir capacitação corporativa. LMS, webconferência, IA nativa e compliance NR-1.">
+<!-- GEO: schema Organization (specs/geo.md) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Lector",
+  "alternateName": "a Lector",
+  "url": "https://lector.com.br",
+  "logo": "https://lector.com.br/assets/brand/logo-lector.svg",
+  "description": "Plataforma brasileira de educação corporativa, performance e compliance NR-1 com IA nativa. Une LMS, webconferência própria, autoria com IA, gestão do conhecimento e evidências auditáveis.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Blumenau",
+    "addressRegion": "SC",
+    "addressCountry": "BR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "email": "contato@lector.com.br",
+    "availableLanguage": "Portuguese"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Lector",
+  "applicationCategory": "BusinessApplication",
+  "applicationSubCategory": "Learning Management System",
+  "operatingSystem": "Web",
+  "description": "Plataforma de performance e educação corporativa com IA: LMS, webconferência própria, autoria com IA, gestão do conhecimento e compliance NR-1 com laudo auditável.",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "BRL",
+    "description": "SaaS por colaborador/mês — faixas em /precos (a publicar)"
+  },
+  "provider": { "@type": "Organization", "name": "Lector" }
+}
+</script>
+
+<link rel="stylesheet" href="/design-system/tokens/fonts.css">
+<link rel="stylesheet" href="/design-system/tokens/colors.css">
+<link rel="stylesheet" href="/design-system/tokens/typography.css">
+<link rel="stylesheet" href="/design-system/tokens/spacing.css">
+<link rel="stylesheet" href="/design-system/tokens/effects.css">
+<link rel="stylesheet" href="/design-system/tokens/base.css">
+<link rel="stylesheet" href="/design-system/styles.css">
+<link rel="stylesheet" href="/shared/lead-form.css">
+<script src="/design-system/_ds_bundle.js"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="../../shared/lead-form.js" data-base="../.."></script>
+<script src="/shared/lead-form.js" data-base=""></script>
 <style>
   html, body { margin: 0; padding: 0; }
   body { font-family: var(--font-sans); background: var(--surface-page); color: var(--text-body); -webkit-font-smoothing: antialiased; }
@@ -363,6 +410,84 @@
     .lk-hero-cta,
     .lk-cta-sheen,
     .lk-cta-icon { animation: none; }
+  }
+
+  /* Hero tools — ícones das ferramentas abaixo do CTA */
+  .lk-hero-tools {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 10px 12px;
+    margin: 40px auto 0;
+    max-width: 720px;
+  }
+  .lk-hero-tool {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 88px;
+    max-width: 110px;
+    padding: 14px 12px 12px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(255, 255, 255, .1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: rgba(230, 238, 250, .88);
+    transition:
+      background .2s var(--ease-out),
+      border-color .2s var(--ease-out),
+      transform .2s var(--ease-out),
+      color .2s var(--ease-out);
+  }
+  .lk-hero-tool:hover {
+    background: rgba(255, 255, 255, .1);
+    border-color: rgba(246, 107, 10, .45);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .lk-hero-tool__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(246, 107, 10, .16);
+    color: var(--brand);
+    border: 1px solid rgba(246, 107, 10, .22);
+  }
+  .lk-hero-tool__icon i,
+  .lk-hero-tool__icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  .lk-hero-tool__label {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    line-height: 1.25;
+    text-align: center;
+    color: rgba(230, 238, 250, .78);
+  }
+  .lk-hero-tool:hover .lk-hero-tool__label {
+    color: rgba(255, 255, 255, .95);
+  }
+  @media (max-width: 560px) {
+    .lk-hero-tools {
+      gap: 8px;
+      margin-top: 32px;
+    }
+    .lk-hero-tool {
+      min-width: 72px;
+      max-width: 96px;
+      padding: 12px 8px 10px;
+    }
+    .lk-hero-tool__label {
+      font-size: 10.5px;
+    }
   }
 
   /* Microsoft partner — Airtable-inspired light stage + cinematic globe */
@@ -2053,22 +2178,22 @@
       <div class="lk-announce-track-wrap">
         <div class="lk-announce-track">
           <!-- bloco 1 -->
-          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
           <!-- bloco 2 (duplicado para loop contínuo) -->
-          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Diagnóstico gratuito de maturidade T&amp;D da sua empresa</strong> — vagas limitadas este mês — <u>Quero meu diagnóstico</u></span>
+          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
         </div>
       </div>
@@ -2077,7 +2202,7 @@
     <div style="width:100%; display:flex; justify-content:center; padding:11px 20px 0;">
     <header style="{{ headerPillStyle }}">
       <a href="#top" style="display:flex; align-items:center; flex:none;">
-        <img src="../../assets/brand/logo-lector-light.svg" alt="Lector" style="height:24px; display:block;">
+        <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:24px; display:block;">
       </a>
       <nav style="display:flex; align-items:center; gap:30px; font-size:14.5px; font-weight:600;">
         <div class="lk-nav-dd">
@@ -2086,42 +2211,42 @@
             <span class="lk-nav-dd__chev" aria-hidden="true"><i data-lucide="chevron-down"></i></span>
           </button>
           <div class="lk-nav-dd__menu" role="menu" aria-label="Nossas Soluções">
-            <a href="../plataforma-lector/index.dc.html" class="lk-nav-dd__item" role="menuitem">
+            <a href="/pages/plataforma-lector/index.dc.html" class="lk-nav-dd__item" role="menuitem">
               <span class="lk-nav-dd__item-icon" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
               <span class="lk-nav-dd__item-body">
                 <span class="lk-nav-dd__item-title">Plataforma Lector</span>
                 <span class="lk-nav-dd__item-desc">Centralize LMS, IA, treinamento, trilhas, onboarding, universidade corporativa, lideranças, gestão de talentos, comunicação e gestão do conhecimento em um único ambiente.</span>
               </span>
             </a>
-            <a href="../copiloto-vendas/index.dc.html" class="lk-nav-dd__item" role="menuitem">
+            <a href="/pages/copiloto-vendas/index.dc.html" class="lk-nav-dd__item" role="menuitem">
               <span class="lk-nav-dd__item-icon" aria-hidden="true"><i data-lucide="bot"></i></span>
               <span class="lk-nav-dd__item-body">
                 <span class="lk-nav-dd__item-title">Copiloto de Vendas</span>
                 <span class="lk-nav-dd__item-desc">Diagnóstico de técnica de venda com IA, trilhas e certificação para reduzir o ramp-up.</span>
               </span>
             </a>
-            <a href="../solucao-nr-1/index.dc.html" class="lk-nav-dd__item" role="menuitem">
+            <a href="/pages/solucao-nr-1/index.dc.html" class="lk-nav-dd__item" role="menuitem">
               <span class="lk-nav-dd__item-icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
               <span class="lk-nav-dd__item-body">
                 <span class="lk-nav-dd__item-title">Solução NR-1</span>
                 <span class="lk-nav-dd__item-desc">Automatize treinamentos, registros, evidências e a conformidade com a legislação.</span>
               </span>
             </a>
-            <a href="../conteudo-sob-demanda/index.dc.html" class="lk-nav-dd__item" role="menuitem">
+            <a href="/pages/conteudo-sob-demanda/index.dc.html" class="lk-nav-dd__item" role="menuitem">
               <span class="lk-nav-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
               <span class="lk-nav-dd__item-body">
                 <span class="lk-nav-dd__item-title">Criação de Conteúdo sob Demanda</span>
                 <span class="lk-nav-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
               </span>
             </a>
-            <a href="../diagnostico-gaps/index.dc.html" class="lk-nav-dd__item" role="menuitem">
+            <a href="/pages/diagnostico-gaps/index.dc.html" class="lk-nav-dd__item" role="menuitem">
               <span class="lk-nav-dd__item-icon" aria-hidden="true"><i data-lucide="scan-search"></i></span>
               <span class="lk-nav-dd__item-body">
                 <span class="lk-nav-dd__item-title">Diagnóstico de Gaps</span>
                 <span class="lk-nav-dd__item-desc">Identifique lacunas por habilidade, prove resultado e entregue conhecimento cirúrgico.</span>
               </span>
             </a>
-            <a href="../servicos-especializados/index.dc.html" class="lk-nav-dd__item" role="menuitem">
+            <a href="/pages/servicos-especializados/index.dc.html" class="lk-nav-dd__item" role="menuitem">
               <span class="lk-nav-dd__item-icon" aria-hidden="true"><i data-lucide="briefcase"></i></span>
               <span class="lk-nav-dd__item-body">
                 <span class="lk-nav-dd__item-title">Serviços Especializados</span>
@@ -2130,11 +2255,12 @@
             </a>
           </div>
         </div>
-        <a href="../blog/index.dc.html" style="{{ navLinkStyle }}">Blog</a>
+        <a href="/pages/blog/index.dc.html" style="{{ navLinkStyle }}">Blog</a>
         <a href="#numeros" style="{{ navLinkStyle }}">Clientes</a>
-        <a href="../contato/index.dc.html" style="{{ navLinkStyle }}">Contato</a>
+        <a href="/pages/contato/index.dc.html" style="{{ navLinkStyle }}">Contato</a>
       </nav>
-      <div style="display:flex; align-items:center; gap:18px; flex:none;">
+      <div style="display:flex; align-items:center; gap:14px; flex:none;">
+        <a href="https://app.lector.com.br/painel" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.9); font-weight:700; font-size:14.5px; white-space:nowrap;">Sou cliente</a>
         <a href="#contato" style="display:inline-flex; align-items:center; gap:12px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); border-radius:var(--radius-pill); padding:6px 6px 6px 20px; color:#fff; font-weight:700; font-size:14.5px;">Falar com especialista <span style="width:32px; height:32px; border-radius:10px; background:var(--brand); display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span></a>
       </div>
     </header>
@@ -2147,7 +2273,7 @@
     <div style="position:absolute; inset:0; z-index:0;">
       <div style="position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=2100&amp;q=80'); background-size:cover; background-position:center; animation:lkBurns 26s ease-in-out infinite alternate;"></div>
       <sc-if value="{{ hasVideo }}" hint-placeholder-val="{{ true }}">
-        <video data-hero="" src="../../assets/media/home/hero.mp4" autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=2100&amp;q=80" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></video>
+        <video data-hero="" src="/assets/media/home/hero.mp4" autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=2100&amp;q=80" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></video>
       </sc-if>
       <!-- navy grade + vignette -->
       <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,16,38,.82) 0%, rgba(0,16,38,.34) 34%, rgba(0,16,38,.62) 72%, rgba(0,16,38,.96) 100%);"></div>
@@ -2156,7 +2282,7 @@
     </div>
 
     <!-- content (centered) -->
-    <div style="position:relative; z-index:3; width:100%; max-width:1040px; margin:0 auto; padding:96px 28px 0; text-align:center;">
+    <div style="position:relative; z-index:3; width:100%; max-width:1040px; margin:0 auto; padding:96px 28px 56px; text-align:center;">
       <div data-reveal="">
         <span style="display:inline-flex; align-items:center; gap:9px; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.7); margin-bottom:26px;">
           
@@ -2174,6 +2300,14 @@
             <span class="lk-cta-label">Explore a plataforma</span>
             <span class="lk-cta-icon" aria-hidden="true"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
           </a>
+        </div>
+        <div class="lk-hero-tools" aria-label="Ferramentas da plataforma">
+          <sc-for list="{{ heroTools }}" as="tool" hint-placeholder-count="6">
+            <a href="{{ tool.href }}" class="lk-hero-tool">
+              <span class="lk-hero-tool__icon" aria-hidden="true"><i data-lucide="{{ tool.icon }}"></i></span>
+              <span class="lk-hero-tool__label">{{ tool.label }}</span>
+            </a>
+          </sc-for>
         </div>
       </div>
     </div>
@@ -2195,7 +2329,7 @@
         <div class="lk-ms-hero__stage" data-t-stage="">
           <!-- Slide 0: Microsoft -->
           <div class="lk-ms-hero__slide is-active" data-t-slide="" data-index="0">
-            <img class="lk-ms-hero__brand-logo" src="../../assets/clients/microsoft.png" alt="Microsoft" width="320" height="63">
+            <img class="lk-ms-hero__brand-logo" src="/assets/clients/microsoft.png" alt="Microsoft" width="320" height="63">
             <h2 class="lk-ms-hero__title">Parceiro estratégico na América Latina.</h2>
             <p class="lk-ms-hero__sub">
               Na vertical de <u>educação</u>, a <u>Microsoft</u> escolheu a Lector.
@@ -2206,7 +2340,7 @@
               </p>
               <div class="lk-ms-hero__card-foot">
                 <div class="lk-ms-hero__author">
-                  <img src="../../assets/clients/microsoft.png" alt="Microsoft" width="110" height="22">
+                  <img src="/assets/clients/microsoft.png" alt="Microsoft" width="110" height="22">
                   <div class="lk-ms-hero__author-text">
                     <strong>Paulo Tonin da Silveira</strong>
                     <span>Sr. Partner Development Manager LATAM · Microsoft</span>
@@ -2222,18 +2356,18 @@
 
           <!-- Slide 1: Philips -->
           <div class="lk-ms-hero__slide" data-t-slide="" data-index="1">
-            <img class="lk-ms-hero__brand-logo" src="../../assets/clients/philips.png" alt="Philips" width="320" height="63">
-            <h2 class="lk-ms-hero__title">13 anos de parceria em aprendizagem.</h2>
+            <img class="lk-ms-hero__brand-logo" src="/assets/clients/philips.png" alt="Philips" width="320" height="63">
+            <h2 class="lk-ms-hero__title">+15 anos de parceria em aprendizagem.</h2>
             <p class="lk-ms-hero__sub">
               A <u>Philips</u> treina o mundo com a Lector.
             </p>
             <div class="lk-ms-hero__card">
               <p>
-                Usamos a plataforma da Lector há <em>13 anos</em> como nossa solução de aprendizagem. É uma parceria que faz parte da nossa cultura de treinamentos global.
+                Usamos a plataforma da Lector há <em>+15 anos</em> como nossa solução de aprendizagem. É uma parceria que faz parte da nossa cultura de treinamentos global.
               </p>
               <div class="lk-ms-hero__card-foot">
                 <div class="lk-ms-hero__author">
-                  <img src="../../assets/clients/philips.png" alt="Philips" width="110" height="22">
+                  <img src="/assets/clients/philips.png" alt="Philips" width="110" height="22">
                   <div class="lk-ms-hero__author-text">
                     <strong>Adriano Geyer</strong>
                     <span>Gerente Global de Treinamentos · Philips</span>
@@ -2332,12 +2466,8 @@
   <section id="autoria" class="lk-spotlight" aria-label="Ferramenta de autoria">
     <div class="lk-spotlight__grid">
       <div class="lk-spotlight__copy" data-reveal="">
-        <div class="lk-spotlight__badge">
-          <span class="lk-spotlight__badge-icon" aria-hidden="true"><i data-lucide="pen-line"></i></span>
-          Autoria
-        </div>
         <h2 class="lk-spotlight__title">
-          Tenha os melhores recursos de autoria de conteúdo em um só lugar.
+          Autoria: os melhores recursos de conteúdo em um só lugar.
         </h2>
         <p class="lk-spotlight__body">
           Construa cursos com precisão — do roteiro ao SCORM — com IA que acelera o rascunho, editor de vídeo e templates de marca. Você descreve o objetivo; a Lector monta a primeira versão pronta para refinar e publicar.
@@ -2360,7 +2490,7 @@
         <video
           class="lk-spotlight__video"
           data-autoria-video=""
-          src="../../assets/media/home/video-autoria.mp4"
+          src="/assets/media/home/video-autoria.mp4"
           autoplay
           muted
           loop
@@ -2377,7 +2507,7 @@
       <div class="lk-spotlight__stage">
         <img
           class="lk-spotlight__img"
-          src="../../assets/media/home/lms.png"
+          src="/assets/media/home/lms.png"
           alt="Interface do LMS Lector — trilhas, turmas e aprendizado"
           loading="lazy"
           decoding="async"
@@ -2385,12 +2515,8 @@
       </div>
 
       <div class="lk-spotlight__copy" data-reveal="">
-        <div class="lk-spotlight__badge">
-          <span class="lk-spotlight__badge-icon" aria-hidden="true"><i data-lucide="graduation-cap"></i></span>
-          LMS
-        </div>
         <h2 class="lk-spotlight__title">
-          O núcleo do aprendizado da sua empresa, em um só ambiente.
+          LMS: o núcleo do aprendizado da sua empresa, em um só ambiente.
         </h2>
         <p class="lk-spotlight__body">
           Trilhas, turmas, certificados e app mobile no mesmo lugar onde o conteúdo nasce. Cada pessoa vê o que precisa — e o RH enxerga conclusão, prazo e impacto sem planilha paralela.
@@ -2415,12 +2541,8 @@
   <section id="rede-social" class="lk-spotlight" aria-label="Rede social corporativa">
     <div class="lk-spotlight__grid">
       <div class="lk-spotlight__copy" data-reveal="">
-        <div class="lk-spotlight__badge">
-          <span class="lk-spotlight__badge-icon" aria-hidden="true"><i data-lucide="message-circle"></i></span>
-          Rede social
-        </div>
         <h2 class="lk-spotlight__title">
-          Onde o time se conecta — e o conhecimento não se perde no chat.
+          Rede social: onde o time se conecta — e o conhecimento não se perde no chat.
         </h2>
         <p class="lk-spotlight__body">
           Feed, grupos, menções e comunicados oficiais no mesmo ambiente do aprendizado. Sem depender de WhatsApp pessoal: a conversa fica registrada, pesquisável e ligada às trilhas.
@@ -2442,7 +2564,7 @@
       <div class="lk-spotlight__stage">
         <img
           class="lk-spotlight__img"
-          src="../../assets/media/home/rede-social.png"
+          src="/assets/media/home/rede-social.png"
           alt="Rede social corporativa Lector — feed, grupos e engajamento do time"
           loading="lazy"
           decoding="async"
@@ -2517,12 +2639,8 @@
       </div>
 
       <div class="lk-spotlight__copy" data-reveal="">
-        <div class="lk-spotlight__badge">
-          <span class="lk-spotlight__badge-icon" aria-hidden="true"><i data-lucide="video"></i></span>
-          Webconferência
-        </div>
         <h2 class="lk-spotlight__title">
-          Aulas e reuniões ao vivo — nativas, sem plugin e sem ferramenta a mais.
+          Webconferência: aulas e reuniões ao vivo — nativas, sem plugin e sem ferramenta a mais.
         </h2>
         <p class="lk-spotlight__body">
           Webconferência integrada ao LMS: presença, gravação, material e chat no mesmo lugar. A IA transcreve, resume e devolve ata com decisões e tarefas — sem ninguém anotar na correria.
@@ -2552,12 +2670,11 @@
       ></div>
       <div class="lk-modules__shade"></div>
       <div class="lk-modules__vignette"></div>
-      <img class="lk-modules__orbit" src="../../assets/brand/orbit.svg" alt="">
+      <img class="lk-modules__orbit" src="/assets/brand/orbit.svg" alt="">
     </div>
     <div class="lk-modules__inner">
       <div data-reveal="" class="lk-modules__intro">
-        <span class="lk-modules__eyebrow">Uma plataforma</span>
-        <h2 class="lk-modules__title">Tudo o que o aprendizado precisa. Conectado.</h2>
+        <h2 class="lk-modules__title">Uma plataforma: tudo o que o aprendizado precisa. Conectado.</h2>
         <p class="lk-modules__sub">Do primeiro rascunho ao relatório de impacto, sem trocar de ferramenta.</p>
       </div>
       <div class="lk-modules__grid">
@@ -2565,7 +2682,6 @@
           <div data-reveal="" class="lk-modules__card">
             <div class="lk-modules__card-top">
               <span class="lk-modules__icon" aria-hidden="true"><i data-lucide="{{ m.icon }}"></i></span>
-              <span class="lk-modules__badge">{{ m.badge }}</span>
             </div>
             <h3 class="lk-modules__card-title">{{ m.title }}</h3>
             <p class="lk-modules__card-body">{{ m.body }}</p>
@@ -2577,12 +2693,11 @@
 
   <!-- STATS — resultados com spotlight + count-up -->
   <section id="numeros" class="lk-stats" aria-label="Resultados reais">
-    <img class="lk-stats__orbit lk-stats__orbit--tr" src="../../assets/brand/orbit.svg" alt="" aria-hidden="true">
-    <img class="lk-stats__orbit lk-stats__orbit--bl" src="../../assets/brand/orbit.svg" alt="" aria-hidden="true">
+    <img class="lk-stats__orbit lk-stats__orbit--tr" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
+    <img class="lk-stats__orbit lk-stats__orbit--bl" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <div class="lk-stats__inner">
       <header class="lk-stats__header" data-reveal="">
-        <span class="lk-stats__eyebrow">Resultados reais</span>
-        <h2 class="lk-stats__title">Aprendizado que vira número.</h2>
+        <h2 class="lk-stats__title">Resultados reais: aprendizado que vira número.</h2>
         <p class="lk-stats__sub">Métricas que o RH e a liderança usam para provar impacto — não só engajamento.</p>
       </header>
       <div class="lk-stats__grid">
@@ -2605,7 +2720,7 @@
 
   <!-- FINAL CTA -->
   <section id="contato" style="background:var(--brand); padding:110px 0; position:relative; overflow:hidden;">
-    <img src="../../assets/brand/orbit.svg" alt="" style="position:absolute; bottom:-160px; left:-120px; width:560px; opacity:.16; filter:brightness(0) invert(1); pointer-events:none;">
+    <img src="/assets/brand/orbit.svg" alt="" style="position:absolute; bottom:-160px; left:-120px; width:560px; opacity:.16; filter:brightness(0) invert(1); pointer-events:none;">
     <div style="max-width:900px; margin:0 auto; padding:0 28px; text-align:center; position:relative;">
       <h2 data-reveal="" style="font-family:var(--font-display); font-weight:800; font-size:clamp(36px,5vw,68px); line-height:1.02; letter-spacing:-.03em; color:#fff; margin:0 0 22px; text-wrap:balance;">Comece a ensinar de verdade.</h2>
       <p data-reveal="" style="font-size:19px; line-height:1.55; color:rgba(255,255,255,.9); max-width:520px; margin:0 auto 38px;">Monte sua universidade corporativa. Fale com o time e veja a Lector aplicada ao seu contexto.</p>
@@ -2620,7 +2735,7 @@
     <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
       <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
         <div>
-          <img src="../../assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
+          <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
           <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
         </div>
         <div>
@@ -2629,7 +2744,7 @@
         </div>
         <div>
           <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Empresa</div>
-          <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;"><a href="#">Sobre</a><a href="../blog/index.dc.html">Blog</a><a href="#">Carreiras</a><a href="../contato/index.dc.html">Contato</a></div>
+          <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;"><a href="#">Sobre</a><a href="/pages/blog/index.dc.html">Blog</a><a href="#">Carreiras</a><a href="/pages/contato/index.dc.html">Contato</a></div>
         </div>
         <div>
           <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Receba novidades</div>
@@ -2649,7 +2764,7 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;announcement&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;heroVideoSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;../../assets/media/home/hero.mp4&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;announcement&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;heroVideoSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;/assets/media/home/hero.mp4&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
 class Component extends DCLogic {
   state = { scrolled: false, announceClosed: false };
 
@@ -2684,12 +2799,12 @@ class Component extends DCLogic {
 
   _loadVideo() {
     setTimeout(() => {
-      const heroFallback = '../../assets/media/home/hero.mp4';
+      const heroFallback = '/assets/media/home/hero.mp4';
       const heroSrc = (this.props.heroVideoSrc ?? heroFallback).trim() || heroFallback;
       this._wireLoopVideo(document.querySelector('video[data-hero]'), heroSrc);
       this._wireLoopVideo(
         document.querySelector('video[data-autoria-video]'),
-        '../../assets/media/home/video-autoria.mp4'
+        '/assets/media/home/video-autoria.mp4'
       );
     }, 30);
   }
@@ -3802,7 +3917,7 @@ class Component extends DCLogic {
 
   renderVals() {
     const scrolled = this.state.scrolled;
-    const heroVid = '../../assets/media/home/hero.mp4';
+    const heroVid = '/assets/media/home/hero.mp4';
 
     const headerPillStyle = [
       'width:100%; max-width:1160px', 'display:flex', 'align-items:center', 'justify-content:space-between',
@@ -3825,6 +3940,15 @@ class Component extends DCLogic {
       { icon: 'library', title: 'Gestão de documentos', body: 'Centralize documentos e arquivos da empresa em um só lugar. Busca, versionamento e acesso controlado — organizado e acessível.', badge: 'Nativo' },
     ];
 
+    const heroTools = [
+      { icon: 'graduation-cap', label: 'LMS & Trilhas', href: '#lms' },
+      { icon: 'video', label: 'Webconferência', href: '#webconferencia' },
+      { icon: 'film', label: 'Autoria', href: '#autoria' },
+      { icon: 'sparkles', label: 'IA Lector', href: '#ia' },
+      { icon: 'message-circle', label: 'Rede social', href: '#rede-social' },
+      { icon: 'library', label: 'Gestão de documentos', href: '#plataforma' },
+    ];
+
     const stats = [
       { value: '3×', num: 3, prefix: '', suffix: '×', icon: 'trending-up', label: 'mais conclusão de trilhas vs. LMS tradicional' },
       { value: '48h', num: 48, prefix: '', suffix: 'h', icon: 'clock', label: 'para publicar um curso completo com IA' },
@@ -3833,7 +3957,7 @@ class Component extends DCLogic {
     ];
 
     const clients = ['unimed', 'sicoob', 'ache', 'philips', 'koch', 'sesi-senai', 'microsoft', 'lideranca', 'acats', 'cnmp', 'hospital-sapiranga'];
-    const logos = clients.map((c) => ({ src: '../../assets/clients/' + c + '.png', name: c }));
+    const logos = clients.map((c) => ({ src: '/assets/clients/' + c + '.png', name: c }));
 
     return {
       announceOpen: (this.props.announcement ?? true) && !this.state.announceClosed,
@@ -3843,7 +3967,7 @@ class Component extends DCLogic {
       heroVideoSrc: (this.props.heroVideoSrc ?? heroVid).trim(),
       navLinkStyle,
 
-      modules, stats, logos,
+      modules, stats, logos, heroTools,
     };
   }
 }

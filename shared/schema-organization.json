@@ -1,0 +1,22 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Lector",
+  "alternateName": "a Lector",
+  "url": "https://lector.com.br",
+  "logo": "https://lector.com.br/assets/brand/logo-lector.svg",
+  "description": "Plataforma brasileira de educação corporativa, performance e compliance NR-1 com IA nativa. Une LMS, webconferência própria, autoria com IA, gestão do conhecimento e evidências auditáveis.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Blumenau",
+    "addressRegion": "SC",
+    "addressCountry": "BR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "email": "contato@lector.com.br",
+    "availableLanguage": "Portuguese"
+  },
+  "sameAs": []
+}

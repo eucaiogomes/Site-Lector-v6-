@@ -3,7 +3,15 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/", "destination": "/pages/home/index.dc.html" },
-    { "source": "/home", "destination": "/pages/home/index.dc.html" }
+    { "source": "/home", "destination": "/pages/home/index.dc.html" },
+    { "source": "/blog", "destination": "/pages/blog/index.dc.html" },
+    { "source": "/contato", "destination": "/pages/contato/index.dc.html" },
+    { "source": "/plataforma-lector", "destination": "/pages/plataforma-lector/index.dc.html" },
+    { "source": "/copiloto-vendas", "destination": "/pages/copiloto-vendas/index.dc.html" },
+    { "source": "/solucao-nr-1", "destination": "/pages/solucao-nr-1/index.dc.html" },
+    { "source": "/conteudo-sob-demanda", "destination": "/pages/conteudo-sob-demanda/index.dc.html" },
+    { "source": "/diagnostico-gaps", "destination": "/pages/diagnostico-gaps/index.dc.html" },
+    { "source": "/servicos-especializados", "destination": "/pages/servicos-especializados/index.dc.html" }
   ],
   "headers": [
     {
@@ -16,6 +24,25 @@
       "source": "/assets/media/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" }
       ]
     }
   ]

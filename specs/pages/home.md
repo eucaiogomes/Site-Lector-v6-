@@ -4,9 +4,12 @@
 |-------|--------|
 | **Slug** | `home` |
 | **Status** | `live` |
-| **Código** | `pages/home/index.dc.html` |
-| **Rota pública** | `/` |
-| **Última atualização** | 2026-07-16 |
+| **Código** | `pages/home/index.dc.html` (~3.8k linhas) |
+| **Rota pública** | `/` (rewrite Vercel; arquivo em `pages/home/`) |
+| **Última atualização** | 2026-07-17 |
+| **Lead form** | `shared/lead-form` (CTAs → modal) |
+| **Nav** | Principal; dropdown soluções completo |
+| **Variante de header** | `dark` (glass navy + `.lk-nav-dd`) |
 
 ---
 
@@ -16,33 +19,35 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 
 ## Público
 
-- Gestores de T&D e RH corporativo
-- Decisores que comparam LMS / consolidação de ferramentas
-- Visitantes que chegam por marca Lector / campanha
+- Gestores de T&D e RH corporativo  
+- Decisores que comparam LMS / consolidação de ferramentas  
+- Visitantes que chegam por marca Lector / campanha  
 
 ## Mensagem principal
 
 **Headline:** O poder de aprender *de verdade*.  
 **Sub:** Uma só plataforma para criar, ensinar, engajar e medir. Menos ferramentas soltas, mais gente aprendendo.  
-**Eyebrow:** Plataforma de aprendizado com IA nativa
+**Eyebrow:** Plataforma de aprendizado com IA nativa  
 
 ## Seções (ordem no HTML)
 
 | # | ID | Nome | Notas |
 |---|-----|------|--------|
 | 0 | — | Announcement + header fixos | Marquee diagnóstico + nav dark pill |
-| 1 | `top` | Hero dark | Vídeo `hero.mp4`, CTA “Explore a plataforma” |
+| 1 | `top` | Hero dark | Vídeo `hero.mp4`, CTA “Explore a plataforma”, ícones das ferramentas (LMS, Webconf, Autoria, IA, Rede, Documentos) |
 | 2 | `depoimento` | Depoimentos | Carrossel Microsoft ↔ Philips + marquee de logos |
-| 2b | `ia` | IA Lector | Grafo + copy + 3 capacidades; **só** CTA Agendar demonstração |
-| 3 | `plataforma` | Soluções / plataforma | Statement + showcase |
-| 4 | `autoria` | Ferramenta de autoria | Spotlight; CTA Agendar demonstração |
-| 5 | `lms` | LMS completo | Spotlight flip; imagem `lms.png` |
-| 6 | `rede-social` | Rede social corporativa | Spotlight + `rede-social.png` |
-| 7 | `webconferencia` | Webconferência | Spotlight flip + mock de sala |
-| 8 | — | Módulos bento | 6 módulos |
-| 9 | `numeros` | Resultados | Stats + count-up |
-| 10 | `contato` | CTA final | “Falar com especialista” → lead form |
-| 11 | — | Footer | Logo light + links |
+| 3 | `ia` | IA Lector | Grafo + copy + 3 capacidades; CTA Agendar demonstração |
+| 4 | `plataforma` | Statement soluções | “Por que pagar diversas ferramentas…” |
+| 5 | `autoria` | Autoria (tema no H2; sem badge) | Spotlight; `video-autoria.mp4` |
+| 6 | `lms` | LMS (tema no H2) | Spotlight flip; `lms.png` |
+| 7 | `rede-social` | Rede social (tema no H2) | Spotlight; `rede-social.png` |
+| 8 | `webconferencia` | Webconferência (tema no H2) | Spotlight flip + mock de sala |
+| 9 | — | Módulos bento | 6 módulos; sem eyebrow de seção |
+| 10 | `numeros` | Resultados reais (tema no H2) | Stats + count-up; alvo do nav “Clientes” |
+
+> Sem badges/eyebrows de título de seção — ver `AGENTS.md` e `specs/brand.md`.
+| 11 | `contato` | CTA final | “Falar com especialista” → lead form |
+| 12 | — | Footer | Logo light + links |
 
 > Ao editar, mantenha comentários `<!-- SECTION: … -->` alinhados a esta tabela.
 
@@ -59,14 +64,13 @@ Formulário: `shared/lead-form.js` — ver `specs/components/lead-form.md`.
 
 ## Conteúdo e dados
 
-- Logos clientes: `assets/clients/*.png`
-- Logo header dark: `assets/brand/logo-lector-light.svg`
-- Logo footer: `assets/brand/logo-lector-light.svg`
-- Orbit: `assets/brand/orbit.svg`
-- Hero vídeo: `assets/media/home/hero.mp4`
-- Autoria: `assets/media/home/video-autoria.mp4`
-- LMS / rede: `assets/media/home/lms.png`, `rede-social.png`
-- Nav: sincronizar com `content/site.json`
+- Logos clientes: `assets/clients/*.png`  
+- Logo header/footer dark: `assets/brand/logo-lector-light.svg`  
+- Orbit: `assets/brand/orbit.svg`  
+- Hero: `assets/media/home/hero.mp4`  
+- Autoria: `assets/media/home/video-autoria.mp4`  
+- LMS / rede: `assets/media/home/lms.png`, `rede-social.png`  
+- Nav: sincronizar com `content/site.json` e com as outras páginas  
 
 ## SEO
 
@@ -76,32 +80,49 @@ Formulário: `shared/lead-form.js` — ver `specs/components/lead-form.md`.
 | Meta description | Uma só plataforma para criar, ensinar, engajar e medir capacitação corporativa. |
 | OG image | a definir em `assets/media/home/` |
 
+**Implementação:** home **ainda não** tem `<title>` / `<meta name="description">` no helmet (pendente).
+
 ## Design
 
-- Hero e header: **dark premium** navy
-- Conteúdo: paper / claro
-- Tokens DS; Lucide; sem emoji
-- Product spotlights (`.lk-spotlight`): um CTA por seção (Agendar demonstração)
+- Hero e header: **dark premium** navy  
+- Conteúdo: paper / claro  
+- Tokens DS; Lucide; sem emoji  
+- Product spotlights (`.lk-spotlight`): um CTA por seção  
+- Classes locais: `lk-*`  
 
 ## Estados e interações
 
-- Fechar announcement
-- Header pill no scroll
-- Lead form modal (CTAs)
-- Reveal on scroll (`data-reveal`)
-- Marquee de logos + depoimentos
+- Fechar announcement  
+- Header pill no scroll  
+- Lead form modal (CTAs)  
+- Reveal on scroll (`data-reveal`)  
+- Marquee de logos + depoimentos  
+- Count-up nos stats  
 
 ## Fora de escopo
 
-- App LMS logado
-- Backend de lead (só UI + log)
-- i18n
+- App LMS logado  
+- Backend de lead (só UI + log)  
+- i18n  
+
+
+## GEO / cápsula
+
+| Campo | Valor |
+|-------|--------|
+| Pergunta-alvo | O que é a Lector e o que ela resolve? |
+| Cápsula / sub hero | Uma só plataforma para criar, ensinar, engajar e medir. Menos ferramentas soltas, mais gente aprendendo. (texto longo de GEO fica só em `plataforma-lector`) |
+| Schema | Organization + SoftwareApplication no helmet |
+| HTML estático | Title/meta/schema/cápsula no markup; listagens ainda usam sc-for (JS) |
 
 ## Critérios de aceite
 
-- [x] Paths `../../` para DS e assets
-- [x] Logos clientes em `assets/clients/`
-- [x] CTAs abrem lead form
-- [x] Dropdown soluções com descrições
-- [ ] Meta title/description no helmet
-- [ ] Mobile: header usável (drawer na home)
+- [x] Paths `../../` para DS e assets  
+- [x] Logos clientes em `assets/clients/`  
+- [x] CTAs abrem lead form  
+- [x] Dropdown soluções com 6 itens e descrições  
+- [x] Meta title/description no helmet  
+- [x] Schema Organization + SoftwareApplication  
+- [x] Sem escassez fabricada no announce  
+- [x] Sub do hero próprio (cápsula longa só em plataforma-lector)  
+- [ ] Mobile: header usável (drawer dedicado na home)  

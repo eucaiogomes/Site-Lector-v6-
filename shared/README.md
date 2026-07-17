@@ -20,9 +20,19 @@ Em cada página (helmet):
 <script src="../../shared/lead-form.js" data-base="../.."></script>
 ```
 
-Logo do modal: `assets/brand/logo-lector.svg`.
+- Logo do modal: `assets/brand/logo-lector.svg`  
+- API: `window.__LectorLeadForm.open({ interest: 'demonstracao' })`  
+- Interests: `demonstracao`, `especialista`, `diagnostico`, `conteudo`, `nr1`, `vendas`, `servicos`, `outro`  
 
 Abre em CTAs de conversão, `#contato` / `#cta`, e announcement de diagnóstico.  
-API: `window.__LectorLeadForm.open({ interest: 'demonstracao' })`.
+Backend ainda **não** integrado (sucesso local + log).
 
-Header/footer ainda embutidos por página; extrair aqui quando estabilizar.
+## Ainda não extraído
+
+| Peça | Onde vive hoje |
+|------|----------------|
+| Header dark / light | Duplicado em cada `pages/*/index.dc.html` |
+| Footer | Duplicado (padrão ink-950 + colunas) |
+| Promo bar | Duplicado nas páginas light + home |
+
+Extrair aqui quando estabilizar — ver `specs/components/header.md`.

@@ -6,77 +6,102 @@
 | **Status** | `wip` |
 | **Código** | `pages/conteudo-sob-demanda/index.dc.html` |
 | **Rota pública** | `/conteudo-sob-demanda` |
-| **Última atualização** | 2026-07-16 |
-| **Lead form** | `shared/lead-form` (CTAs → modal) |
-| **Nav** | Nossas Soluções → Criação de Conteúdo sob Demanda |
+| **Última atualização** | 2026-07-17 |
+| **Lead form** | `shared/lead-form` (interest `conteudo`) |
+| **Nav** | Nossas Soluções → Criação de Conteúdo sob Demanda (ativo) |
+| **Variante de header** | `dark` (home / plataforma / NR-1) |
 
 ---
 
 ## Objetivo
 
-Converter gestores de T&D e marketing interno que precisam de cursos, vídeos e materiais com qualidade e prazo — sem montar estúdio nem equipe de autoria completa.
+Converter gestores de T&D e RH que precisam de conteúdo de treinamento sem equipe de produção: pedido → fila real → IA + especialistas → revisão humana → publicação na Universidade Corporativa com identidade da marca.
 
 ## Público
 
-- Gestores de T&D e RH corporativo
-- Lideranças que precisam de conteúdo sob demanda (onboarding, produto, compliance, vendas)
-- Times que já usam ou avaliam a plataforma Lector
+- Gestores de T&D e RH corporativo  
+- Times sem estúdio / autoria interna  
+- Empresas que já usam ou avaliam a plataforma Lector  
 
 ## Mensagem principal
 
-**Headline:** Conteúdo sob demanda. Do briefing à publicação, sem fila infinita.  
-**Sub:** Cursos, vídeos e materiais com qualidade editorial, prazo previsível e entrega pronta para a plataforma Lector.  
-**Descrição (nav):** Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.
+**Headline:** Sua empresa pede o treinamento. A Lector *produz*.  
+**Sub:** Onboarding, compliance, trilha comercial, comunicado de mudança — roteiro, avatar com uniforme da empresa, identidade visual e publicação na Universidade Corporativa.  
+
+## Design
+
+| Elemento | Implementação |
+|----------|----------------|
+| Announce | Marquee laranja |
+| Header | Pill dark glass + `.lk-nav-dd` |
+| Hero | Split: copy + mock `fila_producao.lector` ao vivo |
+| Logos | Marquee clientes |
+| Realidade | Statement + 6 dores |
+| Como funciona | Dark 01–04 + pipeline chips |
+| Catálogo | 6 cards paper |
+| Variedade | Chips de tipos |
+| Porta-voz | Avatar / identidade da marca |
+| Incluso | Checklist |
+| FAQ | Accordion + FAQPage |
+| CTA final | Faixa laranja |
+| Footer | Ink-950 |
+
+**Sem badges de seção / sem emoji** — ícones Lucide.
 
 ## Seções (ordem)
 
-| # | ID | Nome | Notas |
-|---|-----|------|--------|
-| 0 | — | Promo + nav | Padrão claro; item Conteúdo sob Demanda ativo |
-| 1 | `hero` | Hero | Headline, CTAs, mock de produção |
-| 2 | `para-quem` | Para quem | 3 cards de cenários |
-| 3 | `entrega` | O que entregamos | Tipos de conteúdo + escopo |
-| 4 | `como-funciona` | Como funciona | Briefing → produção → publicação |
-| 5 | `cta` | CTA final | Form + contato |
-| 6 | — | Footer | Logo light |
+| # | ID | Nome |
+|---|-----|------|
+| 0 | — | Announce + nav dark |
+| 1 | `hero` | Hero + fila de produção; vídeo loop `assets/media/conteudo-sob-demanda/criacao-de-conteudo.mp4` |
+| 2 | — | Logos |
+| 3 | `realidade` | A realidade de hoje + dores |
+| 4 | `como-funciona` | Você pede · a gente entrega |
+| 5 | `exemplos` | Galeria de conteúdos criados (3 vídeos lado a lado) |
+| 6 | `catalogo` | O que dá pra pedir |
+| 7 | `variedade` | Variedade, não modelo único |
+| 8 | `porta-voz` | Avatar com uniforme da empresa |
+| 9 | `incluso` | O que está incluso |
+| 10 | `faq` | Perguntas frequentes |
+| 11 | `cta` | CTA laranja |
+| 12 | — | Footer |
+
+### Galeria (`#exemplos`)
+
+Layout em grade 3 colunas no desktop (2 no tablet, 1 no mobile). Cada item: vídeo + capa + overlay de play. Ao terminar um vídeo, o próximo da fila inicia automaticamente.
+
+| Item | Vídeo | Capa |
+|------|--------|------|
+| 1 · Demonstração 1 | `assets/media/conteudo-sob-demanda/video-demonstracao-1.mp4` | `video-demonstracao-1-poster.jpg` |
+| 2 · Demonstração 2 | `assets/media/conteudo-sob-demanda/video-demonstracao-2.mp4` | `video-demonstracao-2-poster.jpg` |
+| 3 · Demonstração 3 | `assets/media/conteudo-sob-demanda/video-demonstracao-3.mp4` | `video-demonstracao-3-poster.jpg` |
 
 ## CTAs
 
-| Label | Destino | Tipo |
-|-------|---------|------|
-| Solicitar orçamento | `#cta` | primary |
-| Ver como funciona | `#como-funciona` | secondary |
-| Falar com especialista | `#cta` | primary form |
-
-## Conteúdo e dados
-
-- Copy na própria página (wip; refinável com comercial)
-- Mídia futura: `assets/media/conteudo-sob-demanda/`
+| Label | Destino |
+|-------|---------|
+| Solicitar um conteúdo | Lead form (`conteudo`) |
+| Falar com especialista (nav) | Lead form (`conteudo`) |
 
 ## SEO
 
 | Campo | Valor |
 |-------|--------|
 | Title | Criação de Conteúdo sob Demanda \| Lector |
-| Meta description | Cursos, vídeos e materiais sob demanda com qualidade editorial, prazo previsível e publicação na plataforma Lector. |
+| Meta description | Sua empresa pede o treinamento. A Lector produz: onboarding, compliance, trilha comercial e comunicados — com avatar, identidade da marca e publicação na Universidade Corporativa. |
 
-## Design
+## GEO
 
-- Tema: claro + hero dark navy
-- Tokens DS; Lucide (`clapperboard`); sem emoji
-- Nav light sticky (padrão blog/soluções)
-
-## Fora de escopo
-
-- Portfólio de cases em vídeo
-- Calculadora de preço
-- Integração de briefing real com backend
+| Campo | Valor |
+|-------|--------|
+| Cápsula hero | Não (hero limpo + FAQ estático) |
+| Schema | Organization + SoftwareApplication + FAQPage |
 
 ## Critérios de aceite
 
-- [x] Spec da página existe
-- [x] Link na navbar (Nossas Soluções) em home, blog e páginas de solução
-- [x] Paths `../../` corretos
-- [x] Sitemap + `site.json` atualizados
-- [ ] Copy final validada com comercial
-- [ ] Responsivo mobile
+- [x] Spec + página alinhadas ao copy comercial  
+- [x] Família dark (home / plataforma / NR-1)  
+- [x] Paths `../../` e lead form  
+- [x] Sem badges de seção / sem emoji  
+- [x] FAQ + schema  
+- [ ] Assets finais de avatar/porta-voz  

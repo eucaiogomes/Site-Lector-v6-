@@ -3,26 +3,51 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="../../support.js"></script>
+<script src="/support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
+<!-- GEO: schema Organization (specs/geo.md) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Lector",
+  "alternateName": "a Lector",
+  "url": "https://lector.com.br",
+  "logo": "https://lector.com.br/assets/brand/logo-lector.svg",
+  "description": "Plataforma brasileira de educação corporativa, performance e compliance NR-1 com IA nativa. Une LMS, webconferência própria, autoria com IA, gestão do conhecimento e evidências auditáveis.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Blumenau",
+    "addressRegion": "SC",
+    "addressCountry": "BR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "email": "contato@lector.com.br",
+    "availableLanguage": "Portuguese"
+  }
+}
+</script>
+
 <title>Blog de Educação Corporativa, NR-1 e T&amp;D | Lector</title>
 <meta name="description" content="Artigos sobre LMS, NR-1, treinamento corporativo, IA e performance de equipes. Conteúdo prático da Lector para RH e T&amp;D no Brasil.">
 <meta property="og:title" content="Blog de Educação Corporativa, NR-1 e T&amp;D | Lector">
 <meta property="og:description" content="Artigos sobre LMS, NR-1, treinamento corporativo, IA e performance de equipes. Conteúdo prático da Lector para RH e T&amp;D no Brasil.">
-<link rel="stylesheet" href="../../design-system/tokens/fonts.css">
-<link rel="stylesheet" href="../../design-system/tokens/colors.css">
-<link rel="stylesheet" href="../../design-system/tokens/typography.css">
-<link rel="stylesheet" href="../../design-system/tokens/spacing.css">
-<link rel="stylesheet" href="../../design-system/tokens/effects.css">
-<link rel="stylesheet" href="../../design-system/tokens/base.css">
-<link rel="stylesheet" href="../../design-system/styles.css">
-<link rel="stylesheet" href="../../shared/lead-form.css">
-<script src="../../design-system/_ds_bundle.js"></script>
+<link rel="stylesheet" href="/design-system/tokens/fonts.css">
+<link rel="stylesheet" href="/design-system/tokens/colors.css">
+<link rel="stylesheet" href="/design-system/tokens/typography.css">
+<link rel="stylesheet" href="/design-system/tokens/spacing.css">
+<link rel="stylesheet" href="/design-system/tokens/effects.css">
+<link rel="stylesheet" href="/design-system/tokens/base.css">
+<link rel="stylesheet" href="/design-system/styles.css">
+<link rel="stylesheet" href="/shared/lead-form.css">
+<script src="/design-system/_ds_bundle.js"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="../../shared/lead-form.js" data-base="../.."></script>
+<script src="/shared/lead-form.js" data-base=""></script>
 <style>
   html, body { margin: 0; padding: 0; }
   body {
@@ -556,6 +581,35 @@
     .blog-container { padding: 0 20px; }
   }
 
+
+  /* GEO — cápsula de resposta (specs/geo.md) */
+  .geo-capsule {
+    max-width: 720px;
+    margin: 0 auto 28px;
+    padding: 16px 20px;
+    border-radius: 14px;
+    background: rgba(246, 107, 10, .08);
+    border: 1px solid rgba(246, 107, 10, .22);
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: var(--ink-700, #2A3548);
+    text-align: left;
+  }
+  .geo-capsule--dark {
+    background: rgba(255, 255, 255, .08);
+    border-color: rgba(255, 255, 255, .14);
+    color: rgba(230, 238, 250, .9);
+  }
+  .geo-capsule strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 8px;
+  }
+
 </style>
 </helmet>
 
@@ -563,16 +617,16 @@
 <div style="background:var(--brand);color:#fff;min-height:42px;display:flex;align-items:center;justify-content:center;gap:14px;padding:7px 20px;font-size:13px;font-weight:500;flex-wrap:wrap;">
   <span style="display:inline-flex;align-items:center;gap:8px;text-align:center;">
     <i data-lucide="zap" style="width:14px;height:14px;"></i>
-    Diagnóstico gratuito de maturidade T&amp;D da sua empresa — vagas limitadas este mês
+    Fiscalização NR-1 em vigor desde 26/05/2026 — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação
   </span>
-  <a href="../home/index.dc.html#contato" style="border:1.5px solid rgba(255,255,255,.9);background:transparent;color:#fff;border-radius:22px;padding:5px 15px;font-size:12px;font-weight:700;white-space:nowrap;">Quero meu diagnóstico</a>
+  <a href="/pages/home/index.dc.html#contato" style="border:1.5px solid rgba(255,255,255,.9);background:transparent;color:#fff;border-radius:22px;padding:5px 15px;font-size:12px;font-weight:700;white-space:nowrap;">Quero meu diagnóstico</a>
 </div>
 
 <!-- SECTION: nav (mesma largura da home: max 1160px) -->
 <div class="lec-nav-wrap">
 <nav class="lec-nav" data-blog-nav="">
-  <a href="../home/index.dc.html" class="lec-nav-logo">
-    <img src="../../assets/brand/logo-lector.svg" alt="Lector">
+  <a href="/pages/home/index.dc.html" class="lec-nav-logo">
+    <img src="/assets/brand/logo-lector.svg" alt="Lector">
   </a>
   <div class="lec-nav-links">
     <div class="lec-dd">
@@ -581,42 +635,42 @@
         <span class="lec-dd__chev" aria-hidden="true"><i data-lucide="chevron-down"></i></span>
       </button>
       <div class="lec-dd__menu" role="menu">
-        <a href="../plataforma-lector/index.dc.html" class="lec-dd__item" role="menuitem">
+        <a href="/pages/plataforma-lector/index.dc.html" class="lec-dd__item" role="menuitem">
           <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
           <span class="lec-dd__item-body">
             <span class="lec-dd__item-title">Plataforma Lector</span>
             <span class="lec-dd__item-desc">Centralize LMS, IA, treinamento, trilhas, onboarding, universidade corporativa, lideranças, gestão de talentos, comunicação e gestão do conhecimento em um único ambiente.</span>
           </span>
         </a>
-        <a href="../copiloto-vendas/index.dc.html" class="lec-dd__item" role="menuitem">
+        <a href="/pages/copiloto-vendas/index.dc.html" class="lec-dd__item" role="menuitem">
           <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="bot"></i></span>
           <span class="lec-dd__item-body">
             <span class="lec-dd__item-title">Copiloto de Vendas</span>
             <span class="lec-dd__item-desc">Diagnóstico de técnica de venda com IA, trilhas e certificação para reduzir o ramp-up.</span>
           </span>
         </a>
-        <a href="../solucao-nr-1/index.dc.html" class="lec-dd__item" role="menuitem">
+        <a href="/pages/solucao-nr-1/index.dc.html" class="lec-dd__item" role="menuitem">
           <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
           <span class="lec-dd__item-body">
             <span class="lec-dd__item-title">Solução NR-1</span>
             <span class="lec-dd__item-desc">Automatize treinamentos, registros, evidências e a conformidade com a legislação.</span>
           </span>
         </a>
-        <a href="../conteudo-sob-demanda/index.dc.html" class="lec-dd__item" role="menuitem">
+        <a href="/pages/conteudo-sob-demanda/index.dc.html" class="lec-dd__item" role="menuitem">
           <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
           <span class="lec-dd__item-body">
             <span class="lec-dd__item-title">Criação de Conteúdo sob Demanda</span>
             <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
           </span>
         </a>
-        <a href="../diagnostico-gaps/index.dc.html" class="lec-dd__item" role="menuitem">
+        <a href="/pages/diagnostico-gaps/index.dc.html" class="lec-dd__item" role="menuitem">
           <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="scan-search"></i></span>
           <span class="lec-dd__item-body">
             <span class="lec-dd__item-title">Diagnóstico de Gaps</span>
             <span class="lec-dd__item-desc">Identifique lacunas por habilidade, prove resultado e entregue conhecimento cirúrgico.</span>
           </span>
         </a>
-        <a href="../servicos-especializados/index.dc.html" class="lec-dd__item" role="menuitem">
+        <a href="/pages/servicos-especializados/index.dc.html" class="lec-dd__item" role="menuitem">
           <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="briefcase"></i></span>
           <span class="lec-dd__item-body">
             <span class="lec-dd__item-title">Serviços Especializados</span>
@@ -625,12 +679,13 @@
         </a>
       </div>
     </div>
-    <a href="./index.dc.html" class="is-active">Blog</a>
-    <a href="../home/index.dc.html#numeros">Clientes</a>
-    <a href="../contato/index.dc.html">Contato</a>
+    <a href="/pages/blog/index.dc.html" class="is-active">Blog</a>
+    <a href="/pages/home/index.dc.html#numeros">Clientes</a>
+    <a href="/pages/contato/index.dc.html">Contato</a>
   </div>
   <div class="lec-nav-cta">
-    <a href="../home/index.dc.html#contato" class="lec-nav-cta__solid">Falar com especialista <span class="lec-nav-cta__solid-icon" aria-hidden="true"><i data-lucide="arrow-right"></i></span></a>
+    <a href="https://app.lector.com.br/painel" class="lec-nav-cta__ghost" target="_blank" rel="noopener noreferrer">Sou cliente</a>
+    <a href="/pages/home/index.dc.html#contato" class="lec-nav-cta__solid">Falar com especialista <span class="lec-nav-cta__solid-icon" aria-hidden="true"><i data-lucide="arrow-right"></i></span></a>
   </div>
   <button type="button" class="lec-burger" onClick="{{ openMobile }}" aria-label="Abrir menu">
     <span></span><span></span><span></span>
@@ -641,24 +696,25 @@
 <div class="lec-mnav-overlay {{ mobileOpenClass }}" onClick="{{ closeMobile }}"></div>
 <aside class="lec-mnav {{ mobileOpenClass }}" aria-label="Menu mobile">
   <div class="lec-mnav-head">
-    <img src="../../assets/brand/logo-lector.svg" alt="Lector">
+    <img src="/assets/brand/logo-lector.svg" alt="Lector">
     <button type="button" class="lec-mnav-close" onClick="{{ closeMobile }}" aria-label="Fechar menu">
       <i data-lucide="x" style="width:16px;height:16px;"></i>
     </button>
   </div>
   <div class="lec-mnav-sub">
-    <a href="../plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
-    <a href="../copiloto-vendas/index.dc.html" onClick="{{ closeMobile }}">Copiloto de Vendas</a>
-    <a href="../solucao-nr-1/index.dc.html" onClick="{{ closeMobile }}">Solução NR-1</a>
-    <a href="../conteudo-sob-demanda/index.dc.html" onClick="{{ closeMobile }}">Criação de Conteúdo sob Demanda</a>
-    <a href="../diagnostico-gaps/index.dc.html" onClick="{{ closeMobile }}">Diagnóstico de Gaps</a>
-    <a href="../servicos-especializados/index.dc.html" onClick="{{ closeMobile }}">Serviços Especializados</a>
+    <a href="/pages/plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
+    <a href="/pages/copiloto-vendas/index.dc.html" onClick="{{ closeMobile }}">Copiloto de Vendas</a>
+    <a href="/pages/solucao-nr-1/index.dc.html" onClick="{{ closeMobile }}">Solução NR-1</a>
+    <a href="/pages/conteudo-sob-demanda/index.dc.html" onClick="{{ closeMobile }}">Criação de Conteúdo sob Demanda</a>
+    <a href="/pages/diagnostico-gaps/index.dc.html" onClick="{{ closeMobile }}">Diagnóstico de Gaps</a>
+    <a href="/pages/servicos-especializados/index.dc.html" onClick="{{ closeMobile }}">Serviços Especializados</a>
   </div>
-  <a href="./index.dc.html" class="lec-mnav-link is-active">Blog</a>
-  <a href="../home/index.dc.html#numeros" class="lec-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
-  <a href="../contato/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Contato</a>
+  <a href="/pages/blog/index.dc.html" class="lec-mnav-link is-active">Blog</a>
+  <a href="/pages/home/index.dc.html#numeros" class="lec-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
+  <a href="/pages/contato/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Contato</a>
   <div class="lec-mnav-cta">
-    <a href="../home/index.dc.html#contato" class="lec-nav-cta__solid" style="text-align:center;" onClick="{{ closeMobile }}">Falar com especialista</a>
+    <a href="https://app.lector.com.br/painel" class="lec-nav-cta__ghost" style="text-align:center; justify-content:center;" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>
+    <a href="/pages/home/index.dc.html#contato" class="lec-nav-cta__solid" style="text-align:center;" onClick="{{ closeMobile }}">Falar com especialista</a>
   </div>
 </aside>
 
@@ -666,12 +722,15 @@
 <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
   <section class="blog-hero" id="hero" aria-label="Blog da Lector">
     <div class="blog-container">
-      <div class="blog-eyebrow">
-        <i data-lucide="file-text" style="width:14px;height:14px;"></i>
-        Blog da Lector
-      </div>
-      <h1>Ideias para aprender, crescer e fazer acontecer</h1>
+      <h1>Blog da Lector: ideias para aprender, crescer e fazer acontecer</h1>
       <p>Histórias, guias e ideias sobre carreira, design, dados e tecnologia — escritos por quem ensina na Lector.</p>
+
+<!-- GEO: cápsula de resposta (specs/geo.md) -->
+<p class="geo-capsule" data-geo-capsule="">
+  <strong>Em uma frase</strong>
+  O blog da Lector publica guias e ideias sobre educação corporativa, NR-1, LMS, IA e T&D para RH e lideranças no Brasil.
+</p>
+
     </div>
   </section>
 
@@ -775,7 +834,7 @@
         <p>No fim, lembre-se: o portfólio é um produto. Tem público, tem objetivo e tem a primeira impressão valendo ouro. Trate-o com o mesmo cuidado que você trataria a entrega de um cliente.</p>
       </div>
       <div style="margin:40px 0 20px;padding-top:24px;border-top:1px solid #E7EAF1;display:flex;gap:12px;flex-wrap:wrap;">
-        <a href="../home/index.dc.html#contato" style="background:var(--brand);color:#fff;border-radius:999px;padding:12px 24px;font-weight:700;display:inline-block;">Falar com a Lector</a>
+        <a href="/pages/home/index.dc.html#contato" style="background:var(--brand);color:#fff;border-radius:999px;padding:12px 24px;font-weight:700;display:inline-block;">Falar com a Lector</a>
         <button type="button" onClick="{{ goHome }}" style="background:#fff;border:1px solid #E7EAF1;border-radius:999px;padding:12px 24px;font-weight:700;color:#243653;">Ver mais artigos</button>
       </div>
     </article>
@@ -805,28 +864,28 @@
   <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
     <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
       <div>
-        <img src="../../assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
+        <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
         <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
       </div>
       <div>
         <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Produto</div>
         <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;">
-          <a href="../home/index.dc.html#ia">IA Lector</a>
-          <a href="../home/index.dc.html#plataforma">Plataforma</a>
-          <a href="../home/index.dc.html#autoria">Autoria</a>
-          <a href="../home/index.dc.html#lms">LMS</a>
-          <a href="../home/index.dc.html#rede-social">Rede social</a>
-          <a href="../home/index.dc.html#webconferencia">Webconferência</a>
-          <a href="../home/index.dc.html#numeros">Resultados</a>
+          <a href="/pages/home/index.dc.html#ia">IA Lector</a>
+          <a href="/pages/home/index.dc.html#plataforma">Plataforma</a>
+          <a href="/pages/home/index.dc.html#autoria">Autoria</a>
+          <a href="/pages/home/index.dc.html#lms">LMS</a>
+          <a href="/pages/home/index.dc.html#rede-social">Rede social</a>
+          <a href="/pages/home/index.dc.html#webconferencia">Webconferência</a>
+          <a href="/pages/home/index.dc.html#numeros">Resultados</a>
         </div>
       </div>
       <div>
         <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Empresa</div>
         <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;">
           <a href="#">Sobre</a>
-          <a href="./index.dc.html">Blog</a>
+          <a href="/pages/blog/index.dc.html">Blog</a>
           <a href="#">Carreiras</a>
-          <a href="../contato/index.dc.html">Contato</a>
+          <a href="/pages/contato/index.dc.html">Contato</a>
         </div>
       </div>
       <div>

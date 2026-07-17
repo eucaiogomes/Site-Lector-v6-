@@ -11,15 +11,19 @@
   var script =
     document.currentScript ||
     document.querySelector('script[src*="lead-form.js"]');
-  var base = (script && script.getAttribute('data-base')) || '';
-  if (!base && script) {
+  var baseAttr = script ? script.getAttribute('data-base') : null;
+  var base = baseAttr != null ? String(baseAttr) : '';
+  if (baseAttr == null && script) {
     var src = script.getAttribute('src') || script.src || '';
-    // .../shared/lead-form.js → site root (relative to page)
-    base = src.replace(/\/?shared\/lead-form\.js(?:\?.*)?$/i, '') || '../..';
+    // absolute /shared/lead-form.js → site root; relative …/shared/ → ../..
+    if (src.charAt(0) === '/') {
+      base = '';
+    } else {
+      base = src.replace(/\/?shared\/lead-form\.js(?:\?.*)?$/i, '') || '../..';
+    }
   }
-  if (!base) base = '../..';
   base = base.replace(/\/$/, '');
-  var logoSrc = base + '/assets/brand/logo-lector.svg';
+  var logoSrc = (base ? base + '/' : '/') + 'assets/brand/logo-lector.svg';
 
   var root = null;
   var form = null;
@@ -84,16 +88,16 @@
       '          <input id="lk-lead-email" name="email" type="email" required autocomplete="email" placeholder="voce@empresa.com.br">' +
       '        </div>' +
       '        <div class="lk-lead-field">' +
-      '          <label for="lk-lead-tel">Telefone / WhatsApp</label>' +
+      '          <label for="lk-lead-tel">Telefone / WhatsApp <span style="font-weight:500;text-transform:none;letter-spacing:0;opacity:.7">(opcional)</span></label>' +
       '          <input id="lk-lead-tel" name="telefone" type="tel" autocomplete="tel" placeholder="(00) 00000-0000">' +
       '        </div>' +
       '      </div>' +
       '      <div class="lk-lead-field">' +
       '        <label for="lk-lead-interesse">Interesse</label>' +
       '        <select id="lk-lead-interesse" name="interesse">' +
+      '          <option value="diagnostico">Fazer diagnóstico gratuito</option>' +
       '          <option value="demonstracao">Agendar demonstração</option>' +
       '          <option value="especialista">Falar com especialista</option>' +
-      '          <option value="diagnostico">Diagnóstico de maturidade T&amp;D</option>' +
       '          <option value="conteudo">Criação de conteúdo sob demanda</option>' +
       '          <option value="nr1">Solução NR-1</option>' +
       '          <option value="vendas">Copiloto de Vendas</option>' +
@@ -110,7 +114,7 @@
       '        <i data-lucide="arrow-right"></i>' +
       '      </button>' +
       '      <p class="lk-lead-msg" data-lead-msg hidden></p>' +
-      '      <p class="lk-lead-note">Ao enviar, você concorda em ser contatado pela equipe Lector. Não enviamos spam.</p>' +
+      '      <p class="lk-lead-note">Ao enviar, você concorda em ser contatado pela equipe Lector sobre o interesse informado. Usamos nome, e-mail, telefone e empresa apenas para retorno comercial — sem spam. Política de Privacidade e Termos em publicação.</p>' +
       '    </form>' +
       '    <div class="lk-lead-success" role="status">' +
       '      <div class="lk-lead-success__icon" aria-hidden="true"><i data-lucide="check"></i></div>' +
