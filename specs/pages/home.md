@@ -37,8 +37,7 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 | 1 | `top` | Hero dark | Vídeo `hero.mp4`, CTA “Explore a plataforma”, ícones das ferramentas (LMS, Webconf, Autoria, IA, Rede, Gestão de Talentos, Documentos) |
 | 2 | `depoimento` | Depoimentos | Carrossel Microsoft ↔ Philips + marquee de logos |
 | 3 | `conhecimento` | Conhecimento invisível (trilogia 1/3) | Vídeo scroll-scrub `conhecimento-scroll.mp4` (sticky + avança com a rolagem) |
-| 4 | `diagnostico-home` | Diagnóstico de Gaps (trilogia 2/3) | Vídeo scroll-scrub `diagnostico-scroll.mp4` (sticky + avança com a rolagem) |
-| 5 | `jornada` | Jornada personalizada (trilogia 3/3) | Canvas `journey` — competências + rede org; CTA demo / plataforma |
+| 4 | `diagnostico-home` + `jornada` | Diagnóstico + Jornada (trilogia 2–3) | Duas colunas + **globo 3D** no centro (`lk-story-split`); âncora `#jornada` na coluna direita |
 | 6 | `ia` | IA Lector | Grafo + copy + 3 capacidades; CTA Agendar demonstração |
 | 7 | `plataforma` | Statement soluções | “Por que pagar diversas ferramentas…” |
 | 8 | `autoria` | Autoria (tema no H2; sem badge) | Spotlight; `video-autoria.mp4` |
@@ -59,10 +58,9 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 | Seção | Headline | Visual | Punch |
 |-------|----------|--------|-------|
 | `conhecimento` | O maior ativo da sua empresa é invisível. Até agora. | **Scroll-scrub only** (`.lk-scrub`): `conhecimento-scroll.mp4` (~720p, ~0.6MB) — sem autoplay/loop | O problema nunca foi falta de treinamento… |
-| `diagnostico-home` | Antes de ensinar, nós entendemos sua empresa. | **Scroll-scrub only** (`.lk-scrub--long`): `diagnostico-scroll.mp4` (~720p, ~2MB) — sem autoplay/loop | Antes de desenvolver pessoas… compreender o negócio |
-| `jornada` | Quando cada pessoa aprende exatamente o que precisa… | Canvas `journey` — competências se iluminando → rede + anéis Lector | O verdadeiro resultado não é um certificado… |
+| `diagnostico-home` + `jornada` | Antes de ensinar… / Quando cada pessoa aprende… | Split 3 colunas: copy \| **globo 3D** (`data-story-globe`) \| copy | Compreender o negócio → evolução competência a competência |
 
-Scrubs: sticky 100vh, `currentTime` = progresso do scroll; texto fixo. Canvas na seção 3 pausa off-screen. Respeitam `prefers-reduced-motion`.
+Scrub só em `conhecimento`. Diagnóstico + jornada vivem em `#diagnostico-home` com globo de rede (mesmo motor do depoimentos, tema dark). Respeitam `prefers-reduced-motion`.
 
 > Ao editar, mantenha comentários `<!-- SECTION: … -->` alinhados a esta tabela.
 
@@ -84,7 +82,7 @@ Formulário: `shared/lead-form.js` — ver `specs/components/lead-form.md`.
 - Orbit: `assets/brand/orbit.svg`  
 - Hero: `assets/media/home/hero.mp4`  
 - Scrub sessão 1: `assets/media/home/conhecimento-scroll.mp4` (+ poster)  
-- Scrub sessão 2: `assets/media/home/diagnostico-scroll.mp4` (+ poster)  
+
 - Autoria: `assets/media/home/video-autoria.mp4`  
 - LMS / rede / webconf: `assets/media/home/lms.png`, `rede-social.png`, `webconferencia.png`  
 - Documentos: `assets/media/home/gestao-documentos.mp4`  

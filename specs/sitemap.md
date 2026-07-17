@@ -80,8 +80,8 @@ Descrições canônicas: `content/site.json` → `nav[0].children`.
 | `#top` | Hero |
 | `#depoimento` | Depoimentos (Microsoft / Philips) |
 | `#conhecimento` | Conhecimento invisível (scroll-scrub) |
-| `#diagnostico-home` | Diagnóstico de Gaps na home (scroll-scrub) |
-| `#jornada` | Jornada personalizada (canvas) |
+| `#diagnostico-home` | Diagnóstico + jornada (split com globo 3D) |
+| `#jornada` | Coluna da jornada (dentro de `#diagnostico-home`) |
 | `#ia` | IA Lector |
 | `#plataforma` | Statement “todas num só lugar” + entrada para soluções |
 | `#autoria` | Ferramenta de autoria |
@@ -107,7 +107,7 @@ Descrições canônicas: `content/site.json` → `nav[0].children`.
 
 | Slug | Conteúdo em `assets/media/<slug>/` |
 |------|-------------------------------------|
-| `home` | `hero.mp4`, `video-autoria.mp4`, `gestao-documentos.mp4`, `gestao-talentos.png`, `lms.png`, `rede-social.png`, `webconferencia.png`, `conhecimento-scroll.mp4` (+ poster), `diagnostico-scroll.mp4` (+ poster) |
+| `home` | `hero.mp4`, `video-autoria.mp4`, `gestao-documentos.mp4`, `gestao-talentos.png`, `lms.png`, `rede-social.png`, `webconferencia.png`, `conhecimento-scroll.mp4` (+ poster) |
 | `plataforma-lector` | `mandala-girando.mp4`, `hero-poster.jpg`, `onboarding.png` (também reutiliza mídia da home em spotlights) |
 | `copiloto-vendas` | `hero.jpg`, `antes-reuniao.jpg`, `durante-reuniao.jpg`, `depois-reuniao.jpg`, `gestao.jpg` |
 | `conteudo-sob-demanda` | `criacao-de-conteudo.mp4`, `video-demonstracao-1..4.mp4` + posters |
