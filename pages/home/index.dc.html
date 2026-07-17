@@ -1266,160 +1266,6 @@
     bottom: 28%;
   }
 
-  /* Stage mock — gestão de documentos */
-  .lk-spotlight__stage--docs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 48px 36px;
-    background:
-      radial-gradient(ellipse 65% 55% at 20% 30%, rgba(42, 111, 219, .28) 0%, transparent 52%),
-      radial-gradient(ellipse 50% 45% at 85% 70%, rgba(246, 107, 10, .18) 0%, transparent 50%),
-      linear-gradient(160deg, #042A56 0%, #001A3D 45%, #001026 100%);
-  }
-  .lk-docs-stage {
-    position: relative;
-    width: min(100%, 440px);
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .lk-docs-panel {
-    background: rgba(255, 255, 255, .97);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, .12);
-    box-shadow: 0 28px 60px -24px rgba(0, 8, 24, .55);
-    overflow: hidden;
-  }
-  .lk-docs-panel__head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 16px 18px;
-    border-bottom: 1px solid var(--ink-100, #E7EAF1);
-    background: #fff;
-  }
-  .lk-docs-panel__title {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 15px;
-    color: var(--navy-800);
-    margin: 0;
-    letter-spacing: -.02em;
-  }
-  .lk-docs-panel__badge {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    color: var(--brand);
-    background: rgba(246, 107, 10, .1);
-    border: 1px solid rgba(246, 107, 10, .18);
-    border-radius: 999px;
-    padding: 5px 10px;
-  }
-  .lk-docs-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--ink-50, #F6F7FA);
-  }
-  .lk-docs-row:last-child { border-bottom: none; }
-  .lk-docs-row__icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 11px;
-    flex: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 32, 77, .06);
-    color: var(--navy-800);
-  }
-  .lk-docs-row__icon--brand {
-    background: rgba(246, 107, 10, .12);
-    color: var(--brand);
-  }
-  .lk-docs-row__icon i,
-  .lk-docs-row__icon svg {
-    width: 18px;
-    height: 18px;
-  }
-  .lk-docs-row__body { min-width: 0; flex: 1; }
-  .lk-docs-row__name {
-    font-size: 13.5px;
-    font-weight: 700;
-    color: var(--ink-900, #0F1729);
-    margin: 0 0 3px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .lk-docs-row__meta {
-    font-size: 12px;
-    color: var(--ink-400, #8A94A8);
-    margin: 0;
-  }
-  .lk-docs-row__ver {
-    flex: none;
-    font-size: 11px;
-    font-weight: 700;
-    font-family: var(--font-mono);
-    color: var(--navy-800);
-    background: var(--ink-50, #F6F7FA);
-    border: 1px solid var(--ink-100, #E7EAF1);
-    border-radius: 8px;
-    padding: 5px 8px;
-  }
-  .lk-docs-ai {
-    background: rgba(255, 255, 255, .08);
-    border: 1px solid rgba(255, 255, 255, .14);
-    border-radius: 16px;
-    padding: 16px 18px;
-    color: #fff;
-    box-shadow: 0 18px 40px -22px rgba(0, 8, 24, .5);
-  }
-  .lk-docs-ai__label {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: rgba(255, 210, 160, .95);
-    margin-bottom: 8px;
-  }
-  .lk-docs-ai__label i,
-  .lk-docs-ai__label svg {
-    width: 14px;
-    height: 14px;
-    color: var(--brand);
-  }
-  .lk-docs-ai__title {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 15px;
-    margin: 0 0 10px;
-    letter-spacing: -.02em;
-  }
-  .lk-docs-ai__chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .lk-docs-ai__chips span {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 6px 10px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, .08);
-    border: 1px solid rgba(255, 255, 255, .12);
-    color: rgba(230, 238, 250, .9);
-  }
-
   /* Stage mock — gestão de talentos */
   .lk-spotlight__stage--talent {
     display: flex;
@@ -1863,7 +1709,6 @@
     }
     .lk-spotlight__stage--social,
     .lk-spotlight__stage--webconf,
-    .lk-spotlight__stage--docs,
     .lk-spotlight__stage--talent {
       min-height: 480px;
       padding: 40px 24px 48px;
@@ -3388,7 +3233,7 @@
     </div>
   </section>
 
-  <!-- SECTION: Gestão de documentos — product spotlight (texto | mock) -->
+  <!-- SECTION: Gestão de documentos — product spotlight (texto | vídeo) -->
   <section id="documentos" class="lk-spotlight" aria-label="Gestão de documentos">
     <div class="lk-spotlight__grid">
       <div class="lk-spotlight__copy" data-reveal="">
@@ -3412,60 +3257,17 @@
         </p>
       </div>
 
-      <div class="lk-spotlight__stage lk-spotlight__stage--docs" aria-hidden="true">
-        <div class="lk-docs-stage">
-          <div class="lk-docs-panel">
-            <div class="lk-docs-panel__head">
-              <p class="lk-docs-panel__title">Biblioteca corporativa</p>
-              <span class="lk-docs-panel__badge">Seguro</span>
-            </div>
-            <div class="lk-docs-row">
-              <span class="lk-docs-row__icon lk-docs-row__icon--brand" aria-hidden="true"><i data-lucide="folder"></i></span>
-              <div class="lk-docs-row__body">
-                <p class="lk-docs-row__name">Políticas e compliance</p>
-                <p class="lk-docs-row__meta">24 arquivos · acesso controlado</p>
-              </div>
-              <span class="lk-docs-row__ver">v3</span>
-            </div>
-            <div class="lk-docs-row">
-              <span class="lk-docs-row__icon" aria-hidden="true"><i data-lucide="file-text"></i></span>
-              <div class="lk-docs-row__body">
-                <p class="lk-docs-row__name">Manual de onboarding.pdf</p>
-                <p class="lk-docs-row__meta">Atualizado há 2 dias · RH</p>
-              </div>
-              <span class="lk-docs-row__ver">v12</span>
-            </div>
-            <div class="lk-docs-row">
-              <span class="lk-docs-row__icon" aria-hidden="true"><i data-lucide="file-check-2"></i></span>
-              <div class="lk-docs-row__body">
-                <p class="lk-docs-row__name">Playbook comercial.docx</p>
-                <p class="lk-docs-row__meta">Compartilhado com Vendas</p>
-              </div>
-              <span class="lk-docs-row__ver">v7</span>
-            </div>
-            <div class="lk-docs-row">
-              <span class="lk-docs-row__icon" aria-hidden="true"><i data-lucide="shield"></i></span>
-              <div class="lk-docs-row__body">
-                <p class="lk-docs-row__name">NR-1 · inventário PGR</p>
-                <p class="lk-docs-row__meta">Trilha de auditoria ativa</p>
-              </div>
-              <span class="lk-docs-row__ver">v2</span>
-            </div>
-          </div>
-          <div class="lk-docs-ai">
-            <div class="lk-docs-ai__label">
-              <i data-lucide="sparkles"></i>
-              Reuso com IA
-            </div>
-            <p class="lk-docs-ai__title">Do arquivo à experiência de aprendizado</p>
-            <div class="lk-docs-ai__chips">
-              <span>Treinamentos</span>
-              <span>Trilhas</span>
-              <span>Base de conhecimento</span>
-              <span>Experiências com IA</span>
-            </div>
-          </div>
-        </div>
+      <div class="lk-spotlight__stage" aria-hidden="true">
+        <video
+          class="lk-spotlight__video"
+          data-docs-video=""
+          src="/assets/media/home/gestao-documentos.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        ></video>
       </div>
     </div>
   </section>
@@ -3700,6 +3502,10 @@ class Component extends DCLogic {
       this._wireLoopVideo(
         document.querySelector('video[data-autoria-video]'),
         '/assets/media/home/video-autoria.mp4'
+      );
+      this._wireLoopVideo(
+        document.querySelector('video[data-docs-video]'),
+        '/assets/media/home/gestao-documentos.mp4'
       );
     }, 30);
   }

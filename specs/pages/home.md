@@ -45,7 +45,7 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 | 9 | `lms` | LMS (tema no H2) | Spotlight flip; `lms.png` |
 | 10 | `rede-social` | Rede social (tema no H2) | Spotlight; `rede-social.png` |
 | 11 | `webconferencia` | Webconferência (tema no H2) | Spotlight flip; `webconferencia.png` |
-| 12 | `documentos` | Gestão de documentos (tema no H2) | Spotlight; mock biblioteca + reuso com IA |
+| 12 | `documentos` | Gestão de documentos (tema no H2) | Spotlight; `gestao-documentos.mp4` |
 | 13 | `talentos` | Gestão de talentos (tema no H2) | Spotlight flip; mock competências + PDI |
 | 14 | — | Módulos bento (`#modulos`) | 6 módulos; sem eyebrow de seção |
 | 15 | `numeros` | Resultados reais (tema no H2) | Stats + count-up |
@@ -87,6 +87,8 @@ Formulário: `shared/lead-form.js` — ver `specs/components/lead-form.md`.
 - Scrub sessão 2: `assets/media/home/diagnostico-scroll.mp4` (+ poster)  
 - Autoria: `assets/media/home/video-autoria.mp4`  
 - LMS / rede / webconf: `assets/media/home/lms.png`, `rede-social.png`, `webconferencia.png`  
+- Documentos: `assets/media/home/gestao-documentos.mp4`  
+
 - Nav: sincronizar com `content/site.json` e com as outras páginas  
 
 ## SEO
