@@ -91,8 +91,7 @@ Publicar conteúdo de educação corporativa, carreira e T&D para atrair e nutri
 
 | Campo | Valor |
 |-------|--------|
-| Pergunta-alvo | O que é o blog da Lector? |
-| Cápsula | O blog da Lector publica guias e ideias sobre educação corporativa, NR-1, LMS, IA e T&D para RH e lideranças no Brasil. |
+| Cápsula “Em uma frase” | Removida do hero |
 | Schema | Organization (Article por post quando CMS real) |
 
 ## Critérios de aceite

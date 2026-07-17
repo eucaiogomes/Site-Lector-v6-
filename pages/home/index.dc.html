@@ -68,7 +68,9 @@
 <script src="/shared/lead-form.js" data-base=""></script>
 <style>
   html, body { margin: 0; padding: 0; }
-  body { font-family: var(--font-sans); background: var(--surface-page); color: var(--text-body); -webkit-font-smoothing: antialiased; }
+  /* overflow-x:hidden no wrapper quebra position:sticky — usar clip no root */
+  html { overflow-x: clip; }
+  body { font-family: var(--font-sans); background: var(--surface-page); color: var(--text-body); -webkit-font-smoothing: antialiased; overflow-x: clip; }
   a { color: inherit; text-decoration: none; }
   a:hover { color: var(--brand); }
   * { box-sizing: border-box; }
@@ -1947,6 +1949,275 @@
     }
   }
 
+  /* —— Scroll-scrub video (sessão 1: conhecimento invisível) —— */
+  .lk-scrub {
+    position: relative;
+    height: 240vh;
+    background: var(--ink-950, #001026);
+    color: #fff;
+  }
+  .lk-scrub--long { height: 300vh; }
+  .lk-scrub__pin {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+  .lk-scrub__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: var(--ink-950, #001026);
+    z-index: 0;
+    pointer-events: none;
+    will-change: contents;
+  }
+  .lk-scrub__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(0, 16, 38, .2) 0%, rgba(0, 16, 38, .35) 35%, rgba(0, 10, 26, .88) 100%),
+      linear-gradient(90deg, rgba(0, 16, 38, .78) 0%, rgba(0, 16, 38, .25) 48%, transparent 72%);
+  }
+  .lk-scrub__vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(ellipse 120% 100% at 50% 40%, transparent 48%, rgba(0, 6, 16, .72) 100%);
+  }
+  .lk-scrub__progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 4;
+    background: rgba(255, 255, 255, .08);
+    pointer-events: none;
+  }
+  .lk-scrub__progress-bar {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--brand), #FF9A4A);
+    box-shadow: 0 0 12px rgba(246, 107, 10, .55);
+    will-change: width;
+  }
+  .lk-scrub__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 100px 48px 72px;
+    /* Texto fixo no pin — só o vídeo avança com o scroll */
+    pointer-events: none;
+  }
+  .lk-scrub__content .lk-story__inner {
+    pointer-events: auto;
+  }
+  @media (max-width: 800px) {
+    .lk-scrub { height: 220vh; }
+    .lk-scrub--long { height: 260vh; }
+    .lk-scrub__content { padding: 72px 24px 88px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lk-scrub, .lk-scrub--long { height: auto; min-height: 100vh; }
+    .lk-scrub__pin { position: relative; height: auto; min-height: 100vh; }
+  }
+
+  /* —— Trilogia narrativa: diagnóstico → jornada (canvas) —— */
+  @keyframes lkStoryRise {
+    from { opacity: 0; transform: translateY(28px); filter: blur(6px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .lk-story {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--ink-950, #001026);
+    color: #fff;
+  }
+  .lk-story--diag {
+    background: #000c1c;
+  }
+  .lk-story--journey {
+    background: #001026;
+  }
+  .lk-story__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .lk-story__scrim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(0, 16, 38, .15) 0%, rgba(0, 16, 38, .55) 48%, rgba(0, 10, 26, .92) 100%),
+      linear-gradient(90deg, rgba(0, 16, 38, .72) 0%, rgba(0, 16, 38, .2) 55%, transparent 78%);
+  }
+  .lk-story--diag .lk-story__scrim {
+    background:
+      linear-gradient(180deg, rgba(0, 12, 28, .2) 0%, rgba(0, 12, 28, .5) 42%, rgba(0, 8, 20, .94) 100%),
+      radial-gradient(ellipse 70% 60% at 70% 35%, rgba(246, 107, 10, .08) 0%, transparent 60%);
+  }
+  .lk-story--journey .lk-story__scrim {
+    background:
+      linear-gradient(180deg, rgba(0, 16, 38, .1) 0%, rgba(0, 16, 38, .48) 50%, rgba(0, 10, 26, .95) 100%),
+      linear-gradient(105deg, rgba(0, 16, 38, .78) 0%, rgba(0, 16, 38, .15) 50%, transparent 72%);
+  }
+  .lk-story__vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(ellipse 120% 100% at 50% 40%, transparent 50%, rgba(0, 6, 16, .75) 100%);
+  }
+  .lk-story__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 100px 48px 72px;
+    animation: lkStoryRise .95s cubic-bezier(.16, 1, .3, 1) both;
+  }
+  .lk-story__inner {
+    max-width: 640px;
+  }
+  .lk-story__title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(32px, 4.6vw, 54px);
+    line-height: 1.06;
+    letter-spacing: -.03em;
+    color: #fff;
+    margin: 0 0 22px;
+    text-wrap: balance;
+  }
+  .lk-story__title em {
+    font-style: italic;
+    color: var(--brand);
+  }
+  .lk-story__lead {
+    font-size: 16.5px;
+    line-height: 1.68;
+    color: #A9BCDA;
+    margin: 0 0 22px;
+    max-width: 52ch;
+  }
+  .lk-story__punch {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(17px, 1.7vw, 20px);
+    line-height: 1.4;
+    letter-spacing: -.01em;
+    color: #E8F0FC;
+    margin: 0 0 28px;
+    max-width: 40ch;
+    text-wrap: balance;
+  }
+  .lk-story__punch span {
+    display: block;
+    color: var(--brand);
+  }
+  .lk-story__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .lk-story__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 22px;
+    border-radius: var(--radius-pill);
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14.5px;
+    border: none;
+    cursor: pointer;
+    transition: transform .18s ease, filter .18s ease, background .18s ease;
+  }
+  .lk-story__btn:hover {
+    color: #fff;
+    background: #FF7D22;
+    transform: translateY(-1px);
+  }
+  .lk-story__btn i,
+  .lk-story__btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  .lk-story__btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 20px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(150, 178, 220, .35);
+    color: #DCE7F7;
+    font-weight: 600;
+    font-size: 14.5px;
+    background: transparent;
+    transition: border-color .18s ease, color .18s ease;
+  }
+  .lk-story__btn-ghost:hover {
+    color: #fff;
+    border-color: rgba(200, 220, 255, .65);
+  }
+  @media (max-width: 800px) {
+    .lk-story { min-height: auto; }
+    .lk-story__content { padding: 72px 24px 56px; }
+    .lk-story__canvas { min-height: 380px; position: relative; height: 42vh; }
+    .lk-story {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .lk-story__canvas {
+      position: relative;
+      inset: auto;
+      width: 100%;
+      height: 42vh;
+      min-height: 320px;
+      flex: none;
+    }
+    .lk-story__scrim,
+    .lk-story__vignette {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 42vh;
+      min-height: 320px;
+    }
+    .lk-story__scrim {
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(0, 16, 38, .55) 55%, var(--ink-950) 100%) !important;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lk-story__content { animation: none; }
+  }
+
   /* —— Seção IA Lector (grafo cinematográfico) —— */
   @keyframes lkIaRise {
     from { opacity: 0; transform: translateY(26px); filter: blur(8px); }
@@ -2166,7 +2437,7 @@
 </style>
 </helmet>
 
-<div style="position:relative; overflow-x:hidden; background:var(--surface-page);">
+<div style="position:relative; background:var(--surface-page);">
 
   <!-- FLOATING TOP: full-width announce marquee + header pill -->
   <div style="position:fixed; top:0; left:0; right:0; z-index:60; display:flex; flex-direction:column; align-items:center;">
@@ -2260,7 +2531,7 @@
         <a href="/pages/contato/index.dc.html" style="{{ navLinkStyle }}">Contato</a>
       </nav>
       <div style="display:flex; align-items:center; gap:14px; flex:none;">
-        <a href="https://app.lector.com.br/painel" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.9); font-weight:700; font-size:14.5px; white-space:nowrap;">Sou cliente</a>
+        <a href="https://lector.live" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.9); font-weight:700; font-size:14.5px; white-space:nowrap;">Sou cliente</a>
         <a href="#contato" style="display:inline-flex; align-items:center; gap:12px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); border-radius:var(--radius-pill); padding:6px 6px 6px 20px; color:#fff; font-weight:700; font-size:14.5px;">Falar com especialista <span style="width:32px; height:32px; border-radius:10px; background:var(--brand); display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span></a>
       </div>
     </header>
@@ -2404,6 +2675,89 @@
               <div class="lk-clients-marquee__item" style="background-image:url('{{ l.src }}');"></div>
             </sc-for>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: Conhecimento invisível — vídeo com scrub por scroll (1/3) -->
+  <section id="conhecimento" class="lk-scrub" data-scrub-section="" aria-label="O conhecimento invisível">
+    <div class="lk-scrub__pin">
+      <video
+        class="lk-scrub__video"
+        data-scrub-video=""
+        src="/assets/media/home/conhecimento-scroll.mp4?v=lite3"
+        poster="/assets/media/home/conhecimento-scroll-poster.jpg?v=lite3"
+        muted
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+      ></video>
+      <div class="lk-scrub__scrim" aria-hidden="true"></div>
+      <div class="lk-scrub__vignette" aria-hidden="true"></div>
+      <div class="lk-scrub__progress" aria-hidden="true">
+        <span class="lk-scrub__progress-bar" data-scrub-progress=""></span>
+      </div>
+      <div class="lk-scrub__content">
+        <div class="lk-story__inner">
+          <h2 class="lk-story__title">O maior ativo da sua empresa é invisível. <em>Até agora.</em></h2>
+          <p class="lk-story__lead">Toda empresa depende do conhecimento das pessoas para crescer. Mas quando esse conhecimento não está onde deveria, surgem erros, retrabalho, baixa produtividade e oportunidades perdidas. O problema é que a maioria das empresas só percebe isso quando o resultado já foi comprometido. A Lector torna o conhecimento visível, identifica exatamente onde estão os gaps e transforma essa informação em uma estratégia de desenvolvimento inteligente.</p>
+          <p class="lk-story__punch">O problema nunca foi falta de treinamento. <span>O problema sempre foi não saber onde o conhecimento está faltando.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: Diagnóstico de Gaps — vídeo com scrub por scroll (2/3) -->
+  <section id="diagnostico-home" class="lk-scrub lk-scrub--long" data-scrub-section="" aria-label="Diagnóstico de Gaps de Conhecimento">
+    <div class="lk-scrub__pin">
+      <video
+        class="lk-scrub__video"
+        data-scrub-video=""
+        src="/assets/media/home/diagnostico-scroll.mp4?v=lite3"
+        poster="/assets/media/home/diagnostico-scroll-poster.jpg?v=lite3"
+        muted
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+      ></video>
+      <div class="lk-scrub__scrim" aria-hidden="true"></div>
+      <div class="lk-scrub__vignette" aria-hidden="true"></div>
+      <div class="lk-scrub__progress" aria-hidden="true">
+        <span class="lk-scrub__progress-bar" data-scrub-progress=""></span>
+      </div>
+      <div class="lk-scrub__content">
+        <div class="lk-story__inner">
+          <h2 class="lk-story__title">Antes de ensinar, nós <em>entendemos</em> sua empresa.</h2>
+          <p class="lk-story__lead">A Lector realiza um Diagnóstico de Gaps de Conhecimento completamente contextualizado ao seu negócio. Nossa IA analisa processos, cargos, documentos, normas, objetivos estratégicos e competências essenciais para identificar, colaborador por colaborador, quais conhecimentos impulsionam resultados e quais lacunas ainda limitam sua performance. Não existem avaliações genéricas. Cada diagnóstico reflete a realidade da sua operação.</p>
+          <p class="lk-story__punch">Antes de desenvolver pessoas… <span>precisamos compreender profundamente o negócio.</span></p>
+          <div class="lk-story__actions">
+            <a href="/pages/diagnostico-gaps/index.dc.html" class="lk-story__btn">
+              Conhecer o diagnóstico
+              <i data-lucide="arrow-right"></i>
+            </a>
+            <a href="#contato" class="lk-story__btn-ghost">Falar com especialista</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: Jornada personalizada — trilogia narrativa 3/3 -->
+  <section id="jornada" class="lk-story lk-story--journey" aria-label="Quando o conhecimento encontra a pessoa certa">
+    <canvas class="lk-story__canvas" data-story-canvas="journey" aria-hidden="true"></canvas>
+    <div class="lk-story__scrim" aria-hidden="true"></div>
+    <div class="lk-story__vignette" aria-hidden="true"></div>
+    <div class="lk-story__content">
+      <div class="lk-story__inner" data-reveal="">
+        <h2 class="lk-story__title">Quando cada pessoa aprende exatamente o que precisa, <em>toda a empresa evolui.</em></h2>
+        <p class="lk-story__lead">Depois do diagnóstico, cada colaborador recebe uma jornada personalizada construída para fechar seus próprios gaps de conhecimento. O aprendizado deixa de ser uma obrigação e passa a fazer sentido, porque cada pessoa entende onde pode evoluir e como isso impacta sua carreira. Para a empresa, isso significa equipes mais preparadas, investimentos mais inteligentes e uma cultura de aprendizado que gera resultados reais.</p>
+        <p class="lk-story__punch">O verdadeiro resultado não é um certificado. <span>É uma empresa inteira evoluindo competência por competência.</span></p>
+        <div class="lk-story__actions">
+          <a href="#contato" class="lk-story__btn">
+            Agendar demonstração
+            <i data-lucide="arrow-right"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -2773,6 +3127,7 @@ class Component extends DCLogic {
       const s = window.scrollY > 40;
       if (s !== this.state.scrolled) this.setState({ scrolled: s });
       this._globeOnScroll();
+      this._scrubOnScroll();
     };
     window.addEventListener('scroll', this._onScroll, { passive: true });
 
@@ -2794,6 +3149,8 @@ class Component extends DCLogic {
     this._initGlobe();
     this._initTestimonials();
     this._initStatsCount();
+    this._initScrollScrub();
+    this._initStoryScenes();
     this._initIaGraph();
   }
 
@@ -2880,6 +3237,17 @@ class Component extends DCLogic {
     this._icons(0);
     this._loadVideo();
     this._initStatsCount();
+    // rebind scrub if Design Canvas replaced nodes
+    const videos = Array.from(document.querySelectorAll('[data-scrub-video]'));
+    const wired = (this._scrubs || []).map((s) => s.video);
+    const same =
+      this._scrubReady &&
+      videos.length === wired.length &&
+      videos.every((v, i) => v === wired[i]);
+    if (!same) {
+      this._teardownScrollScrub();
+      this._initScrollScrub();
+    }
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this._onScroll);
@@ -2889,7 +3257,890 @@ class Component extends DCLogic {
     });
     this._teardownGlobe();
     this._teardownTestimonials();
+    this._teardownScrollScrub();
+    this._teardownStoryScenes();
     this._teardownIaGraph();
+  }
+
+  /* —— Scroll-scrub videos (leve + idle play + robusto) —— */
+  _initScrollScrub() {
+    const sections = Array.from(document.querySelectorAll('[data-scrub-section]'));
+    if (!sections.length) return;
+
+    if (this._scrubReady && this._scrubs && this._scrubs.length === sections.length) {
+      const same = this._scrubs.every((s, i) => {
+        const v = sections[i] && sections[i].querySelector('[data-scrub-video]');
+        return s.wired && s.section === sections[i] && s.video === v;
+      });
+      if (same) return;
+    }
+    this._teardownScrollScrub();
+
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const clamp01 = (v) => Math.min(1, Math.max(0, v));
+    this._scrubs = [];
+
+    // Shared scroll handler (1 listener for all sections)
+    this._scrubSharedScroll = () => {
+      (this._scrubs || []).forEach((s) => { if (s.onUserScroll) s.onUserScroll(); });
+    };
+    window.addEventListener('scroll', this._scrubSharedScroll, { passive: true });
+    window.addEventListener('resize', this._scrubSharedScroll, { passive: true });
+
+    sections.forEach((section) => {
+      const video = section.querySelector('[data-scrub-video]');
+      if (!video) return;
+      const progressEl = section.querySelector('[data-scrub-progress]');
+
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.loop = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+      video.setAttribute('loop', '');
+      // Near sections load fully; far ones wait for IO
+      video.preload = 'metadata';
+      video.removeAttribute('autoplay');
+      video.controls = false;
+      try { video.pause(); } catch (_) {}
+
+      const scrub = {
+        section,
+        video,
+        progressEl,
+        reduce,
+        duration: 0,
+        ready: false,
+        wired: true,
+        seeking: false,
+        targetT: 0,
+        lastApplied: -1,
+        mode: 'idle', // 'scrub' | 'play' | 'idle'
+        visible: false,
+        idleTimer: 0,
+        recoverTimer: 0,
+        onMeta: null,
+        onUserScroll: null,
+        onEnded: null,
+        onError: null,
+        io: null,
+      };
+
+      const getProgress = () => {
+        const rect = section.getBoundingClientRect();
+        const total = Math.max(1, section.offsetHeight - window.innerHeight);
+        return clamp01((-rect.top) / total);
+      };
+
+      const durationOf = () => {
+        const d = scrub.duration || video.duration || 0;
+        return d > 0 && isFinite(d) ? d : 0;
+      };
+
+      const applySeek = (force) => {
+        if (!scrub.ready || scrub.reduce) return;
+        const d = durationOf();
+        if (!d) return;
+        const t = Math.min(d * 0.999, Math.max(0, scrub.targetT));
+        // Skip tiny deltas unless forced (saves decode thrash)
+        if (!force && Math.abs(t - scrub.lastApplied) < 1 / 30) return;
+        if (scrub.seeking) {
+          scrub.pendingSeek = t;
+          return;
+        }
+        scrub.seeking = true;
+        scrub.lastApplied = t;
+        scrub.pendingSeek = null;
+        const finish = () => {
+          scrub.seeking = false;
+          video.removeEventListener('seeked', finish);
+          if (scrub.pendingSeek != null && Math.abs(scrub.pendingSeek - video.currentTime) > 1 / 30) {
+            scrub.targetT = scrub.pendingSeek;
+            scrub.pendingSeek = null;
+            applySeek(true);
+          }
+        };
+        video.addEventListener('seeked', finish);
+        try {
+          video.currentTime = t;
+        } catch (_) {
+          scrub.seeking = false;
+        }
+        // Safety unlock if seeked never fires
+        clearTimeout(scrub.seekTimeout);
+        scrub.seekTimeout = setTimeout(() => {
+          if (scrub.seeking) {
+            scrub.seeking = false;
+            video.removeEventListener('seeked', finish);
+          }
+        }, 180);
+      };
+
+      const enterPlay = () => {
+        if (!scrub.wired || scrub.reduce || !scrub.visible || !scrub.ready) return;
+        scrub.mode = 'play';
+        video.loop = true;
+        // Keep animation alive while user rests on the section
+        const p = video.play();
+        if (p && typeof p.then === 'function') p.catch(() => {});
+      };
+
+      const enterScrub = () => {
+        if (!scrub.wired || scrub.reduce || !scrub.ready) return;
+        scrub.mode = 'scrub';
+        try { video.pause(); } catch (_) {}
+        const d = durationOf();
+        scrub.targetT = getProgress() * d;
+        applySeek(true);
+        if (progressEl) progressEl.style.width = `${(getProgress() * 100).toFixed(2)}%`;
+      };
+
+      const scheduleIdlePlay = () => {
+        clearTimeout(scrub.idleTimer);
+        if (!scrub.visible || scrub.reduce) return;
+        // After user stops scrolling, keep the clip gently looping
+        scrub.idleTimer = setTimeout(() => {
+          if (!scrub.wired || !scrub.visible) return;
+          enterPlay();
+        }, 420);
+      };
+
+      scrub.onUserScroll = () => {
+        if (scrub.reduce || !scrub.ready) return;
+        // Only scrub while the pin is meaningfully on screen
+        const rect = section.getBoundingClientRect();
+        const near = rect.bottom > 0 && rect.top < (window.innerHeight || 1);
+        scrub.visible = near;
+        if (!near) {
+          try { video.pause(); } catch (_) {}
+          scrub.mode = 'idle';
+          clearTimeout(scrub.idleTimer);
+          return;
+        }
+        enterScrub();
+        scheduleIdlePlay();
+      };
+
+      scrub.onMeta = () => {
+        const d = video.duration;
+        if (!d || !isFinite(d) || d <= 0) return;
+        scrub.duration = d;
+        scrub.ready = true;
+        if (scrub.reduce) {
+          try { video.currentTime = 0; } catch (_) {}
+          if (progressEl) progressEl.style.width = '100%';
+          return;
+        }
+        try { video.currentTime = 0; } catch (_) {}
+        // If already in view, start animated
+        const rect = section.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < (window.innerHeight || 1)) {
+          scrub.visible = true;
+          enterPlay();
+        }
+      };
+
+      scrub.onEnded = () => {
+        // loop attribute should handle this; force restart if browser drops it after long sessions
+        if (!scrub.wired || !scrub.visible || scrub.mode !== 'play') return;
+        try {
+          video.currentTime = 0;
+          const p = video.play();
+          if (p && typeof p.then === 'function') p.catch(() => {});
+        } catch (_) {}
+      };
+
+      scrub.onError = () => {
+        // Recover from decode glitches after long idle
+        if (!scrub.wired) return;
+        clearTimeout(scrub.recoverTimer);
+        scrub.recoverTimer = setTimeout(() => {
+          if (!scrub.wired) return;
+          try {
+            const src = video.currentSrc || video.src;
+            const t = video.currentTime || 0;
+            video.load();
+            const resume = () => {
+              video.removeEventListener('loadeddata', resume);
+              scrub.ready = true;
+              scrub.duration = video.duration || scrub.duration;
+              try { video.currentTime = Math.min(t, (video.duration || t) * 0.99); } catch (_) {}
+              if (scrub.visible && !scrub.reduce) enterPlay();
+            };
+            video.addEventListener('loadeddata', resume);
+            if (src && !video.getAttribute('src')) video.src = src;
+          } catch (_) {}
+        }, 250);
+      };
+
+      if (video.readyState >= 1 && video.duration && isFinite(video.duration)) scrub.onMeta();
+      else {
+        video.addEventListener('loadedmetadata', scrub.onMeta);
+        video.addEventListener('durationchange', scrub.onMeta);
+      }
+      video.addEventListener('ended', scrub.onEnded);
+      video.addEventListener('error', scrub.onError);
+      // If browser pauses for power saving, resume when visible
+      video.addEventListener('pause', () => {
+        if (!scrub.wired || scrub.mode !== 'play' || !scrub.visible || scrub.reduce) return;
+        // Ignore intentional pause during scrub
+        if (scrub.mode === 'scrub') return;
+        clearTimeout(scrub.recoverTimer);
+        scrub.recoverTimer = setTimeout(() => {
+          if (scrub.mode === 'play' && scrub.visible) {
+            const p = video.play();
+            if (p && typeof p.then === 'function') p.catch(() => {});
+          }
+        }, 80);
+      });
+
+      if ('IntersectionObserver' in window) {
+        scrub.io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            scrub.visible = e.isIntersecting;
+            if (e.isIntersecting) {
+              if (video.preload !== 'auto') {
+                video.preload = 'auto';
+                try { video.load(); } catch (_) {}
+              }
+              if (scrub.ready && !scrub.reduce) {
+                // Prefer play when entering; scroll handler will scrub if moving
+                enterPlay();
+              }
+            } else {
+              clearTimeout(scrub.idleTimer);
+              scrub.mode = 'idle';
+              try { video.pause(); } catch (_) {}
+            }
+          });
+        }, { rootMargin: '20% 0px', threshold: 0.01 });
+        scrub.io.observe(section);
+      } else {
+        video.preload = 'auto';
+        try { video.load(); } catch (_) {}
+      }
+
+      // Unlock element once for Safari
+      const unlock = () => {
+        const p = video.play();
+        if (p && typeof p.then === 'function') {
+          p.then(() => {
+            if (scrub.mode !== 'play') {
+              try { video.pause(); } catch (_) {}
+            }
+          }).catch(() => {});
+        }
+      };
+      video.addEventListener('loadeddata', unlock, { once: true });
+
+      this._scrubs.push(scrub);
+    });
+
+    this._scrubReady = this._scrubs.length > 0;
+    // Initial pass
+    if (this._scrubSharedScroll) this._scrubSharedScroll();
+  }
+
+  _teardownScrollScrub() {
+    const list = this._scrubs || [];
+    list.forEach((s) => {
+      s.wired = false;
+      clearTimeout(s.idleTimer);
+      clearTimeout(s.recoverTimer);
+      clearTimeout(s.seekTimeout);
+      if (s.io) s.io.disconnect();
+      if (s.video) {
+        try { s.video.pause(); } catch (_) {}
+        if (s.onMeta) {
+          s.video.removeEventListener('loadedmetadata', s.onMeta);
+          s.video.removeEventListener('durationchange', s.onMeta);
+        }
+        if (s.onEnded) s.video.removeEventListener('ended', s.onEnded);
+        if (s.onError) s.video.removeEventListener('error', s.onError);
+      }
+    });
+    if (this._scrubSharedScroll) {
+      window.removeEventListener('scroll', this._scrubSharedScroll);
+      window.removeEventListener('resize', this._scrubSharedScroll);
+      this._scrubSharedScroll = null;
+    }
+    this._scrubs = [];
+    this._scrubReady = false;
+  }
+
+  _scrubOnScroll() {
+    if (this._scrubSharedScroll) this._scrubSharedScroll();
+  }
+
+  /* —— Trilogia narrativa (canvas: diag / journey) —— */
+  _initStoryScenes() {
+    if (this._storyReady) return;
+    const canvases = Array.from(document.querySelectorAll('canvas[data-story-canvas]'));
+    if (!canvases.length) return;
+    this._storyReady = true;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._storyScenes = [];
+
+    canvases.forEach((cv) => {
+      const kind = cv.getAttribute('data-story-canvas') || 'network';
+      const section = cv.closest('.lk-story') || cv.parentElement;
+      const ctx = cv.getContext('2d');
+      if (!ctx || !section) return;
+
+      const scene = {
+        cv, ctx, section, kind, reduce,
+        w: 0, h: 0, dpr: 1,
+        raf: 0, running: false, visible: false,
+        t0: performance.now(),
+        nodes: [], links: [], particles: [],
+        books: [], skills: [], people: [],
+      };
+
+      if (kind === 'network') this._storySeedNetwork(scene);
+      else if (kind === 'diag') this._storySeedDiag(scene);
+      else this._storySeedJourney(scene);
+
+      const resize = () => this._storyResize(scene);
+      resize();
+      scene.ro = new ResizeObserver(resize);
+      scene.ro.observe(cv);
+
+      if ('IntersectionObserver' in window) {
+        scene.io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            scene.visible = e.isIntersecting;
+            if (e.isIntersecting && !scene.running) this._storyStart(scene);
+          });
+        }, { threshold: 0.08, rootMargin: '40px 0px' });
+        scene.io.observe(section);
+      } else {
+        scene.visible = true;
+        this._storyStart(scene);
+      }
+
+      this._storyScenes.push(scene);
+    });
+  }
+
+  _teardownStoryScenes() {
+    if (!this._storyScenes) return;
+    this._storyScenes.forEach((s) => {
+      s.running = false;
+      if (s.raf) cancelAnimationFrame(s.raf);
+      if (s.ro) s.ro.disconnect();
+      if (s.io) s.io.disconnect();
+    });
+    this._storyScenes = null;
+    this._storyReady = false;
+  }
+
+  _storyResize(scene) {
+    const r = scene.cv.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    scene.w = Math.max(1, r.width);
+    scene.h = Math.max(1, r.height);
+    scene.dpr = dpr;
+    scene.cv.width = Math.round(scene.w * dpr);
+    scene.cv.height = Math.round(scene.h * dpr);
+    scene.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (scene.kind === 'network') this._storySeedNetwork(scene);
+    else if (scene.kind === 'diag') this._storySeedDiag(scene);
+    else this._storySeedJourney(scene);
+  }
+
+  _storyStart(scene) {
+    if (scene.running) return;
+    scene.running = true;
+    scene.t0 = performance.now();
+    const tick = (now) => {
+      if (!scene.running) return;
+      if (scene.visible) {
+        const t = (now - scene.t0) / 1000;
+        if (scene.kind === 'network') this._storyDrawNetwork(scene, t);
+        else if (scene.kind === 'diag') this._storyDrawDiag(scene, t);
+        else this._storyDrawJourney(scene, t);
+      }
+      scene.raf = requestAnimationFrame(tick);
+    };
+    scene.raf = requestAnimationFrame(tick);
+  }
+
+  _storySeedNetwork(scene) {
+    const { w, h } = scene;
+    if (w < 2 || h < 2) return;
+    const cols = Math.max(8, Math.floor(w / 72));
+    const rows = Math.max(5, Math.floor(h / 90));
+    const padX = w * 0.08;
+    const padY = h * 0.1;
+    const spanX = w - padX * 2;
+    const spanY = h - padY * 2;
+    const nodes = [];
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const jx = (Math.sin(r * 12.3 + c * 7.1) * 0.5 + 0.5) * 14 - 7;
+        const jy = (Math.cos(r * 9.7 + c * 5.3) * 0.5 + 0.5) * 12 - 6;
+        const bright = ((r * 3 + c * 5) % 7) !== 0;
+        const fail = ((r + c * 2) % 11) === 0;
+        nodes.push({
+          x: padX + (c / Math.max(1, cols - 1)) * spanX + jx,
+          y: padY + (r / Math.max(1, rows - 1)) * spanY + jy,
+          base: bright ? 0.55 + ((c + r) % 5) * 0.08 : 0.12 + ((c * r) % 3) * 0.04,
+          fail,
+          phase: (c * 0.7 + r * 1.1) % (Math.PI * 2),
+          r: bright ? 3.2 + ((c + r) % 3) * 0.4 : 2.2,
+        });
+      }
+    }
+    const links = [];
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        const d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < Math.min(w, h) * 0.14 && ((i + j) % 3 !== 0)) {
+          links.push({ a, b, w: d });
+        }
+      }
+    }
+    scene.nodes = nodes;
+    scene.links = links.slice(0, Math.min(links.length, nodes.length * 2.2));
+  }
+
+  _storyDrawNetwork(scene, t) {
+    const { ctx, w, h, nodes, links, reduce } = scene;
+    ctx.clearRect(0, 0, w, h);
+    // subtle floor grid
+    const camX = reduce ? 0 : Math.sin(t * 0.12) * 18;
+    const camY = reduce ? 0 : Math.cos(t * 0.09) * 10;
+    ctx.save();
+    ctx.translate(camX, camY);
+
+    const g = ctx.createRadialGradient(w * 0.55, h * 0.4, 0, w * 0.55, h * 0.4, Math.max(w, h) * 0.7);
+    g.addColorStop(0, 'rgba(0, 42, 96, 0.45)');
+    g.addColorStop(0.55, 'rgba(0, 20, 48, 0.2)');
+    g.addColorStop(1, 'rgba(0, 16, 38, 0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(-40, -40, w + 80, h + 80);
+
+    // connections grow over time
+    const connect = reduce ? 1 : Math.min(1, Math.max(0, (t - 1.2) / 4.5));
+    for (const L of links) {
+      const a = L.a, b = L.b;
+      const mid = (a.base + b.base) * 0.5;
+      const alpha = 0.04 + mid * 0.18 * connect;
+      if (alpha < 0.03) continue;
+      ctx.strokeStyle = `rgba(120, 165, 230, ${alpha})`;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.stroke();
+      // pulse packets
+      if (!reduce && connect > 0.3 && (a.phase + b.phase) % 1 < 0.35) {
+        const u = ((t * 0.18 + a.phase) % 1);
+        const px = a.x + (b.x - a.x) * u;
+        const py = a.y + (b.y - a.y) * u;
+        ctx.fillStyle = `rgba(246, 107, 10, ${0.35 * connect})`;
+        ctx.beginPath();
+        ctx.arc(px, py, 1.6, 0, 7);
+        ctx.fill();
+      }
+    }
+
+    for (const n of nodes) {
+      let glow = n.base;
+      if (n.fail) {
+        // flickering fail lights — the problem
+        const flicker = reduce ? 0.08 : (0.08 + 0.55 * Math.abs(Math.sin(t * 3.2 + n.phase)));
+        glow = flicker * (0.35 + 0.2 * Math.sin(t * 0.7 + n.phase));
+      } else if (!reduce) {
+        glow = n.base * (0.85 + 0.15 * Math.sin(t * 1.4 + n.phase));
+      }
+      const isHot = glow > 0.4;
+      const r = n.r * (isHot ? 1.15 : 1);
+      if (isHot) {
+        const rg = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 7);
+        rg.addColorStop(0, `rgba(246, 107, 10, ${0.45 * glow})`);
+        rg.addColorStop(0.4, `rgba(246, 107, 10, ${0.12 * glow})`);
+        rg.addColorStop(1, 'rgba(246, 107, 10, 0)');
+        ctx.fillStyle = rg;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r * 7, 0, 7);
+        ctx.fill();
+      }
+      ctx.fillStyle = isHot
+        ? `rgba(255, 190, 120, ${0.55 + glow * 0.45})`
+        : `rgba(120, 145, 180, ${0.25 + glow})`;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, r, 0, 7);
+      ctx.fill();
+      if (isHot) {
+        ctx.fillStyle = `rgba(255, 245, 230, ${0.7 + glow * 0.3})`;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r * 0.35, 0, 7);
+        ctx.fill();
+      }
+    }
+    ctx.restore();
+  }
+
+  _storySeedDiag(scene) {
+    const { w, h } = scene;
+    if (w < 2 || h < 2) return;
+    const labels = ['Processos', 'Políticas', 'Indicadores', 'Cargos', 'Cultura', 'Procedimentos'];
+    const books = labels.map((label, i) => {
+      const ang = -Math.PI * 0.75 + (i / (labels.length - 1)) * Math.PI * 1.5;
+      const R = Math.min(w, h) * 0.32;
+      return {
+        label,
+        ox: w * 0.62 + Math.cos(ang) * R,
+        oy: h * 0.42 + Math.sin(ang) * R * 0.72,
+        ang,
+        phase: i * 0.9,
+        w: 36 + (i % 3) * 6,
+        h: 48 + (i % 2) * 8,
+      };
+    });
+    const skills = ['Comunicação', 'Negociação', 'Compliance', 'Liderança', 'Feedback'];
+    const particles = [];
+    for (let i = 0; i < 90; i++) {
+      const b = books[i % books.length];
+      particles.push({
+        bx: b.ox, by: b.oy,
+        delay: (i % 12) * 0.12 + Math.floor(i / 12) * 0.35,
+        phase: Math.random() * Math.PI * 2,
+        r: 1.2 + Math.random() * 1.6,
+      });
+    }
+    scene.books = books;
+    scene.skills = skills;
+    scene.particles = particles;
+    scene.core = { x: w * 0.62, y: h * 0.42 };
+  }
+
+  _storyDrawDiag(scene, t) {
+    const { ctx, w, h, books, skills, particles, core, reduce } = scene;
+    ctx.clearRect(0, 0, w, h);
+    if (!core) return;
+
+    const g = ctx.createRadialGradient(core.x, core.y, 0, core.x, core.y, Math.max(w, h) * 0.55);
+    g.addColorStop(0, 'rgba(246, 107, 10, 0.12)');
+    g.addColorStop(0.35, 'rgba(0, 40, 90, 0.35)');
+    g.addColorStop(1, 'rgba(0, 16, 38, 0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+
+    // books orbit slowly then dissolve into particles
+    const dissolve = reduce ? 0.6 : Math.min(1, Math.max(0, (t - 0.8) / 3.5));
+    for (const b of books) {
+      const float = reduce ? 0 : Math.sin(t * 0.9 + b.phase) * 6;
+      const alpha = 1 - dissolve * 0.85;
+      if (alpha < 0.05) continue;
+      ctx.save();
+      ctx.translate(b.ox, b.oy + float);
+      ctx.rotate(Math.sin(t * 0.3 + b.phase) * 0.08);
+      ctx.globalAlpha = alpha;
+      // book spine
+      const bw = b.w, bh = b.h;
+      ctx.fillStyle = 'rgba(30, 55, 95, 0.9)';
+      ctx.fillRect(-bw / 2, -bh / 2, bw, bh);
+      ctx.fillStyle = 'rgba(246, 107, 10, 0.85)';
+      ctx.fillRect(-bw / 2, -bh / 2, 5, bh);
+      ctx.fillStyle = 'rgba(180, 205, 240, 0.25)';
+      for (let k = 0; k < 4; k++) {
+        ctx.fillRect(-bw / 2 + 10, -bh / 2 + 10 + k * 9, bw - 16, 2);
+      }
+      ctx.font = '600 10px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = 'rgba(200, 220, 245, 0.85)';
+      ctx.textAlign = 'center';
+      ctx.fillText(b.label, 0, bh / 2 + 16);
+      ctx.restore();
+    }
+
+    // particles flow to core
+    for (const p of particles) {
+      const local = Math.max(0, t - p.delay - 0.5);
+      const u = reduce ? 0.85 : Math.min(1, local / 2.8);
+      if (u <= 0) continue;
+      const ease = 1 - Math.pow(1 - u, 2.4);
+      const sway = Math.sin(t * 2 + p.phase) * 12 * (1 - ease);
+      const x = p.bx + (core.x - p.bx) * ease + sway;
+      const y = p.by + (core.y - p.by) * ease + Math.cos(t + p.phase) * 8 * (1 - ease);
+      const a = 0.25 + 0.75 * (1 - Math.abs(ease - 0.5) * 0.6);
+      ctx.fillStyle = `rgba(255, 180, 100, ${a * (0.4 + dissolve)})`;
+      ctx.beginPath();
+      ctx.arc(x, y, p.r * (0.7 + ease * 0.5), 0, 7);
+      ctx.fill();
+    }
+
+    // luminous sphere
+    const pulse = reduce ? 1 : 1 + Math.sin(t * 1.5) * 0.06;
+    const R = Math.min(w, h) * 0.09 * pulse * (0.7 + dissolve * 0.5);
+    const sg = ctx.createRadialGradient(core.x, core.y, 0, core.x, core.y, R * 2.4);
+    sg.addColorStop(0, 'rgba(255, 210, 160, 0.95)');
+    sg.addColorStop(0.25, 'rgba(246, 107, 10, 0.75)');
+    sg.addColorStop(0.55, 'rgba(80, 140, 220, 0.25)');
+    sg.addColorStop(1, 'rgba(0, 40, 90, 0)');
+    ctx.fillStyle = sg;
+    ctx.beginPath();
+    ctx.arc(core.x, core.y, R * 2.4, 0, 7);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(255, 245, 230, 0.95)';
+    ctx.beginPath();
+    ctx.arc(core.x, core.y, R * 0.35, 0, 7);
+    ctx.fill();
+
+    // connection rings
+    const ringN = 8;
+    for (let i = 0; i < ringN; i++) {
+      const ang = (i / ringN) * Math.PI * 2 + t * 0.25;
+      const rr = R * 1.8;
+      const x = core.x + Math.cos(ang) * rr;
+      const y = core.y + Math.sin(ang) * rr * 0.55;
+      ctx.strokeStyle = `rgba(150, 190, 245, ${0.15 + dissolve * 0.25})`;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(core.x, core.y);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      ctx.fillStyle = `rgba(200, 220, 255, ${0.4 + dissolve * 0.4})`;
+      ctx.beginPath();
+      ctx.arc(x, y, 2.2, 0, 7);
+      ctx.fill();
+    }
+
+    // skill labels appear after sphere forms
+    const skillReveal = reduce ? 1 : Math.min(1, Math.max(0, (t - 3.2) / 2));
+    if (skillReveal > 0.05) {
+      skills.forEach((label, i) => {
+        const ang = -Math.PI * 0.55 + (i / (skills.length - 1)) * Math.PI * 1.1;
+        const dist = R * 3.2;
+        const x = core.x + Math.cos(ang) * dist;
+        const y = core.y + Math.sin(ang) * dist * 0.7;
+        ctx.globalAlpha = skillReveal;
+        ctx.font = '600 11px "Plus Jakarta Sans", sans-serif';
+        ctx.fillStyle = 'rgba(210, 225, 250, 0.9)';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, x, y);
+        ctx.fillStyle = 'rgba(246, 107, 10, 0.9)';
+        ctx.beginPath();
+        ctx.arc(x, y - 14, 2.5, 0, 7);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
+    }
+  }
+
+  _storySeedJourney(scene) {
+    const { w, h } = scene;
+    if (w < 2 || h < 2) return;
+    const skills = ['Comunicação', 'Liderança', 'Visão Estratégica', 'Feedback', 'Negociação'];
+    // hero person center-right
+    const cx = w * 0.58;
+    const cy = h * 0.42;
+    const skillNodes = skills.map((label, i) => {
+      const ang = -Math.PI * 0.85 + (i / (skills.length - 1)) * Math.PI * 1.7;
+      const R = Math.min(w, h) * 0.22;
+      const known = i === 0 || i === 2; // some already lit
+      return {
+        label, ang, R,
+        x: cx + Math.cos(ang) * R,
+        y: cy + Math.sin(ang) * R * 0.85,
+        known,
+        fill: known ? 1 : 0,
+      };
+    });
+    // org people for zoom-out
+    const people = [];
+    const cols = 6, rows = 3;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        people.push({
+          x: w * 0.12 + (c / (cols - 1)) * w * 0.76,
+          y: h * 0.28 + (r / Math.max(1, rows - 1)) * h * 0.38,
+          phase: (c + r * 3) * 0.8,
+          delay: 0.2 * (c + r),
+        });
+      }
+    }
+    scene.skills = skillNodes;
+    scene.people = people;
+    scene.core = { x: cx, y: cy };
+    scene.particles = [];
+    for (let i = 0; i < 40; i++) {
+      scene.particles.push({
+        skill: i % skillNodes.length,
+        t0: Math.random() * 2,
+        phase: Math.random() * Math.PI * 2,
+      });
+    }
+  }
+
+  _storyDrawJourney(scene, t) {
+    const { ctx, w, h, skills, people, core, particles, reduce } = scene;
+    ctx.clearRect(0, 0, w, h);
+    if (!core || !skills) return;
+
+    // phase: 0-4 focus person, 4-8 zoom to org
+    const zoom = reduce ? 1 : Math.min(1, Math.max(0, (t - 5.5) / 3.2));
+    const focusAlpha = 1 - zoom * 0.85;
+    const orgAlpha = zoom;
+
+    const g = ctx.createRadialGradient(core.x, core.y, 0, core.x, core.y, Math.max(w, h) * 0.6);
+    g.addColorStop(0, 'rgba(0, 48, 100, 0.4)');
+    g.addColorStop(1, 'rgba(0, 16, 38, 0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+
+    // person avatar
+    if (focusAlpha > 0.05) {
+      ctx.save();
+      ctx.globalAlpha = focusAlpha;
+      const pr = Math.min(w, h) * 0.055;
+      const ag = ctx.createRadialGradient(core.x, core.y, 0, core.x, core.y, pr * 3);
+      ag.addColorStop(0, 'rgba(246, 107, 10, 0.35)');
+      ag.addColorStop(1, 'rgba(246, 107, 10, 0)');
+      ctx.fillStyle = ag;
+      ctx.beginPath();
+      ctx.arc(core.x, core.y, pr * 3, 0, 7);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(40, 70, 120, 0.95)';
+      ctx.beginPath();
+      ctx.arc(core.x, core.y, pr, 0, 7);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(200, 220, 255, 0.5)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      // head highlight
+      ctx.fillStyle = 'rgba(230, 240, 255, 0.9)';
+      ctx.beginPath();
+      ctx.arc(core.x, core.y - pr * 0.15, pr * 0.35, 0, 7);
+      ctx.fill();
+
+      // skill ghosts
+      skills.forEach((s, i) => {
+        const fillTarget = s.known ? 1 : Math.min(1, Math.max(0, (t - 1.2 - i * 0.45) / 2.2));
+        s.fill = reduce ? (s.known ? 1 : 0.7) : fillTarget;
+        const lit = s.fill;
+        // link
+        ctx.strokeStyle = lit > 0.2
+          ? `rgba(246, 107, 10, ${0.15 + lit * 0.45})`
+          : 'rgba(100, 130, 170, 0.2)';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(core.x, core.y);
+        ctx.lineTo(s.x, s.y);
+        ctx.stroke();
+
+        // translucent clone / skill node
+        const sr = 14 + lit * 4;
+        if (lit < 0.35) {
+          ctx.strokeStyle = 'rgba(140, 165, 200, 0.45)';
+          ctx.lineWidth = 1.5;
+          ctx.setLineDash([3, 4]);
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, sr, 0, 7);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.fillStyle = 'rgba(80, 100, 140, 0.25)';
+        } else {
+          const ng = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, sr * 2.2);
+          ng.addColorStop(0, `rgba(246, 107, 10, ${0.55 * lit})`);
+          ng.addColorStop(1, 'rgba(246, 107, 10, 0)');
+          ctx.fillStyle = ng;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, sr * 2.2, 0, 7);
+          ctx.fill();
+          ctx.fillStyle = `rgba(255, 200, 140, ${0.55 + lit * 0.45})`;
+        }
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, sr * 0.45, 0, 7);
+        ctx.fill();
+
+        ctx.font = '600 11px "Plus Jakarta Sans", sans-serif';
+        ctx.fillStyle = lit > 0.35 ? 'rgba(255, 230, 200, 0.95)' : 'rgba(150, 170, 200, 0.7)';
+        ctx.textAlign = 'center';
+        ctx.fillText(s.label, s.x, s.y + sr + 16);
+      });
+
+      // golden particles fill gaps
+      if (!reduce) {
+        for (const p of particles) {
+          const s = skills[p.skill];
+          if (!s || s.known) continue;
+          const u = Math.min(1, Math.max(0, (t - 1.5 - p.t0) / 2.5));
+          if (u <= 0 || u >= 1) continue;
+          const x = core.x + (s.x - core.x) * u + Math.sin(t * 3 + p.phase) * 6 * (1 - u);
+          const y = core.y + (s.y - core.y) * u + Math.cos(t * 2 + p.phase) * 6 * (1 - u);
+          ctx.fillStyle = `rgba(255, 190, 90, ${0.7 * (1 - Math.abs(u - 0.5) * 0.5)})`;
+          ctx.beginPath();
+          ctx.arc(x, y, 1.8, 0, 7);
+          ctx.fill();
+        }
+      }
+      ctx.restore();
+    }
+
+    // organization network zoom-out
+    if (orgAlpha > 0.05) {
+      ctx.save();
+      ctx.globalAlpha = orgAlpha;
+      // links between people
+      for (let i = 0; i < people.length; i++) {
+        for (let j = i + 1; j < people.length; j++) {
+          const a = people[i], b = people[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d > Math.min(w, h) * 0.22) continue;
+          const on = reduce ? 1 : Math.min(1, Math.max(0, (t - 6 - a.delay) / 2));
+          ctx.strokeStyle = `rgba(120, 170, 230, ${0.08 + on * 0.2})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+      for (const p of people) {
+        const lit = reduce ? 1 : Math.min(1, Math.max(0, (t - 5.8 - p.delay) / 1.8));
+        const pulse = reduce ? 1 : 0.85 + 0.15 * Math.sin(t * 2 + p.phase);
+        const r = 4 + lit * 3;
+        if (lit > 0.2) {
+          const pg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 5);
+          pg.addColorStop(0, `rgba(246, 107, 10, ${0.4 * lit * pulse})`);
+          pg.addColorStop(1, 'rgba(246, 107, 10, 0)');
+          ctx.fillStyle = pg;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, r * 5, 0, 7);
+          ctx.fill();
+        }
+        ctx.fillStyle = lit > 0.3
+          ? `rgba(255, 200, 140, ${0.6 + lit * 0.4})`
+          : 'rgba(110, 140, 180, 0.45)';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r, 0, 7);
+        ctx.fill();
+      }
+
+      // subtle Lector mark (orbit-like rings) at center when fully lit
+      if (orgAlpha > 0.7) {
+        const markA = (orgAlpha - 0.7) / 0.3;
+        const mx = w * 0.5, my = h * 0.48;
+        ctx.globalAlpha = markA * 0.55;
+        ctx.strokeStyle = 'rgba(246, 107, 10, 0.7)';
+        ctx.lineWidth = 1.5;
+        for (let k = 0; k < 3; k++) {
+          ctx.beginPath();
+          ctx.ellipse(mx, my, 28 + k * 14, 14 + k * 7, t * 0.15 + k * 0.6, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        ctx.fillStyle = 'rgba(246, 107, 10, 0.9)';
+        ctx.beginPath();
+        ctx.arc(mx, my, 4, 0, 7);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
   }
 
   /* —— IA knowledge graph (seção #ia) —— */

@@ -36,18 +36,31 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 | 0 | — | Announcement + header fixos | Marquee diagnóstico + nav dark pill |
 | 1 | `top` | Hero dark | Vídeo `hero.mp4`, CTA “Explore a plataforma”, ícones das ferramentas (LMS, Webconf, Autoria, IA, Rede, Documentos) |
 | 2 | `depoimento` | Depoimentos | Carrossel Microsoft ↔ Philips + marquee de logos |
-| 3 | `ia` | IA Lector | Grafo + copy + 3 capacidades; CTA Agendar demonstração |
-| 4 | `plataforma` | Statement soluções | “Por que pagar diversas ferramentas…” |
-| 5 | `autoria` | Autoria (tema no H2; sem badge) | Spotlight; `video-autoria.mp4` |
-| 6 | `lms` | LMS (tema no H2) | Spotlight flip; `lms.png` |
-| 7 | `rede-social` | Rede social (tema no H2) | Spotlight; `rede-social.png` |
-| 8 | `webconferencia` | Webconferência (tema no H2) | Spotlight flip + mock de sala |
-| 9 | — | Módulos bento | 6 módulos; sem eyebrow de seção |
-| 10 | `numeros` | Resultados reais (tema no H2) | Stats + count-up; alvo do nav “Clientes” |
+| 3 | `conhecimento` | Conhecimento invisível (trilogia 1/3) | Vídeo scroll-scrub `conhecimento-scroll.mp4` (sticky + avança com a rolagem) |
+| 4 | `diagnostico-home` | Diagnóstico de Gaps (trilogia 2/3) | Vídeo scroll-scrub `diagnostico-scroll.mp4` (sticky + avança com a rolagem) |
+| 5 | `jornada` | Jornada personalizada (trilogia 3/3) | Canvas `journey` — competências + rede org; CTA demo / plataforma |
+| 6 | `ia` | IA Lector | Grafo + copy + 3 capacidades; CTA Agendar demonstração |
+| 7 | `plataforma` | Statement soluções | “Por que pagar diversas ferramentas…” |
+| 8 | `autoria` | Autoria (tema no H2; sem badge) | Spotlight; `video-autoria.mp4` |
+| 9 | `lms` | LMS (tema no H2) | Spotlight flip; `lms.png` |
+| 10 | `rede-social` | Rede social (tema no H2) | Spotlight; `rede-social.png` |
+| 11 | `webconferencia` | Webconferência (tema no H2) | Spotlight flip + mock de sala |
+| 12 | — | Módulos bento | 6 módulos; sem eyebrow de seção |
+| 13 | `numeros` | Resultados reais (tema no H2) | Stats + count-up; alvo do nav “Clientes” |
+| 14 | `contato` | CTA final | “Falar com especialista” → lead form |
+| 15 | — | Footer | Logo light + links |
 
 > Sem badges/eyebrows de título de seção — ver `AGENTS.md` e `specs/brand.md`.
-| 11 | `contato` | CTA final | “Falar com especialista” → lead form |
-| 12 | — | Footer | Logo light + links |
+
+### Trilogia narrativa
+
+| Seção | Headline | Visual | Punch |
+|-------|----------|--------|-------|
+| `conhecimento` | O maior ativo da sua empresa é invisível. Até agora. | **Scroll-scrub + idle loop** (`.lk-scrub`): `conhecimento-scroll.mp4` (~720p, ~0.6MB) | O problema nunca foi falta de treinamento… |
+| `diagnostico-home` | Antes de ensinar, nós entendemos sua empresa. | **Scroll-scrub + idle loop** (`.lk-scrub--long`): `diagnostico-scroll.mp4` (~720p, ~2MB) | Antes de desenvolver pessoas… compreender o negócio |
+| `jornada` | Quando cada pessoa aprende exatamente o que precisa… | Canvas `journey` — competências se iluminando → rede + anéis Lector | O verdadeiro resultado não é um certificado… |
+
+Scrubs: sticky 100vh, `currentTime` = progresso do scroll; texto fixo. Canvas na seção 3 pausa off-screen. Respeitam `prefers-reduced-motion`.
 
 > Ao editar, mantenha comentários `<!-- SECTION: … -->` alinhados a esta tabela.
 
@@ -68,6 +81,8 @@ Formulário: `shared/lead-form.js` — ver `specs/components/lead-form.md`.
 - Logo header/footer dark: `assets/brand/logo-lector-light.svg`  
 - Orbit: `assets/brand/orbit.svg`  
 - Hero: `assets/media/home/hero.mp4`  
+- Scrub sessão 1: `assets/media/home/conhecimento-scroll.mp4` (+ poster)  
+- Scrub sessão 2: `assets/media/home/diagnostico-scroll.mp4` (+ poster)  
 - Autoria: `assets/media/home/video-autoria.mp4`  
 - LMS / rede: `assets/media/home/lms.png`, `rede-social.png`  
 - Nav: sincronizar com `content/site.json` e com as outras páginas  

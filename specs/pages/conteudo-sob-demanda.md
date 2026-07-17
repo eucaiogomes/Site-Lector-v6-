@@ -57,7 +57,7 @@ Converter gestores de T&D e RH que precisam de conteúdo de treinamento sem equi
 | 2 | — | Logos |
 | 3 | `realidade` | A realidade de hoje + dores |
 | 4 | `como-funciona` | Você pede · a gente entrega |
-| 5 | `exemplos` | Galeria de conteúdos criados (3 vídeos lado a lado) |
+| 5 | `exemplos` | Galeria de conteúdos criados (4 vídeos lado a lado) |
 | 6 | `catalogo` | O que dá pra pedir |
 | 7 | `variedade` | Variedade, não modelo único |
 | 8 | `porta-voz` | Avatar com uniforme da empresa |
@@ -68,13 +68,14 @@ Converter gestores de T&D e RH que precisam de conteúdo de treinamento sem equi
 
 ### Galeria (`#exemplos`)
 
-Layout em grade 3 colunas no desktop (2 no tablet, 1 no mobile). Cada item: vídeo + capa + overlay de play. Ao terminar um vídeo, o próximo da fila inicia automaticamente.
+Layout full-bleed: grade de 4 colunas ocupa a largura da janela (2 no tablet, 1 no mobile). Cada item: vídeo + capa + overlay de play. Ao terminar um vídeo, o próximo da fila inicia automaticamente.
 
 | Item | Vídeo | Capa |
 |------|--------|------|
 | 1 · Demonstração 1 | `assets/media/conteudo-sob-demanda/video-demonstracao-1.mp4` | `video-demonstracao-1-poster.jpg` |
 | 2 · Demonstração 2 | `assets/media/conteudo-sob-demanda/video-demonstracao-2.mp4` | `video-demonstracao-2-poster.jpg` |
 | 3 · Demonstração 3 | `assets/media/conteudo-sob-demanda/video-demonstracao-3.mp4` | `video-demonstracao-3-poster.jpg` |
+| 4 · Demonstração 4 | `assets/media/conteudo-sob-demanda/video-demonstracao-4.mp4` | `video-demonstracao-4-poster.jpg` |
 
 ## CTAs
 

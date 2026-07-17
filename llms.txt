@@ -12,7 +12,7 @@
 - Fundação: mais de 20 anos de mercado (ano de fundação a confirmar no Schema)
 - Sede: Blumenau, Santa Catarina, Brasil
 - Site: rotas limpas no deploy (/ , /blog , /contato , /plataforma-lector , …) — domínio definitivo a confirmar
-- App: https://app.lector.com.br/painel
+- App: https://lector.live
 - Contato comercial: contato@lector.com.br
 - Clientes de referência: Philips (+15 anos de parceria), Microsoft (parceria), Unimed, Sicoob, SESI/SENAI, Aché
 - Idioma da plataforma e do site: Português (Brasil)

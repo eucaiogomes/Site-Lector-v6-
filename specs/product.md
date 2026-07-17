@@ -7,7 +7,7 @@ A **Lector** é uma plataforma de aprendizado (LMS) com **IA nativa**, voltada a
 Tagline de marca (site): **“O poder de aprender de verdade.”**
 
 Este repositório é o **site institucional / marketing** (não o app LMS completo).  
-App do produto (referência em CTAs): `https://app.lector.com.br/painel`  
+App do produto (referência em CTAs): `https://lector.live`  
 Contato institucional: `contato@lector.com.br`
 
 ## Públicos

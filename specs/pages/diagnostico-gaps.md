@@ -15,7 +15,7 @@
 
 ## Objetivo
 
-Converter gestores de T&D e liderança que querem provar resultado (não engajamento): mostrar diagnóstico por habilidade, trilha cirúrgica, certificação e ROI.
+Converter gestores de T&D e liderança que querem tornar o conhecimento **visível**, fechar gaps com precisão e provar resultado (não engajamento): diagnóstico contextualizado ao negócio, jornada personalizada e ROI.
 
 ## Público
 
@@ -25,8 +25,10 @@ Converter gestores de T&D e liderança que querem provar resultado (não engajam
 
 ## Mensagem principal
 
-**Headline:** Pare de provar engajamento. Comece a provar *resultado*.  
-**Sub:** Gap real por habilidade, conhecimento cirúrgico alinhado ao plano estratégico e certificação mensurável — sem hora de curso e sem engajamento de fachada.  
+**Headline:** Antes de ensinar, nós *entendemos* sua empresa.  
+**Sub:** Diagnóstico de Gaps de Conhecimento contextualizado: a IA analisa processos, cargos, documentos, normas e objetivos estratégicos; identifica gaps colaborador por colaborador; entrega jornada personalizada e prova de impacto.  
+**Punch do problema:** O problema nunca foi falta de treinamento — foi não saber onde o conhecimento está faltando.  
+**Punch da jornada:** O verdadeiro resultado não é um certificado — é a empresa evoluindo competência por competência.
 
 ## Design (alinhado à home / plataforma / NR-1)
 
@@ -36,14 +38,16 @@ A página segue a **mesma família visual da home**, não o shell light de blog/
 |----------|----------------|
 | Announce | Marquee laranja dismissível (`lk-announce`) |
 | Header | Pill dark glass fixo + dropdown `.lk-nav-dd` |
-| Hero | Full viewport + `mandala-girando.mp4` + CTA sheen |
-| Logos | Marquee de clientes (grayscale → color no hover) |
-| Statement | Bloco tipográfico navy (“Engajamento… não é resultado”) |
-| Pilares | Cards paper (resultado / cirúrgico / gaps) |
+| Hero | Full viewport + `mandala-girando.mp4` + CTA sheen + secondary “Como funciona” |
+| Logos | Marquee de clientes |
+| Statement | Conhecimento invisível + punch |
+| Problema | 4 cards de sintomas (erros, produtividade, oportunidades, percepção tardia) |
+| Pilares | 4 cards paper (contextual / gaps / jornada / resultado) |
 | Passos | Seção dark 01–04 com orbit |
+| Jornada | Split copy + lista colaborador / time / negócio |
 | Painel | Mock dark do Painel de Competências |
-| Por que agora | Stats cards + CTA NR-1 |
-| FAQ | Accordion + schema FAQPage |
+| Por que agora | Stats + CTA NR-1 |
+| FAQ | Accordion + schema FAQPage (6 perguntas) |
 | CTA final | Faixa laranja full-bleed |
 | Footer | Ink-950 4 colunas |
 | Motion | `data-reveal`, marquee, CTA glow/sheen |
@@ -52,13 +56,17 @@ A página segue a **mesma família visual da home**, não o shell light de blog/
 
 **Regra do site:** não usar badge/eyebrow/kicker acima do H2. O tema entra no título.
 
-| Seção | Título (H2) |
-|-------|-------------|
-| Benefícios | Muito mais que um LMS: prove *resultado*, não cliques. |
-| Método | Como funciona: do diagnóstico à certificação, habilidade por habilidade. |
-| Painel | Painel de Competências em tempo real |
-| Por que agora | Por que agora: a lei também está cobrando *agora*. |
-| FAQ | Ainda com dúvidas sobre diagnóstico de gaps? |
+| Seção | Título (H2 / H1) |
+|-------|------------------|
+| Hero | Antes de ensinar, nós *entendemos* sua empresa. |
+| Statement | O maior ativo da sua empresa é *invisível*. Até agora. |
+| Benefícios | Diagnóstico contextualizado: compreenda o negócio *antes* de desenvolver pessoas. |
+| Método | Como funciona: da compreensão do negócio à certificação, competência por competência. |
+| Jornada | Quando cada pessoa aprende exatamente o que precisa, *toda a empresa evolui.* |
+| Painel | Painel de Competências: o conhecimento da empresa, visível em tempo real. |
+| Por que agora | Por que agora: performance e conformidade cobram o *mesmo mapa*. |
+| FAQ | Ainda com dúvidas sobre o Diagnóstico de Gaps de Conhecimento? |
+| CTA | Torne o conhecimento da sua empresa visível. |
 
 Chips de status no mock (Ativo / Em curso / Pendente) são UI de produto, não badges de seção.
 
@@ -67,23 +75,27 @@ Chips de status no mock (Ativo / Em curso / Pendente) são UI de produto, não b
 | # | ID | Nome |
 |---|-----|------|
 | 0 | — | Announce + nav dark (item Gaps ativo) |
-| 1 | `hero` | Hero cinemático (CTA único: Agendar demonstração) |
+| 1 | `hero` | Hero cinemático (CTA demo + âncora método) |
 | 2 | — | Logos clientes (marquee) |
-| 3 | `statement` | Statement tipográfico |
-| 4 | `beneficios` | 3 pilares paper |
-| 5 | `metodo` | Passos dark 01–04 |
-| 6 | `painel` | Mock Painel de Competências |
-| 7 | `por-que-agora` | Stats + CTA NR-1 |
-| 8 | `faq` | FAQ accordion |
-| 9 | `cta` | CTA laranja |
-| 10 | — | Footer |
+| 3 | `statement` | Conhecimento invisível + punch |
+| 4 | `problema` | 4 sintomas do gap invisível |
+| 5 | `beneficios` | 4 pilares paper |
+| 6 | `metodo` | Passos dark 01–04 |
+| 7 | `jornada` | Jornada personalizada pós-diagnóstico |
+| 8 | `painel` | Mock Painel de Competências |
+| 9 | `por-que-agora` | Stats + CTA NR-1 |
+| 10 | `faq` | FAQ accordion |
+| 11 | `cta` | CTA laranja |
+| 12 | — | Footer |
 
 ## CTAs
 
 | Label | Destino |
 |-------|---------|
 | Agendar demonstração | Lead form (`diagnostico`) |
-| Acessar painel completo | `https://app.lector.com.br/painel` |
+| Como funciona | `#metodo` |
+| Ver no meu contexto | Lead form (`diagnostico`) |
+| Acessar painel completo | `https://lector.live` |
 | Quero adequar minha empresa à NR-1 | Lead form (`nr1`) |
 | Falar com especialista (nav / announce) | Lead form (`diagnostico`) |
 
@@ -91,8 +103,8 @@ Chips de status no mock (Ativo / Em curso / Pendente) são UI de produto, não b
 
 | Campo | Valor |
 |-------|--------|
-| Title | Diagnóstico de Gaps por Habilidade \| Lector |
-| Meta description | Diagnóstico por habilidade, trilha cirúrgica e certificação com prova de resultado — ROI e evidência, não engajamento de fachada. |
+| Title | Diagnóstico de Gaps de Conhecimento \| Lector |
+| Meta description | Antes de ensinar, a Lector entende sua empresa. Diagnóstico de Gaps contextualizado com IA: processos, cargos e competências — jornada personalizada e prova de resultado, não engajamento de fachada. |
 
 **Implementação:** title, meta e Open Graph presentes.
 
@@ -100,10 +112,10 @@ Chips de status no mock (Ativo / Em curso / Pendente) são UI de produto, não b
 
 | Campo | Valor |
 |-------|--------|
-| Pergunta-alvo | Como provar resultado com diagnóstico por habilidade? |
-| Cápsula no hero | Removida (hero limpo: headline + sub + CTA) |
-| Schema | Organization + SoftwareApplication + FAQPage |
-| Conteúdo crítico estático | FAQ accordion + copy de seções (método, painel, benefícios) |
+| Pergunta-alvo | Como a Lector diagnostica gaps de conhecimento e prova resultado? |
+| Cápsula no hero | Removida (hero limpo: headline + sub + CTAs) |
+| Schema | Organization + SoftwareApplication + FAQPage (6 Qs) |
+| Conteúdo crítico estático | FAQ + statement + método + jornada + benefícios |
 
 ## Critérios de aceite
 
@@ -112,4 +124,5 @@ Chips de status no mock (Ativo / Em curso / Pendente) são UI de produto, não b
 - [x] Família visual dark (home / plataforma / NR-1)  
 - [x] Copy PT-BR sem badges de título de seção  
 - [x] SEO + GEO no helmet  
+- [x] Narrativa alinhada à trilogia da home (invisível → diagnóstico → jornada)  
 - [ ] Assets finais do painel (mock HTML por enquanto)  

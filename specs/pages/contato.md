@@ -49,7 +49,7 @@ Canal único de conversão: falar com especialista, pedir demo ou diagnóstico, 
 
 **Canais:**  
 - `contato@lector.com.br`  
-- Painel: `https://app.lector.com.br/painel`  
+- Painel: `https://lector.live`  
 - Horário: seg. a sex., 9h–18h  
 
 ## SEO

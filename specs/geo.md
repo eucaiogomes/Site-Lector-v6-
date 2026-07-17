@@ -112,7 +112,7 @@ Disallow: `/references/`, `/specs/`, `/design-system/`, `/support.js`.
 |------|---------|
 | `Organization` | Todas |
 | `SoftwareApplication` | home, plataforma-lector, solucao-nr-1, copiloto-vendas, diagnostico-gaps, conteudo-sob-demanda, servicos-especializados |
-| `FAQPage` | solucao-nr-1 |
+| `FAQPage` | solucao-nr-1, diagnostico-gaps, … |
 
 Validar no [Rich Results Test](https://search.google.com/test/rich-results) após deploy com domínio real.
 
@@ -128,11 +128,11 @@ Templates extras (Article, BreadcrumbList): Anexo C no final.
 | plataforma-lector | **Só nesta página** — sub do hero (não em caixa “Em uma frase”): “A Lector é a plataforma brasileira de educação corporativa com IA nativa: LMS, webconferência, autoria e compliance NR-1 para provar resultado de treinamento — não só engajamento.” |
 | solucao-nr-1 | Cápsula “Em uma frase” removida do hero (FAQ + seções cobrem o conteúdo crítico) |
 | copiloto-vendas | O Copiloto de Vendas da Lector é a IA que prepara, acompanha e evolui cada vendedor — antes, durante e depois da reunião — com trilhas e certificação para reduzir ramp-up. |
-| diagnostico-gaps | A Lector diagnostica gaps por habilidade, entrega trilha cirúrgica e certifica o resultado — para provar impacto em receita ou custo, não só engajamento de curso. |
+| diagnostico-gaps | Cápsula “Em uma frase” removida; hero + statement + FAQ cobrem: diagnóstico contextualizado, gaps por colaborador e prova de resultado. |
 | conteudo-sob-demanda | A Lector produz cursos, vídeos e materiais sob demanda com qualidade editorial, prazo previsível e publicação na plataforma — do briefing à medição. |
 | servicos-especializados | Os Serviços Especializados da Lector apoiam T&D, conteúdo e gestão do conhecimento em todas as fases — da universidade corporativa à operação do dia a dia. |
 | contato | Fale com um especialista Lector por formulário ou e-mail (contato@lector.com.br) para demonstração, diagnóstico de maturidade T&D ou consultoria de educação corporativa. |
-| blog | O blog da Lector publica guias e ideias sobre educação corporativa, NR-1, LMS, IA e T&D para RH e lideranças no Brasil. |
+| blog | Cápsula “Em uma frase” removida do hero |
 
 Markup: `<p class="geo-capsule" data-geo-capsule="">` (variante `geo-capsule--dark` em heróis escuros).
 

@@ -58,10 +58,18 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "O que é diagnóstico de gaps por habilidade?",
+      "name": "O que é o Diagnóstico de Gaps de Conhecimento da Lector?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "É o mapeamento da distância entre o que a estratégia da empresa exige e o que cada colaborador domina — habilidade por habilidade. Em vez de medir engajamento geral em cursos, a Lector identifica lacunas específicas e entrega trilha cirúrgica para fechá-las, com certificação e prova de resultado."
+        "text": "É o mapeamento contextualizado da distância entre o que a estratégia e a operação da empresa exigem e o que cada colaborador domina — habilidade por habilidade. A Lector analisa processos, cargos, documentos, normas e objetivos estratégicos com IA, identifica lacunas individuais e entrega jornada personalizada com certificação e prova de resultado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O diagnóstico é genérico ou contextualizado ao meu negócio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Completamente contextualizado. Não existem avaliações genéricas de prateleira. Cada diagnóstico reflete a realidade da sua operação: competências essenciais por cargo, processos internos, políticas, indicadores e cultura — para apontar exatamente quais conhecimentos impulsionam resultado e quais lacunas ainda limitam performance."
       }
     },
     {
@@ -69,7 +77,15 @@
       "name": "Como o Painel de Competências ajuda a provar ROI?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "O painel consolida conclusão, certificados e impacto estimado em um só lugar. Você enxerga evolução por time e por habilidade e conecta o fechamento de gaps a indicadores de negócio — receita, custo ou risco — em vez de apenas horas de curso."
+        "text": "O painel consolida conclusão, certificados e impacto estimado em um só lugar. Você enxerga evolução por pessoa, time e habilidade e conecta o fechamento de gaps a indicadores de negócio — receita, custo ou risco — em vez de apenas horas de curso ou engajamento de fachada."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que acontece depois do diagnóstico?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cada colaborador recebe uma jornada personalizada construída para fechar seus próprios gaps. O aprendizado deixa de ser obrigação genérica e passa a fazer sentido: a pessoa entende onde pode evoluir e como isso impacta a carreira; a empresa investe com precisão e forma equipes mais preparadas."
       }
     },
     {
@@ -85,17 +101,17 @@
       "name": "Quanto tempo leva para rodar o primeiro diagnóstico?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Empresas de médio porte costumam ter o mapeamento de habilidades críticas e o primeiro diagnóstico em andamento em poucas semanas, com trilhas atribuídas por cargo e área."
+        "text": "Empresas de médio porte costumam ter o mapeamento de competências críticas e o primeiro diagnóstico em andamento em poucas semanas, com trilhas atribuídas por cargo e área — sem interromper a operação."
       }
     }
   ]
 }
 </script>
 
-<title>Diagnóstico de Gaps por Habilidade | Lector</title>
-<meta name="description" content="Diagnóstico por habilidade, trilha cirúrgica e certificação com prova de resultado — ROI e evidência, não engajamento de fachada.">
-<meta property="og:title" content="Diagnóstico de Gaps por Habilidade | Lector">
-<meta property="og:description" content="Diagnóstico por habilidade, trilha cirúrgica e certificação com prova de resultado.">
+<title>Diagnóstico de Gaps de Conhecimento | Lector</title>
+<meta name="description" content="Antes de ensinar, a Lector entende sua empresa. Diagnóstico de Gaps contextualizado com IA: processos, cargos e competências — jornada personalizada e prova de resultado, não engajamento de fachada.">
+<meta property="og:title" content="Diagnóstico de Gaps de Conhecimento | Lector">
+<meta property="og:description" content="Diagnóstico contextualizado ao negócio, gaps por colaborador e jornada personalizada com prova de resultado.">
 <link rel="stylesheet" href="/design-system/tokens/fonts.css">
 <link rel="stylesheet" href="/design-system/tokens/colors.css">
 <link rel="stylesheet" href="/design-system/tokens/typography.css">
@@ -299,12 +315,47 @@
   }
   .lk-clients-marquee__item:hover { opacity: 1; filter: grayscale(0); }
 
+  /* Statement punch */
+  .dg-statement__punch {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(18px, 2vw, 22px); line-height: 1.35; letter-spacing: -.01em;
+    color: var(--navy-800); margin: 28px 0 0; max-width: 36ch; text-wrap: balance;
+  }
+  .dg-statement__punch span { display: block; color: var(--brand); }
+
+  /* Problem pains */
+  .dg-pains {
+    padding: 24px 0 80px; background: var(--surface-page);
+  }
+  .dg-pains__inner { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+  .dg-pains__grid {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;
+  }
+  .dg-pains__card {
+    background: #fff; border: 1px solid var(--ink-100, #E7EAF1); border-radius: 18px;
+    padding: 22px 20px; box-shadow: 0 12px 32px -22px rgba(10,20,40,.18);
+  }
+  .dg-pains__card h3 {
+    font-family: var(--font-display); font-size: 16px; font-weight: 700;
+    color: var(--navy-800); margin: 0 0 8px; line-height: 1.25;
+  }
+  .dg-pains__card p {
+    margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-500);
+  }
+  .dg-pains__icon {
+    width: 38px; height: 38px; border-radius: 11px; margin-bottom: 14px;
+    background: rgba(0, 32, 77, .06); color: var(--navy-800);
+    border: 1px solid rgba(0, 32, 77, .08);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .dg-pains__icon i, .dg-pains__icon svg { width: 18px; height: 18px; }
+
   /* Pillars / benefits */
   .dg-diff {
     padding: 40px 0 100px; background: var(--surface-page);
   }
   .dg-diff__inner { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
-  .dg-diff__header { max-width: 720px; margin: 0 0 48px; }
+  .dg-diff__header { max-width: 760px; margin: 0 0 48px; }
   .dg-diff__title {
     font-family: var(--font-display); font-weight: 800;
     font-size: clamp(30px, 4.2vw, 52px); line-height: 1.06; letter-spacing: -.03em;
@@ -312,10 +363,10 @@
   }
   .dg-diff__title em { font-style: italic; color: var(--brand); }
   .dg-diff__sub {
-    font-size: 17px; line-height: 1.55; color: var(--ink-500); margin: 0; max-width: 560px;
+    font-size: 17px; line-height: 1.55; color: var(--ink-500); margin: 0; max-width: 620px;
   }
   .dg-diff__grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;
   }
   .dg-diff__card {
     background: #fff; border: 1px solid var(--ink-100, #E7EAF1); border-radius: 20px;
@@ -339,6 +390,48 @@
     color: var(--navy-800); margin: 0 0 8px;
   }
   .dg-diff__card p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-500); }
+
+  /* Journey after diagnosis */
+  .dg-journey {
+    padding: 100px 0; background: var(--surface-page);
+    border-top: 1px solid var(--ink-100, #E7EAF1);
+  }
+  .dg-journey__inner {
+    max-width: 1240px; margin: 0 auto; padding: 0 28px;
+    display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center;
+  }
+  .dg-journey__title {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(30px, 4vw, 48px); line-height: 1.06; letter-spacing: -.03em;
+    color: var(--navy-800); margin: 0 0 18px; text-wrap: balance;
+  }
+  .dg-journey__title em { font-style: italic; color: var(--brand); }
+  .dg-journey__lead {
+    font-size: 16.5px; line-height: 1.65; color: var(--ink-500); margin: 0 0 20px; max-width: 52ch;
+  }
+  .dg-journey__punch {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(17px, 1.6vw, 19px); line-height: 1.4; letter-spacing: -.01em;
+    color: var(--navy-800); margin: 0 0 28px; max-width: 38ch; text-wrap: balance;
+  }
+  .dg-journey__punch span { display: block; color: var(--brand); }
+  .dg-journey__list {
+    list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px;
+  }
+  .dg-journey__list li {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: #fff; border: 1px solid var(--ink-100, #E7EAF1); border-radius: 16px;
+    padding: 16px 18px; box-shadow: 0 10px 28px -20px rgba(10,20,40,.18);
+  }
+  .dg-journey__list strong {
+    display: block; font-size: 15px; font-weight: 700; color: var(--navy-800); margin-bottom: 4px;
+  }
+  .dg-journey__list span {
+    font-size: 14px; line-height: 1.45; color: var(--ink-500);
+  }
+  .dg-journey__list i, .dg-journey__list svg {
+    width: 18px; height: 18px; color: var(--brand); flex: none; margin-top: 2px;
+  }
 
   /* Dark method steps */
   .dg-dark {
@@ -635,12 +728,12 @@
   }
 
   @media (max-width: 960px) {
-    .dg-diff__grid, .dg-steps, .dg-stats, .dg-painel-sec__inner { grid-template-columns: 1fr; }
+    .dg-diff__grid, .dg-steps, .dg-stats, .dg-painel-sec__inner, .dg-journey__inner, .dg-pains__grid { grid-template-columns: 1fr; }
     .dg-panel__kpis { grid-template-columns: 1fr 1fr 1fr; }
     header .lk-nav-desktop { display: none !important; }
   }
   @media (max-width: 640px) {
-    .dg-diff, .dg-dark, .dg-painel-sec, .dg-why, .dg-faq-sec { padding: 72px 0; }
+    .dg-diff, .dg-dark, .dg-painel-sec, .dg-why, .dg-faq-sec, .dg-journey, .dg-pains { padding: 72px 0; }
     .dg-final-cta { padding: 80px 0; }
     .dg-panel__kpis { grid-template-columns: 1fr; }
   }
@@ -661,21 +754,21 @@
       </button>
       <div class="lk-announce-track-wrap">
         <div class="lk-announce-track">
-          <span class="lk-announce-item"><strong>Diagnóstico por habilidade</strong> — prove resultado, não engajamento de fachada — <u>Agendar demonstração</u></span>
+          <span class="lk-announce-item"><strong>Diagnóstico de Gaps</strong> — torne o conhecimento visível e desenvolva com precisão — <u>Agendar demonstração</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Diagnóstico por habilidade</strong> — prove resultado, não engajamento de fachada — <u>Agendar demonstração</u></span>
+          <span class="lk-announce-item"><strong>Diagnóstico de Gaps</strong> — torne o conhecimento visível e desenvolva com precisão — <u>Agendar demonstração</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Diagnóstico por habilidade</strong> — prove resultado, não engajamento de fachada — <u>Agendar demonstração</u></span>
+          <span class="lk-announce-item"><strong>Diagnóstico de Gaps</strong> — torne o conhecimento visível e desenvolva com precisão — <u>Agendar demonstração</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Diagnóstico por habilidade</strong> — prove resultado, não engajamento de fachada — <u>Agendar demonstração</u></span>
+          <span class="lk-announce-item"><strong>Diagnóstico de Gaps</strong> — torne o conhecimento visível e desenvolva com precisão — <u>Agendar demonstração</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Diagnóstico por habilidade</strong> — prove resultado, não engajamento de fachada — <u>Agendar demonstração</u></span>
+          <span class="lk-announce-item"><strong>Diagnóstico de Gaps</strong> — torne o conhecimento visível e desenvolva com precisão — <u>Agendar demonstração</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Diagnóstico por habilidade</strong> — prove resultado, não engajamento de fachada — <u>Agendar demonstração</u></span>
+          <span class="lk-announce-item"><strong>Diagnóstico de Gaps</strong> — torne o conhecimento visível e desenvolva com precisão — <u>Agendar demonstração</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Diagnóstico por habilidade</strong> — prove resultado, não engajamento de fachada — <u>Agendar demonstração</u></span>
+          <span class="lk-announce-item"><strong>Diagnóstico de Gaps</strong> — torne o conhecimento visível e desenvolva com precisão — <u>Agendar demonstração</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Diagnóstico por habilidade</strong> — prove resultado, não engajamento de fachada — <u>Agendar demonstração</u></span>
+          <span class="lk-announce-item"><strong>Diagnóstico de Gaps</strong> — torne o conhecimento visível e desenvolva com precisão — <u>Agendar demonstração</u></span>
           <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
         </div>
       </div>
@@ -742,7 +835,7 @@
         <a href="/pages/contato/index.dc.html" style="{{ navLinkStyle }}">Contato</a>
       </nav>
       <div style="display:flex; align-items:center; gap:18px; flex:none;">
-        <a href="https://app.lector.com.br/painel" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.9); font-weight:700; font-size:14.5px; white-space:nowrap;">Sou cliente</a>
+        <a href="https://lector.live" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.9); font-weight:700; font-size:14.5px; white-space:nowrap;">Sou cliente</a>
         <a href="#cta" style="display:inline-flex; align-items:center; gap:12px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); border-radius:var(--radius-pill); padding:6px 6px 6px 20px; color:#fff; font-weight:700; font-size:14.5px;" data-open-lead data-lead-interest="diagnostico">Falar com especialista <span style="width:32px; height:32px; border-radius:10px; background:var(--brand); display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span></a>
       </div>
     </header>
@@ -750,7 +843,7 @@
   </div>
 
   <!-- SECTION: hero -->
-  <section id="hero" style="position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--ink-950);" aria-label="Diagnóstico de Gaps">
+  <section id="hero" style="position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--ink-950);" aria-label="Diagnóstico de Gaps de Conhecimento">
     <div style="position:absolute; inset:0; z-index:0;">
       <div style="position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=2100&amp;q=80'); background-size:cover; background-position:center; animation:lkBurns 26s ease-in-out infinite alternate;"></div>
       <video
@@ -766,11 +859,11 @@
 
     <div style="position:relative; z-index:3; width:100%; max-width:1040px; margin:0 auto; padding:120px 28px 80px; text-align:center;">
       <div data-reveal="">
-        <h1 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(36px,6.4vw,84px); line-height: .98; letter-spacing: -.03em; color: rgba(255,255,255,.94); margin: 0 0 28px; text-wrap: balance; text-shadow: 0 4px 40px rgba(0,10,30,.4);">
-          Pare de provar engajamento.<br>Comece a provar <span style="color:var(--brand); font-style:italic;">resultado</span>.
+        <h1 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(34px,5.8vw,72px); line-height: 1.02; letter-spacing: -.03em; color: rgba(255,255,255,.94); margin: 0 0 28px; text-wrap: balance; text-shadow: 0 4px 40px rgba(0,10,30,.4);">
+          Antes de ensinar, nós <span style="color:var(--brand); font-style:italic;">entendemos</span> sua empresa.
         </h1>
-        <p style="font-size:18px; line-height:1.55; color:rgba(230,238,250,.8); max-width:560px; margin:0 auto 36px;">
-          A Lector diagnostica o gap real de cada colaborador por habilidade, entrega conhecimento cirúrgico alinhado ao plano estratégico e certifica o resultado — em número de receita ou redução de custo.
+        <p style="font-size:18px; line-height:1.6; color:rgba(230,238,250,.82); max-width:640px; margin:0 auto 36px;">
+          O Diagnóstico de Gaps de Conhecimento da Lector é contextualizado ao seu negócio: a IA analisa processos, cargos, documentos, normas e objetivos estratégicos para identificar — colaborador por colaborador — quais conhecimentos impulsionam resultados e quais lacunas ainda limitam a performance. Sem avaliações genéricas. Com prova de impacto.
         </p>
 
         <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
@@ -779,6 +872,7 @@
             <span class="lk-cta-label">Agendar demonstração</span>
             <span class="lk-cta-icon" aria-hidden="true"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
           </a>
+          <a href="#metodo" class="lk-hero-secondary">Como funciona</a>
         </div>
       </div>
     </div>
@@ -803,15 +897,47 @@
     </div>
   </div>
 
-  <!-- SECTION: statement -->
+  <!-- SECTION: statement — conhecimento invisível -->
   <section id="statement" style="background:var(--surface-page); padding:80px 0 40px;" aria-label="Posicionamento">
     <div style="max-width:1040px; margin:0 auto; padding:0 28px;">
-      <p data-reveal="" style="font-family:var(--font-display); font-weight:800; font-size:clamp(30px,4.4vw,58px); line-height:1.08; letter-spacing:-.025em; color:var(--navy-800); margin:0; text-wrap:balance;">
-        Engajamento de curso não é <span style="color:var(--brand);">resultado de negócio</span>.
+      <p data-reveal="" style="font-family:var(--font-display); font-weight:800; font-size:clamp(30px,4.4vw,56px); line-height:1.08; letter-spacing:-.025em; color:var(--navy-800); margin:0; text-wrap:balance;">
+        O maior ativo da sua empresa é <span style="color:var(--brand);">invisível</span>. Até agora.
       </p>
-      <p data-reveal="" style="font-size:18px; line-height:1.55; color:var(--ink-500); max-width:640px; margin:24px 0 0;">
-        Bancos, cooperativas, hospitais, indústrias e tecnologia — se a operação não pode parar, o gap precisa ser mensurável. Habilidade por habilidade, trilha cirúrgica e certificação com evidência: sem hora de curso genérico e sem engajamento de fachada.
+      <p data-reveal="" style="font-size:18px; line-height:1.65; color:var(--ink-500); max-width:680px; margin:24px 0 0;">
+        Toda empresa depende do conhecimento das pessoas para crescer. Mas quando esse conhecimento não está onde deveria, surgem erros, retrabalho, baixa produtividade e oportunidades perdidas. A maioria só percebe isso quando o resultado já foi comprometido. A Lector torna o conhecimento visível, identifica exatamente onde estão os gaps e transforma essa informação em uma estratégia de desenvolvimento inteligente.
       </p>
+      <p class="dg-statement__punch" data-reveal="">
+        O problema nunca foi falta de treinamento.
+        <span>O problema sempre foi não saber onde o conhecimento está faltando.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION: sintomas do gap invisível -->
+  <section class="dg-pains" id="problema" aria-label="Quando o conhecimento falta">
+    <div class="dg-pains__inner">
+      <div class="dg-pains__grid">
+        <article class="dg-pains__card" data-reveal="">
+          <div class="dg-pains__icon" aria-hidden="true"><i data-lucide="triangle-alert"></i></div>
+          <h3>Erros e retrabalho</h3>
+          <p>Processos se repetem, decisões falham e o time gasta energia corrigindo o que o conhecimento certo teria evitado.</p>
+        </article>
+        <article class="dg-pains__card" data-reveal="">
+          <div class="dg-pains__icon" aria-hidden="true"><i data-lucide="gauge"></i></div>
+          <h3>Produtividade que não escala</h3>
+          <p>Capacitação genérica consome tempo e orçamento — e a performance individual quase não muda.</p>
+        </article>
+        <article class="dg-pains__card" data-reveal="">
+          <div class="dg-pains__icon" aria-hidden="true"><i data-lucide="trending-down"></i></div>
+          <h3>Oportunidades perdidas</h3>
+          <p>Receita, qualidade e inovação esbarram em lacunas que ninguém enxergava com clareza.</p>
+        </article>
+        <article class="dg-pains__card" data-reveal="">
+          <div class="dg-pains__icon" aria-hidden="true"><i data-lucide="clock-3"></i></div>
+          <h3>Percepção tarde demais</h3>
+          <p>O gap só aparece no resultado — quando o custo já foi pago em risco, atraso ou não conformidade.</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -819,24 +945,29 @@
   <section class="dg-diff" id="beneficios" aria-label="Benefícios">
     <div class="dg-diff__inner">
       <div class="dg-diff__header" data-reveal="">
-        <h2 class="dg-diff__title">Muito mais que um LMS: prove <em>resultado</em>, não cliques.</h2>
-        <p class="dg-diff__sub">Cada trilha fecha um gap real e vira dado de impacto — o que a diretoria cobra de verdade.</p>
+        <h2 class="dg-diff__title">Diagnóstico contextualizado: compreenda o negócio <em>antes</em> de desenvolver pessoas.</h2>
+        <p class="dg-diff__sub">Não medimos “engajamento geral”. Medimos a distância entre o que a operação exige e o que cada pessoa domina — e fechamos a lacuna com precisão.</p>
       </div>
       <div class="dg-diff__grid">
         <article class="dg-diff__card" data-reveal="">
-          <div class="dg-diff__icon" aria-hidden="true"><i data-lucide="line-chart"></i></div>
-          <h3>Prove resultado, não cliques</h3>
-          <p>Cada trilha fechada vira certificado e dado de impacto. Você mostra quanto de receita aumentou ou quanto de custo caiu.</p>
-        </article>
-        <article class="dg-diff__card" data-reveal="">
-          <div class="dg-diff__icon" aria-hidden="true"><i data-lucide="crosshair"></i></div>
-          <h3>Conhecimento cirúrgico</h3>
-          <p>O colaborador só recebe o que precisa. Sem cursos de 40 horas quando o gap é em uma habilidade específica.</p>
+          <div class="dg-diff__icon" aria-hidden="true"><i data-lucide="building-2"></i></div>
+          <h3>Contextualizado ao seu negócio</h3>
+          <p>A IA da Lector lê processos, políticas, indicadores, cargos, cultura e procedimentos. Cada diagnóstico reflete a realidade da sua operação — não um template de mercado.</p>
         </article>
         <article class="dg-diff__card" data-reveal="">
           <div class="dg-diff__icon" aria-hidden="true"><i data-lucide="scan-search"></i></div>
-          <h3>Gaps por habilidade</h3>
-          <p>Cada diagnóstico é granular. Você sabe exatamente qual habilidade falta em cada pessoa e quanto isso custa ao negócio.</p>
+          <h3>Gaps por colaborador e habilidade</h3>
+          <p>Você sabe exatamente qual competência falta em cada pessoa — Comunicação, Negociação, Compliance, Liderança, Feedback e o que for crítico para o cargo.</p>
+        </article>
+        <article class="dg-diff__card" data-reveal="">
+          <div class="dg-diff__icon" aria-hidden="true"><i data-lucide="crosshair"></i></div>
+          <h3>Jornada cirúrgica, sem desperdício</h3>
+          <p>O colaborador só recebe o que precisa para fechar o próprio gap. Sem cursos de 40 horas quando a lacuna é uma habilidade específica.</p>
+        </article>
+        <article class="dg-diff__card" data-reveal="">
+          <div class="dg-diff__icon" aria-hidden="true"><i data-lucide="line-chart"></i></div>
+          <h3>Prove resultado, não cliques</h3>
+          <p>Cada trilha fechada vira certificado e dado de impacto. Você mostra evolução de competência e efeito em receita, custo ou risco — o que a diretoria cobra de verdade.</p>
         </article>
       </div>
     </div>
@@ -847,37 +978,78 @@
     <img class="dg-dark__orbit dg-dark__orbit--tr" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <img class="dg-dark__orbit dg-dark__orbit--bl" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <div class="dg-dark__inner">
-      <h2 class="dg-dark__title" data-reveal="">Como funciona: do diagnóstico à certificação, habilidade por habilidade.</h2>
-      <p class="dg-dark__lead" data-reveal="">Não medimos “engajamento geral”. Medimos a distância entre o que a estratégia exige e o que cada colaborador domina — e fechamos a lacuna com precisão.</p>
+      <h2 class="dg-dark__title" data-reveal="">Como funciona: da compreensão do negócio à certificação, competência por competência.</h2>
+      <p class="dg-dark__lead" data-reveal="">Antes de desenvolver pessoas, precisamos compreender profundamente o negócio. A Lector transforma o conhecimento da empresa em mapa vivo de competências — e fecha cada lacuna com evidência.</p>
       <div class="dg-steps" data-reveal="">
         <article class="dg-step">
           <div class="dg-step__n">01</div>
-          <h3>Mapeamento estratégico</h3>
-          <p class="dg-step__tag">Alinhado ao plano de negócio</p>
-          <p>Definimos com a empresa as habilidades críticas para cada cargo e área, alinhadas à estratégia futura.</p>
+          <h3>Compreensão do negócio</h3>
+          <p class="dg-step__tag">Processos, cargos e estratégia</p>
+          <p>Reunimos o que a empresa já sabe: documentos, normas, indicadores, cultura e competências essenciais por cargo. A IA organiza esse conhecimento em um modelo vivo da operação.</p>
         </article>
         <article class="dg-step">
           <div class="dg-step__n">02</div>
           <h3>Diagnóstico por habilidade</h3>
-          <p class="dg-step__tag">Gap individual, não genérico</p>
-          <p>Cada colaborador passa por avaliação focada nas habilidades definidas. O gap é calculado por competência específica.</p>
+          <p class="dg-step__tag">Colaborador por colaborador</p>
+          <p>Cada pessoa é avaliada nas competências que o cargo e a estratégia exigem. O gap é granular: não “falta treinar”, e sim “falta X habilidade com Y impacto”.</p>
         </article>
         <article class="dg-step">
           <div class="dg-step__n">03</div>
-          <h3>Mapa de lacunas</h3>
-          <p class="dg-step__tag">Priorização por impacto</p>
-          <p>Visualize gaps por pessoa, time e habilidade. Priorização automática por impacto estratégico e risco de não conformidade.</p>
+          <h3>Mapa de lacunas priorizado</h3>
+          <p class="dg-step__tag">Impacto e risco, não volume</p>
+          <p>Visualize gaps por pessoa, time e habilidade. A priorização considera impacto estratégico, risco de não conformidade e o que move resultado primeiro.</p>
         </article>
         <article class="dg-step">
           <div class="dg-step__n">04</div>
-          <h3>Trilha cirúrgica + certificação</h3>
+          <h3>Jornada + certificação</h3>
           <p class="dg-step__tag">Evidência pronta para auditoria</p>
-          <p>Conteúdo exato para fechar o gap. Conclusão gera certificado rastreável — inclusive para compliance e NR-1.</p>
+          <p>Trilha personalizada para fechar só o que falta. Conclusão gera certificado rastreável — útil para gestão, diretoria e compliance (inclusive NR-1).</p>
         </article>
       </div>
       <div class="dg-note" data-reveal="">
-        Sem treinamento genérico. Sem perda de tempo. Apenas o conhecimento que fecha a lacuna — e o número que a diretoria entende.
+        O verdadeiro resultado não é um certificado. É uma empresa inteira evoluindo competência por competência — com o número que a diretoria entende.
       </div>
+    </div>
+  </section>
+
+  <!-- SECTION: jornada personalizada -->
+  <section class="dg-journey" id="jornada" aria-label="Jornada personalizada">
+    <div class="dg-journey__inner">
+      <div data-reveal="">
+        <h2 class="dg-journey__title">Quando cada pessoa aprende exatamente o que precisa, <em>toda a empresa evolui.</em></h2>
+        <p class="dg-journey__lead">Depois do diagnóstico, cada colaborador recebe uma jornada construída para fechar seus próprios gaps. O aprendizado deixa de ser obrigação genérica e passa a fazer sentido: a pessoa entende onde pode evoluir e como isso impacta a carreira. Para a empresa, significa equipes mais preparadas, investimentos mais inteligentes e cultura de aprendizado com resultado real.</p>
+        <p class="dg-journey__punch">
+          Nada é desperdiçado.
+          <span>Cada habilidade ganha luz só onde falta.</span>
+        </p>
+        <a href="#cta" class="dg-painel-sec__cta" data-open-lead data-lead-interest="diagnostico">
+          Ver no meu contexto
+          <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+        </a>
+      </div>
+      <ul class="dg-journey__list" data-reveal="">
+        <li>
+          <i data-lucide="user-check" aria-hidden="true"></i>
+          <div>
+            <strong>Para o colaborador</strong>
+            <span>Clareza sobre o que desenvolver e por quê — evolução de carreira com propósito, não curso obrigatório sem contexto.</span>
+          </div>
+        </li>
+        <li>
+          <i data-lucide="users" aria-hidden="true"></i>
+          <div>
+            <strong>Para o time e a liderança</strong>
+            <span>Visão de quem está pronto, quem está em jornada e onde o gap ainda arrisca entrega, qualidade ou compliance.</span>
+          </div>
+        </li>
+        <li>
+          <i data-lucide="briefcase-business" aria-hidden="true"></i>
+          <div>
+            <strong>Para o negócio</strong>
+            <span>Orçamento de T&amp;D com mira: menos conteúdo genérico, mais competência crítica e prova de impacto em receita, custo ou risco.</span>
+          </div>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -885,9 +1057,9 @@
   <section class="dg-painel-sec" id="painel" aria-label="Painel de Competências">
     <div class="dg-painel-sec__inner">
       <div data-reveal="">
-        <h2 class="dg-painel-sec__title">Painel de Competências em tempo real</h2>
-        <p class="dg-painel-sec__sub">Junho 2026 · 248 colaboradores · +12% no mês — conclusão, certificados e ROI estimado no mesmo lugar, para time e liderança.</p>
-        <a href="https://app.lector.com.br/painel" class="dg-painel-sec__cta" target="_blank" rel="noopener noreferrer">
+        <h2 class="dg-painel-sec__title">Painel de Competências: o conhecimento da empresa, visível em tempo real.</h2>
+        <p class="dg-painel-sec__sub">Conclusão, certificados e ROI estimado no mesmo lugar — por pessoa, time e habilidade. Liderança e T&amp;D enxergam a rede de conhecimento da empresa, não só a taxa de conclusão de curso.</p>
+        <a href="https://lector.live" class="dg-painel-sec__cta" target="_blank" rel="noopener noreferrer">
           Acessar painel completo
           <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
         </a>
@@ -961,20 +1133,20 @@
   <!-- SECTION: por que agora -->
   <section class="dg-why" id="por-que-agora" aria-label="Por que agora">
     <div class="dg-why__inner">
-      <h2 class="dg-why__title" data-reveal="">Por que agora: a lei também está cobrando <em>agora</em>.</h2>
-      <p class="dg-why__lead" data-reveal="">A NR-1 já está em vigor, com penalidade para quem não comprova treinamento — e a maioria das empresas precisa resolver sem aumentar o time de RH nem contratar mais ferramentas.</p>
+      <h2 class="dg-why__title" data-reveal="">Por que agora: performance e conformidade cobram o <em>mesmo mapa</em>.</h2>
+      <p class="dg-why__lead" data-reveal="">Saber onde o conhecimento falta já era vantagem competitiva. Com a NR-1 em vigor, também virou evidência. A maioria das empresas precisa resolver sem aumentar o time de RH nem empilhar mais ferramentas.</p>
       <div class="dg-stats" data-reveal="">
         <article class="dg-stat">
           <div class="dg-stat__date">Maio/2026</div>
-          <p>NR-1 em vigor — fiscalização passa a cobrar comprovação de treinamento e gestão de risco psicossocial. Diagnóstico por habilidade vira evidência obrigatória.</p>
+          <p>NR-1 em vigor — fiscalização cobra comprovação de treinamento e gestão de risco psicossocial. Diagnóstico por habilidade vira base de evidência, não só de desenvolvimento.</p>
         </article>
         <article class="dg-stat">
           <div class="dg-stat__num">28%</div>
-          <p>das empresas apontam restrição orçamentária como maior obstáculo para se adequar à NR-1 — consolidar ferramentas deixou de ser luxo.</p>
+          <p>das empresas apontam restrição orçamentária como maior obstáculo para se adequar à NR-1 — investir com precisão em gaps reais deixa de ser opcional.</p>
         </article>
         <article class="dg-stat">
           <div class="dg-stat__num">74%</div>
-          <p>dos acessos a LMS na América Latina já acontecem pelo celular — sua comprovação de treinamento precisa caber no bolso do colaborador.</p>
+          <p>dos acessos a LMS na América Latina já acontecem pelo celular — a jornada personalizada e a comprovação precisam caber no fluxo real do colaborador.</p>
         </article>
       </div>
       <p class="dg-why__sources">Fontes: pesquisas setoriais de RH e EdTech, 2026</p>
@@ -991,15 +1163,23 @@
   <!-- SECTION: faq -->
   <section class="dg-faq-sec" id="faq" aria-label="Perguntas frequentes">
     <div class="dg-faq-sec__inner">
-      <h2 class="dg-faq-sec__title" data-reveal="">Ainda com dúvidas sobre diagnóstico de gaps?</h2>
+      <h2 class="dg-faq-sec__title" data-reveal="">Ainda com dúvidas sobre o Diagnóstico de Gaps de Conhecimento?</h2>
       <div class="dg-faq" data-reveal="">
         <details>
-          <summary>O que é diagnóstico de gaps por habilidade?</summary>
-          <p>É o mapeamento da distância entre o que a estratégia da empresa exige e o que cada colaborador domina — habilidade por habilidade. Em vez de medir engajamento geral em cursos, a Lector identifica lacunas específicas e entrega trilha cirúrgica para fechá-las, com certificação e prova de resultado.</p>
+          <summary>O que é o Diagnóstico de Gaps de Conhecimento da Lector?</summary>
+          <p>É o mapeamento contextualizado da distância entre o que a estratégia e a operação da empresa exigem e o que cada colaborador domina — habilidade por habilidade. A Lector analisa processos, cargos, documentos, normas e objetivos estratégicos com IA, identifica lacunas individuais e entrega jornada personalizada com certificação e prova de resultado.</p>
+        </details>
+        <details>
+          <summary>O diagnóstico é genérico ou contextualizado ao meu negócio?</summary>
+          <p>Completamente contextualizado. Não existem avaliações genéricas de prateleira. Cada diagnóstico reflete a realidade da sua operação: competências essenciais por cargo, processos internos, políticas, indicadores e cultura — para apontar exatamente quais conhecimentos impulsionam resultado e quais lacunas ainda limitam performance.</p>
         </details>
         <details>
           <summary>Como o Painel de Competências ajuda a provar ROI?</summary>
-          <p>O painel consolida conclusão, certificados e impacto estimado em um só lugar. Você enxerga evolução por time e por habilidade e conecta o fechamento de gaps a indicadores de negócio — receita, custo ou risco — em vez de apenas horas de curso.</p>
+          <p>O painel consolida conclusão, certificados e impacto estimado em um só lugar. Você enxerga evolução por pessoa, time e habilidade e conecta o fechamento de gaps a indicadores de negócio — receita, custo ou risco — em vez de apenas horas de curso ou engajamento de fachada.</p>
+        </details>
+        <details>
+          <summary>O que acontece depois do diagnóstico?</summary>
+          <p>Cada colaborador recebe uma jornada personalizada construída para fechar seus próprios gaps. O aprendizado deixa de ser obrigação genérica e passa a fazer sentido: a pessoa entende onde pode evoluir e como isso impacta a carreira; a empresa investe com precisão e forma equipes mais preparadas.</p>
         </details>
         <details>
           <summary>O diagnóstico de gaps serve para NR-1?</summary>
@@ -1007,7 +1187,7 @@
         </details>
         <details>
           <summary>Quanto tempo leva para rodar o primeiro diagnóstico?</summary>
-          <p>Empresas de médio porte costumam ter o mapeamento de habilidades críticas e o primeiro diagnóstico em andamento em poucas semanas, com trilhas atribuídas por cargo e área.</p>
+          <p>Empresas de médio porte costumam ter o mapeamento de competências críticas e o primeiro diagnóstico em andamento em poucas semanas, com trilhas atribuídas por cargo e área — sem interromper a operação.</p>
         </details>
       </div>
     </div>
@@ -1017,8 +1197,8 @@
   <section id="cta" class="dg-final-cta" aria-label="Agendar demonstração">
     <img class="dg-final-cta__orbit" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <div class="dg-final-cta__inner">
-      <h2 data-reveal="">Saiba exatamente onde está o gap de cada colaborador.</h2>
-      <p data-reveal="">Agende uma demonstração e veja na prática como o diagnóstico por habilidade funciona no seu contexto.</p>
+      <h2 data-reveal="">Torne o conhecimento da sua empresa visível.</h2>
+      <p data-reveal="">Agende uma demonstração e veja, no seu contexto, como o Diagnóstico de Gaps identifica lacunas, personaliza jornadas e prova resultado — sem engajamento de fachada.</p>
       <div data-reveal="">
         <a href="#" class="dg-final-cta__btn" data-open-lead data-lead-interest="diagnostico">
           Agendar demonstração

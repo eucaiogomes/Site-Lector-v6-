@@ -87,7 +87,7 @@ O tema da seção deve estar **no próprio título**:
 
 - E-mail: `contato@lector.com.br`  
 - Horário: seg. a sex., 9h–18h  
-- Painel cliente: `https://app.lector.com.br/painel`  
+- Painel cliente: `https://lector.live`  
 
 ## Não fazer
 
