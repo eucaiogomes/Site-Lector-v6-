@@ -433,6 +433,15 @@
     .cl-logo-card img { max-width: 128px; max-height: 44px; }
     .cl-gains { grid-template-columns: 1fr; }
   }
+
+  /* ── Mobile: footer (grid inline) ── */
+  @media (max-width: 960px) {
+    footer div[style*="grid-template-columns"] { grid-template-columns: 1fr 1fr !important; gap: 36px 28px !important; }
+    footer div[style*="grid-template-columns"] > div:first-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 560px) {
+    footer div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+  }
 </style>
 </helmet>
 

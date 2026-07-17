@@ -740,6 +740,65 @@
   @media (prefers-reduced-motion: reduce) {
     .lk-announce-track, .lk-clients-marquee__track, .lk-hero-cta, .lk-cta-sheen, .lk-cta-icon { animation: none; }
   }
+
+  /* ── Mobile: menu (burger + drawer) e footer ── */
+  .lk-burger { display: none; }
+  @media (max-width: 960px) {
+    header .lk-nav-desktop { display: none !important; }
+    header .lk-header-actions { display: none !important; }
+    .lk-burger {
+      display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      width: 44px; height: 44px; flex: none; margin-left: auto;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16);
+      border-radius: 12px; cursor: pointer;
+    }
+    .lk-burger span { display: block; width: 20px; height: 2px; background: #fff; border-radius: 2px; }
+  }
+  .lk-mnav-overlay {
+    position: fixed; inset: 0; z-index: 940; background: rgba(0,8,24,.62);
+    opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s ease;
+  }
+  .lk-mnav-overlay.is-open { opacity: 1; visibility: visible; }
+  .lk-mnav {
+    position: fixed; top: 0; right: 0; bottom: 0; z-index: 950;
+    width: min(330px, 88vw); background: #021026; color: #fff;
+    display: flex; flex-direction: column; padding: 22px 24px 28px;
+    transform: translateX(100%); transition: transform .32s ease;
+    overflow-y: auto; border-left: 1px solid rgba(255,255,255,.08);
+  }
+  .lk-mnav.is-open { transform: translateX(0); }
+  .lk-mnav-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+  .lk-mnav-head img { height: 24px; width: auto; }
+  .lk-mnav-close {
+    width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,.08); border: none; border-radius: 12px; color: #fff; cursor: pointer;
+  }
+  .lk-mnav-close i, .lk-mnav-close svg { width: 18px; height: 18px; }
+  .lk-mnav-label {
+    font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(255,255,255,.5); margin: 4px 0 8px;
+  }
+  .lk-mnav-sub { display: flex; flex-direction: column; border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: 12px; margin-bottom: 4px; }
+  .lk-mnav-sub a { padding: 10px 0; font-size: 15px; font-weight: 600; color: rgba(255,255,255,.88); }
+  .lk-mnav-sub a:hover { color: var(--brand); }
+  .lk-mnav-link { padding: 13px 0; font-size: 16.5px; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .lk-mnav-link:hover { color: var(--brand); }
+  .lk-mnav-cta { margin-top: auto; padding-top: 22px; display: flex; flex-direction: column; gap: 11px; }
+  .lk-mnav-cta a {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 48px; border-radius: var(--radius-pill); font-weight: 700; font-size: 15px;
+  }
+  .lk-mnav-cta__ghost { border: 1px solid rgba(255,255,255,.22); color: #fff; }
+  .lk-mnav-cta__solid { background: var(--brand); color: #fff; }
+  .lk-mnav-cta__ghost:hover, .lk-mnav-cta__solid:hover { color: #fff; opacity: .92; }
+  /* footer (grid inline) empilha no mobile */
+  @media (max-width: 960px) {
+    footer div[style*="grid-template-columns"] { grid-template-columns: 1fr 1fr !important; gap: 36px 28px !important; }
+    footer div[style*="grid-template-columns"] > div:first-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 560px) {
+    footer div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+  }
 </style>
 </helmet>
 
@@ -834,13 +893,43 @@
         <a href="/pages/clientes/index.dc.html" style="{{ navLinkStyle }}">Clientes</a>
         <a href="/pages/contato/index.dc.html" style="{{ navLinkStyle }}">Contato</a>
       </nav>
-      <div style="display:flex; align-items:center; gap:18px; flex:none;">
+      <div class="lk-header-actions" style="display:flex; align-items:center; gap:18px; flex:none;">
         <a href="https://lector.live" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.9); font-weight:700; font-size:14.5px; white-space:nowrap;">Sou cliente</a>
         <a href="#cta" style="display:inline-flex; align-items:center; gap:12px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); border-radius:var(--radius-pill); padding:6px 6px 6px 20px; color:#fff; font-weight:700; font-size:14.5px;" data-open-lead data-lead-interest="diagnostico">Falar com especialista <span style="width:32px; height:32px; border-radius:10px; background:var(--brand); display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span></a>
       </div>
+        <button type="button" class="lk-burger" onClick="{{ openMobile }}" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
     </header>
     </div>
   </div>
+
+  <!-- MOBILE NAV (drawer) -->
+  <div class="lk-mnav-overlay {{ mobileOpenClass }}" onClick="{{ closeMobile }}"></div>
+  <aside class="lk-mnav {{ mobileOpenClass }}" aria-label="Menu mobile">
+    <div class="lk-mnav-head">
+      <img src="/assets/brand/logo-lector-light.svg" alt="Lector">
+      <button type="button" class="lk-mnav-close" onClick="{{ closeMobile }}" aria-label="Fechar menu">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <div class="lk-mnav-label">Nossas Soluções</div>
+    <div class="lk-mnav-sub">
+      <a href="/pages/plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
+      <a href="/pages/copiloto-vendas/index.dc.html" onClick="{{ closeMobile }}">Copiloto de Vendas</a>
+      <a href="/pages/solucao-nr-1/index.dc.html" onClick="{{ closeMobile }}">Solução NR-1</a>
+      <a href="/pages/conteudo-sob-demanda/index.dc.html" onClick="{{ closeMobile }}">Criação de Conteúdo sob Demanda</a>
+      <a href="/pages/diagnostico-gaps/index.dc.html" onClick="{{ closeMobile }}">Diagnóstico de Gaps</a>
+      <a href="/pages/servicos-especializados/index.dc.html" onClick="{{ closeMobile }}">Serviços Especializados</a>
+    </div>
+    <a href="/pages/blog/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Blog</a>
+    <a href="/pages/clientes/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
+    <a href="/pages/contato/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Contato</a>
+    <div class="lk-mnav-cta">
+      <a href="https://lector.live" class="lk-mnav-cta__ghost" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>
+      <a href="#cta" class="lk-mnav-cta__solid" onClick="{{ closeMobile }}">Falar com especialista</a>
+    </div>
+  </aside>
 
   <!-- SECTION: hero -->
   <section id="hero" style="position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--ink-950);" aria-label="Diagnóstico de Gaps de Conhecimento">
@@ -1259,7 +1348,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{}">
 class Component extends DCLogic {
-  state = {
+  state = { mobileOpen: false,
     announceClosed: false,
     scrolled: false,
   };
@@ -1363,6 +1452,9 @@ class Component extends DCLogic {
         if (window.__LectorLeadForm) window.__LectorLeadForm.open({ interest: 'diagnostico' });
       },
       headerPillStyle,
+      mobileOpenClass: this.state.mobileOpen ? 'is-open' : '',
+      openMobile: () => this.setState({ mobileOpen: true }),
+      closeMobile: () => this.setState({ mobileOpen: false }),
       navLinkStyle: 'transition:color .2s; color:rgba(255,255,255,.85);',
       logos,
     };
