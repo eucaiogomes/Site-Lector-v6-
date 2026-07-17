@@ -1964,7 +1964,12 @@
     width: 100%;
     overflow: hidden;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
+    /* Reserva header fixo — evita título colado no topo em notebook */
+    padding-top: clamp(88px, 12vh, 120px);
+    box-sizing: border-box;
   }
   .lk-scrub__video {
     position: absolute;
@@ -2017,21 +2022,66 @@
     width: 100%;
     max-width: 1240px;
     margin: 0 auto;
-    padding: 100px 48px 72px;
-    /* Texto fixo no pin — só o vídeo avança com o scroll */
+    /* Copy na faixa inferior (como no monitor grande) */
+    padding: 0 48px clamp(52px, 8vh, 80px);
     pointer-events: none;
+    box-sizing: border-box;
   }
   .lk-scrub__content .lk-story__inner {
     pointer-events: auto;
+    max-width: 640px;
+  }
+  /* Notebooks / monitores baixos: compacta tipografia para o título ficar na faixa inferior */
+  @media (max-height: 920px) {
+    .lk-scrub__pin {
+      padding-top: clamp(80px, 11vh, 104px);
+    }
+    .lk-scrub__content {
+      padding-bottom: clamp(36px, 5.5vh, 56px);
+    }
+    .lk-scrub__content .lk-story__title {
+      font-size: clamp(28px, 3.6vw, 40px);
+      margin-bottom: 12px;
+    }
+    .lk-scrub__content .lk-story__lead {
+      font-size: 14.5px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .lk-scrub__content .lk-story__punch {
+      font-size: clamp(15px, 1.45vw, 17px);
+      margin-bottom: 16px;
+    }
+    .lk-scrub__content .lk-story__btn,
+    .lk-scrub__content .lk-story__btn-ghost {
+      height: 44px;
+    }
+  }
+  @media (max-height: 780px) {
+    .lk-scrub__pin { padding-top: 76px; }
+    .lk-scrub__content { padding-bottom: 32px; }
+    .lk-scrub__content .lk-story__title {
+      font-size: clamp(26px, 3.4vw, 34px);
+      margin-bottom: 10px;
+    }
+    .lk-scrub__content .lk-story__lead {
+      font-size: 13.75px;
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .lk-scrub__content .lk-story__punch {
+      font-size: 14.5px;
+      margin-bottom: 14px;
+    }
   }
   @media (max-width: 800px) {
     .lk-scrub { height: 220vh; }
     .lk-scrub--long { height: 260vh; }
-    .lk-scrub__content { padding: 72px 24px 88px; }
+    .lk-scrub__content { padding-left: 24px; padding-right: 24px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .lk-scrub, .lk-scrub--long { height: auto; min-height: 100vh; }
-    .lk-scrub__pin { position: relative; height: auto; min-height: 100vh; }
+    .lk-scrub__pin { position: relative; height: auto; min-height: 100vh; padding-top: 100px; }
   }
 
   /* —— Trilogia narrativa: diagnóstico → jornada (canvas) —— */
@@ -2043,10 +2093,15 @@
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
     overflow: hidden;
     background: var(--ink-950, #001026);
     color: #fff;
+    /* Mesma margem de header das seções scrub */
+    padding-top: clamp(88px, 12vh, 120px);
+    box-sizing: border-box;
   }
   .lk-story--diag {
     background: #000c1c;
@@ -2093,8 +2148,9 @@
     width: 100%;
     max-width: 1240px;
     margin: 0 auto;
-    padding: 100px 48px 72px;
+    padding: 0 48px clamp(52px, 8vh, 80px);
     animation: lkStoryRise .95s cubic-bezier(.16, 1, .3, 1) both;
+    box-sizing: border-box;
   }
   .lk-story__inner {
     max-width: 640px;
@@ -2184,13 +2240,56 @@
     color: #fff;
     border-color: rgba(200, 220, 255, .65);
   }
+  @media (max-height: 920px) {
+    .lk-story {
+      padding-top: clamp(80px, 11vh, 104px);
+    }
+    .lk-story__content {
+      padding-bottom: clamp(36px, 5.5vh, 56px);
+    }
+    .lk-story__title {
+      font-size: clamp(28px, 3.6vw, 40px);
+      margin-bottom: 12px;
+    }
+    .lk-story__lead {
+      font-size: 14.5px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .lk-story__punch {
+      font-size: clamp(15px, 1.45vw, 17px);
+      margin-bottom: 16px;
+    }
+    .lk-story__btn,
+    .lk-story__btn-ghost {
+      height: 44px;
+    }
+  }
+  @media (max-height: 780px) {
+    .lk-story { padding-top: 76px; }
+    .lk-story__content { padding-bottom: 32px; }
+    .lk-story__title {
+      font-size: clamp(26px, 3.4vw, 34px);
+      margin-bottom: 10px;
+    }
+    .lk-story__lead {
+      font-size: 13.75px;
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .lk-story__punch {
+      font-size: 14.5px;
+      margin-bottom: 14px;
+    }
+  }
   @media (max-width: 800px) {
-    .lk-story { min-height: auto; }
+    .lk-story { min-height: auto; padding-top: 0; }
     .lk-story__content { padding: 72px 24px 56px; }
     .lk-story__canvas { min-height: 380px; position: relative; height: 42vh; }
     .lk-story {
       flex-direction: column;
       align-items: stretch;
+      justify-content: flex-start;
     }
     .lk-story__canvas {
       position: relative;
