@@ -1266,149 +1266,6 @@
     bottom: 28%;
   }
 
-  /* Stage mock — gestão de talentos */
-  .lk-spotlight__stage--talent {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 48px 36px;
-    background:
-      radial-gradient(ellipse 60% 50% at 75% 25%, rgba(246, 107, 10, .22) 0%, transparent 55%),
-      radial-gradient(ellipse 55% 50% at 15% 80%, rgba(42, 111, 219, .3) 0%, transparent 52%),
-      linear-gradient(155deg, #001A3D 0%, #001026 50%, #000812 100%);
-  }
-  .lk-talent-stage {
-    position: relative;
-    width: min(100%, 440px);
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .lk-talent-card {
-    background: rgba(255, 255, 255, .97);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, .12);
-    box-shadow: 0 28px 60px -24px rgba(0, 8, 24, .55);
-    overflow: hidden;
-  }
-  .lk-talent-card__head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 18px;
-    border-bottom: 1px solid var(--ink-100, #E7EAF1);
-  }
-  .lk-talent-card__av {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    flex: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(145deg, var(--brand), #FF9A4A);
-    color: #fff;
-    font-weight: 800;
-    font-size: 13px;
-    letter-spacing: -.02em;
-  }
-  .lk-talent-card__name {
-    font-size: 14.5px;
-    font-weight: 700;
-    color: var(--navy-800);
-    margin: 0 0 2px;
-  }
-  .lk-talent-card__role {
-    font-size: 12px;
-    color: var(--ink-400);
-    margin: 0;
-  }
-  .lk-talent-card__status {
-    margin-left: auto;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 5px 10px;
-    border-radius: 999px;
-    background: rgba(34, 197, 94, .12);
-    color: #16A34A;
-    border: 1px solid rgba(34, 197, 94, .22);
-  }
-  .lk-talent-skill {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 18px;
-    border-bottom: 1px solid var(--ink-50, #F6F7FA);
-  }
-  .lk-talent-skill:last-child { border-bottom: none; }
-  .lk-talent-skill__label {
-    flex: 0 0 110px;
-    font-size: 12.5px;
-    font-weight: 700;
-    color: var(--ink-700);
-  }
-  .lk-talent-skill__bar {
-    flex: 1;
-    height: 8px;
-    border-radius: 999px;
-    background: var(--ink-100, #E7EAF1);
-    overflow: hidden;
-  }
-  .lk-talent-skill__fill {
-    display: block;
-    height: 100%;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--brand), #FF9A4A);
-  }
-  .lk-talent-skill__score {
-    flex: none;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--navy-800);
-    min-width: 2.2em;
-    text-align: right;
-  }
-  .lk-talent-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .lk-talent-chip {
-    background: rgba(255, 255, 255, .08);
-    border: 1px solid rgba(255, 255, 255, .14);
-    border-radius: 14px;
-    padding: 14px 14px 12px;
-    color: #fff;
-  }
-  .lk-talent-chip__icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 10px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(246, 107, 10, .18);
-    color: var(--brand);
-    margin-bottom: 10px;
-  }
-  .lk-talent-chip__icon i,
-  .lk-talent-chip__icon svg {
-    width: 16px;
-    height: 16px;
-  }
-  .lk-talent-chip strong {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .lk-talent-chip span {
-    font-size: 12px;
-    line-height: 1.35;
-    color: rgba(230, 238, 250, .7);
-  }
-
   /* Stage mock — webconferência (sala + participantes + IA) */
   .lk-spotlight__stage--webconf {
     display: flex;
@@ -1708,8 +1565,7 @@
       max-height: min(420px, 58vh);
     }
     .lk-spotlight__stage--social,
-    .lk-spotlight__stage--webconf,
-    .lk-spotlight__stage--talent {
+    .lk-spotlight__stage--webconf {
       min-height: 480px;
       padding: 40px 24px 48px;
     }
@@ -3272,64 +3128,17 @@
     </div>
   </section>
 
-  <!-- SECTION: Gestão de talentos — product spotlight invertido (mock | texto) -->
+  <!-- SECTION: Gestão de talentos — product spotlight invertido (imagem | texto) -->
   <section id="talentos" class="lk-spotlight lk-spotlight--flip" aria-label="Gestão de talentos">
     <div class="lk-spotlight__grid">
-      <div class="lk-spotlight__stage lk-spotlight__stage--talent" aria-hidden="true">
-        <div class="lk-talent-stage">
-          <div class="lk-talent-card">
-            <div class="lk-talent-card__head">
-              <span class="lk-talent-card__av">MC</span>
-              <div>
-                <p class="lk-talent-card__name">Marina Costa</p>
-                <p class="lk-talent-card__role">Analista sênior · Comercial</p>
-              </div>
-              <span class="lk-talent-card__status">Em evolução</span>
-            </div>
-            <div class="lk-talent-skill">
-              <span class="lk-talent-skill__label">Negociação</span>
-              <div class="lk-talent-skill__bar"><span class="lk-talent-skill__fill" style="width:82%"></span></div>
-              <span class="lk-talent-skill__score">82</span>
-            </div>
-            <div class="lk-talent-skill">
-              <span class="lk-talent-skill__label">Liderança</span>
-              <div class="lk-talent-skill__bar"><span class="lk-talent-skill__fill" style="width:64%"></span></div>
-              <span class="lk-talent-skill__score">64</span>
-            </div>
-            <div class="lk-talent-skill">
-              <span class="lk-talent-skill__label">Produto</span>
-              <div class="lk-talent-skill__bar"><span class="lk-talent-skill__fill" style="width:91%"></span></div>
-              <span class="lk-talent-skill__score">91</span>
-            </div>
-            <div class="lk-talent-skill">
-              <span class="lk-talent-skill__label">Feedback</span>
-              <div class="lk-talent-skill__bar"><span class="lk-talent-skill__fill" style="width:58%"></span></div>
-              <span class="lk-talent-skill__score">58</span>
-            </div>
-          </div>
-          <div class="lk-talent-grid">
-            <div class="lk-talent-chip">
-              <div class="lk-talent-chip__icon" aria-hidden="true"><i data-lucide="clipboard-list"></i></div>
-              <strong>Avaliações</strong>
-              <span>Ciclo 360° e desempenho</span>
-            </div>
-            <div class="lk-talent-chip">
-              <div class="lk-talent-chip__icon" aria-hidden="true"><i data-lucide="message-circle"></i></div>
-              <strong>Feedbacks</strong>
-              <span>Registro contínuo do time</span>
-            </div>
-            <div class="lk-talent-chip">
-              <div class="lk-talent-chip__icon" aria-hidden="true"><i data-lucide="route"></i></div>
-              <strong>PDI</strong>
-              <span>Plano de desenvolvimento</span>
-            </div>
-            <div class="lk-talent-chip">
-              <div class="lk-talent-chip__icon" aria-hidden="true"><i data-lucide="line-chart"></i></div>
-              <strong>Indicadores</strong>
-              <span>Evolução por pessoa</span>
-            </div>
-          </div>
-        </div>
+      <div class="lk-spotlight__stage">
+        <img
+          class="lk-spotlight__img"
+          src="/assets/media/home/gestao-talentos.png"
+          alt="Gestão de talentos Lector — competências, evolução e desenvolvimento de pessoas"
+          loading="lazy"
+          decoding="async"
+        >
       </div>
 
       <div class="lk-spotlight__copy" data-reveal="">
@@ -3372,7 +3181,7 @@
         <p class="lk-modules__sub">Do primeiro rascunho ao relatório de impacto, sem trocar de ferramenta.</p>
       </div>
       <div class="lk-modules__grid">
-        <sc-for list="{{ modules }}" as="m" hint-placeholder-count="6">
+        <sc-for list="{{ modules }}" as="m" hint-placeholder-count="9">
           <div data-reveal="" class="lk-modules__card">
             <div class="lk-modules__card-top">
               <span class="lk-modules__icon" aria-hidden="true"><i data-lucide="{{ m.icon }}"></i></span>
@@ -5426,6 +5235,9 @@ class Component extends DCLogic {
       { icon: 'target', title: 'Gestão de talentos', body: 'Mapeie competências, defina trilhas de desenvolvimento e acompanhe a evolução de cada colaborador.', badge: 'Nativo' },
       { icon: 'message-circle', title: 'Rede social corporativa', body: 'Comunicação interna, comunidades e engajamento — informação circulando onde o time já está.', badge: 'Nativo' },
       { icon: 'library', title: 'Gestão de documentos', body: 'Centralize documentos e arquivos da empresa em um só lugar. Busca, versionamento e acesso controlado — organizado e acessível.', badge: 'Nativo' },
+      { icon: 'shield-check', title: 'Solução NR-1', body: 'Riscos psicossociais com trilha de evidências: inventário no formato PGR, plano de ação, monitoramento e prontidão para auditoria.', badge: 'Solução' },
+      { icon: 'trending-up', title: 'Copiloto de Vendas', body: 'Diagnóstico de técnica comercial com IA, trilhas e certificação — antes, durante e depois da reunião — para reduzir o ramp-up.', badge: 'Solução' },
+      { icon: 'clapperboard', title: 'Criação de Conteúdo sob Demanda', body: 'Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.', badge: 'Solução' },
     ];
 
     const heroTools = [

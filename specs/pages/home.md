@@ -46,8 +46,8 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 | 10 | `rede-social` | Rede social (tema no H2) | Spotlight; `rede-social.png` |
 | 11 | `webconferencia` | Webconferência (tema no H2) | Spotlight flip; `webconferencia.png` |
 | 12 | `documentos` | Gestão de documentos (tema no H2) | Spotlight; `gestao-documentos.mp4` |
-| 13 | `talentos` | Gestão de talentos (tema no H2) | Spotlight flip; mock competências + PDI |
-| 14 | — | Módulos bento (`#modulos`) | 6 módulos; sem eyebrow de seção |
+| 13 | `talentos` | Gestão de talentos (tema no H2) | Spotlight flip; `gestao-talentos.png` |
+| 14 | — | Módulos bento (`#modulos`) | 9 módulos (6 nativos + NR-1, Copiloto, Conteúdo sob Demanda); sem eyebrow de seção |
 | 15 | `numeros` | Resultados reais (tema no H2) | Stats + count-up |
 | 16 | `contato` | CTA final | “Falar com especialista” → lead form |
 | 17 | — | Footer | Logo light + links |
@@ -88,6 +88,8 @@ Formulário: `shared/lead-form.js` — ver `specs/components/lead-form.md`.
 - Autoria: `assets/media/home/video-autoria.mp4`  
 - LMS / rede / webconf: `assets/media/home/lms.png`, `rede-social.png`, `webconferencia.png`  
 - Documentos: `assets/media/home/gestao-documentos.mp4`  
+- Talentos: `assets/media/home/gestao-talentos.png`  
+
 
 - Nav: sincronizar com `content/site.json` e com as outras páginas  
 
