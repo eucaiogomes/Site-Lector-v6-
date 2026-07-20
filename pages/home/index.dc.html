@@ -4821,9 +4821,11 @@ class Component extends DCLogic {
 
   /* —— Testimonial carousel (slide left out / enter from right) —— */
   _initTestimonials() {
-    if (this._t) return; // evita listeners/timers duplicados (texto sobreposto)
+    if (this._t || this._tBooting) return; // evita listeners/timers duplicados (texto sobreposto)
+    this._tBooting = true;
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const boot = () => {
+      this._tBooting = false;
       if (this._t) return;
       const stage = document.querySelector('[data-t-stage]');
       if (!stage) return;
@@ -4874,6 +4876,7 @@ class Component extends DCLogic {
 
   _teardownTestimonials() {
     this._tStop();
+    this._tBooting = false;
     if (this._t && this._t.doneTimer) {
       clearTimeout(this._t.doneTimer);
       this._t.doneTimer = null;
