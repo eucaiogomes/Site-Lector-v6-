@@ -27,7 +27,7 @@ Converter visitantes B2B (RH/T&D e liderança) em leads: explorar a plataforma, 
 
 **Headline:** O poder de aprender *de verdade*.  
 **Sub:** Uma só plataforma para criar, ensinar, engajar e medir. Menos ferramentas soltas, mais gente aprendendo.  
-**Eyebrow:** Plataforma de aprendizado com IA nativa  
+**Eyebrow:** nenhum (sem badge/kicker acima do H1)
 
 ## Seções (ordem no HTML)
 
