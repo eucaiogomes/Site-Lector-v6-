@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<!-- GEO: schema Organization (specs/geo.md) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Lector",
+  "alternateName": "a Lector",
+  "url": "https://lector.com.br",
+  "logo": "https://lector.com.br/assets/brand/logo-lector.svg",
+  "description": "Plataforma brasileira de educação corporativa, performance e compliance NR-1 com IA nativa. Une LMS, webconferência própria, autoria com IA, gestão do conhecimento e evidências auditáveis.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Blumenau",
+    "addressRegion": "SC",
+    "addressCountry": "BR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "email": "contato@lector.com.br",
+    "availableLanguage": "Portuguese"
+  }
+}
+</script>
+
+<title>Sobre a Lector | Mais de 20 anos transformando conhecimento em resultado</title>
+<meta name="description" content="Desde 2005, a Lector ajuda empresas a organizar, desenvolver e potencializar o conhecimento que existe dentro delas — hoje com Inteligência Artificial nativa.">
+<meta property="og:title" content="Sobre a Lector | Mais de 20 anos transformando conhecimento em resultado">
+<meta property="og:description" content="Desde 2005, a Lector ajuda empresas a organizar, desenvolver e potencializar o conhecimento que existe dentro delas.">
+<link rel="stylesheet" href="/design-system/tokens/fonts.css">
+<link rel="stylesheet" href="/design-system/tokens/colors.css">
+<link rel="stylesheet" href="/design-system/tokens/typography.css">
+<link rel="stylesheet" href="/design-system/tokens/spacing.css">
+<link rel="stylesheet" href="/design-system/tokens/effects.css">
+<link rel="stylesheet" href="/design-system/tokens/base.css">
+<link rel="stylesheet" href="/design-system/styles.css">
+<script src="/design-system/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--navy-950);
+    color: var(--ink-100);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--brand); }
+  button { font-family: inherit; cursor: pointer; }
+  * { box-sizing: border-box; }
+  [data-lucide] { display: block; }
+  ::selection { background: var(--brand); color: #fff; }
+
+  .sb-wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+  .sb-kicker {
+    display: inline-block; font-family: var(--font-mono, monospace); font-size: 12px;
+    font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--brand);
+    margin: 0 0 20px;
+  }
+  .sb-section { position: relative; padding: 96px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .sb-section--alt { background: var(--navy-900); }
+  .sb-section--center { text-align: center; }
+  .sb-h1 {
+    font-family: var(--font-display); font-weight: 700; font-size: clamp(34px, 4.6vw, 60px);
+    line-height: 1.06; letter-spacing: -.025em; color: #fff; margin: 0 0 24px; text-wrap: balance;
+  }
+  .sb-h2 {
+    font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.16; letter-spacing: -.02em; color: #fff; margin: 0 0 22px; text-wrap: balance;
+  }
+  .sb-h2 em, .sb-h1 em { font-style: italic; font-weight: 800; color: var(--brand); }
+  .sb-lead {
+    font-size: 17px; line-height: 1.7; color: var(--navy-200); max-width: 56ch; margin: 0 0 18px;
+  }
+  .sb-emph {
+    font-family: var(--font-display); font-size: 18px; font-weight: 600; color: #fff; margin: 0;
+  }
+  .sb-emph em { font-style: italic; color: var(--brand); }
+  #hero.sb-section { padding-bottom: 128px; }
+  #hero .sb-h1 { margin-bottom: 32px; line-height: 1.14; }
+  #hero .sb-lead { margin-bottom: 26px; line-height: 1.75; }
+  #hero .sb-kicker { margin-bottom: 26px; }
+  #hero .geo-capsule { margin-top: 8px; }
+  .sb-col-right { margin-left: auto; text-align: right; }
+  .sb-list { display: flex; flex-direction: column; gap: 13px; margin: 24px 0 0; padding: 0; list-style: none; }
+  .sb-list--grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px 28px; }
+  .sb-list li { display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--ink-100); }
+  .sb-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--brand); flex-shrink: 0; }
+  .sb-qa { display: flex; flex-direction: column; gap: 16px; margin: 0 0 26px; }
+  .sb-qa div { display: flex; gap: 14px; align-items: baseline; }
+  .sb-qa span.n { font-family: var(--font-mono, monospace); font-size: 12px; color: var(--brand); flex-shrink: 0; }
+  .sb-qa span.q { font-size: 16px; color: var(--ink-100); }
+  .sb-btn {
+    display: inline-flex; align-items: center; gap: 8px; background: var(--brand); color: #fff;
+    border: none; border-radius: var(--radius-pill, 999px); padding: 17px 32px; font-size: 15.5px;
+    font-weight: 700; letter-spacing: .01em; box-shadow: 0 14px 34px -8px rgba(246,107,10,.5);
+    transition: background .2s ease, transform .2s ease;
+  }
+  .sb-btn:hover { background: var(--orange-400); color: #fff; transform: translateY(-1px); }
+  .sb-btn:active { transform: scale(.98); }
+  .sb-glow {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background: radial-gradient(ellipse 60% 50% at var(--gx,50%) var(--gy,50%), rgba(246,107,10,.10), transparent 70%);
+  }
+  .sb-section > .sb-wrap { position: relative; z-index: 1; }
+
+  @media (max-width: 760px) {
+    .sb-section { padding: 64px 0; }
+    .sb-col-right { text-align: left; margin-left: 0; }
+    .sb-list--grid { grid-template-columns: 1fr; }
+  }
+
+  /* Nav (shared pattern — light theme, same as blog) */
+  .lec-nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 11px 20px 0;
+    background: transparent;
+    margin-bottom: -81px;
+    pointer-events: none;
+  }
+  .lec-nav-wrap > * { pointer-events: auto; }
+  .lec-nav {
+    width: 100%;
+    max-width: 1160px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 11px 11px 11px 22px;
+    border-radius: var(--radius-pill, 999px);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(0, 32, 77, 0.08);
+    box-shadow: 0 8px 28px -16px rgba(10, 23, 48, 0.12);
+    transition: box-shadow .3s ease, background .3s ease, border-color .3s ease;
+  }
+  .lec-nav.lec-nav-scrolled {
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 16px 40px -16px rgba(10, 23, 48, 0.18);
+    border-color: rgba(0, 32, 77, 0.1);
+  }
+  .lec-nav-logo {
+    display: flex;
+    align-items: center;
+    flex: none;
+  }
+  .lec-nav-logo:hover { color: inherit; }
+  .lec-nav-logo img { height: 24px; width: auto; display: block; }
+  .lec-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+  .lec-nav-links > a {
+    position: relative;
+    padding: 0;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #243653;
+    transition: color .2s;
+  }
+  .lec-nav-links > a:hover { color: var(--brand); }
+  .lec-nav-links > a.is-active { color: var(--brand); font-weight: 700; }
+
+  .lec-dd { position: relative; }
+  .lec-dd__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #243653;
+    cursor: pointer;
+    transition: color .2s;
+  }
+  .lec-dd__trigger:hover,
+  .lec-dd:hover .lec-dd__trigger,
+  .lec-dd:focus-within .lec-dd__trigger { color: var(--brand); }
+  .lec-dd__chev {
+    display: inline-flex;
+    width: 14px;
+    height: 14px;
+    transition: transform .25s ease;
+  }
+  .lec-dd__chev i,
+  .lec-dd__chev svg { width: 14px; height: 14px; }
+  .lec-dd:hover .lec-dd__chev,
+  .lec-dd:focus-within .lec-dd__chev { transform: rotate(180deg); }
+  .lec-dd__menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    min-width: 360px;
+    width: max(360px, min(420px, 92vw));
+    padding: 8px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid #ECEDF2;
+    box-shadow: 0 18px 44px -12px rgba(10, 20, 40, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease, visibility .18s;
+    z-index: 80;
+  }
+  .lec-dd__menu::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 0;
+    right: 0;
+    height: 12px;
+  }
+  .lec-dd:hover .lec-dd__menu,
+  .lec-dd:focus-within .lec-dd__menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+  .lec-dd__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    color: #1F2A3D;
+    white-space: normal;
+    transition: background .15s ease, color .15s;
+  }
+  .lec-dd__item:hover {
+    background: #F7F8FA;
+    color: inherit;
+  }
+  .lec-dd__item:hover .lec-dd__item-title {
+    color: var(--brand);
+  }
+  .lec-dd__item-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    margin-top: 1px;
+    border-radius: 10px;
+    background: rgba(246, 107, 10, 0.12);
+    color: var(--brand);
+    flex: none;
+  }
+  .lec-dd__item-icon i,
+  .lec-dd__item-icon svg { width: 17px; height: 17px; }
+  .lec-dd__item-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+  .lec-dd__item-title {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #1F2A3D;
+    transition: color .15s ease;
+  }
+  .lec-dd__item-desc {
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #5A6B84;
+  }
+
+  .lec-nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex: none;
+  }
+  .lec-nav-cta__ghost {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--accent-navy, #00204D);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .lec-nav-cta__ghost:hover { color: var(--brand); }
+  .lec-nav-cta__solid {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 32, 77, 0.04);
+    border: 1px solid rgba(0, 32, 77, 0.1);
+    border-radius: var(--radius-pill, 999px);
+    padding: 6px 6px 6px 20px;
+    color: var(--accent-navy, #00204D);
+    font-weight: 700;
+    font-size: 14.5px;
+    white-space: nowrap;
+  }
+  .lec-nav-cta__solid:hover { color: var(--accent-navy, #00204D); border-color: rgba(0, 32, 77, 0.16); }
+  .lec-nav-cta__solid-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: var(--brand);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lec-nav-cta__solid-icon i,
+  .lec-nav-cta__solid-icon svg { width: 16px; height: 16px; }
+
+  .lec-burger {
+    display: none;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 10px;
+  }
+  .lec-burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #00204D;
+    border-radius: 2px;
+  }
+  .lec-mnav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 16, 38, 0.32);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s;
+    z-index: 90;
+  }
+  .lec-mnav-overlay.is-open { opacity: 1; visibility: visible; }
+  .lec-mnav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(310px, 85vw);
+    background: #fff;
+    z-index: 91;
+    transform: translateX(100%);
+    transition: transform .4s cubic-bezier(.16, 1, .3, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 26px 16px 32px;
+    overflow-y: auto;
+    box-shadow: -12px 0 42px rgba(10, 20, 40, 0.16);
+  }
+  .lec-mnav.is-open { transform: translateX(0); }
+  .lec-mnav-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 26px;
+  }
+  .lec-mnav-head img { height: 26px; width: auto; }
+  .lec-mnav-close {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #F1F2F7;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #243653;
+  }
+  .lec-mnav-link {
+    display: flex;
+    align-items: center;
+    padding: 16px 18px;
+    font-size: 15.5px;
+    font-weight: 600;
+    color: #1F2A3D;
+    border-bottom: 1px solid #EBEDF3;
+  }
+  .lec-mnav-link.is-active { color: var(--brand); }
+  .lec-mnav-link:hover { color: var(--brand); background: #F7F8FA; }
+  .lec-mnav-sub {
+    border-bottom: 1px solid #EBEDF3;
+    padding: 4px 0 10px;
+  }
+  .lec-mnav-sub a {
+    display: block;
+    padding: 10px 18px 10px 26px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #52637F;
+  }
+  .lec-mnav-sub a:hover { color: var(--brand); }
+  .lec-mnav-cta {
+    margin-top: auto;
+    padding-top: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  @media (max-width: 880px) {
+    .lec-nav-links, .lec-nav-cta { display: none !important; }
+    .lec-burger { display: flex !important; }
+  }
+</style>
+</helmet>
+
+<!-- SECTION: nav -->
+<div class="lec-nav-wrap">
+<nav class="lec-nav" data-sb-nav="">
+  <a href="/pages/home/index.dc.html" class="lec-nav-logo">
+    <img src="/assets/brand/logo-lector.svg" alt="Lector">
+  </a>
+  <div class="lec-nav-links">
+    <div class="lec-dd">
+      <button type="button" class="lec-dd__trigger" aria-haspopup="true">
+        Nossas Soluções
+        <span class="lec-dd__chev" aria-hidden="true"><i data-lucide="chevron-down"></i></span>
+      </button>
+      <div class="lec-dd__menu" role="menu">
+        <a href="/pages/plataforma-lector/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Plataforma Lector</span>
+            <span class="lec-dd__item-desc">Centralize LMS, IA, treinamento, trilhas, onboarding, universidade corporativa, lideranças, gestão de talentos, comunicação e gestão do conhecimento em um único ambiente.</span>
+          </span>
+        </a>
+        <a href="/pages/copiloto-vendas/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="bot"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Copiloto de Vendas</span>
+            <span class="lec-dd__item-desc">Diagnóstico de técnica de venda com IA, trilhas e certificação para reduzir o ramp-up.</span>
+          </span>
+        </a>
+        <a href="/pages/solucao-nr-1/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Solução NR-1</span>
+            <span class="lec-dd__item-desc">Automatize treinamentos, registros, evidências e a conformidade com a legislação.</span>
+          </span>
+        </a>
+        <a href="/pages/conteudo-sob-demanda/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Criação de Conteúdo sob Demanda</span>
+            <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
+          </span>
+        </a>
+        <a href="/pages/diagnostico-gaps/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="scan-search"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Diagnóstico de Gaps</span>
+            <span class="lec-dd__item-desc">Identifique lacunas por habilidade, prove resultado e entregue conhecimento cirúrgico.</span>
+          </span>
+        </a>
+        <a href="/pages/servicos-especializados/index.dc.html" class="lec-dd__item" role="menuitem">
+          <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="briefcase"></i></span>
+          <span class="lec-dd__item-body">
+            <span class="lec-dd__item-title">Serviços Especializados</span>
+            <span class="lec-dd__item-desc">Consultoria, universidades corporativas, produção de conteúdo e gestão do conhecimento.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+    <a href="/pages/blog/index.dc.html">Blog</a>
+    <a href="/pages/clientes/index.dc.html">Clientes</a>
+    <a href="/pages/sobre/index.dc.html" class="is-active" aria-current="page">Sobre</a>
+    <a href="/pages/contato/index.dc.html">Contato</a>
+  </div>
+  <div class="lec-nav-cta">
+    <a href="https://lector.live" class="lec-nav-cta__ghost" target="_blank" rel="noopener noreferrer">Sou cliente</a>
+    <a href="/pages/contato/index.dc.html" class="lec-nav-cta__solid">Agendar demonstração <span class="lec-nav-cta__solid-icon" aria-hidden="true"><i data-lucide="arrow-right"></i></span></a>
+  </div>
+  <button type="button" class="lec-burger" onClick="{{ openMobile }}" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+</div>
+
+<div class="lec-mnav-overlay {{ mobileOpenClass }}" onClick="{{ closeMobile }}"></div>
+<aside class="lec-mnav {{ mobileOpenClass }}" aria-label="Menu mobile">
+  <div class="lec-mnav-head">
+    <img src="/assets/brand/logo-lector.svg" alt="Lector">
+    <button type="button" class="lec-mnav-close" onClick="{{ closeMobile }}" aria-label="Fechar menu">
+      <i data-lucide="x" style="width:16px;height:16px;"></i>
+    </button>
+  </div>
+  <div class="lec-mnav-sub">
+    <a href="/pages/plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
+    <a href="/pages/copiloto-vendas/index.dc.html" onClick="{{ closeMobile }}">Copiloto de Vendas</a>
+    <a href="/pages/solucao-nr-1/index.dc.html" onClick="{{ closeMobile }}">Solução NR-1</a>
+    <a href="/pages/conteudo-sob-demanda/index.dc.html" onClick="{{ closeMobile }}">Criação de Conteúdo sob Demanda</a>
+    <a href="/pages/diagnostico-gaps/index.dc.html" onClick="{{ closeMobile }}">Diagnóstico de Gaps</a>
+    <a href="/pages/servicos-especializados/index.dc.html" onClick="{{ closeMobile }}">Serviços Especializados</a>
+  </div>
+  <a href="/pages/blog/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Blog</a>
+  <a href="/pages/clientes/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
+  <a href="/pages/sobre/index.dc.html" class="lec-mnav-link is-active" onClick="{{ closeMobile }}">Sobre</a>
+  <a href="/pages/contato/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Contato</a>
+  <div class="lec-mnav-cta">
+    <a href="https://lector.live" class="lec-nav-cta__ghost" style="text-align:center; justify-content:center;" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>
+    <a href="/pages/contato/index.dc.html" class="lec-nav-cta__solid" style="text-align:center; justify-content:center;" onClick="{{ closeMobile }}">Agendar demonstração</a>
+  </div>
+</aside>
+
+<!-- SECTION: hero -->
+<section class="sb-section" id="hero" aria-label="Sobre a Lector" style="padding-top:160px;">
+  <div class="sb-glow" style="--gx:30%; --gy:20%;"></div>
+  <div class="sb-wrap">
+    <div data-reveal="">
+      <span class="sb-kicker">Desde 2005</span>
+      <h1 class="sb-h1">Há mais de 20 anos transformando conhecimento em <em>vantagem competitiva.</em></h1>
+      <p class="sb-lead">A Lector Tecnologia nasceu em 2005 com um objetivo claro: ajudar empresas a organizar, desenvolver e potencializar o conhecimento que existe dentro delas. Hoje, utilizamos Inteligência Artificial para conectar pessoas, competências e informações.</p>
+      <p class="sb-emph">Nossa missão continua a mesma: <em>transformar conhecimento em resultados.</em></p>
+    </div>
+
+    <!-- GEO: cápsula de resposta (specs/geo.md) -->
+    <p class="geo-capsule geo-capsule--dark" data-geo-capsule="" style="margin-top:32px;">
+      <strong>Em uma frase</strong>
+      A Lector é uma edtech brasileira fundada em 2005, com plataforma 100% proprietária de educação corporativa e IA nativa, que ajuda empresas a diagnosticar competências, desenvolver talentos e transformar conhecimento em resultado.
+    </p>
+  </div>
+</section>
+
+<!-- SECTION: visão -->
+<section class="sb-section sb-section--alt" id="visao" aria-label="Nossa visão">
+  <div class="sb-wrap">
+    <div class="sb-col-right" style="max-width:640px;" data-reveal="">
+      <span class="sb-kicker">Nossa visão</span>
+      <h2 class="sb-h2">O maior patrimônio de uma empresa não está em processos, documentos ou tecnologias. Está no <em>conhecimento das pessoas.</em></h2>
+      <p class="sb-lead" style="margin-left:auto;">Todos os dias, organizações produzem informações valiosas que ficam dispersas entre planilhas, sistemas e e-mails — ou vivem apenas na experiência de seus colaboradores. Quando esse conhecimento não é organizado, oportunidades são perdidas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: plataforma -->
+<section class="sb-section" id="plataforma" aria-label="Muito além de um LMS">
+  <div class="sb-glow" style="--gx:70%; --gy:70%;"></div>
+  <div class="sb-wrap">
+    <div style="max-width:640px;" data-reveal="">
+      <span class="sb-kicker">A plataforma</span>
+      <h2 class="sb-h2">Muito além de um LMS.</h2>
+      <p class="sb-lead">Uma plataforma proprietária que integra toda a jornada do conhecimento em um único ambiente.</p>
+      <ul class="sb-list">
+        <li>Diagnosticar competências e identificar lacunas de conhecimento</li>
+        <li>Mapear habilidades individuais e coletivas</li>
+        <li>Criar conteúdos com apoio de Inteligência Artificial</li>
+        <li>Construir trilhas de aprendizagem personalizadas</li>
+        <li>Gerenciar documentos e bases de conhecimento</li>
+        <li>Desenvolver talentos</li>
+        <li>Certificar e recertificar colaboradores</li>
+        <li>Acompanhar indicadores e evolução em tempo real</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: tecnologia -->
+<section class="sb-section sb-section--alt" id="tecnologia" aria-label="Nossa tecnologia">
+  <div class="sb-wrap">
+    <div class="sb-col-right" style="max-width:600px;" data-reveal="">
+      <span class="sb-kicker">Tecnologia proprietária</span>
+      <h2 class="sb-h2">Construída <em>inteiramente</em> por nós.</h2>
+      <p class="sb-lead" style="margin-left:auto;">Desde a fundação, toda a tecnologia da Lector é desenvolvida internamente. Nossa plataforma é 100% proprietária — o que garante flexibilidade para adaptar processos, integrar sistemas e atender empresas de todos os portes. Essa autonomia nos permite evoluir constantemente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: diagnóstico -->
+<section class="sb-section" id="diagnostico" aria-label="Decisões baseadas em conhecimento">
+  <div class="sb-glow" style="--gx:25%; --gy:60%;"></div>
+  <div class="sb-wrap">
+    <div style="max-width:620px;" data-reveal="">
+      <span class="sb-kicker">Diagnóstico primeiro</span>
+      <h2 class="sb-h2">Acreditamos em decisões baseadas em conhecimento.</h2>
+      <div class="sb-qa">
+        <div><span class="n">01</span><span class="q">Quais competências já existem na organização?</span></div>
+        <div><span class="n">02</span><span class="q">Quais conhecimentos ainda precisam ser desenvolvidos?</span></div>
+        <div><span class="n">03</span><span class="q">O treinamento realmente gerou impacto?</span></div>
+        <div><span class="n">04</span><span class="q">Onde estão as maiores oportunidades de evolução?</span></div>
+      </div>
+      <p class="sb-lead">Quando uma empresa entende exatamente o que possui e o que precisa construir, cada investimento em capacitação gera muito mais retorno.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: IA -->
+<section class="sb-section sb-section--alt" id="ia" aria-label="IA como aceleradora">
+  <div class="sb-wrap">
+    <div class="sb-col-right" style="max-width:600px;" data-reveal="">
+      <span class="sb-kicker">Inteligência Artificial</span>
+      <h2 class="sb-h2">A IA não substitui pessoas. <em>Ela potencializa.</em></h2>
+      <p class="sb-lead" style="margin-left:auto;">Na Lector, a IA automatiza tarefas, apoia a criação de conteúdos, personaliza jornadas de aprendizagem e fornece insights estratégicos baseados em dados. Gestores agem com mais rapidez. Colaboradores aprendem exatamente o que precisam para evoluir.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: valores -->
+<section class="sb-section" id="valores" aria-label="Nossos valores">
+  <div class="sb-glow" style="--gx:75%; --gy:30%;"></div>
+  <div class="sb-wrap">
+    <div style="max-width:600px;" data-reveal="">
+      <span class="sb-kicker">Nossos valores</span>
+      <h2 class="sb-h2" style="margin-bottom:8px;">A tecnologia é só o meio.</h2>
+      <p class="sb-lead" style="margin-bottom:28px;">O que realmente faz a diferença são as pessoas.</p>
+      <ul class="sb-list sb-list--grid">
+        <li>Pessoas em primeiro lugar</li>
+        <li>Ética e transparência</li>
+        <li>Inovação contínua</li>
+        <li>Simplicidade para o complexo</li>
+        <li>Compromisso com resultados</li>
+        <li>Evolução constante</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: futuro -->
+<section class="sb-section sb-section--alt sb-section--center" id="futuro" aria-label="O futuro">
+  <div class="sb-wrap">
+    <div style="max-width:760px; margin:0 auto;" data-reveal="">
+      <span class="sb-kicker">O futuro</span>
+      <h2 class="sb-h2">O futuro pertence às empresas que <em>aprendem continuamente.</em></h2>
+      <p class="sb-lead" style="max-width:56ch; margin:0 auto 22px;">Vivemos em um mercado onde conhecimento envelhece rapidamente. As organizações que prosperam não são as maiores ou mais tradicionais — são as que conseguem aprender, adaptar-se e evoluir com velocidade.</p>
+      <p class="sb-emph">Conhecimento em estratégia. Aprendizado em desempenho. <em>Pessoas em vantagem competitiva.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: cta -->
+<section class="sb-section sb-section--center" id="cta" aria-label="Vamos começar" style="border-bottom:none; padding-bottom:120px;">
+  <div class="sb-glow" style="--gx:50%; --gy:0%;"></div>
+  <div class="sb-wrap">
+    <div style="max-width:640px; margin:0 auto; display:flex; flex-direction:column; align-items:center;" data-reveal="">
+      <span class="sb-kicker">Vamos começar</span>
+      <h2 class="sb-h2">Vamos construir uma organização <em>mais inteligente?</em></h2>
+      <p class="sb-lead" style="max-width:52ch; margin:0 auto 34px; text-align:center;">Conheça como a plataforma Lector ajuda empresas a diagnosticar competências, desenvolver talentos, organizar o conhecimento e transformar aprendizado em resultados reais.</p>
+      <a href="/pages/contato/index.dc.html" class="sb-btn">Agendar demonstração <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: footer -->
+<footer style="background:var(--ink-950); color:rgba(230,238,250,.7); padding:76px 0 40px;">
+  <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
+    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
+      <div>
+        <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
+        <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Soluções</div>
+        <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;">
+          <a href="/pages/plataforma-lector/index.dc.html">Plataforma Lector</a>
+          <a href="/pages/copiloto-vendas/index.dc.html">Copiloto de Vendas</a>
+          <a href="/pages/solucao-nr-1/index.dc.html">Solução NR-1</a>
+          <a href="/pages/diagnostico-gaps/index.dc.html">Diagnóstico de Gaps</a>
+          <a href="/pages/servicos-especializados/index.dc.html">Serviços Especializados</a>
+        </div>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Empresa</div>
+        <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;">
+          <a href="/pages/sobre/index.dc.html">Sobre</a>
+          <a href="/pages/blog/index.dc.html">Blog</a>
+          <a href="/pages/contato/index.dc.html">Contato</a>
+        </div>
+      </div>
+      <div>
+        <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Receba novidades</div>
+        <p style="font-size:14px; margin:0 0 14px;">L&amp;D, IA e aprendizado, sem ruído.</p>
+        <div style="display:flex; gap:8px;">
+          <input placeholder="seu@email.com" style="flex:1; min-width:0; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:var(--radius-pill); padding:11px 16px; color:#fff; font-size:14px; font-family:var(--font-sans);">
+          <button type="button" style="background:var(--brand); border:none; color:#fff; border-radius:var(--radius-pill); width:44px; height:44px; flex:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:18px;height:18px;"></i></button>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; justify-content:space-between; padding-top:26px; font-size:13px; color:rgba(230,238,250,.5); flex-wrap:wrap; gap:14px;">
+      <span>© 2026 Lector Tecnologia. Todos os direitos reservados.</span>
+      <div style="display:flex; gap:22px;"><a href="#">Privacidade</a><a href="#">Segurança</a><a href="#">Termos</a></div>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { mobileOpen: false };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const nav = document.querySelector('[data-sb-nav]');
+      if (!nav) return;
+      if (window.scrollY > 8) nav.classList.add('lec-nav-scrolled');
+      else nav.classList.remove('lec-nav-scrolled');
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+
+    if ('IntersectionObserver' in window) {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          this._io.unobserve(e.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -4% 0px' });
+    }
+    this._wireReveal();
+    this._icons(0);
+  }
+
+  componentDidUpdate() {
+    this._wireReveal();
+    this._icons(0);
+  }
+
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._io) this._io.disconnect();
+  }
+
+  _wireReveal() {
+    setTimeout(() => {
+      document.querySelectorAll('[data-reveal]').forEach((el) => {
+        if (el._sbWired) return;
+        el._sbWired = true;
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(22px)';
+        el.style.transition = 'opacity .7s ease, transform .7s ease';
+        if (this._io) this._io.observe(el);
+        else { el.style.opacity = '1'; el.style.transform = 'none'; }
+      });
+    }, 20);
+  }
+
+  _icons(n) {
+    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    else if (n < 25) setTimeout(() => this._icons(n + 1), 120);
+  }
+
+  renderVals() {
+    return {
+      mobileOpenClass: this.state.mobileOpen ? 'is-open' : '',
+      openMobile: () => this.setState({ mobileOpen: true }),
+      closeMobile: () => this.setState({ mobileOpen: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

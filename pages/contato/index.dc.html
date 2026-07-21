@@ -97,7 +97,9 @@
   .lec-nav-wrap {
     position: sticky; top: 0; z-index: 50; width: 100%;
     display: flex; justify-content: center; padding: 11px 20px 0; background: transparent;
+    margin-bottom: -81px; pointer-events: none;
   }
+  .lec-nav-wrap > * { pointer-events: auto; }
   .lec-nav {
     width: 100%; max-width: 1160px; display: flex; align-items: center; justify-content: space-between;
     gap: 24px; padding: 11px 11px 11px 22px; border-radius: var(--radius-pill, 999px);
@@ -219,7 +221,7 @@
   .ct-hero {
     background: var(--ink-950, #001026);
     color: #fff;
-    padding: 64px 0 72px;
+    padding: 84px 0 88px;
     position: relative;
     overflow: hidden;
   }
@@ -235,16 +237,16 @@
     font-family: var(--font-display);
     font-weight: 800;
     font-size: clamp(32px, 4.8vw, 48px);
-    line-height: 1.06;
+    line-height: 1.14;
     letter-spacing: -.03em;
-    margin: 0 0 16px;
+    margin: 0 0 24px;
     text-wrap: balance;
   }
   .ct-hero h1 em { font-style: italic; color: var(--brand); }
   .ct-hero p {
     margin: 0;
     font-size: 17px;
-    line-height: 1.55;
+    line-height: 1.65;
     color: rgba(230,238,250,.78);
     max-width: 520px;
   }
@@ -574,6 +576,7 @@
     </div>
     <a href="/pages/blog/index.dc.html">Blog</a>
     <a href="/pages/clientes/index.dc.html">Clientes</a>
+    <a href="/pages/sobre/index.dc.html">Sobre</a>
     <a href="/pages/contato/index.dc.html" class="is-active" aria-current="page">Contato</a>
   </div>
   <div class="lec-nav-cta">
@@ -604,6 +607,7 @@
   </div>
   <a href="/pages/blog/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Blog</a>
   <a href="/pages/clientes/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
+  <a href="/pages/sobre/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
   <a href="/pages/contato/index.dc.html" class="lec-mnav-link is-active" onClick="{{ closeMobile }}">Contato</a>
   <div class="lec-mnav-cta">
     <a href="https://lector.live" class="lec-nav-cta__ghost" style="text-align:center; justify-content:center;" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>

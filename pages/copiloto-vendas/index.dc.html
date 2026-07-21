@@ -131,7 +131,9 @@
   .lec-nav-wrap {
     position: sticky; top: 0; z-index: 50; width: 100%;
     display: flex; justify-content: center; padding: 11px 20px 0; background: transparent;
+    margin-bottom: -81px; pointer-events: none;
   }
+  .lec-nav-wrap > * { pointer-events: auto; }
   .lec-nav {
     width: 100%; max-width: 1160px; display: flex; align-items: center; justify-content: space-between;
     gap: 24px; padding: 11px 11px 11px 22px; border-radius: var(--radius-pill, 999px);
@@ -268,7 +270,7 @@
   /* Hero */
   .cv-hero {
     position: relative; overflow: hidden;
-    background: var(--ink-950, #001026); color: #fff; padding: 72px 0 100px;
+    background: var(--ink-950, #001026); color: #fff; padding: 96px 0 112px;
   }
   .cv-hero::before {
     content: ''; position: absolute; inset: 0; pointer-events: none;
@@ -278,12 +280,12 @@
   }
   .cv-hero__grid {
     position: relative; z-index: 1;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
   }
   .cv-hero h1 {
     font-family: var(--font-display); font-weight: 800;
-    font-size: clamp(34px, 5vw, 54px); line-height: 1.05; letter-spacing: -.03em;
-    margin: 0 0 18px; text-wrap: balance;
+    font-size: clamp(34px, 5vw, 54px); line-height: 1.12; letter-spacing: -.03em;
+    margin: 0 0 28px; text-wrap: balance;
   }
   .cv-hero h1 em {
     font-style: normal;
@@ -291,14 +293,14 @@
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .cv-hero__sub {
-    font-size: 17px; line-height: 1.55; color: rgba(255,255,255,.82);
-    max-width: 520px; margin: 0 0 16px;
+    font-size: 17.5px; line-height: 1.65; color: rgba(255,255,255,.82);
+    max-width: 520px; margin: 0 0 24px;
   }
   .cv-hero__extra {
-    font-size: 16px; line-height: 1.55; color: rgba(255,255,255,.65);
-    max-width: 500px; margin: 0 0 28px;
+    font-size: 16px; line-height: 1.65; color: rgba(255,255,255,.65);
+    max-width: 500px; margin: 0 0 36px;
   }
-  .cv-hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+  .cv-hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 48px; }
   .cv-stats {
     display: grid; grid-template-columns: repeat(3, auto); gap: 32px; width: fit-content;
   }
@@ -517,7 +519,7 @@
   /* GEO — cápsula de resposta (specs/geo.md) */
   .geo-capsule {
     max-width: 720px;
-    margin: 0 auto 28px;
+    margin: 4px auto 32px;
     padding: 16px 20px;
     border-radius: 14px;
     background: rgba(246, 107, 10, .08);
@@ -622,6 +624,7 @@
     </div>
     <a href="/pages/blog/index.dc.html">Blog</a>
     <a href="/pages/clientes/index.dc.html">Clientes</a>
+    <a href="/pages/sobre/index.dc.html">Sobre</a>
     <a href="/pages/contato/index.dc.html">Contato</a>
   </div>
   <div class="lec-nav-cta">
@@ -652,6 +655,7 @@
   </div>
   <a href="/pages/blog/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Blog</a>
   <a href="/pages/clientes/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
+  <a href="/pages/sobre/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
   <a href="/pages/contato/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Contato</a>
   <div class="lec-mnav-cta">
     <a href="https://lector.live" class="lec-nav-cta__ghost" style="text-align:center; justify-content:center;" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>
@@ -894,7 +898,7 @@
       <div>
         <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Empresa</div>
         <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;">
-          <a href="#">Sobre</a>
+          <a href="/pages/sobre/index.dc.html">Sobre</a>
           <a href="/pages/blog/index.dc.html">Blog</a>
           <a href="#">Carreiras</a>
           <a href="/pages/contato/index.dc.html">Contato</a>
