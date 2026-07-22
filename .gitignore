@@ -42,3 +42,4 @@ references/prototypes/
 
 # Thumbnails gerados
 **/.thumbnail
+.env*

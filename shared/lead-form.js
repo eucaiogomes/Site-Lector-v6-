@@ -219,14 +219,38 @@
       return;
     }
 
-    // Placeholder de envio — trocar por endpoint real quando existir
-    try {
-      console.info('[Lector lead]', Object.fromEntries(fd.entries()));
-    } catch (err) {}
+    var submitBtn = form.querySelector('.lk-lead-submit');
+    if (submitBtn) submitBtn.disabled = true;
 
-    root.classList.add('is-success');
-    form.reset();
-    icons();
+    var payload = Object.fromEntries(fd.entries());
+    payload.origem = 'modal-lead';
+
+    fetch((base ? base : '') + '/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then(function (r) {
+        return r.json().then(function (data) {
+          return { ok: r.ok && data.ok, data: data };
+        });
+      })
+      .then(function (result) {
+        if (!result.ok) throw new Error('send_failed');
+        root.classList.add('is-success');
+        form.reset();
+        icons();
+      })
+      .catch(function () {
+        if (msgEl) {
+          msgEl.hidden = false;
+          msgEl.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
+          msgEl.classList.add('is-error');
+        }
+      })
+      .finally(function () {
+        if (submitBtn) submitBtn.disabled = false;
+      });
   }
 
   function interestFromEl(el) {

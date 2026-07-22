@@ -826,15 +826,32 @@ class Component extends DCLogic {
           });
           return;
         }
-        try {
-          const data = {};
-          Array.from(form.elements).forEach((el) => {
-            if (el.name) data[el.name] = el.value;
+        const data = {};
+        Array.from(form.elements).forEach((el) => {
+          if (el.name) data[el.name] = el.value;
+        });
+        data.origem = 'pagina-contato';
+
+        this.setState({ formMsg: 'Enviando...', formError: false, formOk: false });
+
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        })
+          .then((r) => r.json().then((body) => ({ ok: r.ok && body.ok })))
+          .then((result) => {
+            if (!result.ok) throw new Error('send_failed');
+            form.reset();
+            this.setState({ formMsg: '', formError: false, formOk: true });
+          })
+          .catch(() => {
+            this.setState({
+              formMsg: 'Não foi possível enviar agora. Tente novamente em instantes.',
+              formError: true,
+              formOk: false,
+            });
           });
-          console.info('[Lector contato]', data);
-        } catch (err) {}
-        form.reset();
-        this.setState({ formMsg: '', formError: false, formOk: true });
       },
     };
   }
