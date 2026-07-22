@@ -3,6 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com">
+<!-- Preload/duplicate of the design-system CSS declared below in <helmet>.
+     The DC runtime only materializes <helmet> links after it fetches React
+     from the CDN, so without this the page renders briefly unstyled on every
+     navigation. These tags let the browser start the CSS request immediately;
+     the helmet's later duplicate resolves from cache. -->
+<link rel="stylesheet" href="/design-system/tokens/fonts.css">
+<link rel="stylesheet" href="/design-system/tokens/colors.css">
+<link rel="stylesheet" href="/design-system/tokens/typography.css">
+<link rel="stylesheet" href="/design-system/tokens/spacing.css">
+<link rel="stylesheet" href="/design-system/tokens/effects.css">
+<link rel="stylesheet" href="/design-system/tokens/base.css">
+<link rel="stylesheet" href="/design-system/styles.css">
+<link rel="stylesheet" href="/shared/lead-form.css">
 <script src="/support.js"></script>
 </head>
 <body>
