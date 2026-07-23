@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>window.__resources = {};</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://unpkg.com">
@@ -1999,15 +2000,16 @@
   /* —— Scroll-scrub video (sessão 1: conhecimento invisível) —— */
   .lk-scrub {
     position: relative;
-    height: 240vh;
+    height: auto;
+    min-height: 100vh;
     background: var(--ink-950, #001026);
     color: #fff;
   }
-  .lk-scrub--long { height: 300vh; }
+  .lk-scrub--long { height: auto; min-height: 100vh; }
   .lk-scrub__pin {
-    position: sticky;
-    top: 0;
-    height: 100vh;
+    position: relative;
+    height: auto;
+    min-height: 100vh;
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -2028,6 +2030,15 @@
     z-index: 0;
     pointer-events: none;
     will-change: contents;
+  }
+  .lk-scrub__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+    z-index: 0;
+    pointer-events: none;
   }
   .lk-scrub__scrim {
     position: absolute;
@@ -2122,13 +2133,7 @@
     }
   }
   @media (max-width: 800px) {
-    .lk-scrub { height: 220vh; }
-    .lk-scrub--long { height: 260vh; }
     .lk-scrub__content { padding-left: 24px; padding-right: 24px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .lk-scrub, .lk-scrub--long { height: auto; min-height: 100vh; }
-    .lk-scrub__pin { position: relative; height: auto; min-height: 100vh; padding-top: 100px; }
   }
 
   /* —— Trilogia narrativa: diagnóstico → jornada (canvas) —— */
@@ -3009,26 +3014,18 @@
   </section>
 
   <!-- SECTION: Conhecimento invisível — vídeo com scrub por scroll (1/3) -->
-  <section id="conhecimento" class="lk-scrub" data-scrub-section="" aria-label="O conhecimento invisível">
+  <section id="conhecimento" class="lk-scrub" aria-label="O conhecimento invisível">
     <div class="lk-scrub__pin">
-      <video
-        class="lk-scrub__video"
-        data-scrub-video=""
-        src="/assets/media/home/conhecimento-scroll.mp4?v=lite3"
-        poster="/assets/media/home/conhecimento-scroll-poster.jpg?v=lite3"
-        muted
-        playsinline
-        preload="auto"
+      <div
+        class="lk-scrub__bg"
         aria-hidden="true"
-      ></video>
+        style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=2100&amp;q=80');"
+      ></div>
       <div class="lk-scrub__scrim" aria-hidden="true"></div>
       <div class="lk-scrub__vignette" aria-hidden="true"></div>
-      <div class="lk-scrub__progress" aria-hidden="true">
-        <span class="lk-scrub__progress-bar" data-scrub-progress=""></span>
-      </div>
       <div class="lk-scrub__content">
         <div class="lk-story__inner">
-          <h2 class="lk-story__title">O maior ativo da sua empresa é invisível. <em>Até agora.</em></h2>
+          <h2 class="lk-story__title">O conhecimento é o maior ativo da sua empresa. <em>A Lector mostra exatamente onde ele está.</em></h2>
           <p class="lk-story__lead">Toda empresa depende do conhecimento das pessoas para crescer. Mas quando esse conhecimento não está onde deveria, surgem erros, retrabalho, baixa produtividade e oportunidades perdidas. O problema é que a maioria das empresas só percebe isso quando o resultado já foi comprometido. A Lector torna o conhecimento visível, identifica exatamente onde estão os gaps e transforma essa informação em uma estratégia de desenvolvimento inteligente.</p>
           <p class="lk-story__punch">O problema nunca foi falta de treinamento. <span>O problema sempre foi não saber onde o conhecimento está faltando.</span></p>
         </div>
