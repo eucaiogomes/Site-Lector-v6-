@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="/design-system/tokens/spacing.css">
 <link rel="stylesheet" href="/design-system/tokens/effects.css">
 <link rel="stylesheet" href="/design-system/tokens/base.css">
-<link rel="stylesheet" href="/design-system/styles.css">
 <link rel="stylesheet" href="/shared/lead-form.css">
 <script src="/support.js"></script>
 </head>
@@ -78,7 +77,6 @@
 <link rel="stylesheet" href="/design-system/tokens/spacing.css">
 <link rel="stylesheet" href="/design-system/tokens/effects.css">
 <link rel="stylesheet" href="/design-system/tokens/base.css">
-<link rel="stylesheet" href="/design-system/styles.css">
 <link rel="stylesheet" href="/shared/lead-form.css">
 <script src="/design-system/_ds_bundle.js"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -98,6 +96,41 @@
   * { box-sizing: border-box; }
   [data-lucide] { display: block; }
   ::selection { background: var(--brand); color: #fff; }
+
+  @keyframes lkAnnounceMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .lk-announce {
+    position: relative; width: 100%; display: flex; align-items: center;
+    background: var(--brand); color: #fff; height: 40px; overflow: hidden;
+    box-shadow: 0 10px 28px -14px rgba(246,107,10,.65); cursor: pointer;
+  }
+  .lk-announce-close {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%); z-index: 2;
+    width: 22px; height: 22px; border-radius: 50%; border: none;
+    background: rgba(255,255,255,.24); color: #fff; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .lk-announce-close:hover { background: rgba(255,255,255,.36); }
+  .lk-announce-track-wrap {
+    flex: 1; overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 24px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 24px), transparent 100%);
+  }
+  .lk-announce-track {
+    display: flex; width: max-content; white-space: nowrap;
+    animation: lkAnnounceMarquee 48s linear infinite;
+  }
+  .lk-announce-track:hover { animation-play-state: paused; }
+  .lk-announce-item {
+    display: inline-flex; align-items: center; gap: 14px; padding: 0 28px;
+    font-size: 13.5px; font-weight: 600;
+  }
+  .lk-announce-item strong { font-weight: 800; letter-spacing: .04em; }
+  .lk-announce-item u { text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+  .lk-announce-bolt { display: inline-flex; color: rgba(255,255,255,.92); }
+  .lk-announce-bolt i, .lk-announce-bolt svg { width: 15px; height: 15px; }
 
   .se-wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
   .se-h2 {
@@ -446,14 +479,26 @@
 </style>
 </helmet>
 
-<!-- SECTION: promo bar -->
-<div style="background:var(--brand);color:#fff;min-height:42px;display:flex;align-items:center;justify-content:center;gap:14px;padding:7px 20px;font-size:13px;font-weight:500;flex-wrap:wrap;">
-  <span style="display:inline-flex;align-items:center;gap:8px;text-align:center;">
-    <i data-lucide="briefcase" style="width:14px;height:14px;"></i>
-    Especialistas ao seu lado — T&amp;D, conteúdo e gestão do conhecimento
-  </span>
-  <a href="#cta" data-open-lead data-lead-interest="servicos" style="border:1.5px solid rgba(255,255,255,.9);background:transparent;color:#fff;border-radius:22px;padding:5px 15px;font-size:12px;font-weight:700;white-space:nowrap;">Falar com consultor</a>
+<!-- SECTION: announce bar (faixa laranja em loop) -->
+<sc-if value="{{ announceOpen }}" hint-placeholder-val="{{ true }}">
+<div class="lk-announce" role="region" aria-label="Anúncio" onClick="{{ openLeadDiagnostico }}">
+  <button class="lk-announce-close" onClick="{{ closeAnnounce }}" aria-label="Fechar anúncio">
+    <i data-lucide="x" style="width:13px;height:13px;"></i>
+  </button>
+  <div class="lk-announce-track-wrap">
+    <div class="lk-announce-track">
+      <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
+      <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
+      <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
+      <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
+      <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
+      <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
+      <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
+      <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
+    </div>
+  </div>
 </div>
+</sc-if>
 
 <!-- SECTION: nav -->
 <div class="lec-nav-wrap">
@@ -701,7 +746,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{}">
 class Component extends DCLogic {
-  state = { mobileOpen: false };
+  state = { mobileOpen: false, announceClosed: false };
 
   componentDidMount() {
     this._onScroll = () => {
@@ -733,6 +778,14 @@ class Component extends DCLogic {
       mobileOpenClass: this.state.mobileOpen ? 'is-open' : '',
       openMobile: () => this.setState({ mobileOpen: true }),
       closeMobile: () => this.setState({ mobileOpen: false }),
+      announceOpen: !this.state.announceClosed,
+      closeAnnounce: (e) => {
+        if (e && e.stopPropagation) e.stopPropagation();
+        this.setState({ announceClosed: true });
+      },
+      openLeadDiagnostico: () => {
+        if (window.__LectorLeadForm) window.__LectorLeadForm.open({ interest: 'diagnostico' });
+      },
     };
   }
 }

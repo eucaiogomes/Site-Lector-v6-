@@ -35,9 +35,10 @@ A partir de `pages/<slug>/index.dc.html`:
 <link rel="stylesheet" href="../../design-system/tokens/spacing.css">
 <link rel="stylesheet" href="../../design-system/tokens/effects.css">
 <link rel="stylesheet" href="../../design-system/tokens/base.css">
-<link rel="stylesheet" href="../../design-system/styles.css">
 <script src="../../design-system/_ds_bundle.js"></script>
 ```
+
+**Não linkar `styles.css` na página.** Ele é só um manifesto `@import` dos 6 tokens acima — linkar os dois causa uma cadeia de `@import` redundante, que Safari/Firefox bloqueiam de forma mais agressiva que o Chrome e gera flash de conteúdo sem estilo ao trocar de página. `styles.css` existe apenas como referência/documentação de quais tokens compõem o sistema.
 
 **Regra:** se o token existe, use o token. Não inventar hex soltos.
 

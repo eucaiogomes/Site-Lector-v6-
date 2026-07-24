@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="/design-system/tokens/spacing.css">
 <link rel="stylesheet" href="/design-system/tokens/effects.css">
 <link rel="stylesheet" href="/design-system/tokens/base.css">
-<link rel="stylesheet" href="/design-system/styles.css">
 <link rel="stylesheet" href="/shared/lead-form.css">
 <script src="/support.js"></script>
 </head>
@@ -78,7 +77,6 @@
 <link rel="stylesheet" href="/design-system/tokens/spacing.css">
 <link rel="stylesheet" href="/design-system/tokens/effects.css">
 <link rel="stylesheet" href="/design-system/tokens/base.css">
-<link rel="stylesheet" href="/design-system/styles.css">
 <link rel="stylesheet" href="/shared/lead-form.css">
 <script src="/design-system/_ds_bundle.js"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -1283,7 +1281,31 @@
     bottom: 28%;
   }
 
-  /* Stage mock — webconferência (sala + participantes + IA) */
+/* Imagem do LMS — mostra a imagem inteira, sem cortar e sem moldura escura */
+  #lms .lk-spotlight__stage {
+    min-height: min(680px, 82vh);
+    background: var(--surface-page);
+  }
+  #lms .lk-spotlight__img {
+    object-fit: contain;
+  }
+  .lk-lms-carousel__img {
+    transition: opacity .35s ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lk-lms-carousel__img { transition: none; }
+  }
+
+  /* Imagem da webconferência — mostra a imagem inteira, sem cortar e sem moldura escura */
+  #webconferencia .lk-spotlight__stage {
+    min-height: min(680px, 82vh);
+    background: var(--surface-page);
+  }
+  #webconferencia .lk-spotlight__img {
+    object-fit: contain;
+  }
+
+/* Stage mock — webconferência (sala + participantes + IA) */
   .lk-spotlight__stage--webconf {
     display: flex;
     align-items: center;
@@ -2893,7 +2915,7 @@
     <div style="position:relative; z-index:3; width:100%; max-width:1040px; margin:0 auto; padding:32px 28px 56px; text-align:center;">
       <div data-reveal="">
         <h1 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(32px,5vw,72px); line-height: .98; letter-spacing: -.03em; color: rgba(255,255,255,.94); margin: 0 0 30px; text-wrap: balance; text-shadow: 0 4px 40px rgba(0,10,30,.4); position: relative">
-          Uma plataforma.<br>Todas as ferramentas.<br><span style="color:var(--brand); font-style:italic;">Conhecimento que vira resultado tangível.</span>
+          Uma plataforma.<br>Todas as ferramentas.<br><span style="color:var(--brand); font-style:italic;">Conhecimento que vira resultado real.</span>
         </h1>
         <p style="font-size:16.5px; line-height:1.5; color:rgba(230,238,250,.8); max-width:560px; margin:0 auto 40px;">
           LMS, webconferência, rede social, autoria, gestão de talentos e de documentos — tudo com a IA Lector treinada no conhecimento da sua empresa. Você cuida das pessoas, a Lector cuida da estrutura.
@@ -2936,7 +2958,7 @@
             <img class="lk-ms-hero__brand-logo" src="/assets/clients/microsoft.png" alt="Microsoft" width="320" height="63">
             <h2 class="lk-ms-hero__title">Parceiro estratégico na América Latina.</h2>
             <p class="lk-ms-hero__sub">
-              Na vertical de <u>educação</u>, a <u>Microsoft</u> escolheu a Lector.
+              Na vertical de <u>educação</u>, a <u>Microsoft</u> tem a Lector como parceira estratégica.
             </p>
             <div class="lk-ms-hero__card">
               <p>
@@ -3159,8 +3181,10 @@
     <div class="lk-spotlight__grid">
       <div class="lk-spotlight__stage">
         <img
-          class="lk-spotlight__img"
-          src="/assets/media/home/lms.png"
+          id="lms-carousel-img"
+          class="lk-spotlight__img lk-lms-carousel__img"
+          src="/assets/media/home/lms-diagnostico.png"
+          data-slides="/assets/media/home/lms-diagnostico.png,/assets/media/home/lms.png"
           alt="Interface do LMS Lector — trilhas, turmas e aprendizado"
           loading="lazy"
           decoding="async"
@@ -3229,7 +3253,7 @@
   <!-- SECTION: Webconferência — product spotlight invertido (imagem | texto) -->
   <section id="webconferencia" class="lk-spotlight lk-spotlight--flip" aria-label="Webconferência">
     <div class="lk-spotlight__grid">
-      <div class="lk-spotlight__stage lk-spotlight__stage--contain">
+      <div class="lk-spotlight__stage">
         <img
           class="lk-spotlight__img"
           src="/assets/media/home/webconferencia.png"
@@ -3474,6 +3498,47 @@ class Component extends DCLogic {
     this._initScrollScrub();
     this._initStoryScenes();
     this._initIaGraph();
+    this._initLmsCarousel();
+  }
+
+  _initLmsCarousel() {
+    if (window.__lkLmsCarouselWired) return;
+    const img = document.getElementById('lms-carousel-img');
+    if (!img) return;
+    const slides = (img.dataset.slides || '').split(',').map((s) => s.trim()).filter(Boolean);
+    if (slides.length < 2) return;
+    window.__lkLmsCarouselWired = true;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+
+    let index = 0;
+    let timer = null;
+    const swap = () => {
+      index = (index + 1) % slides.length;
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = slides[index];
+        img.style.opacity = '1';
+      }, 350);
+    };
+    const start = () => {
+      if (timer) return;
+      timer = setInterval(swap, 4200);
+    };
+    const stop = () => {
+      if (!timer) return;
+      clearInterval(timer);
+      timer = null;
+    };
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { e.isIntersecting ? start() : stop(); });
+      }, { threshold: 0.35 });
+      io.observe(img);
+    } else {
+      start();
+    }
   }
 
   _loadVideo() {
