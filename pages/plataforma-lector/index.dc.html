@@ -1160,36 +1160,9 @@
 
 <div style="position:relative; overflow-x:hidden; background:var(--surface-page);">
 
-  <!-- FLOATING TOP: announce + dark header pill (estilo home) -->
+  <!-- FLOATING TOP: dark header pill (estilo home) -->
   <div style="position:fixed; top:0; left:0; right:0; z-index:60; display:flex; flex-direction:column; align-items:center;">
-    <sc-if value="{{ announceOpen }}" hint-placeholder-val="{{ true }}">
-    <div class="lk-announce" role="region" aria-label="Anúncio" onClick="{{ openLeadDiagnostico }}">
-      <button class="lk-announce-close" onClick="{{ closeAnnounce }}" aria-label="Fechar anúncio">
-        <i data-lucide="x" style="width:13px;height:13px;"></i>
-      </button>
-      <div class="lk-announce-track-wrap">
-        <div class="lk-announce-track">
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-        </div>
-      </div>
-    </div>
-    </sc-if>
-    <div style="width:100%; display:flex; justify-content:center; padding:11px 20px 0;">
+    <div style="width:100%; display:flex; justify-content:center; padding:51px 20px 0;">
     <header style="{{ headerPillStyle }}">
       <a href="/pages/home/index.dc.html" style="display:flex; align-items:center; flex:none;">
         <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:24px; display:block;">
@@ -1205,7 +1178,7 @@
               <span class="lk-nav-dd__item-icon" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
               <span class="lk-nav-dd__item-body">
                 <span class="lk-nav-dd__item-title">Plataforma Lector</span>
-                <span class="lk-nav-dd__item-desc">Centralize LMS, webconferência, autoria, rede social, onboarding, universidade corporativa, liderança, gestão de talentos, comunicação e gestão do conhecimento em um único ambiente.</span>
+                <span class="lk-nav-dd__item-desc">Centralize LMS, webconferência, autoria, rede social, gestão de talentos e gestão de documentos em um único ambiente e com IA nativa.</span>
               </span>
             </a>
             <a href="/pages/copiloto-vendas/index.dc.html" class="lk-nav-dd__item" role="menuitem">
@@ -1351,8 +1324,8 @@
   <section id="por-que" style="background:var(--surface-page); padding:58px 0 32px;" aria-label="Por que Lector">
     <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
       <p data-reveal="" style="font-family:var(--font-display); font-weight:800; font-size:clamp(30px,4.4vw,58px); line-height:1.08; letter-spacing:-.025em; color:var(--navy-800); margin:0; text-wrap:balance;">
-        O diferencial não são as funcionalidades.<br>
-        É a inteligência que <span style="color:var(--brand);">conecta tudo</span>.
+        O diferencial não são só as funcionalidades.<br>
+        É também a inteligência que <span style="color:var(--brand);">conecta tudo</span>.
       </p>
       <p data-reveal="" style="font-size:18px; line-height:1.55; color:var(--ink-500); max-width:560px; margin:24px 0 0;">
         Um documento novo dispara uma cadeia inteira de aprendizagem — atualiza a base, ajusta trilhas, notifica gestores — no mesmo ambiente.
@@ -1365,18 +1338,18 @@
     <div class="pl-diff__inner">
       <div class="pl-diff__header" data-reveal="">
         <h2 class="pl-diff__title">Por que a Lector: nativo, proprietário e feito para resultado.</h2>
-        <p class="pl-diff__sub">Substitua seis contratos por um ambiente único de aprendizagem, comunicação e compliance.</p>
+        <p class="pl-diff__sub">Substitua <strong style="color:var(--navy-800); font-weight:700;">seis contratos por um ambiente único</strong> de aprendizagem, comunicação e compliance.</p>
       </div>
       <div class="pl-diff__grid">
         <article class="pl-diff__card" data-reveal="">
           <div class="pl-diff__icon" aria-hidden="true"><i data-lucide="layers"></i></div>
-          <h3>Nativo, não integrado</h3>
+          <h3>Nativo, não apenas integrado.</h3>
           <p>Ferramentas unidas desde a origem — não um mosaico de plugins conectados por API.</p>
         </article>
         <article class="pl-diff__card" data-reveal="">
           <div class="pl-diff__icon" aria-hidden="true"><i data-lucide="code-2"></i></div>
           <h3>Tecnologia 100% proprietária</h3>
-          <p>Nada de white-label remendado. O código é da Lector, ponta a ponta.</p>
+          <p>O código é da Lector, ponta a ponta.</p>
         </article>
         <article class="pl-diff__card" data-reveal="">
           <div class="pl-diff__icon" aria-hidden="true"><i data-lucide="cloud"></i></div>
@@ -1696,38 +1669,14 @@
   <!-- SECTION: rede social — spotlight flip -->
   <section class="lk-spotlight lk-spotlight--flip" id="rede-social" aria-label="Rede social corporativa">
     <div class="lk-spotlight__grid">
-      <div class="lk-spotlight__stage lk-spotlight__stage--social">
-        <div class="pl-feed-stage">
-          <article class="pl-post">
-            <div class="pl-post__head">
-              <div class="pl-avatar" aria-hidden="true">JR</div>
-              <div class="pl-post__meta">
-                <strong>Juliana Rocha · RH</strong>
-                <span>há 12 min</span>
-              </div>
-            </div>
-            <p>Concluí a trilha Liderança 4.0. Recomendo demais para quem está começando a gestão de times.</p>
-            <div class="pl-post__stats">
-              <span><i data-lucide="heart"></i> 28</span>
-              <span><i data-lucide="message-circle"></i> 6</span>
-              <span><i data-lucide="share-2"></i> 3</span>
-            </div>
-          </article>
-          <article class="pl-post">
-            <div class="pl-post__head">
-              <div class="pl-avatar pl-avatar--navy" aria-hidden="true">#</div>
-              <div class="pl-post__meta">
-                <strong>Comunidade Comercial</strong>
-                <span>342 membros</span>
-              </div>
-            </div>
-            <p>Nova política comercial publicada. A IA já criou um resumo em vídeo de 3 min na Base de Conhecimento.</p>
-            <div class="pl-post__stats">
-              <span><i data-lucide="heart"></i> 41</span>
-              <span><i data-lucide="message-circle"></i> 12</span>
-            </div>
-          </article>
-        </div>
+      <div class="lk-spotlight__stage">
+        <img
+          class="lk-spotlight__img"
+          src="/assets/media/home/rede-social.png"
+          alt="Rede social corporativa Lector — feed, grupos e engajamento do time"
+          loading="lazy"
+          decoding="async"
+        >
       </div>
       <div class="lk-spotlight__copy" data-reveal="">
         <h2 class="lk-spotlight__title">Rede social corporativa: a sua empresa também tem a própria rede — dentro da universidade.</h2>
@@ -1922,7 +1871,7 @@
   <section id="cta" class="pl-final-cta" aria-label="Próximo passo">
     <img class="pl-final-cta__orbit" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <div class="pl-final-cta__inner">
-      <h2 data-reveal="">Não é sorte. É diagnóstico e trilha.</h2>
+      <h2 data-reveal="">Faça um diagnóstico gratuito.</h2>
       <p data-reveal="">Converse com um especialista e receba um diagnóstico gratuito de maturidade — aprendizagem, liderança, talentos ou compliance NR‑1.</p>
       <div class="pl-final-cta__actions" data-reveal="">
         <a href="#" class="pl-final-cta__btn" data-open-lead data-lead-interest="diagnostico">

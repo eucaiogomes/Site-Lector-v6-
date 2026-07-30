@@ -144,8 +144,8 @@
   /* Nav light */
   .lec-nav-wrap {
     position: sticky; top: 0; z-index: 50; width: 100%;
-    display: flex; justify-content: center; padding: 11px 20px 0; background: transparent;
-    margin-bottom: -81px; pointer-events: none;
+    display: flex; justify-content: center; padding: 51px 20px 0; background: transparent;
+    margin-bottom: -121px; pointer-events: none;
   }
   .lec-nav-wrap > * { pointer-events: auto; }
   .lec-nav {
@@ -285,7 +285,7 @@
   /* Hero */
   .cl-hero {
     position: relative; overflow: hidden;
-    background: var(--ink-950, #001026); color: #fff; padding: 108px 0 112px;
+    background: var(--ink-950, #001026); color: #fff; padding: 150px 0 112px;
   }
   .cl-hero::before {
     content: ''; position: absolute; inset: 0; pointer-events: none;
@@ -432,15 +432,13 @@
     flex-direction: column;
     gap: 16px;
   }
-  /* Os PNGs carregam muita margem transparente — daí a altura alta e a
-     margem negativa (o respiro já vem dentro da própria imagem). */
   .cl-case__logo {
-    height: 96px;
+    height: 32px;
     width: auto;
-    max-width: 240px;
+    max-width: 180px;
     object-fit: contain;
     object-position: left center;
-    margin: -22px 0 -26px;
+    margin: 0 0 12px;
   }
   .cl-case h3 {
     font-family: var(--font-display); font-size: 22px; font-weight: 700;
@@ -505,26 +503,6 @@
 </style>
 </helmet>
 
-<!-- SECTION: announce bar (faixa laranja em loop) -->
-<sc-if value="{{ announceOpen }}" hint-placeholder-val="{{ true }}">
-<div class="lk-announce" role="region" aria-label="Anúncio" onClick="{{ openLeadDiagnostico }}">
-  <button class="lk-announce-close" onClick="{{ closeAnnounce }}" aria-label="Fechar anúncio">
-    <i data-lucide="x" style="width:13px;height:13px;"></i>
-  </button>
-  <div class="lk-announce-track-wrap">
-    <div class="lk-announce-track">
-      <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-      <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-      <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-      <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-      <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-      <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-      <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-      <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-    </div>
-  </div>
-</div>
-</sc-if>
 
 <!-- SECTION: nav -->
 <div class="lec-nav-wrap">
@@ -543,7 +521,7 @@
           <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
           <span class="lec-dd__item-body">
             <span class="lec-dd__item-title">Plataforma Lector</span>
-            <span class="lec-dd__item-desc">Centralize LMS, webconferência, autoria, rede social, onboarding, universidade corporativa, liderança, gestão de talentos, comunicação e gestão do conhecimento em um único ambiente.</span>
+            <span class="lec-dd__item-desc">Centralize LMS, webconferência, autoria, rede social, gestão de talentos e gestão de documentos em um único ambiente e com IA nativa.</span>
           </span>
         </a>
         <a href="/pages/copiloto-vendas/index.dc.html" class="lec-dd__item" role="menuitem">

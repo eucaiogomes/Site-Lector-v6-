@@ -621,14 +621,12 @@
     transform: translateX(0);
     z-index: 2;
   }
-  /* Os PNGs carregam muita margem transparente — daí a altura alta e o
-     margin-bottom curto (o respiro já vem dentro da própria imagem). */
   .lk-ms-hero__brand-logo {
-    height: 124px;
+    height: 38px;
     width: auto;
-    max-width: 380px;
+    max-width: 220px;
     object-fit: contain;
-    margin: -18px auto 0;
+    margin: 0 auto 16px;
     display: block;
   }
   .lk-ms-hero__title {
@@ -2060,23 +2058,22 @@
   .lk-scrub {
     position: relative;
     height: auto;
-    min-height: 100vh;
+    min-height: 65vh;
     background: var(--ink-950, #001026);
     color: #fff;
   }
-  .lk-scrub--long { height: auto; min-height: 100vh; }
+  .lk-scrub--long { height: auto; min-height: 65vh; }
   .lk-scrub__pin {
     position: relative;
     height: auto;
-    min-height: 100vh;
+    min-height: 65vh;
     width: 100%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: stretch;
-    /* Reserva header fixo — evita título colado no topo em notebook */
-    padding-top: clamp(88px, 12vh, 120px);
+    padding-top: clamp(40px, 6vh, 64px);
     box-sizing: border-box;
   }
   .lk-scrub__video {
@@ -2139,8 +2136,7 @@
     width: 100%;
     max-width: 1240px;
     margin: 0 auto;
-    /* Copy na faixa inferior (como no monitor grande) */
-    padding: 0 48px clamp(52px, 8vh, 80px);
+    padding: clamp(36px, 5vh, 56px) 48px;
     pointer-events: none;
     box-sizing: border-box;
   }
@@ -2151,7 +2147,7 @@
   /* Notebooks / monitores baixos: compacta tipografia para o título ficar na faixa inferior */
   @media (max-height: 920px) {
     .lk-scrub__pin {
-      padding-top: clamp(80px, 11vh, 104px);
+      padding-top: clamp(36px, 5vh, 52px);
     }
     .lk-scrub__content {
       padding-bottom: clamp(36px, 5.5vh, 56px);
@@ -2803,38 +2799,9 @@
 
 <div style="position:relative; background:var(--surface-page);">
 
-  <!-- FLOATING TOP: full-width announce marquee + header pill -->
+  <!-- FLOATING TOP: header pill -->
   <div style="position:fixed; top:0; left:0; right:0; z-index:60; display:flex; flex-direction:column; align-items:center;">
-    <sc-if value="{{ announceOpen }}" hint-placeholder-val="{{ true }}">
-    <div class="lk-announce" role="region" aria-label="Anúncio">
-      <button class="lk-announce-close" onClick="{{ closeAnnounce }}" aria-label="Fechar anúncio">
-        <i data-lucide="x" style="width:13px;height:13px;"></i>
-      </button>
-      <div class="lk-announce-track-wrap">
-        <div class="lk-announce-track">
-          <!-- bloco 1 -->
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <!-- bloco 2 (duplicado para loop contínuo) -->
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-          <span class="lk-announce-item"><strong>Fiscalização NR-1 em vigor desde 26/05/2026</strong> — empresas sem gestão documentada de riscos psicossociais já estão sujeitas a autuação — <u>Quero meu diagnóstico</u></span>
-          <span class="lk-announce-bolt" aria-hidden="true"><i data-lucide="zap"></i></span>
-        </div>
-      </div>
-    </div>
-    </sc-if>
-    <div style="width:100%; display:flex; justify-content:center; padding:11px 20px 0;">
+    <div style="width:100%; display:flex; justify-content:center; padding:51px 20px 0;">
     <header style="{{ headerPillStyle }}">
       <a href="#top" style="display:flex; align-items:center; flex:none;">
         <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:24px; display:block;">
@@ -2850,7 +2817,7 @@
               <span class="lk-nav-dd__item-icon" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
               <span class="lk-nav-dd__item-body">
                 <span class="lk-nav-dd__item-title">Plataforma Lector</span>
-                <span class="lk-nav-dd__item-desc">Centralize LMS, webconferência, autoria, rede social, onboarding, universidade corporativa, liderança, gestão de talentos, comunicação e gestão do conhecimento em um único ambiente.</span>
+                <span class="lk-nav-dd__item-desc">Centralize LMS, webconferência, autoria, rede social, gestão de talentos e gestão de documentos em um único ambiente e com IA nativa.</span>
               </span>
             </a>
             <a href="/pages/copiloto-vendas/index.dc.html" class="lk-nav-dd__item" role="menuitem">
@@ -3003,7 +2970,6 @@
               </p>
               <div class="lk-ms-hero__card-foot">
                 <div class="lk-ms-hero__author">
-                  <img src="/assets/clients/microsoft.png" alt="Microsoft" width="110" height="22">
                   <div class="lk-ms-hero__author-text">
                     <strong>Paulo Tonin da Silveira</strong>
                     <span>Sr. Partner Development Manager LATAM · Microsoft</span>
@@ -3030,7 +2996,6 @@
               </p>
               <div class="lk-ms-hero__card-foot">
                 <div class="lk-ms-hero__author">
-                  <img src="/assets/clients/philips.png" alt="Philips" width="110" height="22">
                   <div class="lk-ms-hero__author-text">
                     <strong>Adriano Geyer</strong>
                     <span>Gerente Global de Treinamentos · Philips</span>
@@ -4982,14 +4947,6 @@ class Component extends DCLogic {
         dot.addEventListener('click', () => this._tGo(i, true));
       });
 
-      const content = stage.closest('.lk-ms-hero__content');
-      if (content) {
-        content.addEventListener('mouseenter', () => this._tStop());
-        content.addEventListener('mouseleave', () => this._tStart());
-        content.addEventListener('focusin', () => this._tStop());
-        content.addEventListener('focusout', () => this._tStart());
-      }
-
       // aba em background: timer pode acumular disparos atrasados e, ao
       // voltar o foco, causar transições sobrepostas — pausa e reseta
       this._tVisHandler = () => {
@@ -5080,7 +5037,7 @@ class Component extends DCLogic {
       return;
     }
     t.queued = null;
-    if (manual) this._tStart();
+    this._tStart();
   }
 
   _tGo(next, manual) {
