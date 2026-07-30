@@ -3020,9 +3020,9 @@
           <!-- Slide 1: Philips -->
           <div class="lk-ms-hero__slide" data-t-slide="" data-index="1">
             <img class="lk-ms-hero__brand-logo" src="/assets/clients/philips.png" alt="Philips" width="320" height="63">
-            <h2 class="lk-ms-hero__title">+15 anos de parceria em aprendizagem.</h2>
+            <h2 class="lk-ms-hero__title">13 anos de parceria em aprendizagem.</h2>
             <p class="lk-ms-hero__sub">
-              A <u>Philips</u> forma seus times no mundo todo com a <u>Plataforma Lector Live</u>.
+              A <u>Philips</u> é uma parceira da <u>Lector</u> há mais de 13 anos.
             </p>
             <div class="lk-ms-hero__card">
               <p>
@@ -4975,7 +4975,7 @@ class Component extends DCLogic {
         busy: false,
         queued: null,
         reduce,
-        interval: 6500,
+        interval: 5000,
       };
 
       dots.forEach((dot, i) => {
@@ -5035,7 +5035,7 @@ class Component extends DCLogic {
   }
 
   _tStart() {
-    if (!this._t || this._t.reduce) return;
+    if (!this._t) return;
     this._tStop();
     this._t.timer = setInterval(() => this._tGo(this._t.index + 1), this._t.interval);
   }
