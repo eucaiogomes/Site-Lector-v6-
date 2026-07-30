@@ -621,12 +621,14 @@
     transform: translateX(0);
     z-index: 2;
   }
+  /* Os PNGs carregam muita margem transparente — daí a altura alta e o
+     margin-bottom curto (o respiro já vem dentro da própria imagem). */
   .lk-ms-hero__brand-logo {
-    height: 63px;
+    height: 124px;
     width: auto;
-    max-width: 320px;
+    max-width: 380px;
     object-fit: contain;
-    margin: 0 auto 28px;
+    margin: -18px auto 0;
     display: block;
   }
   .lk-ms-hero__title {
@@ -778,7 +780,7 @@
     .lk-ms-hero__globe-wrap { bottom: -42%; width: 180vw; }
     .lk-ms-hero__card { padding: 22px 20px 18px; border-radius: 18px; }
     .lk-ms-hero__card-foot { flex-direction: column; align-items: flex-start; }
-    .lk-clients-marquee { padding: 32px 0 160px; }
+    .lk-clients-marquee { padding: 28px 0 90px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .lk-ms-hero__globe-wrap { opacity: .85; }
@@ -790,7 +792,7 @@
     z-index: 4;
     width: 100%;
     background: transparent;
-    padding: 40px 0 200px;
+    padding: 36px 0 110px;
     overflow: hidden;
     margin-top: 8px;
   }
@@ -822,24 +824,21 @@
   .lk-clients-marquee__group {
     display: flex;
     align-items: center;
-    gap: 64px;
-    padding-right: 64px;
+    gap: 76px;
+    padding-right: 76px;
     flex: none;
   }
   .lk-clients-marquee__item {
-    height: 52px;
-    width: 168px;
+    height: 82px;
+    width: 240px;
     flex: none;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: .55;
-    filter: grayscale(1);
-    transition: opacity .3s var(--ease-out), filter .3s var(--ease-out);
+    transition: transform .3s var(--ease-out);
   }
   .lk-clients-marquee__item:hover {
-    opacity: 1;
-    filter: grayscale(0);
+    transform: scale(1.06);
   }
   @media (prefers-reduced-motion: reduce) {
     .lk-clients-marquee__track { animation: none; }
@@ -1623,7 +1622,7 @@
   .lk-stats {
     position: relative;
     overflow: hidden;
-    padding: 120px 0 110px;
+    padding: 80px 0 72px;
     background:
       radial-gradient(ellipse 70% 55% at 50% -5%, rgba(246, 107, 10, .08) 0%, transparent 55%),
       radial-gradient(ellipse 45% 40% at 100% 80%, rgba(0, 32, 77, .05) 0%, transparent 50%),
@@ -1692,76 +1691,82 @@
   }
   .lk-stats__sub {
     font-size: 17px;
-    line-height: 1.55;
+    line-height: 1.6;
     color: var(--ink-500);
     margin: 0 auto;
-    max-width: 480px;
+    max-width: 620px;
+    text-wrap: pretty;
   }
+  /* Painel único navy — os números ganham contraste contra a faixa branca */
   .lk-stats__grid {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-  }
-  .lk-stats__card {
-    position: relative;
-    text-align: left;
-    padding: 28px 26px 30px;
-    border-radius: var(--radius-xl);
-    background: var(--white);
-    border: 1px solid var(--ink-100);
-    box-shadow: var(--shadow-md);
+    gap: 0;
+    border-radius: var(--radius-2xl);
+    background:
+      radial-gradient(ellipse 60% 90% at 100% 0%, rgba(246, 107, 10, .22) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at 0% 100%, rgba(26, 65, 115, .55) 0%, transparent 60%),
+      linear-gradient(140deg, #0A2350 0%, var(--navy-800) 48%, #001435 100%);
+    box-shadow:
+      0 40px 90px -44px rgba(0, 32, 77, .6),
+      0 0 0 1px rgba(255, 255, 255, .06) inset;
     overflow: hidden;
-    opacity: 0;
-    transition:
-      transform .45s var(--ease-out),
-      background .45s var(--ease-out),
-      border-color .45s var(--ease-out),
-      box-shadow .45s var(--ease-out);
+    isolation: isolate;
   }
-  .lk-stats__card::before {
+  .lk-stats__grid::before {
     content: '';
     position: absolute;
     inset: 0 0 auto 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent 0%, var(--brand) 35%, #FFA467 70%, transparent 100%);
-    opacity: .9;
+    background: linear-gradient(90deg, transparent 0%, var(--brand) 30%, #FFA467 62%, transparent 100%);
+    opacity: .8;
+    z-index: 2;
+  }
+  .lk-stats__card {
+    position: relative;
+    text-align: left;
+    padding: 42px 32px 44px;
+    /* Divisórias desenhadas para fora — a borda do painel recorta as externas */
+    box-shadow:
+      -1px 0 0 rgba(255, 255, 255, .09),
+      0 -1px 0 rgba(255, 255, 255, .09);
+    background: transparent;
+    opacity: 0;
+    transition: background .45s var(--ease-out);
   }
   .lk-stats__card::after {
     content: '';
     position: absolute;
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    right: -48px;
-    top: -48px;
-    background: radial-gradient(circle, rgba(246, 107, 10, .12) 0%, transparent 68%);
+    right: -70px;
+    top: -70px;
+    background: radial-gradient(circle, rgba(246, 107, 10, .18) 0%, transparent 68%);
     pointer-events: none;
     transition: opacity .45s var(--ease-out), transform .45s var(--ease-out);
-    opacity: .7;
+    opacity: 0;
   }
   .lk-stats__card:hover {
-    transform: translateY(-6px);
-    background: var(--white);
-    border-color: rgba(246, 107, 10, .28);
-    box-shadow:
-      var(--shadow-lg),
-      0 18px 40px -20px rgba(246, 107, 10, .28);
+    background: rgba(255, 255, 255, .04);
   }
   .lk-stats__card:hover::after {
     opacity: 1;
-    transform: scale(1.15);
+    transform: scale(1.1);
   }
   .lk-stats__icon {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    margin-bottom: 22px;
-    background: var(--orange-50);
-    color: var(--brand);
-    border: 1px solid var(--orange-100);
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    margin-bottom: 26px;
+    background: rgba(246, 107, 10, .16);
+    color: #FF9F55;
+    border: 1px solid rgba(246, 107, 10, .32);
   }
   .lk-stats__icon i,
   .lk-stats__icon svg {
@@ -1769,23 +1774,51 @@
     height: 18px;
   }
   .lk-stats__value {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: clamp(42px, 4.6vw, 60px);
-    line-height: 1;
-    letter-spacing: -.04em;
-    color: var(--navy-800);
-    margin: 0 0 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 .18em;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(42px, 4vw, 66px);
+    line-height: 1.05;
+    letter-spacing: -.035em;
+    margin: 0 0 16px;
     font-variant-numeric: tabular-nums;
-    background: linear-gradient(180deg, var(--navy-800) 25%, var(--brand) 120%);
+  }
+  .lk-stats__value-main {
+    display: inline-flex;
+    align-items: baseline;
+    gap: .07em;
+    white-space: nowrap;
+  }
+  /* "+" sobrescrito, em escala reduzida — não compete com o número */
+  .lk-stats__value-pre {
+    font-size: .46em;
+    font-weight: 800;
+    line-height: 1;
+    color: #FF9F55;
+    transform: translateY(-.42em);
+  }
+  .lk-stats__value-num {
+    background: linear-gradient(170deg, #FFFFFF 12%, #FFD5B4 52%, var(--brand) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  .lk-stats__value-unit {
+    font-size: .4em;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    color: rgba(255, 255, 255, .9);
+  }
+  .lk-stats__value-unit:empty {
+    display: none;
+  }
   .lk-stats__label {
-    font-size: 14.5px;
+    font-size: 15px;
     line-height: 1.5;
-    color: var(--ink-600);
+    color: rgba(255, 255, 255, .62);
     font-weight: 500;
     margin: 0;
     max-width: 220px;
@@ -1798,24 +1831,22 @@
   .lk-stats__card:nth-child(2).is-visible { animation-delay: .14s; }
   .lk-stats__card:nth-child(3).is-visible { animation-delay: .23s; }
   .lk-stats__card:nth-child(4).is-visible { animation-delay: .32s; }
+  /* Fade puro: as divisórias do painel não podem deslizar junto */
   @keyframes lk-stats-in {
-    from {
-      opacity: 0;
-      transform: translateY(28px) scale(.97);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   @media (max-width: 960px) {
     .lk-stats {
-      padding: 88px 0 80px;
+      padding: 60px 0 56px;
     }
     .lk-stats__grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      border-radius: var(--radius-xl);
+    }
+    .lk-stats__card {
+      padding: 34px 26px 36px;
     }
     .lk-stats__header {
       margin-bottom: 44px;
@@ -1824,6 +1855,12 @@
   @media (max-width: 560px) {
     .lk-stats__grid {
       grid-template-columns: 1fr;
+    }
+    .lk-stats__card {
+      padding: 30px 26px 32px;
+    }
+    .lk-stats__icon {
+      margin-bottom: 18px;
     }
     .lk-stats__label {
       max-width: none;
@@ -1846,7 +1883,7 @@
   .lk-modules {
     position: relative;
     overflow: hidden;
-    padding: 110px 0;
+    padding: 76px 0;
     background: var(--ink-950);
   }
   .lk-modules__media {
@@ -2000,7 +2037,7 @@
   }
   @media (max-width: 560px) {
     .lk-modules {
-      padding: 80px 0;
+      padding: 56px 0;
     }
     .lk-modules__grid {
       grid-template-columns: 1fr;
@@ -2362,7 +2399,7 @@
     overflow: hidden;
     background: #000c1c;
     color: #fff;
-    padding: clamp(88px, 12vh, 120px) 0 clamp(64px, 9vh, 100px);
+    padding: clamp(64px, 8vh, 84px) 0 clamp(48px, 6vh, 64px);
     box-sizing: border-box;
   }
   .lk-story-split__glow {
@@ -2447,7 +2484,7 @@
   @media (max-width: 800px) {
     .lk-story { min-height: auto; padding-top: 0; }
     .lk-story__content { padding: 72px 24px 56px; }
-    .lk-story-split { padding: 72px 0 64px; }
+    .lk-story-split { padding: 52px 0 44px; }
     .lk-story-split__grid { padding: 0 24px; }
     .lk-story__canvas { min-height: 380px; position: relative; height: 42vh; }
     .lk-story {
@@ -2985,11 +3022,11 @@
             <img class="lk-ms-hero__brand-logo" src="/assets/clients/philips.png" alt="Philips" width="320" height="63">
             <h2 class="lk-ms-hero__title">+15 anos de parceria em aprendizagem.</h2>
             <p class="lk-ms-hero__sub">
-              A <u>Philips</u> treina o mundo com a Lector.
+              A <u>Philips</u> forma seus times no mundo todo com a <u>Plataforma Lector Live</u>.
             </p>
             <div class="lk-ms-hero__card">
               <p>
-                Usamos a plataforma da Lector há <em>+15 anos</em> como nossa solução de aprendizagem. É uma parceria que faz parte da nossa cultura de treinamentos global.
+                É com grande alegria que falamos da nossa parceria com a Lector, utilizamos a Plataforma Lector Live há <em>13 anos</em> como nossa plataforma de aprendizagem.
               </p>
               <div class="lk-ms-hero__card-foot">
                 <div class="lk-ms-hero__author">
@@ -3129,7 +3166,7 @@
   </section>
 
   <!-- PROBLEM / STATEMENT -->
-  <section id="plataforma" style="background:var(--surface-page); padding:120px 0 80px;">
+  <section id="plataforma" style="background:var(--surface-page); padding:80px 0 56px;">
     <div style="max-width:1040px; margin:0 auto; padding:0 28px;">
       <p data-reveal="" style="font-family:var(--font-display); font-weight:800; font-size:clamp(30px,4.4vw,58px); line-height:1.08; letter-spacing:-.025em; color:var(--navy-800); margin:0; text-wrap:balance;">
         Por que pagar diversas ferramentas<br>se você pode ter <span style="color:var(--brand);">todas num só lugar</span>?
@@ -3392,25 +3429,29 @@
   </section>
 
   <!-- STATS — resultados com spotlight + count-up -->
-  <section id="numeros" class="lk-stats" aria-label="Resultados reais">
+  <section id="numeros" class="lk-stats" aria-label="Números que comprovam nossa experiência">
     <img class="lk-stats__orbit lk-stats__orbit--tr" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <img class="lk-stats__orbit lk-stats__orbit--bl" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <div class="lk-stats__inner">
       <header class="lk-stats__header" data-reveal="">
-        <h2 class="lk-stats__title">Resultados reais: aprendizado que vira número.</h2>
-        <p class="lk-stats__sub">Métricas que o RH e a liderança usam para provar impacto — não só engajamento.</p>
+        <h2 class="lk-stats__title">Números que comprovam nossa experiência.</h2>
+        <p class="lk-stats__sub">Há mais de 20 anos ajudando empresas a desenvolver talentos, capacitar equipes e transformar a aprendizagem corporativa.</p>
       </header>
       <div class="lk-stats__grid">
         <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
           <article class="lk-stats__card" data-stat-card="">
             <span class="lk-stats__icon" aria-hidden="true"><i data-lucide="{{ s.icon }}"></i></span>
-            <div
-              class="lk-stats__value"
-              data-stat-count=""
-              data-num="{{ s.num }}"
-              data-prefix="{{ s.prefix }}"
-              data-suffix="{{ s.suffix }}"
-            >{{ s.value }}</div>
+            <div class="lk-stats__value" aria-label="{{ s.aria }}">
+              <span class="lk-stats__value-main" aria-hidden="true">
+                <span class="lk-stats__value-pre">{{ s.prefix }}</span><span
+                  class="lk-stats__value-num"
+                  data-stat-count=""
+                  data-num="{{ s.num }}"
+                  data-decimals="{{ s.decimals }}"
+                >{{ s.display }}</span>
+              </span>
+              <span class="lk-stats__value-unit" aria-hidden="true">{{ s.unit }}</span>
+            </div>
             <p class="lk-stats__label">{{ s.label }}</p>
           </article>
         </sc-for>
@@ -3419,7 +3460,7 @@
   </section>
 
   <!-- FINAL CTA -->
-  <section id="contato" style="background:var(--brand); padding:110px 0; position:relative; overflow:hidden;">
+  <section id="contato" style="background:var(--brand); padding:76px 0; position:relative; overflow:hidden;">
     <img src="/assets/brand/orbit.svg" alt="" style="position:absolute; bottom:-160px; left:-120px; width:560px; opacity:.16; filter:brightness(0) invert(1); pointer-events:none;">
     <div style="max-width:900px; margin:0 auto; padding:0 28px; text-align:center; position:relative;">
       <h2 data-reveal="" style="font-family:var(--font-display); font-weight:800; font-size:clamp(36px,5vw,68px); line-height:1.02; letter-spacing:-.03em; color:#fff; margin:0 0 22px; text-wrap:balance;">Comece a ensinar de verdade.</h2>
@@ -3431,7 +3472,7 @@
   </section>
 
   <!-- FOOTER -->
-  <footer style="background:var(--ink-950); color:rgba(230,238,250,.7); padding:76px 0 40px;">
+  <footer style="background:var(--ink-950); color:rgba(230,238,250,.7); padding:56px 0 32px;">
     <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
       <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
         <div>
@@ -5450,23 +5491,27 @@ class Component extends DCLogic {
         if (el._lkCounted) return;
         el._lkCounted = true;
         const num = parseFloat(el.getAttribute('data-num') || '0');
+        const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10) || 0;
         const prefix = el.getAttribute('data-prefix') || '';
         const suffix = el.getAttribute('data-suffix') || '';
-        const finalText = prefix + num + suffix;
+        const fmt = (n) => n.toLocaleString('pt-BR', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals,
+        });
+        const finalText = prefix + fmt(num) + suffix;
 
         if (reduce || !Number.isFinite(num)) {
           el.textContent = finalText;
           return;
         }
 
-        el.textContent = prefix + '0' + suffix;
+        el.textContent = prefix + fmt(0) + suffix;
         const duration = 1500;
         const start = performance.now();
         const tick = (now) => {
           const t = Math.min(1, (now - start) / duration);
           const eased = 1 - Math.pow(1 - t, 3);
-          const current = Math.round(num * eased);
-          el.textContent = prefix + current + suffix;
+          el.textContent = prefix + fmt(num * eased) + suffix;
           if (t < 1) requestAnimationFrame(tick);
           else el.textContent = finalText;
         };
@@ -5541,10 +5586,10 @@ class Component extends DCLogic {
     ];
 
     const stats = [
-      { value: '3×', num: 3, prefix: '', suffix: '×', icon: 'trending-up', label: 'mais conclusão de trilhas vs. LMS tradicional' },
-      { value: '48h', num: 48, prefix: '', suffix: 'h', icon: 'clock', label: 'para publicar um curso completo com IA' },
-      { value: '+500k', num: 500, prefix: '+', suffix: 'k', icon: 'users', label: 'alunos ativos na plataforma' },
-      { value: '97%', num: 97, prefix: '', suffix: '%', icon: 'badge-check', label: 'de satisfação dos administradores' },
+      { num: 20, decimals: 0, display: '20', prefix: '+', unit: '', icon: 'calendar-clock', label: 'anos de mercado', aria: 'Mais de 20 anos de mercado' },
+      { num: 1, decimals: 0, display: '1', prefix: '+', unit: 'mil', icon: 'building-2', label: 'empresas impactadas', aria: 'Mais de 1 mil empresas impactadas' },
+      { num: 20, decimals: 0, display: '20', prefix: '+', unit: '', icon: 'globe', label: 'países', aria: 'Mais de 20 países' },
+      { num: 1.5, decimals: 1, display: '1,5', prefix: '+', unit: 'milhão', icon: 'users', label: 'de usuários', aria: 'Mais de 1,5 milhão de usuários' },
     ];
 
     const clients = ['unimed', 'sicoob', 'ache', 'philips', 'koch', 'sesi-senai', 'microsoft', 'lideranca', 'acats', 'cnmp', 'hospital-sapiranga'];
