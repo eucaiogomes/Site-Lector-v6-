@@ -649,7 +649,7 @@
     </div>
     <p class="cl-logos-label" data-reveal="">Alguns clientes</p>
     <div class="cl-logo-grid" data-reveal="">
-      <sc-for list="{{ clients }}" as="c" hint-placeholder-count="8">
+      <sc-for list="{{ clients }}" as="c" hint-placeholder-count="10">
         <div class="cl-logo-card">
           <img src="{{ c.src }}" alt="{{ c.name }}" loading="lazy" decoding="async" width="230" height="88">
         </div>
@@ -904,8 +904,10 @@ class Component extends DCLogic {
       lideranca: 'Grupo Liderança',
       esmpsp: 'Escola Superior do Ministério Público de São Paulo',
       'hospital-sapiranga': 'Hospital Sapiranga',
+      cigam: 'CIGAM',
+      benner: 'Benner',
     };
-    const order = ['unimed', 'sicoob', 'sesi-senai', 'lideranca', 'acats', 'cnmp', 'esmpsp', 'hospital-sapiranga'];
+    const order = ['unimed', 'sicoob', 'sesi-senai', 'lideranca', 'acats', 'cnmp', 'esmpsp', 'hospital-sapiranga', 'cigam', 'benner'];
     const clients = order.map((id) => ({
       id,
       name: names[id] || id,
