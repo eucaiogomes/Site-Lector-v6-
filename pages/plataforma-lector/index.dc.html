@@ -132,9 +132,10 @@
     0%, 100% { box-shadow: 0 0 0 4px rgba(246, 107, 10, .22); opacity: 1; }
     50% { box-shadow: 0 0 0 10px rgba(246, 107, 10, 0); opacity: .85; }
   }
+  /* Fade puro: as divisórias do painel não podem deslizar junto */
   @keyframes lk-stats-in {
-    from { opacity: 0; transform: translateY(28px) scale(.97); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   /* Announce */
@@ -283,19 +284,19 @@
   .lk-spotlight { position: relative; background: var(--white, #fff); overflow: hidden; }
   .lk-spotlight__grid {
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-    min-height: min(88vh, 760px); align-items: stretch;
+    min-height: min(74vh, 620px); align-items: stretch;
   }
   .lk-spotlight--flip .lk-spotlight__grid {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
   }
   .lk-spotlight__copy {
     display: flex; flex-direction: column; justify-content: center;
-    padding: 96px 56px 96px clamp(28px, 6vw, 100px);
+    padding: 68px 56px 68px clamp(28px, 6vw, 100px);
     max-width: 620px; margin-left: auto; width: 100%;
   }
   .lk-spotlight--flip .lk-spotlight__copy {
     margin-left: 0; margin-right: auto;
-    padding: 96px clamp(28px, 6vw, 100px) 96px 56px;
+    padding: 68px clamp(28px, 6vw, 100px) 68px 56px;
   }
   .lk-spotlight__badge {
     display: inline-flex; align-items: center; gap: 10px; align-self: flex-start;
@@ -332,9 +333,27 @@
   .lk-spotlight__stage {
     position: relative; min-height: 520px; overflow: hidden; background: var(--ink-950);
   }
+  .lk-spotlight__video,
   .lk-spotlight__img {
     position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
   }
+  .lk-spotlight__note { font-size: 13.5px; color: var(--ink-500); margin: 0; }
+  .lk-spotlight__note a {
+    color: var(--navy-800); font-weight: 700; text-decoration: underline;
+    text-underline-offset: 3px; text-decoration-thickness: 1.5px;
+  }
+  .lk-spotlight__note a:hover { color: var(--brand); }
+  /* LMS: imagem inteira + carrossel com crossfade */
+  #lms .lk-spotlight__img { object-fit: contain; }
+  .lk-lms-carousel__img { transition: opacity .35s ease; }
+  @media (prefers-reduced-motion: reduce) {
+    .lk-lms-carousel__img { transition: none; }
+  }
+  /* Webconferência: mostra a imagem inteira, sem cortar e sem moldura escura */
+  #webconferencia .lk-spotlight__stage {
+    min-height: min(680px, 82vh); background: var(--surface-page);
+  }
+  #webconferencia .lk-spotlight__img { object-fit: contain; }
   .lk-spotlight__stage--social {
     display: flex; align-items: center; justify-content: center; padding: 48px 36px;
     background:
@@ -347,7 +366,7 @@
   .pl-uni {
     position: relative;
     overflow: hidden;
-    padding: 96px 0 0;
+    padding: 70px 0 0;
     background:
       radial-gradient(ellipse 80% 50% at 50% 0%, rgba(246, 107, 10, .06) 0%, transparent 55%),
       var(--surface-page);
@@ -493,7 +512,7 @@
 
   /* Diff cards */
   .pl-diff {
-    padding: 100px 0 80px; background: var(--surface-page);
+    padding: 72px 0 58px; background: var(--surface-page);
   }
   .pl-diff__inner { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
   .pl-diff__header { max-width: 720px; margin: 0 0 48px; }
@@ -543,7 +562,7 @@
   .pl-showreel {
     position: relative;
     overflow: hidden;
-    padding: 72px 0 120px;
+    padding: 54px 0 86px;
     background:
       radial-gradient(55% 48% at 18% 22%, rgba(255, 196, 150, .28), transparent 70%),
       radial-gradient(50% 45% at 82% 18%, rgba(210, 232, 214, .36), transparent 68%),
@@ -670,7 +689,7 @@
 
   /* Modules bento */
   .lk-modules {
-    position: relative; overflow: hidden; padding: 110px 0; background: var(--ink-950);
+    position: relative; overflow: hidden; padding: 58px 0; background: var(--ink-950);
   }
   .lk-modules__media { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
   .lk-modules__earth {
@@ -810,7 +829,7 @@
   }
 
   /* Leadership */
-  .pl-leaders { padding: 100px 0; background: var(--surface-page); }
+  .pl-leaders { padding: 72px 0; background: var(--surface-page); }
   .pl-leaders__inner { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
   .pl-leaders__title {
     font-family: var(--font-display); font-weight: 800;
@@ -843,10 +862,11 @@
 
   /* Stats */
   .lk-stats {
-    position: relative; overflow: hidden; padding: 120px 0 110px;
+    position: relative; overflow: hidden; padding: 60px 0 56px;
     background:
       radial-gradient(ellipse 70% 55% at 50% -5%, rgba(246, 107, 10, .08) 0%, transparent 55%),
       radial-gradient(ellipse 45% 40% at 100% 80%, rgba(0, 32, 77, .05) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 35% at 0% 60%, rgba(246, 107, 10, .04) 0%, transparent 55%),
       var(--white, #fff);
   }
   .lk-stats__orbit {
@@ -871,49 +891,82 @@
     color: var(--navy-800); margin: 16px 0 16px; text-wrap: balance;
   }
   .lk-stats__sub {
-    font-size: 17px; line-height: 1.55; color: var(--ink-500); margin: 0 auto; max-width: 480px;
+    font-size: 17px; line-height: 1.6; color: var(--ink-500); margin: 0 auto;
+    max-width: 620px; text-wrap: pretty;
   }
-  .lk-stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  /* Painel único navy — os números ganham contraste contra a faixa branca */
+  .lk-stats__grid {
+    position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    border-radius: 36px;
+    background:
+      radial-gradient(ellipse 60% 90% at 100% 0%, rgba(246, 107, 10, .22) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at 0% 100%, rgba(26, 65, 115, .55) 0%, transparent 60%),
+      linear-gradient(140deg, #0A2350 0%, var(--navy-800) 48%, #001435 100%);
+    box-shadow:
+      0 40px 90px -44px rgba(0, 32, 77, .6),
+      0 0 0 1px rgba(255, 255, 255, .06) inset;
+    overflow: hidden; isolation: isolate;
+  }
+  .lk-stats__grid::before {
+    content: ''; position: absolute; inset: 0 0 auto 0; height: 2px; z-index: 2; opacity: .8;
+    background: linear-gradient(90deg, transparent 0%, var(--brand) 30%, #FFA467 62%, transparent 100%);
+  }
   .lk-stats__card {
-    position: relative; text-align: left; padding: 28px 26px 30px; border-radius: 20px;
-    background: #fff; border: 1px solid var(--ink-100); box-shadow: 0 10px 28px -18px rgba(10,20,40,.18);
-    overflow: hidden; opacity: 0;
-    transition: transform .45s, box-shadow .45s, border-color .45s;
+    position: relative; text-align: left; padding: 42px 32px 44px;
+    /* Divisórias desenhadas para fora — a borda do painel recorta as externas */
+    box-shadow:
+      -1px 0 0 rgba(255, 255, 255, .09),
+      0 -1px 0 rgba(255, 255, 255, .09);
+    background: transparent; opacity: 0; transition: background .45s ease-out;
   }
-  .lk-stats__card::before {
-    content: ''; position: absolute; inset: 0 0 auto 0; height: 2px;
-    background: linear-gradient(90deg, transparent 0%, var(--brand) 35%, #FFA467 70%, transparent 100%);
+  .lk-stats__card::after {
+    content: ''; position: absolute; width: 200px; height: 200px; border-radius: 50%;
+    right: -70px; top: -70px; pointer-events: none; opacity: 0;
+    background: radial-gradient(circle, rgba(246, 107, 10, .18) 0%, transparent 68%);
+    transition: opacity .45s ease-out, transform .45s ease-out;
   }
-  .lk-stats__card:hover {
-    transform: translateY(-6px); border-color: rgba(246, 107, 10, .28);
-    box-shadow: 0 18px 40px -20px rgba(246, 107, 10, .28);
-  }
+  .lk-stats__card:hover { background: rgba(255, 255, 255, .04); }
+  .lk-stats__card:hover::after { opacity: 1; transform: scale(1.1); }
   .lk-stats__card.is-visible { opacity: 1; animation: lk-stats-in .75s ease-out both; }
   .lk-stats__card:nth-child(1).is-visible { animation-delay: .05s; }
   .lk-stats__card:nth-child(2).is-visible { animation-delay: .14s; }
   .lk-stats__card:nth-child(3).is-visible { animation-delay: .23s; }
   .lk-stats__card:nth-child(4).is-visible { animation-delay: .32s; }
   .lk-stats__icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 40px; height: 40px; border-radius: 12px; margin-bottom: 22px;
-    background: rgba(246,107,10,.1); color: var(--brand); border: 1px solid rgba(246,107,10,.14);
+    position: relative; display: inline-flex; align-items: center; justify-content: center;
+    width: 42px; height: 42px; border-radius: 13px; margin-bottom: 26px;
+    background: rgba(246,107,10,.16); color: #FF9F55; border: 1px solid rgba(246,107,10,.32);
   }
   .lk-stats__icon i, .lk-stats__icon svg { width: 18px; height: 18px; }
   .lk-stats__value {
-    font-family: var(--font-mono); font-weight: 700; font-size: clamp(36px, 4vw, 52px);
-    line-height: 1; letter-spacing: -.04em; margin: 0 0 14px;
-    background: linear-gradient(180deg, var(--navy-800) 25%, var(--brand) 120%);
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .18em;
+    font-family: var(--font-display); font-weight: 800; font-size: clamp(42px, 4vw, 66px);
+    line-height: 1.05; letter-spacing: -.035em; margin: 0 0 16px;
+    font-variant-numeric: tabular-nums;
+  }
+  .lk-stats__value-main {
+    display: inline-flex; align-items: baseline; gap: .07em; white-space: nowrap;
+  }
+  /* "+" sobrescrito, em escala reduzida — não compete com o número */
+  .lk-stats__value-pre {
+    font-size: .46em; font-weight: 800; line-height: 1; color: #FF9F55;
+    transform: translateY(-.42em);
+  }
+  .lk-stats__value-num {
+    background: linear-gradient(170deg, #FFFFFF 12%, #FFD5B4 52%, var(--brand) 100%);
     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   }
-  .lk-stats__label {
-    font-size: 14.5px; line-height: 1.5; color: var(--ink-600); font-weight: 500; margin: 0;
+  .lk-stats__value-unit {
+    font-size: .4em; font-weight: 700; letter-spacing: -.02em; color: rgba(255, 255, 255, .9);
   }
-  .lk-stats__note {
-    text-align: center; margin: 28px 0 0; font-size: 12.5px; color: var(--ink-400); font-style: italic;
+  .lk-stats__value-unit:empty { display: none; }
+  .lk-stats__label {
+    font-size: 15px; line-height: 1.5; color: rgba(255, 255, 255, .62); font-weight: 500; margin: 0;
+    max-width: 220px;
   }
 
   /* FAQ */
-  .pl-faq-sec { padding: 100px 0; background: var(--surface-page); }
+  .pl-faq-sec { padding: 72px 0; background: var(--surface-page); }
   .pl-faq-sec__inner { max-width: 820px; margin: 0 auto; padding: 0 28px; }
   .pl-faq-sec__title {
     font-family: var(--font-display); font-weight: 800;
@@ -982,13 +1035,15 @@
     .lk-spotlight__grid > .lk-spotlight__copy { order: 1; }
     .lk-spotlight__grid > .lk-spotlight__stage { order: 2; }
     .lk-spotlight__copy, .lk-spotlight--flip .lk-spotlight__copy {
-      margin: 0; padding: 56px 28px; max-width: none;
+      margin: 0; padding: 54px 28px 40px; max-width: none;
     }
     .lk-spotlight__stage { min-height: 400px; }
     .pl-uni { padding: 72px 0 0; }
     .pl-uni__frame-wrap { max-width: none; padding: 0; }
     .pl-uni__screen img { max-height: none; }
     .pl-diff__grid, .lk-modules__grid, .pl-chain, .pl-two, .lk-stats__grid { grid-template-columns: 1fr 1fr; }
+    .lk-stats__grid { border-radius: 28px; }
+    .lk-stats__card { padding: 34px 26px 36px; }
     .pl-exclusive__grid { grid-template-columns: 1fr 1fr; }
     header .lk-nav-desktop { display: none !important; }
   }
@@ -1001,7 +1056,10 @@
     .pl-uni__chrome { padding: 10px 12px; }
     .pl-uni__url { font-size: 11px; padding: 6px 10px; }
     .pl-uni__screen img { max-height: none; object-fit: contain; }
-    .lk-stats { padding: 80px 0 72px; }
+    .lk-stats { padding: 46px 0 44px; }
+    .lk-stats__card { padding: 30px 26px 32px; }
+    .lk-stats__icon { margin-bottom: 18px; }
+    .lk-stats__label { max-width: none; }
     .pl-final-cta { padding: 80px 0; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -1290,8 +1348,8 @@
   </div>
 
   <!-- SECTION: statement -->
-  <section id="por-que" style="background:var(--surface-page); padding:80px 0 40px;" aria-label="Por que Lector">
-    <div style="max-width:1040px; margin:0 auto; padding:0 28px;">
+  <section id="por-que" style="background:var(--surface-page); padding:58px 0 32px;" aria-label="Por que Lector">
+    <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
       <p data-reveal="" style="font-family:var(--font-display); font-weight:800; font-size:clamp(30px,4.4vw,58px); line-height:1.08; letter-spacing:-.025em; color:var(--navy-800); margin:0; text-wrap:balance;">
         O diferencial não são as funcionalidades.<br>
         É a inteligência que <span style="color:var(--brand);">conecta tudo</span>.
@@ -1447,6 +1505,194 @@
     </div>
   </section>
 
+  <!-- SECTION: lms — spotlight importado da home -->
+  <section id="lms" class="lk-spotlight lk-spotlight--flip" aria-label="LMS completo">
+    <div class="lk-spotlight__grid">
+      <div class="lk-spotlight__stage">
+        <img
+          id="lms-carousel-img"
+          class="lk-spotlight__img lk-lms-carousel__img"
+          src="/assets/media/home/lms-diagnostico.png"
+          data-slides="/assets/media/home/lms-diagnostico.png,/assets/media/home/lms.png"
+          alt="Interface do LMS Lector — trilhas, turmas e aprendizado"
+          loading="lazy"
+          decoding="async"
+        >
+      </div>
+
+      <div class="lk-spotlight__copy" data-reveal="">
+        <h2 class="lk-spotlight__title">
+          LMS: o núcleo do aprendizado da sua empresa, em um só ambiente.
+        </h2>
+        <p class="lk-spotlight__body">
+          Trilhas, turmas, certificados e app mobile no mesmo lugar onde o conteúdo nasce. Cada pessoa vê o que precisa — e o RH enxerga conclusão, prazo e impacto sem planilha paralela.
+        </p>
+        <p class="lk-spotlight__meta">
+          Menos ferramentas soltas. <strong>Mais gente terminando o que importa</strong> — com registro pronto para auditoria.
+        </p>
+        <div class="lk-spotlight__actions">
+          <a href="#cta" class="lk-spotlight__btn-primary">
+            Agendar demonstração
+            <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+        <p class="lk-spotlight__note">
+          Já usa a Lector? <a href="#entrar">Entrar e gerenciar trilhas</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: autoria — spotlight importado da home -->
+  <section id="autoria" class="lk-spotlight" aria-label="Ferramenta de autoria">
+    <div class="lk-spotlight__grid">
+      <div class="lk-spotlight__copy" data-reveal="">
+        <h2 class="lk-spotlight__title">
+          Autoria: os melhores recursos de conteúdo em um só lugar.
+        </h2>
+        <p class="lk-spotlight__body">
+          Construa cursos com precisão — do roteiro ao SCORM — com IA que acelera o rascunho, editor de vídeo e templates de marca. Você descreve o objetivo; a Lector monta a primeira versão pronta para refinar e publicar.
+        </p>
+        <p class="lk-spotlight__meta">
+          Do brief ao curso publicado em <strong>horas, não semanas</strong> — sem depender de um time de produção externo.
+        </p>
+        <div class="lk-spotlight__actions">
+          <a href="#cta" class="lk-spotlight__btn-primary">
+            Agendar demonstração
+            <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+        <p class="lk-spotlight__note">
+          Já usa a Lector? <a href="#entrar">Entrar e criar um curso</a>
+        </p>
+      </div>
+
+      <div class="lk-spotlight__stage" aria-hidden="true">
+        <video
+          class="lk-spotlight__video"
+          data-autoria-video=""
+          src="/assets/media/home/video-autoria.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        ></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: webconferencia — spotlight importado da home -->
+  <section id="webconferencia" class="lk-spotlight lk-spotlight--flip" aria-label="Webconferência">
+    <div class="lk-spotlight__grid">
+      <div class="lk-spotlight__stage">
+        <img
+          class="lk-spotlight__img"
+          src="/assets/media/home/webconferencia.png"
+          alt="Interface de webconferência Lector — sala ao vivo com participantes e controles"
+          loading="lazy"
+          decoding="async"
+        >
+      </div>
+
+      <div class="lk-spotlight__copy" data-reveal="">
+        <h2 class="lk-spotlight__title">
+          Webconferência: aulas e reuniões ao vivo — nativas, sem plugin e sem ferramenta a mais.
+        </h2>
+        <p class="lk-spotlight__body">
+          Webconferência integrada ao LMS: presença, gravação, material e chat no mesmo lugar. A IA transcreve, resume e devolve ata com decisões e tarefas — sem ninguém anotar na correria.
+        </p>
+        <p class="lk-spotlight__meta">
+          Do encontro ao registro em <strong>minutos, não em e-mails soltos</strong> — e o conteúdo volta para a trilha.
+        </p>
+        <div class="lk-spotlight__actions">
+          <a href="#cta" class="lk-spotlight__btn-primary">
+            Agendar demonstração
+            <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+        <p class="lk-spotlight__note">
+          Já usa a Lector? <a href="#entrar">Entrar e iniciar uma sala</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: documentos — spotlight importado da home -->
+  <section id="documentos" class="lk-spotlight" aria-label="Gestão de documentos">
+    <div class="lk-spotlight__grid">
+      <div class="lk-spotlight__copy" data-reveal="">
+        <h2 class="lk-spotlight__title">
+          Gestão de documentos: centralize o conhecimento da sua empresa.
+        </h2>
+        <p class="lk-spotlight__body">
+          Armazene, organize, controle versões e compartilhe documentos com segurança.
+        </p>
+        <p class="lk-spotlight__meta">
+          Em seguida, reutilize esse conteúdo para criar <strong>treinamentos, trilhas de aprendizagem, bases de conhecimento e experiências impulsionadas por IA</strong>.
+        </p>
+        <div class="lk-spotlight__actions">
+          <a href="#cta" class="lk-spotlight__btn-primary">
+            Agendar demonstração
+            <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+        <p class="lk-spotlight__note">
+          Já usa a Lector? <a href="#entrar">Entrar e gerenciar documentos</a>
+        </p>
+      </div>
+
+      <div class="lk-spotlight__stage" aria-hidden="true">
+        <video
+          class="lk-spotlight__video"
+          data-docs-video=""
+          src="/assets/media/home/gestao-documentos.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        ></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: talentos — spotlight importado da home -->
+  <section id="talentos" class="lk-spotlight lk-spotlight--flip" aria-label="Gestão de talentos">
+    <div class="lk-spotlight__grid">
+      <div class="lk-spotlight__stage">
+        <img
+          class="lk-spotlight__img"
+          src="/assets/media/home/gestao-talentos.png"
+          alt="Gestão de talentos Lector — competências, evolução e desenvolvimento de pessoas"
+          loading="lazy"
+          decoding="async"
+        >
+      </div>
+
+      <div class="lk-spotlight__copy" data-reveal="">
+        <h2 class="lk-spotlight__title">
+          Gestão de talentos: centralize toda a gestão de talentos da sua empresa.
+        </h2>
+        <p class="lk-spotlight__body">
+          Gerencie competências, avaliações, desempenho, feedbacks, planos de desenvolvimento e indicadores em uma plataforma inteligente que acompanha a evolução de cada colaborador.
+        </p>
+        <p class="lk-spotlight__meta">
+          Do gap ao PDI: o mesmo ambiente em que o time <strong>aprende, é avaliado e evolui</strong> — sem planilha paralela de RH.
+        </p>
+        <div class="lk-spotlight__actions">
+          <a href="#cta" class="lk-spotlight__btn-primary">
+            Agendar demonstração
+            <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+        <p class="lk-spotlight__note">
+          Já usa a Lector? <a href="#entrar">Entrar e gerenciar talentos</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- SECTION: rede social — spotlight flip -->
   <section class="lk-spotlight lk-spotlight--flip" id="rede-social" aria-label="Rede social corporativa">
     <div class="lk-spotlight__grid">
@@ -1591,32 +1837,51 @@
     <img class="lk-stats__orbit lk-stats__orbit--bl" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <div class="lk-stats__inner">
       <header class="lk-stats__header" data-reveal="">
-        <h2 class="lk-stats__title">Resultados reais: aprendizado que vira número.</h2>
-        <p class="lk-stats__sub">Métricas que o RH e a liderança usam para provar impacto — não só engajamento.</p>
+        <h2 class="lk-stats__title">Números que comprovam nossa experiência.</h2>
+        <p class="lk-stats__sub">Há mais de 20 anos ajudando empresas a desenvolver talentos, capacitar equipes e transformar a aprendizagem corporativa.</p>
       </header>
       <div class="lk-stats__grid">
         <article class="lk-stats__card" data-stat-card="">
+          <span class="lk-stats__icon" aria-hidden="true"><i data-lucide="calendar-clock"></i></span>
+          <div class="lk-stats__value" aria-label="Mais de 20 anos de mercado">
+            <span class="lk-stats__value-main" aria-hidden="true">
+              <span class="lk-stats__value-pre">+</span><span class="lk-stats__value-num" data-stat-count="" data-num="20" data-decimals="0">20</span>
+            </span>
+            <span class="lk-stats__value-unit" aria-hidden="true"></span>
+          </div>
+          <p class="lk-stats__label">anos de mercado</p>
+        </article>
+        <article class="lk-stats__card" data-stat-card="">
           <span class="lk-stats__icon" aria-hidden="true"><i data-lucide="building-2"></i></span>
-          <div class="lk-stats__value">20+</div>
-          <p class="lk-stats__label">Anos em educação corporativa e T&amp;D</p>
+          <div class="lk-stats__value" aria-label="Mais de 1 mil empresas impactadas">
+            <span class="lk-stats__value-main" aria-hidden="true">
+              <span class="lk-stats__value-pre">+</span><span class="lk-stats__value-num" data-stat-count="" data-num="1" data-decimals="0">1</span>
+            </span>
+            <span class="lk-stats__value-unit" aria-hidden="true">mil</span>
+          </div>
+          <p class="lk-stats__label">empresas impactadas</p>
         </article>
         <article class="lk-stats__card" data-stat-card="">
-          <span class="lk-stats__icon" aria-hidden="true"><i data-lucide="handshake"></i></span>
-          <div class="lk-stats__value">13</div>
-          <p class="lk-stats__label">Anos de parceria com a Philips</p>
+          <span class="lk-stats__icon" aria-hidden="true"><i data-lucide="globe"></i></span>
+          <div class="lk-stats__value" aria-label="Mais de 20 países">
+            <span class="lk-stats__value-main" aria-hidden="true">
+              <span class="lk-stats__value-pre">+</span><span class="lk-stats__value-num" data-stat-count="" data-num="20" data-decimals="0">20</span>
+            </span>
+            <span class="lk-stats__value-unit" aria-hidden="true"></span>
+          </div>
+          <p class="lk-stats__label">países</p>
         </article>
         <article class="lk-stats__card" data-stat-card="">
-          <span class="lk-stats__icon" aria-hidden="true"><i data-lucide="sparkles"></i></span>
-          <div class="lk-stats__value">1</div>
-          <p class="lk-stats__label">Ambiente único: LMS + IA + live + social</p>
-        </article>
-        <article class="lk-stats__card" data-stat-card="">
-          <span class="lk-stats__icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
-          <div class="lk-stats__value">NR-1</div>
-          <p class="lk-stats__label">Evidências de conformidade no mesmo fluxo</p>
+          <span class="lk-stats__icon" aria-hidden="true"><i data-lucide="users"></i></span>
+          <div class="lk-stats__value" aria-label="Mais de 1,5 milhão de usuários">
+            <span class="lk-stats__value-main" aria-hidden="true">
+              <span class="lk-stats__value-pre">+</span><span class="lk-stats__value-num" data-stat-count="" data-num="1.5" data-decimals="1">1,5</span>
+            </span>
+            <span class="lk-stats__value-unit" aria-hidden="true">milhão</span>
+          </div>
+          <p class="lk-stats__label">de usuários</p>
         </article>
       </div>
-      <p class="lk-stats__note">Cifras comerciais adicionais a confirmar antes de publicar.</p>
     </div>
   </section>
 
@@ -1745,7 +2010,40 @@ class Component extends DCLogic {
     this._initShowreelGlobe();
     this._wireReveal();
     this._initStats();
+    this._initLmsCarousel();
     this._icons(0);
+  }
+
+  /* —— Crossfade das telas do LMS (mesma lógica da home) —— */
+  _initLmsCarousel() {
+    if (window.__lkLmsCarouselWired) return;
+    const img = document.getElementById('lms-carousel-img');
+    if (!img) return;
+    const slides = (img.dataset.slides || '').split(',').map((s) => s.trim()).filter(Boolean);
+    if (slides.length < 2) return;
+    window.__lkLmsCarouselWired = true;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let index = 0;
+    let timer = null;
+    const swap = () => {
+      index = (index + 1) % slides.length;
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = slides[index];
+        img.style.opacity = '1';
+      }, 350);
+    };
+    const start = () => { if (!timer) timer = setInterval(swap, 4200); };
+    const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((e) => { e.isIntersecting ? start() : stop(); });
+      }, { threshold: 0.35 }).observe(img);
+    } else {
+      start();
+    }
   }
 
   /** Mantém a mandala em loop contínuo no hero (fallback se o attr loop falhar). */
@@ -2136,7 +2434,33 @@ class Component extends DCLogic {
       const section = document.querySelector('#numeros.lk-stats');
       if (!section) return;
       const cards = Array.from(section.querySelectorAll('[data-stat-card]'));
-      const reveal = () => cards.forEach((c) => c.classList.add('is-visible'));
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const animateValue = (el) => {
+        if (el._lkCounted) return;
+        el._lkCounted = true;
+        const num = parseFloat(el.getAttribute('data-num') || '0');
+        const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10) || 0;
+        const fmt = (n) => n.toLocaleString('pt-BR', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals,
+        });
+        if (reduce || !Number.isFinite(num)) { el.textContent = fmt(num); return; }
+        el.textContent = fmt(0);
+        const start = performance.now();
+        const tick = (now) => {
+          const t = Math.min(1, (now - start) / 1500);
+          el.textContent = fmt(num * (1 - Math.pow(1 - t, 3)));
+          if (t < 1) requestAnimationFrame(tick);
+          else el.textContent = fmt(num);
+        };
+        requestAnimationFrame(tick);
+      };
+
+      const reveal = () => {
+        cards.forEach((c) => c.classList.add('is-visible'));
+        section.querySelectorAll('[data-stat-count]').forEach(animateValue);
+      };
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
           entries.forEach((e) => {
