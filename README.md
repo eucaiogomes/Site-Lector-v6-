@@ -142,3 +142,4 @@ Detalhes: [`specs/brand.md`](specs/brand.md) e [`design-system/readme.md`](desig
 
 - Arquivos em `references/` **não** entram no site publicado. Ver [`references/README.md`](references/README.md).  
 - **Não** deixe vídeos, PNG ou HTML soltos na raiz do repo — mídia de produção vai em `assets/media/<slug>/`; dumps em `references/raw/`.  
+# Site-Lector-v6-
