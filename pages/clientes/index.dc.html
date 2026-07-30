@@ -42,7 +42,7 @@
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "sales",
-    "email": "contato@lector.com.br",
+    "email": "comercial@lectortec.com.br",
     "availableLanguage": "Portuguese"
   }
 }
@@ -432,12 +432,15 @@
     flex-direction: column;
     gap: 16px;
   }
+  /* Os PNGs carregam muita margem transparente — daí a altura alta e a
+     margem negativa (o respiro já vem dentro da própria imagem). */
   .cl-case__logo {
-    height: 36px;
+    height: 96px;
     width: auto;
-    max-width: 160px;
+    max-width: 240px;
     object-fit: contain;
     object-position: left center;
+    margin: -22px 0 -26px;
   }
   .cl-case h3 {
     font-family: var(--font-display); font-size: 22px; font-weight: 700;
@@ -646,7 +649,7 @@
     </div>
     <p class="cl-logos-label" data-reveal="">Alguns clientes</p>
     <div class="cl-logo-grid" data-reveal="">
-      <sc-for list="{{ clients }}" as="c" hint-placeholder-count="10">
+      <sc-for list="{{ clients }}" as="c" hint-placeholder-count="8">
         <div class="cl-logo-card">
           <img src="{{ c.src }}" alt="{{ c.name }}" loading="lazy" decoding="async" width="230" height="88">
         </div>
@@ -702,7 +705,7 @@
   <div class="cl-wrap">
     <div data-reveal="">
       <h2 class="cl-h2">Atendimento e suporte: parceiro, não ticket sem dono.</h2>
-      <p class="cl-lead">Cliente Lector tem canal claro, gente que conhece educação corporativa e rotina de acompanhamento — do primeiro login ao próximo ciclo de trilhas.</p>
+      <p class="cl-lead">Cliente Lector tem canal claro, gente que conhece educação corporativa e rotina de acompanhamento do cliente desde o primeiro login.</p>
     </div>
     <div class="cl-support-grid">
       <article class="cl-support" data-reveal="">
@@ -735,7 +738,7 @@
       </article>
     </div>
     <div class="cl-support-meta" data-reveal="">
-      <a href="mailto:contato@lector.com.br"><i data-lucide="mail"></i> contato@lector.com.br</a>
+      <a href="mailto:comercial@lectortec.com.br"><i data-lucide="mail"></i> comercial@lectortec.com.br</a>
       <span><i data-lucide="clock"></i> Seg. a sex., 9h–18h (Brasília)</span>
       <a href="https://lector.live" target="_blank" rel="noopener noreferrer"><i data-lucide="log-in"></i> Acessar a plataforma</a>
     </div>
