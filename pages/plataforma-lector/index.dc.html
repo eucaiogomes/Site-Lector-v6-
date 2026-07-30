@@ -270,14 +270,14 @@
   }
   .lk-clients-marquee__track:hover { animation-play-state: paused; }
   .lk-clients-marquee__group {
-    display: flex; align-items: center; gap: 64px; padding-right: 64px; flex: none;
+    display: flex; align-items: center; gap: 76px; padding-right: 76px; flex: none;
   }
   .lk-clients-marquee__item {
-    height: 44px; width: 140px; flex: none;
+    height: 82px; width: 240px; flex: none;
     background-size: contain; background-position: center; background-repeat: no-repeat;
-    opacity: .55; filter: grayscale(1); transition: opacity .3s, filter .3s;
+    transition: transform .3s var(--ease-out);
   }
-  .lk-clients-marquee__item:hover { opacity: 1; filter: grayscale(0); }
+  .lk-clients-marquee__item:hover { transform: scale(1.06); }
 
   /* Spotlight */
   .lk-spotlight { position: relative; background: var(--white, #fff); overflow: hidden; }
@@ -1147,7 +1147,7 @@
               <span class="lk-nav-dd__item-icon" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
               <span class="lk-nav-dd__item-body">
                 <span class="lk-nav-dd__item-title">Plataforma Lector</span>
-                <span class="lk-nav-dd__item-desc">Centralize LMS, IA, treinamento, trilhas, onboarding, universidade corporativa, lideranças, gestão de talentos, comunicação e gestão do conhecimento em um único ambiente.</span>
+                <span class="lk-nav-dd__item-desc">Centralize LMS, webconferência, autoria, rede social, onboarding, universidade corporativa, liderança, gestão de talentos, comunicação e gestão do conhecimento em um único ambiente.</span>
               </span>
             </a>
             <a href="/pages/copiloto-vendas/index.dc.html" class="lk-nav-dd__item" role="menuitem">
@@ -1418,7 +1418,7 @@
         <p class="lk-modules__sub">Aprendizagem, conhecimento, comunicação e compliance — sem trocar de ferramenta.</p>
       </div>
       <div class="lk-modules__grid">
-        <sc-for list="{{ modules }}" as="m" hint-placeholder-count="6">
+        <sc-for list="{{ modules }}" as="m" hint-placeholder-count="9">
           <div data-reveal="" class="lk-modules__card">
             <div class="lk-modules__card-top">
               <span class="lk-modules__icon" aria-hidden="true"><i data-lucide="{{ m.icon }}"></i></span>
@@ -2168,15 +2168,18 @@ class Component extends DCLogic {
     ].join(';');
 
     const modules = [
-      { icon: 'graduation-cap', title: 'LMS & Trilhas', body: 'Catálogos, trilhas e certificações com acompanhamento por pessoa, time e área.', badge: 'Nativo' },
-      { icon: 'sparkles', title: 'Inteligência Artificial', body: 'Responde dúvidas, recomenda conteúdos, cria treinamentos e identifica lacunas.', badge: 'Nativo' },
-      { icon: 'video', title: 'Webconferência', body: 'Aulas ao vivo e reuniões dentro da plataforma — sem link externo.', badge: 'Nativo' },
-      { icon: 'message-circle', title: 'Rede social', body: 'Comunicação interna e comunidades onde o time já aprende.', badge: 'Nativo' },
-      { icon: 'library', title: 'Base de conhecimento', body: 'Documentos, políticas e manuais pesquisáveis, com fluxo de aprovação.', badge: 'Nativo' },
-      { icon: 'bar-chart-3', title: 'Relatórios & BI', body: 'Quem, quando e com que frequência acessou cada conteúdo.', badge: 'Nativo' },
+      { icon: 'graduation-cap', title: 'LMS & Trilhas', body: 'LMS e certificações com acompanhamento de progresso por pessoa, time e área.', badge: 'Nativo' },
+      { icon: 'video', title: 'Webconferência', body: 'Aulas ao vivo, treinamentos e reuniões dentro da plataforma. Sem Zoom, sem Meet, sem link externo.', badge: 'Nativo' },
+      { icon: 'sparkles', title: 'Autoria de conteúdo', body: 'Crie cursos, avaliações e materiais com editor próprio — acelerado por IA treinada no seu conteúdo.', badge: 'Nativo' },
+      { icon: 'target', title: 'Gestão de talentos', body: 'Mapeie competências, defina trilhas de desenvolvimento e acompanhe a evolução de cada colaborador.', badge: 'Nativo' },
+      { icon: 'message-circle', title: 'Rede social corporativa', body: 'Comunicação interna, comunidades e engajamento — informação circulando onde o time já está.', badge: 'Nativo' },
+      { icon: 'library', title: 'Gestão de documentos', body: 'Centralize documentos e arquivos da empresa em um só lugar. Busca, versionamento e acesso controlado — organizado e acessível.', badge: 'Nativo' },
+      { icon: 'shield-check', title: 'Solução NR-1', body: 'Riscos psicossociais com trilha de evidências: inventário no formato PGR, plano de ação, monitoramento e prontidão para auditoria.', badge: 'Solução' },
+      { icon: 'trending-up', title: 'Copiloto de Vendas', body: 'Diagnóstico de técnica comercial com IA, trilhas e certificação — antes, durante e depois da reunião — para reduzir o ramp-up.', badge: 'Solução' },
+      { icon: 'clapperboard', title: 'Criação de Conteúdo sob Demanda', body: 'Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.', badge: 'Solução' },
     ];
 
-    const clients = ['unimed', 'sicoob', 'ache', 'philips', 'koch', 'sesi-senai', 'microsoft', 'lideranca', 'acats', 'cnmp', 'hospital-sapiranga'];
+    const clients = ['unimed', 'sicoob', 'sesi-senai', 'lideranca', 'acats', 'cnmp', 'esmpsp', 'hospital-sapiranga'];
     const logos = clients.map((c) => ({ src: '/assets/clients/' + c + '.png', name: c }));
 
     return {
