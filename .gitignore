@@ -7,6 +7,16 @@ Thumbs.db
 /*.mov
 /*.webm
 
+# Downloads e arquivos compactados que caem em assets/ por engano.
+# O GitHub rejeita qualquer arquivo acima de 100 MB.
+*.dmg
+*.pkg
+*.exe
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
 # Editors / agents
 .idea/
 .vscode/
@@ -42,4 +52,3 @@ references/prototypes/
 
 # Thumbnails gerados
 **/.thumbnail
-.env*

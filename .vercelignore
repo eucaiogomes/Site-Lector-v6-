@@ -1,0 +1,7 @@
+# Arquivos exclusivos do deploy em VM (Lightsail). A Vercel serve os estáticos e
+# roda api/*.js pelo runtime dela — não precisa (nem deve) publicar o servidor Node.
+#
+# Só arquivos NOVOS estão listados aqui: o que a Vercel publica hoje continua
+# exatamente igual.
+server.js
+deploy/

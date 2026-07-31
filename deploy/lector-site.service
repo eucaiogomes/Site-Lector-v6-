@@ -1,0 +1,31 @@
+[Unit]
+Description=Site Lector (Node)
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/var/www/lector-site
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=3
+
+Environment=NODE_ENV=production
+Environment=PORT=3000
+
+# Credenciais: arquivo fora do repositório, root:root, chmod 600.
+# É aqui que EMAIL_USER / EMAIL_PASS / EMAIL_TO são lidos.
+EnvironmentFile=/etc/lector-site.env
+
+# Endurecimento básico
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=false
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=lector-site
+
+[Install]
+WantedBy=multi-user.target

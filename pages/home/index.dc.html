@@ -81,6 +81,7 @@
 <script src="/design-system/_ds_bundle.js"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="/shared/lead-form.js" data-base=""></script>
+<script src="/shared/newsletter.js" data-base=""></script>
 <style>
   html, body { margin: 0; padding: 0; }
   /* overflow-x:hidden no wrapper quebra position:sticky — usar clip no root */
@@ -2807,7 +2808,6 @@
         <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:24px; display:block;">
       </a>
       <nav class="lk-nav-desktop" style="display:flex; align-items:center; gap:30px; font-size:14.5px; font-weight:600;">
-        <a href="/pages/sobre/index.dc.html" style="{{ navLinkStyle }}">Sobre</a>
         <div class="lk-nav-dd">
           <button type="button" class="lk-nav-dd__trigger" aria-haspopup="true" aria-expanded="false">
             Nossas Soluções
@@ -2860,6 +2860,7 @@
         </div>
         <a href="/pages/blog/index.dc.html" style="{{ navLinkStyle }}">Blog</a>
         <a href="/pages/clientes/index.dc.html" style="{{ navLinkStyle }}">Clientes</a>
+        <a href="/pages/sobre/index.dc.html" style="{{ navLinkStyle }}">Sobre nós</a>
         <a href="/pages/contato/index.dc.html" style="{{ navLinkStyle }}">Contato</a>
       </nav>
       <div class="lk-header-actions" style="display:flex; align-items:center; gap:14px; flex:none;">
@@ -2882,7 +2883,6 @@
         <i data-lucide="x"></i>
       </button>
     </div>
-    <a href="/pages/sobre/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
     <div class="lk-mnav-label">Nossas Soluções</div>
     <div class="lk-mnav-sub">
       <a href="/pages/plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
@@ -2894,6 +2894,7 @@
     </div>
     <a href="/pages/blog/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Blog</a>
     <a href="/pages/clientes/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
+    <a href="/pages/sobre/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Sobre nós</a>
     <a href="/pages/contato/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Contato</a>
     <div class="lk-mnav-cta">
       <a href="https://lector.live" class="lk-mnav-cta__ghost" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>
@@ -3455,10 +3456,11 @@
         <div>
           <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Receba novidades</div>
           <p style="font-size:14px; margin:0 0 14px;">T&amp;D, IA e aprendizado, sem ruído.</p>
-          <div style="display:flex; gap:8px;">
-            <input placeholder="seu@email.com" style="flex:1; min-width:0; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:var(--radius-pill); padding:11px 16px; color:#fff; font-size:14px; font-family:var(--font-sans);">
-            <button style="background:var(--brand); border:none; color:#fff; border-radius:var(--radius-pill); width:44px; height:44px; flex:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:18px;height:18px;"></i></button>
-          </div>
+          <form data-newsletter data-newsletter-origem="rodape" style="display:flex; gap:8px; flex-wrap:wrap;">
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+            <input type="email" name="email" required aria-label="Seu e-mail" placeholder="seu@email.com" style="flex:1; min-width:0; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:var(--radius-pill); padding:11px 16px; color:#fff; font-size:14px; font-family:var(--font-sans);">
+            <button type="submit" style="background:var(--brand); border:none; color:#fff; border-radius:var(--radius-pill); width:44px; height:44px; flex:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:18px;height:18px;"></i></button>
+          </form>
         </div>
       </div>
       <div style="display:flex; align-items:center; justify-content:space-between; padding-top:26px; font-size:13px; color:rgba(230,238,250,.5); flex-wrap:wrap; gap:14px;">
