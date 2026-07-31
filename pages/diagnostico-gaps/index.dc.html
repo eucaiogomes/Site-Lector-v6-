@@ -61,7 +61,7 @@
   "offers": {
     "@type": "Offer",
     "priceCurrency": "BRL",
-    "description": "SaaS por colaborador/mês — faixas em /precos (a publicar)"
+    "description": "SaaS por colaborador/mês, faixas em /precos (a publicar)"
   },
   "provider": { "@type": "Organization", "name": "Lector" }
 }
@@ -77,7 +77,7 @@
       "name": "O que é o Diagnóstico de Gaps de Conhecimento da Lector?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "É o mapeamento contextualizado da distância entre o que a estratégia e a operação da empresa exigem e o que cada colaborador domina — habilidade por habilidade. A Lector analisa processos, cargos, documentos, normas e objetivos estratégicos com IA, identifica lacunas individuais e entrega jornada personalizada com certificação e prova de resultado."
+        "text": "É o mapeamento contextualizado da distância entre o que a estratégia e a operação da empresa exigem e o que cada colaborador domina, habilidade por habilidade. A Lector analisa processos, cargos, documentos, normas e objetivos estratégicos com IA, identifica lacunas individuais e entrega jornada personalizada com certificação e prova de resultado."
       }
     },
     {
@@ -85,7 +85,7 @@
       "name": "O diagnóstico é genérico ou contextualizado ao meu negócio?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Completamente contextualizado. Não existem avaliações genéricas de prateleira. Cada diagnóstico reflete a realidade da sua operação: competências essenciais por cargo, processos internos, políticas, indicadores e cultura — para apontar exatamente quais conhecimentos impulsionam resultado e quais lacunas ainda limitam performance."
+        "text": "Completamente contextualizado. Não existem avaliações genéricas de prateleira. Cada diagnóstico reflete a realidade da sua operação: competências essenciais por cargo, processos internos, políticas, indicadores e cultura, para apontar exatamente quais conhecimentos impulsionam resultado e quais lacunas ainda limitam performance."
       }
     },
     {
@@ -93,7 +93,7 @@
       "name": "Como o Painel de Competências ajuda a provar ROI?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "O painel consolida conclusão, certificados e impacto estimado em um só lugar. Você enxerga evolução por pessoa, time e habilidade e conecta o fechamento de gaps a indicadores de negócio — receita, custo ou risco — em vez de apenas horas de curso ou engajamento de fachada."
+        "text": "O painel consolida conclusão, certificados e impacto estimado em um só lugar. Você enxerga evolução por pessoa, time e habilidade e conecta o fechamento de gaps a indicadores de negócio, como receita, custo ou risco, em vez de apenas horas de curso ou engajamento de fachada."
       }
     },
     {
@@ -117,7 +117,7 @@
       "name": "Quanto tempo leva para rodar o primeiro diagnóstico?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Empresas de médio porte costumam ter o mapeamento de competências críticas e o primeiro diagnóstico em andamento em poucas semanas, com trilhas atribuídas por cargo e área — sem interromper a operação."
+        "text": "Empresas de médio porte costumam ter o mapeamento de competências críticas e o primeiro diagnóstico em andamento em poucas semanas, com trilhas atribuídas por cargo e área, sem interromper a operação."
       }
     }
   ]
@@ -125,7 +125,7 @@
 </script>
 
 <title>Diagnóstico de Gaps de Conhecimento | Lector</title>
-<meta name="description" content="Antes de ensinar, a Lector entende sua empresa. Diagnóstico de Gaps contextualizado com IA: processos, cargos e competências — jornada personalizada e prova de resultado, não engajamento de fachada.">
+<meta name="description" content="Antes de ensinar, a Lector entende sua empresa. Diagnóstico de Gaps contextualizado com IA: processos, cargos e competências, jornada personalizada e prova de resultado, não engajamento de fachada.">
 <meta property="og:title" content="Diagnóstico de Gaps de Conhecimento | Lector">
 <meta property="og:description" content="Diagnóstico contextualizado ao negócio, gaps por colaborador e jornada personalizada com prova de resultado.">
 <link rel="stylesheet" href="/design-system/tokens/fonts.css">
@@ -222,9 +222,12 @@
   .lk-nav-dd { position: relative; display: inline-flex; align-items: center; }
   .lk-nav-dd__trigger {
     display: inline-flex; align-items: center; gap: 5px; background: none; border: none;
-    padding: 0; margin: 0; font: inherit; font-weight: 700; font-size: inherit;
-    color: var(--brand); cursor: pointer; transition: color .2s;
+    padding: 0; margin: 0; font: inherit; font-weight: 600; font-size: inherit;
+    color: rgba(255,255,255,.85); cursor: pointer; transition: color .2s;
   }
+  .lk-nav-dd__trigger:hover,
+  .lk-nav-dd:hover .lk-nav-dd__trigger,
+  .lk-nav-dd:focus-within .lk-nav-dd__trigger { color: var(--brand); }
   .lk-nav-dd__chev {
     display: inline-flex; width: 14px; height: 14px; transition: transform .2s; opacity: .75;
   }
@@ -827,6 +830,7 @@
         <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:24px; display:block;">
       </a>
       <nav class="lk-nav-desktop" style="display:flex; align-items:center; gap:30px; font-size:14.5px; font-weight:600;">
+        <a href="/pages/sobre/index.dc.html" style="{{ navLinkStyle }}">Sobre</a>
         <div class="lk-nav-dd">
           <button type="button" class="lk-nav-dd__trigger" aria-haspopup="true" aria-expanded="false">
             Nossas Soluções
@@ -858,7 +862,7 @@
               <span class="lk-nav-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
               <span class="lk-nav-dd__item-body">
                 <span class="lk-nav-dd__item-title">Criação de Conteúdo sob Demanda</span>
-                <span class="lk-nav-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
+                <span class="lk-nav-dd__item-desc">Cursos, vídeos e materiais sob demanda, com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
               </span>
             </a>
             <a href="/pages/diagnostico-gaps/index.dc.html" class="lk-nav-dd__item is-active" role="menuitem" aria-current="page">
@@ -879,7 +883,6 @@
         </div>
         <a href="/pages/blog/index.dc.html" style="{{ navLinkStyle }}">Blog</a>
         <a href="/pages/clientes/index.dc.html" style="{{ navLinkStyle }}">Clientes</a>
-        <a href="/pages/sobre/index.dc.html" style="{{ navLinkStyle }}">Sobre</a>
         <a href="/pages/contato/index.dc.html" style="{{ navLinkStyle }}">Contato</a>
       </nav>
       <div class="lk-header-actions" style="display:flex; align-items:center; gap:18px; flex:none;">
@@ -902,6 +905,7 @@
         <i data-lucide="x"></i>
       </button>
     </div>
+    <a href="/pages/sobre/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
     <div class="lk-mnav-label">Nossas Soluções</div>
     <div class="lk-mnav-sub">
       <a href="/pages/plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
@@ -913,7 +917,6 @@
     </div>
     <a href="/pages/blog/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Blog</a>
     <a href="/pages/clientes/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
-    <a href="/pages/sobre/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
     <a href="/pages/contato/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Contato</a>
     <div class="lk-mnav-cta">
       <a href="https://lector.live" class="lk-mnav-cta__ghost" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>
@@ -942,7 +945,7 @@
           Antes de ensinar, nós <span style="color:var(--brand); font-style:italic;">entendemos</span> sua empresa.
         </h1>
         <p style="font-size:18px; line-height:1.6; color:rgba(230,238,250,.82); max-width:640px; margin:0 auto 36px;">
-          O Diagnóstico de Gaps de Conhecimento da Lector é contextualizado ao seu negócio: a IA analisa processos, cargos, documentos, normas e objetivos estratégicos para identificar — colaborador por colaborador — quais conhecimentos impulsionam resultados e quais lacunas ainda limitam a performance. Sem avaliações genéricas. Com prova de impacto.
+          O Diagnóstico de Gaps de Conhecimento da Lector é contextualizado ao seu negócio: a IA analisa processos, cargos, documentos, normas e objetivos estratégicos para identificar, colaborador por colaborador, quais conhecimentos impulsionam resultados e quais lacunas ainda limitam a performance. Sem avaliações genéricas. Com prova de impacto.
         </p>
 
         <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
@@ -1004,7 +1007,7 @@
         <article class="dg-pains__card" data-reveal="">
           <div class="dg-pains__icon" aria-hidden="true"><i data-lucide="gauge"></i></div>
           <h3>Produtividade que não escala</h3>
-          <p>Capacitação genérica consome tempo e orçamento — e a performance individual quase não muda.</p>
+          <p>Capacitação genérica consome tempo e orçamento, e a performance individual quase não muda.</p>
         </article>
         <article class="dg-pains__card" data-reveal="">
           <div class="dg-pains__icon" aria-hidden="true"><i data-lucide="trending-down"></i></div>
@@ -1014,7 +1017,7 @@
         <article class="dg-pains__card" data-reveal="">
           <div class="dg-pains__icon" aria-hidden="true"><i data-lucide="clock-3"></i></div>
           <h3>Percepção tarde demais</h3>
-          <p>O gap só aparece no resultado — quando o custo já foi pago em risco, atraso ou não conformidade.</p>
+          <p>O gap só aparece no resultado, quando o custo já foi pago em risco, atraso ou não conformidade.</p>
         </article>
       </div>
     </div>
@@ -1025,18 +1028,18 @@
     <div class="dg-diff__inner">
       <div class="dg-diff__header" data-reveal="">
         <h2 class="dg-diff__title">Diagnóstico contextualizado: compreenda o negócio <em>antes</em> de desenvolver pessoas.</h2>
-        <p class="dg-diff__sub">Não medimos “engajamento geral”. Medimos a distância entre o que a operação exige e o que cada pessoa domina — e fechamos a lacuna com precisão.</p>
+        <p class="dg-diff__sub">Não medimos “engajamento geral”. Medimos a distância entre o que a operação exige e o que cada pessoa domina, e fechamos a lacuna com precisão.</p>
       </div>
       <div class="dg-diff__grid">
         <article class="dg-diff__card" data-reveal="">
           <div class="dg-diff__icon" aria-hidden="true"><i data-lucide="building-2"></i></div>
           <h3>Contextualizado ao seu negócio</h3>
-          <p>A IA da Lector lê processos, políticas, indicadores, cargos, cultura e procedimentos. Cada diagnóstico reflete a realidade da sua operação — não um template de mercado.</p>
+          <p>A IA da Lector lê processos, políticas, indicadores, cargos, cultura e procedimentos. Cada diagnóstico reflete a realidade da sua operação, não um template de mercado.</p>
         </article>
         <article class="dg-diff__card" data-reveal="">
           <div class="dg-diff__icon" aria-hidden="true"><i data-lucide="scan-search"></i></div>
           <h3>Gaps por colaborador e habilidade</h3>
-          <p>Você sabe exatamente qual competência falta em cada pessoa — Comunicação, Negociação, Compliance, Liderança, Feedback e o que for crítico para o cargo.</p>
+          <p>Você sabe exatamente qual competência falta em cada pessoa: Comunicação, Negociação, Compliance, Liderança, Feedback e o que for crítico para o cargo.</p>
         </article>
         <article class="dg-diff__card" data-reveal="">
           <div class="dg-diff__icon" aria-hidden="true"><i data-lucide="crosshair"></i></div>
@@ -1046,7 +1049,7 @@
         <article class="dg-diff__card" data-reveal="">
           <div class="dg-diff__icon" aria-hidden="true"><i data-lucide="line-chart"></i></div>
           <h3>Prove resultado, não cliques</h3>
-          <p>Cada trilha fechada vira certificado e dado de impacto. Você mostra evolução de competência e efeito em receita, custo ou risco — o que a diretoria cobra de verdade.</p>
+          <p>Cada trilha fechada vira certificado e dado de impacto. Você mostra evolução de competência e efeito em receita, custo ou risco, o que a diretoria cobra de verdade.</p>
         </article>
       </div>
     </div>
@@ -1058,7 +1061,7 @@
     <img class="dg-dark__orbit dg-dark__orbit--bl" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <div class="dg-dark__inner">
       <h2 class="dg-dark__title" data-reveal="">Como funciona: da compreensão do negócio à certificação, competência por competência.</h2>
-      <p class="dg-dark__lead" data-reveal="">Antes de desenvolver pessoas, precisamos compreender profundamente o negócio. A Lector transforma o conhecimento da empresa em mapa vivo de competências — e fecha cada lacuna com evidência.</p>
+      <p class="dg-dark__lead" data-reveal="">Antes de desenvolver pessoas, precisamos compreender profundamente o negócio. A Lector transforma o conhecimento da empresa em mapa vivo de competências, e fecha cada lacuna com evidência.</p>
       <div class="dg-steps" data-reveal="">
         <article class="dg-step">
           <div class="dg-step__n">01</div>
@@ -1082,11 +1085,11 @@
           <div class="dg-step__n">04</div>
           <h3>Jornada + certificação</h3>
           <p class="dg-step__tag">Evidência pronta para auditoria</p>
-          <p>Trilha personalizada para fechar só o que falta. Conclusão gera certificado rastreável — útil para gestão, diretoria e compliance (inclusive NR-1).</p>
+          <p>Trilha personalizada para fechar só o que falta. Conclusão gera certificado rastreável, útil para gestão, diretoria e compliance (inclusive NR-1).</p>
         </article>
       </div>
       <div class="dg-note" data-reveal="">
-        O verdadeiro resultado não é um certificado. É uma empresa inteira evoluindo competência por competência — com o número que a diretoria entende.
+        O verdadeiro resultado não é um certificado. É uma empresa inteira evoluindo competência por competência, com o número que a diretoria entende.
       </div>
     </div>
   </section>
@@ -1111,7 +1114,7 @@
           <i data-lucide="user-check" aria-hidden="true"></i>
           <div>
             <strong>Para o colaborador</strong>
-            <span>Clareza sobre o que desenvolver e por quê — evolução de carreira com propósito, não curso obrigatório sem contexto.</span>
+            <span>Clareza sobre o que desenvolver e por quê. Evolução de carreira com propósito, não curso obrigatório sem contexto.</span>
           </div>
         </li>
         <li>
@@ -1137,7 +1140,7 @@
     <div class="dg-painel-sec__inner">
       <div data-reveal="">
         <h2 class="dg-painel-sec__title">Painel de Competências: o conhecimento da empresa, visível em tempo real.</h2>
-        <p class="dg-painel-sec__sub">Conclusão, certificados e ROI estimado no mesmo lugar — por pessoa, time e habilidade. Liderança e T&amp;D enxergam a rede de conhecimento da empresa, não só a taxa de conclusão de curso.</p>
+        <p class="dg-painel-sec__sub">Conclusão, certificados e ROI estimado no mesmo lugar, por pessoa, time e habilidade. Liderança e T&amp;D enxergam a rede de conhecimento da empresa, não só a taxa de conclusão de curso.</p>
         <a href="https://lector.live" class="dg-painel-sec__cta" target="_blank" rel="noopener noreferrer">
           Acessar painel completo
           <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
@@ -1217,15 +1220,15 @@
       <div class="dg-stats" data-reveal="">
         <article class="dg-stat">
           <div class="dg-stat__date">Maio/2026</div>
-          <p>NR-1 em vigor — fiscalização cobra comprovação de treinamento e gestão de risco psicossocial. Diagnóstico por habilidade vira base de evidência, não só de desenvolvimento.</p>
+          <p>NR-1 em vigor. A fiscalização cobra comprovação de treinamento e gestão de risco psicossocial. Diagnóstico por habilidade vira base de evidência, não só de desenvolvimento.</p>
         </article>
         <article class="dg-stat">
           <div class="dg-stat__num">28%</div>
-          <p>das empresas apontam restrição orçamentária como maior obstáculo para se adequar à NR-1 — investir com precisão em gaps reais deixa de ser opcional.</p>
+          <p>das empresas apontam restrição orçamentária como maior obstáculo para se adequar à NR-1, investir com precisão em gaps reais deixa de ser opcional.</p>
         </article>
         <article class="dg-stat">
           <div class="dg-stat__num">74%</div>
-          <p>dos acessos a LMS na América Latina já acontecem pelo celular — a jornada personalizada e a comprovação precisam caber no fluxo real do colaborador.</p>
+          <p>dos acessos a LMS na América Latina já acontecem pelo celular, a jornada personalizada e a comprovação precisam caber no fluxo real do colaborador.</p>
         </article>
       </div>
       <p class="dg-why__sources">Fontes: pesquisas setoriais de RH e EdTech, 2026</p>
@@ -1246,15 +1249,15 @@
       <div class="dg-faq" data-reveal="">
         <details>
           <summary>O que é o Diagnóstico de Gaps de Conhecimento da Lector?</summary>
-          <p>É o mapeamento contextualizado da distância entre o que a estratégia e a operação da empresa exigem e o que cada colaborador domina — habilidade por habilidade. A Lector analisa processos, cargos, documentos, normas e objetivos estratégicos com IA, identifica lacunas individuais e entrega jornada personalizada com certificação e prova de resultado.</p>
+          <p>É o mapeamento contextualizado da distância entre o que a estratégia e a operação da empresa exigem e o que cada colaborador domina, habilidade por habilidade. A Lector analisa processos, cargos, documentos, normas e objetivos estratégicos com IA, identifica lacunas individuais e entrega jornada personalizada com certificação e prova de resultado.</p>
         </details>
         <details>
           <summary>O diagnóstico é genérico ou contextualizado ao meu negócio?</summary>
-          <p>Completamente contextualizado. Não existem avaliações genéricas de prateleira. Cada diagnóstico reflete a realidade da sua operação: competências essenciais por cargo, processos internos, políticas, indicadores e cultura — para apontar exatamente quais conhecimentos impulsionam resultado e quais lacunas ainda limitam performance.</p>
+          <p>Completamente contextualizado. Não existem avaliações genéricas de prateleira. Cada diagnóstico reflete a realidade da sua operação: competências essenciais por cargo, processos internos, políticas, indicadores e cultura, para apontar exatamente quais conhecimentos impulsionam resultado e quais lacunas ainda limitam performance.</p>
         </details>
         <details>
           <summary>Como o Painel de Competências ajuda a provar ROI?</summary>
-          <p>O painel consolida conclusão, certificados e impacto estimado em um só lugar. Você enxerga evolução por pessoa, time e habilidade e conecta o fechamento de gaps a indicadores de negócio — receita, custo ou risco — em vez de apenas horas de curso ou engajamento de fachada.</p>
+          <p>O painel consolida conclusão, certificados e impacto estimado em um só lugar. Você enxerga evolução por pessoa, time e habilidade e conecta o fechamento de gaps a indicadores de negócio, como receita, custo ou risco, em vez de apenas horas de curso ou engajamento de fachada.</p>
         </details>
         <details>
           <summary>O que acontece depois do diagnóstico?</summary>
@@ -1266,7 +1269,7 @@
         </details>
         <details>
           <summary>Quanto tempo leva para rodar o primeiro diagnóstico?</summary>
-          <p>Empresas de médio porte costumam ter o mapeamento de competências críticas e o primeiro diagnóstico em andamento em poucas semanas, com trilhas atribuídas por cargo e área — sem interromper a operação.</p>
+          <p>Empresas de médio porte costumam ter o mapeamento de competências críticas e o primeiro diagnóstico em andamento em poucas semanas, com trilhas atribuídas por cargo e área, sem interromper a operação.</p>
         </details>
       </div>
     </div>
@@ -1277,7 +1280,7 @@
     <img class="dg-final-cta__orbit" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <div class="dg-final-cta__inner">
       <h2 data-reveal="">Torne o conhecimento da sua empresa visível.</h2>
-      <p data-reveal="">Agende uma demonstração e veja, no seu contexto, como o Diagnóstico de Gaps identifica lacunas, personaliza jornadas e prova resultado — sem engajamento de fachada.</p>
+      <p data-reveal="">Agende uma demonstração e veja, no seu contexto, como o Diagnóstico de Gaps identifica lacunas, personaliza jornadas e prova resultado, sem engajamento de fachada.</p>
       <div data-reveal="">
         <a href="#" class="dg-final-cta__btn" data-open-lead data-lead-interest="diagnostico">
           Agendar demonstração
@@ -1298,7 +1301,7 @@
       <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
         <div>
           <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
-          <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+          <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça, em um só lugar.</p>
         </div>
         <div>
           <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Produto</div>

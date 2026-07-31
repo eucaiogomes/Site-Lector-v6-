@@ -61,7 +61,7 @@
   "offers": {
     "@type": "Offer",
     "priceCurrency": "BRL",
-    "description": "SaaS por colaborador/mês — faixas em /precos (a publicar)"
+    "description": "SaaS por colaborador/mês, faixas em /precos (a publicar)"
   },
   "provider": { "@type": "Organization", "name": "Lector" }
 }
@@ -205,9 +205,12 @@
   .lec-dd { position: relative; }
   .lec-dd__trigger {
     display: inline-flex; align-items: center; gap: 5px; background: none; border: none;
-    padding: 0; margin: 0; font: inherit; font-size: 14.5px; font-weight: 700;
-    color: var(--brand); cursor: pointer;
+    padding: 0; margin: 0; font: inherit; font-size: 14.5px; font-weight: 600;
+    color: #243653; cursor: pointer; transition: color .2s;
   }
+  .lec-dd__trigger:hover,
+  .lec-dd:hover .lec-dd__trigger,
+  .lec-dd:focus-within .lec-dd__trigger { color: var(--brand); }
   .lec-dd__chev { display: inline-flex; width: 14px; height: 14px; transition: transform .25s ease; }
   .lec-dd__chev i, .lec-dd__chev svg { width: 14px; height: 14px; }
   .lec-dd:hover .lec-dd__chev, .lec-dd:focus-within .lec-dd__chev { transform: rotate(180deg); }
@@ -614,6 +617,7 @@
     <img src="/assets/brand/logo-lector.svg" alt="Lector">
   </a>
   <div class="lec-nav-links">
+    <a href="/pages/sobre/index.dc.html">Sobre</a>
     <div class="lec-dd">
       <button type="button" class="lec-dd__trigger" aria-haspopup="true">
         Nossas Soluções
@@ -645,7 +649,7 @@
           <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
           <span class="lec-dd__item-body">
             <span class="lec-dd__item-title">Criação de Conteúdo sob Demanda</span>
-            <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
+            <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda, com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
           </span>
         </a>
         <a href="/pages/diagnostico-gaps/index.dc.html" class="lec-dd__item" role="menuitem">
@@ -666,7 +670,6 @@
     </div>
     <a href="/pages/blog/index.dc.html">Blog</a>
     <a href="/pages/clientes/index.dc.html">Clientes</a>
-    <a href="/pages/sobre/index.dc.html">Sobre</a>
     <a href="/pages/contato/index.dc.html">Contato</a>
   </div>
   <div class="lec-nav-cta">
@@ -687,6 +690,7 @@
       <i data-lucide="x" style="width:16px;height:16px;"></i>
     </button>
   </div>
+  <a href="/pages/sobre/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
   <div class="lec-mnav-sub">
     <a href="/pages/plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
     <a href="/pages/copiloto-vendas/index.dc.html" class="is-active" onClick="{{ closeMobile }}">Copiloto de Vendas</a>
@@ -697,7 +701,6 @@
   </div>
   <a href="/pages/blog/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Blog</a>
   <a href="/pages/clientes/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
-  <a href="/pages/sobre/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
   <a href="/pages/contato/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Contato</a>
   <div class="lec-mnav-cta">
     <a href="https://lector.live" class="lec-nav-cta__ghost" style="text-align:center; justify-content:center;" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>
@@ -715,10 +718,10 @@
 <!-- GEO: cápsula de resposta (specs/geo.md) -->
 <p class="geo-capsule geo-capsule--dark" data-geo-capsule="">
   <strong>Em uma frase</strong>
-  O Copiloto de Vendas da Lector é a IA que prepara, acompanha e evolui cada vendedor — antes, durante e depois da reunião — com trilhas e certificação para reduzir ramp-up.
+  O Copiloto de Vendas da Lector é a IA que prepara, acompanha e evolui cada vendedor, antes, durante e depois da reunião, com trilhas e certificação para reduzir ramp-up.
 </p>
 
-      <p class="cv-hero__extra">Antes, durante e depois da reunião, uma IA treinada no conhecimento da sua empresa direciona o vendedor — dentro da própria webconferência da Lector, com alertas e sugestões ao vivo.</p>
+      <p class="cv-hero__extra">Antes, durante e depois da reunião, uma IA treinada no conhecimento da sua empresa direciona o vendedor, dentro da própria webconferência da Lector, com alertas e sugestões ao vivo.</p>
       <div class="cv-hero__ctas">
         <a href="#cta" class="cv-btn cv-btn--primary">Ver o copiloto em ação <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
         <a href="#jornada" class="cv-btn cv-btn--ghost">Como funciona</a>
@@ -752,7 +755,7 @@
       <div class="cv-step">
         <div class="cv-step__copy">
           <h3><em>Antes da reunião.</em> Briefing inteligente que prepara o vendedor</h3>
-          <p>A IA analisa o cliente, sugere a melhor forma de apresentar o produto, revisa objeções prováveis e monta a agenda ideal. O vendedor entra na reunião preparado — sempre.</p>
+          <p>A IA analisa o cliente, sugere a melhor forma de apresentar o produto, revisa objeções prováveis e monta a agenda ideal. O vendedor entra na reunião preparado. Sempre.</p>
           <ul class="cv-checks">
             <li><i data-lucide="check-circle-2"></i> Contexto do cliente e histórico consolidado</li>
             <li><i data-lucide="check-circle-2"></i> Sugestão do melhor pitch e materiais de apoio</li>
@@ -864,7 +867,7 @@
       <article class="cv-feat">
         <div class="cv-feat__icon" aria-hidden="true"><i data-lucide="target"></i></div>
         <h3>Direcionamento por deal</h3>
-        <p>Cada oportunidade recebe uma estratégia personalizada — o vendedor sabe exatamente o que apresentar e como.</p>
+        <p>Cada oportunidade recebe uma estratégia personalizada. O vendedor sabe exatamente o que apresentar e como.</p>
       </article>
       <article class="cv-feat">
         <div class="cv-feat__icon" aria-hidden="true"><i data-lucide="zap"></i></div>
@@ -887,7 +890,7 @@
       <img src="/assets/media/copiloto-vendas/gestao.jpg" alt="Dashboard de gestão do time de vendas" loading="lazy" decoding="async">
     </div>
     <div>
-      <h2 class="cv-h2"><em>Gestão.</em> O time comercial sob controle — sem planilha.</h2>
+      <h2 class="cv-h2"><em>Gestão.</em> O time comercial sob controle, sem planilha.</h2>
       <p class="cv-lead">A IA identifica onde cada vendedor precisa melhorar, analisa follow-ups e traz diagnósticos prontos. O gestor tem o operacional inteiro automatizado e funcional.</p>
       <ul class="cv-gestao__checks">
         <li><i data-lucide="check-circle-2"></i> Diagnóstico automático dos gaps do time</li>
@@ -923,7 +926,7 @@
     <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
       <div>
         <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
-        <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+        <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça, em um só lugar.</p>
       </div>
       <div>
         <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Produto</div>

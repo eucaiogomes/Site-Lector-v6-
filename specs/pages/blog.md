@@ -26,8 +26,8 @@ Publicar conteúdo de educação corporativa, carreira e T&D para atrair e nutri
 
 ## Mensagem principal
 
-**Headline:** Blog da Lector: ideias para aprender, crescer e fazer acontecer  
-**Sub:** Histórias, guias e ideias sobre carreira, design, dados e tecnologia — escritos por quem ensina na Lector.  
+**Headline:** Blog da Lector: inteligência, estratégia e inovação em Educação Corporativa  
+**Sub:** Insights práticos sobre LMS com IA, NR-1, enablement de vendas, diagnósticos de habilidades e ROI de T&D para lideranças.  
 **Nota:** sem eyebrow/badge acima do H1.  
 
 ## Seções (ordem)
@@ -37,9 +37,9 @@ Publicar conteúdo de educação corporativa, carreira e T&D para atrair e nutri
 | 0 | — | Promo bar + nav sticky | Nav clara; Blog ativo |
 | 1 | `hero` | Masthead | Eyebrow + headline + sub |
 | 2 | `featured` | Em alta | Card overlay grande + 3 horizontais |
-| 3 | `publicacoes` | Grade + filtros | Tabs: Todos, Carreira, Design, Tecnologia, Dados, Produtividade |
+| 3 | `publicacoes` | Grade + filtros | Tabs: Todos, T&D e Onboarding, IA na Educação, Compliance & NR-1, Enablement de Vendas, Métricas & ROI |
 | 4 | `newsletter` | Newsletter CTA | E-mail + inscrição (placeholder) |
-| 5 | `artigo` | Leitura (estado) | View de artigo com voltar, capa, corpo, relacionados |
+| 5 | `artigo` | Leitura (estado) | View de artigo com voltar, capa, corpo B2B de referência, relacionados |
 | 6 | — | Footer | Logo light + copyright |
 
 ## CTAs

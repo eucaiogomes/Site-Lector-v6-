@@ -51,7 +51,7 @@
 <title>Clientes e parcerias | Lector</title>
 <meta name="description" content="Veja o que sua empresa ganha como cliente Lector: suporte próximo, parcerias de longa data e logos de quem já aprende com a plataforma.">
 <meta property="og:title" content="Clientes e parcerias | Lector">
-<meta property="og:description" content="O que você ganha ao ser cliente Lector — atendimento, suporte e empresas que já confiam na plataforma.">
+<meta property="og:description" content="O que você ganha ao ser cliente Lector, atendimento, suporte e empresas que já confiam na plataforma.">
 <link rel="stylesheet" href="/design-system/tokens/fonts.css">
 <link rel="stylesheet" href="/design-system/tokens/colors.css">
 <link rel="stylesheet" href="/design-system/tokens/typography.css">
@@ -169,9 +169,12 @@
   .lec-dd { position: relative; }
   .lec-dd__trigger {
     display: inline-flex; align-items: center; gap: 5px; background: none; border: none;
-    padding: 0; margin: 0; font: inherit; font-size: 14.5px; font-weight: 700;
-    color: var(--brand); cursor: pointer;
+    padding: 0; margin: 0; font: inherit; font-size: 14.5px; font-weight: 600;
+    color: #243653; cursor: pointer; transition: color .2s;
   }
+  .lec-dd__trigger:hover,
+  .lec-dd:hover .lec-dd__trigger,
+  .lec-dd:focus-within .lec-dd__trigger { color: var(--brand); }
   .lec-dd__chev { display: inline-flex; width: 14px; height: 14px; transition: transform .25s ease; }
   .lec-dd__chev i, .lec-dd__chev svg { width: 14px; height: 14px; }
   .lec-dd:hover .lec-dd__chev, .lec-dd:focus-within .lec-dd__chev { transform: rotate(180deg); }
@@ -511,6 +514,7 @@
     <img src="/assets/brand/logo-lector.svg" alt="Lector">
   </a>
   <div class="lec-nav-links">
+    <a href="/pages/sobre/index.dc.html">Sobre</a>
     <div class="lec-dd">
       <button type="button" class="lec-dd__trigger" aria-haspopup="true">
         Nossas Soluções
@@ -542,7 +546,7 @@
           <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
           <span class="lec-dd__item-body">
             <span class="lec-dd__item-title">Criação de Conteúdo sob Demanda</span>
-            <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
+            <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda, com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
           </span>
         </a>
         <a href="/pages/diagnostico-gaps/index.dc.html" class="lec-dd__item" role="menuitem">
@@ -563,7 +567,6 @@
     </div>
     <a href="/pages/blog/index.dc.html">Blog</a>
     <a href="/pages/clientes/index.dc.html" class="is-active" aria-current="page">Clientes</a>
-    <a href="/pages/sobre/index.dc.html">Sobre</a>
     <a href="/pages/contato/index.dc.html">Contato</a>
   </div>
   <div class="lec-nav-cta">
@@ -584,6 +587,7 @@
       <i data-lucide="x" style="width:16px;height:16px;"></i>
     </button>
   </div>
+  <a href="/pages/sobre/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
   <div class="lec-mnav-sub">
     <a href="/pages/plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
     <a href="/pages/copiloto-vendas/index.dc.html" onClick="{{ closeMobile }}">Copiloto de Vendas</a>
@@ -594,7 +598,6 @@
   </div>
   <a href="/pages/blog/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Blog</a>
   <a href="/pages/clientes/index.dc.html" class="lec-mnav-link is-active" onClick="{{ closeMobile }}">Clientes</a>
-  <a href="/pages/sobre/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
   <a href="/pages/contato/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Contato</a>
   <div class="lec-mnav-cta">
     <a href="https://lector.live" class="lec-nav-cta__ghost" style="text-align:center; justify-content:center;" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>
@@ -623,11 +626,11 @@
   <div class="cl-wrap">
     <div class="cl-logos-head" data-reveal="">
       <h2 class="cl-h2">Quem confia: marcas que usam a Lector no dia a dia.</h2>
-      <p class="cl-lead">Empresas de saúde, cooperativa, indústria, educação e tecnologia que já aprendem com a Lector — com o espaço e a clareza que cada marca merece.</p>
+      <p class="cl-lead">Empresas que já aprendem com a Lector, com o espaço e a clareza que cada marca merece.</p>
     </div>
     <p class="cl-logos-label" data-reveal="">Alguns clientes</p>
     <div class="cl-logo-grid" data-reveal="">
-      <sc-for list="{{ clients }}" as="c" hint-placeholder-count="10">
+      <sc-for list="{{ clients }}" as="c" hint-placeholder-count="12">
         <div class="cl-logo-card">
           <img src="{{ c.src }}" alt="{{ c.name }}" loading="lazy" decoding="async" width="230" height="88">
         </div>
@@ -641,13 +644,13 @@
   <div class="cl-wrap">
     <div data-reveal="">
       <h2 class="cl-h2">O que sua empresa ganha ao se tornar cliente da Lector.</h2>
-      <p class="cl-lead">Menos ferramentas soltas, mais gente aprendendo — com quem responde quando o treino precisa ir ao ar.</p>
+      <p class="cl-lead">Menos ferramentas soltas, mais gente aprendendo.</p>
     </div>
     <div class="cl-gains">
       <article class="cl-gain" data-reveal="">
         <div class="cl-gain__icon" aria-hidden="true"><i data-lucide="layout-grid"></i></div>
         <h3>Tudo num só ambiente</h3>
-        <p>LMS, webconferência, autoria, IA, rede social e documentos — sem costurar Zoom, drive e planilha em paralelo.</p>
+        <p>LMS, webconferência, autoria, IA, rede social, gestão de talentos e documentos no mesmo login. Tudo nativo, com o histórico de cada pessoa numa base única.</p>
       </article>
       <article class="cl-gain" data-reveal="">
         <div class="cl-gain__icon" aria-hidden="true"><i data-lucide="line-chart"></i></div>
@@ -657,7 +660,7 @@
       <article class="cl-gain" data-reveal="">
         <div class="cl-gain__icon" aria-hidden="true"><i data-lucide="shield-check"></i></div>
         <h3>Compliance com evidência</h3>
-        <p>Treinamentos obrigatórios e NR-1 com registro auditável — quando a fiscalização ou a auditoria pedirem, a trilha já está pronta.</p>
+        <p>Treinamentos obrigatórios e NR-1 com registro auditável. Quando a fiscalização ou a auditoria pedirem, a trilha já está pronta.</p>
       </article>
       <article class="cl-gain" data-reveal="">
         <div class="cl-gain__icon" aria-hidden="true"><i data-lucide="headphones"></i></div>
@@ -667,12 +670,12 @@
       <article class="cl-gain" data-reveal="">
         <div class="cl-gain__icon" aria-hidden="true"><i data-lucide="rocket"></i></div>
         <h3>Onboarding guiado</h3>
-        <p>Implantação com método: configuração, trilhas iniciais, papéis e treino do time administrador — para a plataforma sair do papel.</p>
+        <p>Implantação com método: configuração, trilhas iniciais, papéis e treino do time administrador, para a plataforma sair do papel.</p>
       </article>
       <article class="cl-gain" data-reveal="">
         <div class="cl-gain__icon" aria-hidden="true"><i data-lucide="sparkles"></i></div>
         <h3>Evolução contínua</h3>
-        <p>Produto com IA nativa e roadmap ativo. O que você contrata hoje continua ganhando capacidade — sem migrar de stack a cada ano.</p>
+        <p>Produto com IA nativa e roadmap ativo. O que você contrata hoje continua ganhando capacidade, sem migrar de stack a cada ano.</p>
       </article>
     </div>
   </div>
@@ -682,7 +685,7 @@
 <section class="cl-section cl-section--dark" id="suporte" aria-label="Atendimento e suporte">
   <div class="cl-wrap">
     <div data-reveal="">
-      <h2 class="cl-h2">Atendimento e suporte: parceiro, não ticket sem dono.</h2>
+      <h2 class="cl-h2">Atendimento e suporte consultivo com foco no cliente</h2>
       <p class="cl-lead">Cliente Lector tem canal claro, gente que conhece educação corporativa e rotina de acompanhamento do cliente desde o primeiro login.</p>
     </div>
     <div class="cl-support-grid">
@@ -697,7 +700,7 @@
         <div class="cl-support__icon" aria-hidden="true"><i data-lucide="life-buoy"></i></div>
         <div>
           <h3>Suporte operacional</h3>
-          <p>Dúvidas de uso, incidentes e ajustes do dia a dia com resposta humana — em horário comercial Brasil.</p>
+          <p>Dúvidas de uso, incidentes e ajustes do dia a dia com resposta humana, em horário comercial Brasil.</p>
         </div>
       </article>
       <article class="cl-support" data-reveal="">
@@ -733,7 +736,7 @@
       <article class="cl-case" data-reveal="">
         <img class="cl-case__logo" src="/assets/clients/microsoft.png" alt="Microsoft" width="160" height="36" loading="lazy">
         <h3>Parceiro estratégico na América Latina.</h3>
-        <p>Na vertical de educação, a Microsoft tem a Lector como parceira estratégica. Educação é um tema sensível e que gera impacto positivo na vida das pessoas — e a parceria reflete essa confiança.</p>
+        <p>Na vertical de educação, a Microsoft tem a Lector como parceira estratégica. Educação é um tema sensível e que gera impacto positivo na vida das pessoas, e a parceria reflete essa confiança.</p>
         <div class="cl-case__foot">
           <strong>Paulo Tonin da Silveira</strong>
           Sr. Partner Development Manager LATAM · Microsoft
@@ -761,7 +764,7 @@
   <img class="cl-cta__orbit" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
   <div class="cl-cta__inner" data-reveal="">
     <h2>Pronto para ser o próximo a aprender com a Lector?</h2>
-    <p>Fale com o time. Mostramos a plataforma no seu contexto — e o que o atendimento cobre do primeiro dia em diante.</p>
+    <p>Fale com o time. Mostramos a plataforma no seu contexto, e o que o atendimento cobre do primeiro dia em diante.</p>
     <a href="#" class="cl-btn cl-btn--primary" data-open-lead data-lead-interest="demo">
       Falar com especialista
       <i data-lucide="arrow-up-right" style="width:18px;height:18px;"></i>
@@ -775,7 +778,7 @@
     <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
       <div>
         <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
-        <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+        <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça, em um só lugar.</p>
       </div>
       <div>
         <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Produto</div>
@@ -884,8 +887,9 @@ class Component extends DCLogic {
       'hospital-sapiranga': 'Hospital Sapiranga',
       cigam: 'CIGAM',
       benner: 'Benner',
+      confebras: 'Confebras',
     };
-    const order = ['unimed', 'sicoob', 'sesi-senai', 'lideranca', 'acats', 'cnmp', 'esmpsp', 'hospital-sapiranga', 'cigam', 'benner'];
+    const order = ['philips', 'unimed', 'sicoob', 'confebras', 'sesi-senai', 'lideranca', 'acats', 'cnmp', 'esmpsp', 'hospital-sapiranga', 'cigam', 'benner'];
     const clients = order.map((id) => ({
       id,
       name: names[id] || id,

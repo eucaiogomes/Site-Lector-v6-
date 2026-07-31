@@ -680,6 +680,7 @@
     <img src="/assets/brand/logo-lector.svg" alt="Lector">
   </a>
   <div class="lec-nav-links">
+    <a href="/pages/sobre/index.dc.html">Sobre</a>
     <div class="lec-dd">
       <button type="button" class="lec-dd__trigger" aria-haspopup="true">
         Nossas Soluções
@@ -711,7 +712,7 @@
           <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
           <span class="lec-dd__item-body">
             <span class="lec-dd__item-title">Criação de Conteúdo sob Demanda</span>
-            <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
+            <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda, com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
           </span>
         </a>
         <a href="/pages/diagnostico-gaps/index.dc.html" class="lec-dd__item" role="menuitem">
@@ -732,7 +733,6 @@
     </div>
     <a href="/pages/blog/index.dc.html" class="is-active">Blog</a>
     <a href="/pages/clientes/index.dc.html">Clientes</a>
-    <a href="/pages/sobre/index.dc.html">Sobre</a>
     <a href="/pages/contato/index.dc.html">Contato</a>
   </div>
   <div class="lec-nav-cta">
@@ -753,6 +753,7 @@
       <i data-lucide="x" style="width:16px;height:16px;"></i>
     </button>
   </div>
+  <a href="/pages/sobre/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
   <div class="lec-mnav-sub">
     <a href="/pages/plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
     <a href="/pages/copiloto-vendas/index.dc.html" onClick="{{ closeMobile }}">Copiloto de Vendas</a>
@@ -763,7 +764,6 @@
   </div>
   <a href="/pages/blog/index.dc.html" class="lec-mnav-link is-active">Blog</a>
   <a href="/pages/clientes/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
-  <a href="/pages/sobre/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
   <a href="/pages/contato/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Contato</a>
   <div class="lec-mnav-cta">
     <a href="https://lector.live" class="lec-nav-cta__ghost" style="text-align:center; justify-content:center;" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>
@@ -775,8 +775,8 @@
 <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
   <section class="blog-hero" id="hero" aria-label="Blog da Lector">
     <div class="blog-container">
-      <h1>Blog da Lector: ideias para aprender, crescer e fazer acontecer</h1>
-      <p>Histórias, guias e ideias sobre carreira, design, dados e tecnologia — escritos por quem ensina na Lector.</p>
+      <h1>Blog da Lector: inteligência, estratégia e inovação em Educação Corporativa</h1>
+      <p>Insights práticos sobre LMS com IA, NR-1, enablement de vendas, diagnósticos de habilidades e ROI de T&D para lideranças de RH.</p>
     </div>
   </section>
 
@@ -819,6 +819,13 @@
         </sc-for>
       </div>
     </div>
+
+    <!-- Barra de busca instantânea -->
+    <div style="margin-bottom:28px;display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7EAF1;border-radius:999px;padding:10px 20px;max-width:480px;box-shadow:0 2px 10px rgba(0,32,77,0.03);">
+      <i data-lucide="search" style="width:18px;height:18px;color:#838DA0;flex-shrink:0;"></i>
+      <input type="text" placeholder="Buscar por tema ou solução (ex: NR-1, Vendas, LMS, IA, Gaps)..." value="{{ searchQuery }}" onChange="{{ onSearchChange }}" style="border:none;outline:none;background:transparent;width:100%;font-size:14px;color:#243653;font-family:inherit;">
+    </div>
+
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;">
       <sc-for list="{{ filtered }}" as="p" hint-placeholder-count="6">
         <button type="button" class="article-card" onClick="{{ p.onOpen }}">
@@ -834,11 +841,60 @@
     </div>
   </section>
 
+  <!-- Hub de Diagnósticos & Ferramentas para RH / T&D -->
+  <section class="blog-container" style="padding:10px 0 60px;" id="diagnosticos-hub" aria-label="Ferramentas e Diagnósticos Gratuitos">
+    <div style="background:linear-gradient(135deg, #00204D 0%, #082A5E 100%);color:#fff;border-radius:24px;padding:44px 36px;box-shadow:0 12px 36px -10px rgba(0,32,77,0.22);">
+      <div style="max-width:680px;margin-bottom:32px;">
+        <div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:8px;">Recursos para Lideranças &amp; T&amp;D</div>
+        <h2 style="font-family:var(--font-display);font-size:26px;font-weight:800;margin:0 0 10px;line-height:1.2;">Diagnósticos e ferramentas estratégicas para a sua empresa</h2>
+        <p style="color:rgba(230,238,250,.8);font-size:15px;margin:0;">Descubra a maturidade do seu ecossistema de aprendizado e prepare sua organização para fiscalizações e metas de negócio.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div style="display:inline-flex;align-items:center;gap:8px;color:var(--brand);font-weight:700;font-size:13px;margin-bottom:12px;">
+              <i data-lucide="scan-search" style="width:18px;height:18px;"></i> Diagnóstico de Gaps
+            </div>
+            <h3 style="font-size:17px;font-weight:700;margin:0 0 8px;color:#fff;">Mapeamento de Lacunas de Conhecimento</h3>
+            <p style="font-size:13.5px;color:rgba(230,238,250,.72);line-height:1.5;margin:0 0 16px;">Descubra quais habilidades estão faltando cargo por cargo antes de investir em novos cursos.</p>
+          </div>
+          <button type="button" onClick="{{ openLeadDiagnostico }}" style="background:var(--brand);color:#fff;border:none;border-radius:999px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;align-self:flex-start;display:inline-flex;align-items:center;gap:6px;">
+            Solicitar diagnóstico <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+          </button>
+        </div>
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div style="display:inline-flex;align-items:center;gap:8px;color:var(--brand);font-weight:700;font-size:13px;margin-bottom:12px;">
+              <i data-lucide="shield-check" style="width:18px;height:18px;"></i> Conformidade NR-1
+            </div>
+            <h3 style="font-size:17px;font-weight:700;margin:0 0 8px;color:#fff;">Auditoria de Evidências Psicossociais</h3>
+            <p style="font-size:13.5px;color:rgba(230,238,250,.72);line-height:1.5;margin:0 0 16px;">Avalie o nível de prontidão da sua empresa para a nova fiscalização do Ministério do Trabalho.</p>
+          </div>
+          <button type="button" onClick="{{ openLeadNR1 }}" style="background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;align-self:flex-start;display:inline-flex;align-items:center;gap:6px;">
+            Auditar compliance <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+          </button>
+        </div>
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div style="display:inline-flex;align-items:center;gap:8px;color:var(--brand);font-weight:700;font-size:13px;margin-bottom:12px;">
+              <i data-lucide="bot" style="width:18px;height:18px;"></i> Copiloto de Vendas
+            </div>
+            <h3 style="font-size:17px;font-weight:700;margin:0 0 8px;color:#fff;">Simulação de Reunião Comercial com IA</h3>
+            <p style="font-size:13.5px;color:rgba(230,238,250,.72);line-height:1.5;margin:0 0 16px;">Reduza o tempo de ramp-up dos seus novos vendedores com feedbacks automáticos em tempo real.</p>
+          </div>
+          <button type="button" onClick="{{ openLeadVendas }}" style="background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;align-self:flex-start;display:inline-flex;align-items:center;gap:6px;">
+            Ver demonstração <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="blog-container" style="padding:30px 0 80px;" id="newsletter" aria-label="Newsletter">
     <div style="background:var(--accent-navy,#00204D);color:#fff;border-radius:20px;padding:48px 40px;text-align:center;">
       <div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:8px;">Newsletter</div>
       <h2 style="font-family:var(--font-display);font-size:28px;font-weight:800;margin:0 0 10px;">Receba o melhor do Lector toda semana</h2>
-      <p style="color:rgba(255,255,255,.75);max-width:420px;margin:0 auto 24px;">Um e-mail por semana com os artigos mais úteis sobre carreira, design e tecnologia. Sem spam.</p>
+      <p style="color:rgba(255,255,255,.75);max-width:420px;margin:0 auto 24px;">Um e-mail por semana com os melhores artigos e tendências sobre T&D, IA Corporativa e NR-1. Sem spam.</p>
       <form style="display:flex;gap:10px;max-width:420px;margin:0 auto;flex-wrap:wrap;justify-content:center;" onSubmit="{{ onNewsletter }}">
         <input type="email" name="email" required placeholder="seu@email.com" style="flex:1;min-width:200px;padding:14px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:15px;">
         <button type="submit" style="background:var(--brand);color:#fff;border:none;border-radius:10px;padding:0 26px;height:48px;font-weight:700;">Inscrever</button>
@@ -869,15 +925,18 @@
       </div>
       <div class="cover" style="background-image:url('{{ article.img }}')" role="img" aria-label="Capa do artigo"></div>
       <div class="article-body" style="max-width:720px;">
-        <p>Todo mundo que começa em uma nova área esbarra na mesma parede: como provar que você sabe fazer, se ainda não teve a chance de fazer profissionalmente? A resposta quase nunca é “mais um curso” — é mostrar o trabalho.</p>
-        <p>Um bom portfólio não é uma galeria de tudo o que você já tocou. É uma curadoria de decisões. Cada projeto deveria responder a uma pergunta simples na cabeça de quem contrata: <em>essa pessoa resolve problemas como os meus?</em></p>
-        <h2>Comece pelo problema, não pela ferramenta</h2>
-        <p>O erro mais comum é abrir o case com a stack: “fiz em React, com tal biblioteca”. Quem lê quer o contexto antes da técnica. Qual era o problema? Para quem? Que restrição existia? A ferramenta é só o meio.</p>
-        <blockquote>O melhor portfólio não mostra tudo — mostra a decisão certa, no momento certo, pelo motivo certo.</blockquote>
-        <p>Quando você estrutura o case assim, mesmo um projeto de estudo vira evidência de raciocínio. E raciocínio é o que escala de júnior a sênior.</p>
-        <h2>Três projetos bem contados valem mais que dez jogados</h2>
-        <p>Profundidade vence volume. Escolha três trabalhos, conte o antes e o depois de cada um, mostre uma métrica ou um aprendizado concreto. Feche com o que você faria diferente — isso sinaliza maturidade mais do que qualquer certificado.</p>
-        <p>No fim, lembre-se: o portfólio é um produto. Tem público, tem objetivo e tem a primeira impressão valendo ouro. Trate-o com o mesmo cuidado que você trataria a entrega de um cliente.</p>
+        <p>As equipes de Treinamento & Desenvolvimento enfrentam uma pressão sem precedentes em 2026: provar o impacto financeiro e operacional de cada programa de capacitação enquanto administram ecossistemas de software fragmentados e custos crescentes de licenciamento.</p>
+        <p>Na busca por agilidade, muitas empresas acumularam ferramentas isoladas — um LMS tradicional para compliance, um aplicativo de autoria externo, uma plataforma de videoconferência de terceiros e repositórios descentralizados de conteúdo. O resultado? Baixa adesão dos colaboradores, dados desintegrados e alto custo total de propriedade (TCO).</p>
+        <h2>A virada de chave: Inteligência Artificial Nativa e consolidação de plataformas</h2>
+        <p>A consolidação não significa apenas cortar custos operacionais; trata-se de transformar a experiência de aprendizagem em um ecossistema fluido. Quando o LMS integra <strong>IA nativa</strong>, autoria em tempo real e análise preditiva de competências, o tempo de lançamento de um treinamento cai de semanas para poucas horas.</p>
+        <blockquote>A verdadeira eficiência em T&D não vem de criar mais conteúdo, mas de entregar o conhecimento exato no momento em que a operação necessita, com evidências claras de aplicação.</blockquote>
+        <p>Com um <strong>Grafo de Conhecimento</strong> estruturado, a Inteligência Artificial mapeia lacunas de conhecimento individuais automaticamente e sugere trilhas cirúrgicas para cada perfil profissional, eliminando treinamentos genéricos que desperdiçam horas de trabalho útil.</p>
+        <h2>Quatro pilares para modernizar sua estratégia de T&D</h2>
+        <p>Para elevar a maturidade educacional da sua organização e garantir suporte da diretoria executiva, estruture sua jornada em quatro diretrizes:</p>
+        <p>1. <strong>Centralização Tecnológica:</strong> Unifique LMS, autoria, webconferência e comunicação interna em uma única plataforma adaptável.</p>
+        <p>2. <strong>Automação de Compliance e NR-1:</strong> Automatize a emissão de certificados, a coleta de evidências auditáveis e a gestão contínua de riscos psicossociais sem sobrecarregar a equipe médica ou jurídica.</p>
+        <p>3. <strong>Copilotos de Performance Comercial:</strong> Ofereça treinamento em tempo real para equipes de vendas com simulações com IA antes de reuniões decisivas com clientes.</p>
+        <p>4. <strong>Diagnóstico Contínuo por Habilidades:</strong> Substitua métricas passivas de conclusão de vídeo por avaliações práticas de domínio e análise de impacto em KPIs de negócio.</p>
       </div>
       <div style="margin:40px 0 20px;padding-top:24px;border-top:1px solid #E7EAF1;display:flex;gap:12px;flex-wrap:wrap;">
         <a href="/pages/home/index.dc.html#contato" style="background:var(--brand);color:#fff;border-radius:999px;padding:12px 24px;font-weight:700;display:inline-block;">Falar com a Lector</a>
@@ -911,7 +970,7 @@
     <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
       <div>
         <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
-        <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+        <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça, em um só lugar.</p>
       </div>
       <div>
         <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Produto</div>
@@ -957,6 +1016,7 @@ class Component extends DCLogic {
     view: 'home',
     articleId: 1,
     filter: 'Todos',
+    searchQuery: '',
     mobileOpen: false,
     announceClosed: false,
   };
@@ -991,12 +1051,15 @@ class Component extends DCLogic {
 
   _posts() {
     return [
-      { id: 1, cat: 'Carreira', title: 'Como montar um portfólio que abre portas (mesmo sem experiência)', excerpt: 'Um guia prático para transformar projetos de estudo em provas de valor que recrutadores realmente leem.', author: 'Marina Alves', date: '12 jun 2026', read: '7 min', img: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1200&q=80' },
-      { id: 2, cat: 'Design', title: 'O que ninguém te conta sobre UX Research no dia a dia', excerpt: 'Da entrevista ao insight: como pesquisar com pouco tempo e ainda assim decidir com confiança.', author: 'Caio Brandão', date: '9 jun 2026', read: '5 min', img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1000&q=80' },
-      { id: 3, cat: 'Dados', title: 'SQL na prática: 8 consultas que todo analista deveria dominar', excerpt: 'Pare de decorar sintaxe e comece a pensar em perguntas de negócio.', author: 'Rafael Souza', date: '6 jun 2026', read: '9 min', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&q=80' },
-      { id: 4, cat: 'Tecnologia', title: 'React em 2026: o que mudou e o que você pode ignorar', excerpt: 'Um mapa honesto do ecossistema para quem não quer reaprender tudo a cada ano.', author: 'Bruna Sena', date: '2 jun 2026', read: '6 min', img: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1000&q=80' },
-      { id: 5, cat: 'Produtividade', title: 'O método de estudo que aumentou minha retenção em 3x', excerpt: 'Repetição espaçada, projetos reais e o segredo de estudar menos para lembrar mais.', author: 'Edmar Lima', date: '28 mai 2026', read: '4 min', img: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1000&q=80' },
-      { id: 6, cat: 'Carreira', title: 'Da primeira entrevista à proposta: negociando seu salário em tech', excerpt: 'Scripts, faixas e a mentalidade certa para não deixar dinheiro na mesa.', author: 'Helena Dias', date: '24 mai 2026', read: '8 min', img: 'https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=1000&q=80' },
+      { id: 1, cat: 'T&D e Onboarding', title: 'Como consolidar ferramentas de T&D e reduzir custos de treinamento corporativo', excerpt: 'Um guia prático para unificar LMS, autoria e webconferência em uma única plataforma com IA nativa e provar o ROI para a diretoria.', author: 'Alex Sandro', date: '12 jun 2026', read: '7 min', img: 'https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?w=1200&q=80' },
+      { id: 2, cat: 'Compliance & NR-1', title: 'Fiscalização da NR-1 em vigor: como comprovar a gestão de riscos psicossociais sem burocracia', excerpt: 'Saiba como estruturar trilhas de compliance, registros auditáveis e evidências exigidas pela legislação em uma plataforma automatizada.', author: 'Alex Sandro', date: '9 jun 2026', read: '6 min', img: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?w=1000&q=80' },
+      { id: 3, cat: 'IA na Educação', title: 'Grafo de Conhecimento e IA nativa: o futuro do aprendizado personalizado nas empresas', excerpt: 'Descubra como a autoria automatizada por IA acelera a criação de conteúdos e personaliza o aprendizado por perfil e maturidade.', author: 'Alex Sandro', date: '6 jun 2026', read: '8 min', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&q=80' },
+      { id: 4, cat: 'Enablement de Vendas', title: 'Reduzindo o tempo de ramp-up comercial de meses para semanas com Copiloto de IA', excerpt: 'Como utilizar simuladores de inteligência artificial para treinar a força de vendas antes, durante e depois de reuniões com clientes.', author: 'Alex Sandro', date: '2 jun 2026', read: '5 min', img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&q=80' },
+      { id: 5, cat: 'Métricas & ROI', title: 'Diagnóstico de Gaps de Habilidade: como provar o ROI real de T&D para o C-Level', excerpt: 'Substitua métricas passivas de conclusão de vídeo por matrizes práticas de competências e análise de impacto direto no negócio.', author: 'Alex Sandro', date: '28 mai 2026', read: '6 min', img: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1000&q=80' },
+      { id: 6, cat: 'T&D e Onboarding', title: 'Universidades Corporativas de Alta Performance: do onboarding ao plano de sucessão', excerpt: 'Estratégias para estruturar academias corporativas escaláveis, promovendo engajamento e retenção de talentos estratégicos.', author: 'Alex Sandro', date: '24 mai 2026', read: '7 min', img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&q=80' },
+      { id: 7, cat: 'Conteúdo sob Demanda', title: 'Produção de Conteúdo sob Demanda: agilidade e padrão editorial sem sobrecarregar sua equipe', excerpt: 'Como terceirizar a criação de cursos, vídeos e objetos de aprendizagem com prazo previsível e publicação direta na plataforma.', author: 'Alex Sandro', date: '19 mai 2026', read: '5 min', img: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1000&q=80' },
+      { id: 8, cat: 'Compliance & NR-1', title: 'Evidências auditáveis em T&D: como garantir conformidade total em fiscalizações do MTE', excerpt: 'Passo a passo técnico para emitir certificados invioláveis, logs de presença em videoconferência e históricos de avaliação.', author: 'Alex Sandro', date: '14 mai 2026', read: '7 min', img: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1000&q=80' },
+      { id: 9, cat: 'Enablement de Vendas', title: 'Treinamento de Vendas em tempo real: a jornada do Copiloto Lector na webconferência', excerpt: 'Alertas ao vivo de contorno de objeções, feedbacks pós-reunião e certificação automatizada de técnicas comerciais.', author: 'Alex Sandro', date: '10 mai 2026', read: '6 min', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1000&q=80' },
     ];
   }
 
@@ -1010,8 +1073,15 @@ class Component extends DCLogic {
   renderVals() {
     const posts = this._posts();
     const filter = this.state.filter;
-    const cats = ['Todos', 'Carreira', 'Design', 'Tecnologia', 'Dados', 'Produtividade'];
-    const filteredRaw = filter === 'Todos' ? posts : posts.filter((p) => p.cat === filter);
+    const query = (this.state.searchQuery || '').toLowerCase().trim();
+    const cats = ['Todos', 'T&D e Onboarding', 'IA na Educação', 'Compliance & NR-1', 'Enablement de Vendas', 'Métricas & ROI', 'Conteúdo sob Demanda'];
+
+    const filteredRaw = posts.filter((p) => {
+      const matchCat = filter === 'Todos' || p.cat === filter;
+      const matchQuery = !query || p.title.toLowerCase().includes(query) || p.excerpt.toLowerCase().includes(query) || p.cat.toLowerCase().includes(query) || p.author.toLowerCase().includes(query);
+      return matchCat && matchQuery;
+    });
+
     const article = posts.find((p) => p.id === this.state.articleId) || posts[0];
     const relatedRaw = posts.filter((p) => p.id !== article.id).slice(0, 3);
     const featured = posts[0];
@@ -1023,6 +1093,8 @@ class Component extends DCLogic {
       isHome: this.state.view === 'home',
       isArticle: this.state.view === 'article',
       mobileOpenClass: this.state.mobileOpen ? 'is-open' : '',
+      searchQuery: this.state.searchQuery,
+      onSearchChange: (e) => this.setState({ searchQuery: e && e.target ? e.target.value : (e || '') }),
       openMobile: () => this.setState({ mobileOpen: true }),
       closeMobile: () => this.setState({ mobileOpen: false }),
       announceOpen: !this.state.announceClosed,
@@ -1032,6 +1104,12 @@ class Component extends DCLogic {
       },
       openLeadDiagnostico: () => {
         if (window.__LectorLeadForm) window.__LectorLeadForm.open({ interest: 'diagnostico' });
+      },
+      openLeadNR1: () => {
+        if (window.__LectorLeadForm) window.__LectorLeadForm.open({ interest: 'nr1' });
+      },
+      openLeadVendas: () => {
+        if (window.__LectorLeadForm) window.__LectorLeadForm.open({ interest: 'vendas' });
       },
       goHome: () => this.setState({ view: 'home' }),
       openFeatured: () => this.setState({ view: 'article', articleId: featured.id }),

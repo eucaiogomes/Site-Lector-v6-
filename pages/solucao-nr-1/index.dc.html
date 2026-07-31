@@ -61,7 +61,7 @@
   "offers": {
     "@type": "Offer",
     "priceCurrency": "BRL",
-    "description": "SaaS por colaborador/mês — faixas em /precos (a publicar)"
+    "description": "SaaS por colaborador/mês, faixas em /precos (a publicar)"
   },
   "provider": { "@type": "Organization", "name": "Lector" }
 }
@@ -85,7 +85,7 @@
       "name": "A plataforma substitui a perícia ou consultoria de SST?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Não. A Lector estrutura o diagnóstico, as trilhas e a evidência de execução. Recomendamos apoio técnico de SST para laudo e adequação legal específica — os Serviços Especializados da Lector podem apoiar essa etapa."
+        "text": "Não. A Lector estrutura o diagnóstico, as trilhas e a evidência de execução. Recomendamos apoio técnico de SST para laudo e adequação legal específica. Os Serviços Especializados da Lector podem apoiar essa etapa."
       }
     },
     {
@@ -101,16 +101,16 @@
       "name": "As evidências geradas servem para fiscalização do Ministério do Trabalho?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sim. Os relatórios trazem histórico de participação, conclusão de trilhas e datas de execução — a documentação que costuma ser solicitada em fiscalização."
+        "text": "Sim. Os relatórios trazem histórico de participação, conclusão de trilhas e datas de execução, a documentação que costuma ser solicitada em fiscalização."
       }
     }
   ]
 }
 </script>
 
-<title>Solução NR-1 — Riscos psicossociais e evidências | Lector</title>
+<title>Solução NR-1 | Riscos psicossociais e evidências | Lector</title>
 <meta name="description" content="Diagnóstico, trilhas obrigatórias e evidências de conformidade NR-1 em uma única plataforma. Chegue em qualquer auditoria com a papelada certa e o time cuidado.">
-<meta property="og:title" content="Solução NR-1 — Riscos psicossociais e evidências | Lector">
+<meta property="og:title" content="Solução NR-1 | Riscos psicossociais e evidências | Lector">
 <meta property="og:description" content="Diagnóstico, trilhas obrigatórias e evidências de conformidade NR-1 em uma única plataforma.">
 <link rel="stylesheet" href="/design-system/tokens/fonts.css">
 <link rel="stylesheet" href="/design-system/tokens/colors.css">
@@ -206,9 +206,12 @@
   .lk-nav-dd { position: relative; display: inline-flex; align-items: center; }
   .lk-nav-dd__trigger {
     display: inline-flex; align-items: center; gap: 5px; background: none; border: none;
-    padding: 0; margin: 0; font: inherit; font-weight: 700; font-size: inherit;
-    color: var(--brand); cursor: pointer; transition: color .2s;
+    padding: 0; margin: 0; font: inherit; font-weight: 600; font-size: inherit;
+    color: rgba(255,255,255,.85); cursor: pointer; transition: color .2s;
   }
+  .lk-nav-dd__trigger:hover,
+  .lk-nav-dd:hover .lk-nav-dd__trigger,
+  .lk-nav-dd:focus-within .lk-nav-dd__trigger { color: var(--brand); }
   .lk-nav-dd__chev {
     display: inline-flex; width: 14px; height: 14px; transition: transform .2s; opacity: .75;
   }
@@ -589,6 +592,7 @@
         <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:24px; display:block;">
       </a>
       <nav class="lk-nav-desktop" style="display:flex; align-items:center; gap:30px; font-size:14.5px; font-weight:600;">
+        <a href="/pages/sobre/index.dc.html" style="{{ navLinkStyle }}">Sobre</a>
         <div class="lk-nav-dd">
           <button type="button" class="lk-nav-dd__trigger" aria-haspopup="true" aria-expanded="false">
             Nossas Soluções
@@ -620,7 +624,7 @@
               <span class="lk-nav-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
               <span class="lk-nav-dd__item-body">
                 <span class="lk-nav-dd__item-title">Criação de Conteúdo sob Demanda</span>
-                <span class="lk-nav-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
+                <span class="lk-nav-dd__item-desc">Cursos, vídeos e materiais sob demanda, com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
               </span>
             </a>
             <a href="/pages/diagnostico-gaps/index.dc.html" class="lk-nav-dd__item" role="menuitem">
@@ -641,7 +645,6 @@
         </div>
         <a href="/pages/blog/index.dc.html" style="{{ navLinkStyle }}">Blog</a>
         <a href="/pages/clientes/index.dc.html" style="{{ navLinkStyle }}">Clientes</a>
-        <a href="/pages/sobre/index.dc.html" style="{{ navLinkStyle }}">Sobre</a>
         <a href="/pages/contato/index.dc.html" style="{{ navLinkStyle }}">Contato</a>
       </nav>
       <div class="lk-header-actions" style="display:flex; align-items:center; gap:18px; flex:none;">
@@ -664,6 +667,7 @@
         <i data-lucide="x"></i>
       </button>
     </div>
+    <a href="/pages/sobre/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
     <div class="lk-mnav-label">Nossas Soluções</div>
     <div class="lk-mnav-sub">
       <a href="/pages/plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
@@ -675,7 +679,6 @@
     </div>
     <a href="/pages/blog/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Blog</a>
     <a href="/pages/clientes/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
-    <a href="/pages/sobre/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
     <a href="/pages/contato/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Contato</a>
     <div class="lk-mnav-cta">
       <a href="https://lector.live" class="lk-mnav-cta__ghost" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>
@@ -704,7 +707,7 @@
           A NR-1 exige gestão de riscos psicossociais.<br>A Lector entrega o <span style="color:var(--brand); font-style:italic;">processo inteiro</span>.
         </h1>
         <p style="font-size:18px; line-height:1.55; color:rgba(230,238,250,.8); max-width:560px; margin:0 auto 36px;">
-          Diagnóstico, trilhas obrigatórias e evidências de conformidade em uma única plataforma — para você chegar em qualquer auditoria com a papelada certa e o time cuidado.
+          Diagnóstico, trilhas obrigatórias e evidências de conformidade em uma única plataforma, para você chegar em qualquer auditoria com a papelada certa e o time cuidado.
         </p>
 
         <div style="display:flex; justify-content:center;">
@@ -744,7 +747,7 @@
         Boa vontade não é processo <span style="color:var(--brand);">documentado</span>.
       </p>
       <p data-reveal="" style="font-size:18px; line-height:1.55; color:var(--ink-500); max-width:640px; margin:24px 0 0;">
-        A NR-1 exige identificar, avaliar e gerenciar riscos psicossociais — com evidência. Sem diagnóstico estruturado, o SST fica exposto: planilha solta, ação reativa e papelada frágil na auditoria. O custo também aparece em afastamento, turnover e clima.
+        A NR-1 exige identificar, avaliar e gerenciar riscos psicossociais, com evidência. Sem diagnóstico estruturado, o SST fica exposto: planilha solta, ação reativa e papelada frágil na auditoria. O custo também aparece em afastamento, turnover e clima.
       </p>
     </div>
   </section>
@@ -754,23 +757,23 @@
     <div class="nr-diff__inner">
       <div class="nr-diff__header" data-reveal="">
         <h2 class="nr-diff__title">Ciclo completo de conformidade NR-1 na mesma plataforma onde você treina.</h2>
-        <p class="nr-diff__sub">Diagnóstico, trilhas e evidências no LMS Lector — nada de sistema paralelo para compliance.</p>
+        <p class="nr-diff__sub">Diagnóstico, trilhas e evidências no LMS Lector. Nada de sistema paralelo para compliance.</p>
       </div>
       <div class="nr-diff__grid">
         <article class="nr-diff__card" data-reveal="">
           <div class="nr-diff__icon" aria-hidden="true"><i data-lucide="scan-search"></i></div>
           <h3>Diagnóstico de riscos psicossociais</h3>
-          <p>Mapeamento por área, cargo e liderança, alinhado à NR-1 — onde o risco se concentra antes de virar afastamento.</p>
+          <p>Mapeamento por área, cargo e liderança, alinhado à NR-1, onde o risco se concentra antes de virar afastamento.</p>
         </article>
         <article class="nr-diff__card" data-reveal="">
           <div class="nr-diff__icon" aria-hidden="true"><i data-lucide="route"></i></div>
           <h3>Trilhas obrigatórias</h3>
-          <p>Saúde mental, prevenção de assédio e gestão de riscos — atribuídas automaticamente por função, sem planilha manual.</p>
+          <p>Saúde mental, prevenção de assédio e gestão de riscos, atribuídas automaticamente por função, sem planilha manual.</p>
         </article>
         <article class="nr-diff__card" data-reveal="">
           <div class="nr-diff__icon" aria-hidden="true"><i data-lucide="file-check-2"></i></div>
           <h3>Evidências de conformidade</h3>
-          <p>Relatórios de execução, certificados e histórico de participação prontos para auditoria — em minutos, não em semanas.</p>
+          <p>Relatórios de execução, certificados e histórico de participação prontos para auditoria, em minutos, não em semanas.</p>
         </article>
       </div>
     </div>
@@ -782,13 +785,13 @@
     <img class="nr-dark__orbit nr-dark__orbit--bl" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <div class="nr-dark__inner">
       <h2 class="nr-dark__title" data-reveal="">Como funciona: do diagnóstico à evidência, em três passos.</h2>
-      <p class="nr-dark__lead" data-reveal="">Estruture o programa com dados, atribua o que importa e acompanhe a liderança — no mesmo ambiente de aprendizagem.</p>
+      <p class="nr-dark__lead" data-reveal="">Estruture o programa com dados, atribua o que importa e acompanhe a liderança, no mesmo ambiente de aprendizagem.</p>
       <div class="nr-steps" data-reveal="">
         <article class="nr-step">
           <div class="nr-step__n">01</div>
           <h3>Diagnóstico orientado a dados</h3>
           <p class="nr-step__tag">Antes que o risco vire afastamento</p>
-          <p>Identificamos onde o risco psicossocial está concentrado — por área, cargo e liderança — para agir cedo.</p>
+          <p>Identificamos onde o risco psicossocial está concentrado, por área, cargo e liderança, para agir cedo.</p>
         </article>
         <article class="nr-step">
           <div class="nr-step__n">02</div>
@@ -800,11 +803,11 @@
           <div class="nr-step__n">03</div>
           <h3>Acompanhamento de liderança</h3>
           <p class="nr-step__tag">Visibilidade além do RH central</p>
-          <p>Gestores veem o status do time em tempo real. Trilhas evoluem com a regulamentação — sem retrabalho.</p>
+          <p>Gestores veem o status do time em tempo real. Trilhas evoluem com a regulamentação, sem retrabalho.</p>
         </article>
       </div>
       <div class="nr-note" data-reveal="">
-        Fiscalização NR-1 em vigor. Empresas com empregados CLT precisam manter inventário de riscos psicossociais, plano de ação e trilha de evidências auditável — a Lector gera as três a partir do que sua empresa publica na plataforma.
+        Fiscalização NR-1 em vigor. Empresas com empregados CLT precisam manter inventário de riscos psicossociais, plano de ação e trilha de evidências auditável. A Lector gera as três a partir do que sua empresa publica na plataforma.
       </div>
     </div>
   </section>
@@ -813,7 +816,7 @@
   <section class="nr-status-sec" id="status" aria-label="Status de conformidade">
     <div class="nr-status-sec__inner">
       <h2 class="nr-status-sec__title" data-reveal="">Visibilidade e conformidade que o time e o auditor entendem.</h2>
-      <p class="nr-status-sec__sub" data-reveal="">Um painel claro: diagnóstico, trilhas e relatório de evidências — sem caça a planilha na véspera da fiscalização.</p>
+      <p class="nr-status-sec__sub" data-reveal="">Um painel claro: diagnóstico, trilhas e relatório de evidências, sem caça a planilha na véspera da fiscalização.</p>
       <div class="nr-status" data-reveal="" aria-label="Status de conformidade">
         <div class="nr-status__label">Status de conformidade</div>
         <p class="nr-status__title">Programa NR-1 · Riscos Psicossociais</p>
@@ -853,7 +856,7 @@
         </details>
         <details>
           <summary>A plataforma substitui a perícia ou consultoria de SST?</summary>
-          <p>Não. A Lector estrutura o diagnóstico, as trilhas e a evidência de execução. Recomendamos apoio técnico de SST para laudo e adequação legal específica — nossos Serviços Especializados podem apoiar essa etapa.</p>
+          <p>Não. A Lector estrutura o diagnóstico, as trilhas e a evidência de execução. Recomendamos apoio técnico de SST para laudo e adequação legal específica. Nossos Serviços Especializados podem apoiar essa etapa.</p>
         </details>
         <details>
           <summary>Quanto tempo leva para ter o primeiro diagnóstico pronto?</summary>
@@ -861,7 +864,7 @@
         </details>
         <details>
           <summary>As evidências geradas servem para fiscalização do Ministério do Trabalho?</summary>
-          <p>Sim. Os relatórios trazem histórico de participação, conclusão de trilhas e datas de execução — a documentação que costuma ser solicitada em fiscalização.</p>
+          <p>Sim. Os relatórios trazem histórico de participação, conclusão de trilhas e datas de execução, a documentação que costuma ser solicitada em fiscalização.</p>
         </details>
       </div>
     </div>
@@ -872,7 +875,7 @@
     <img class="nr-final-cta__orbit" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <div class="nr-final-cta__inner">
       <h2 data-reveal="">Sua empresa não precisa esperar a fiscalização chegar.</h2>
-      <p data-reveal="">Estruture diagnóstico, trilhas obrigatórias e evidências de conformidade em poucas semanas — com um especialista em NR-1.</p>
+      <p data-reveal="">Estruture diagnóstico, trilhas obrigatórias e evidências de conformidade em poucas semanas, com um especialista em NR-1.</p>
       <div data-reveal="">
         <a href="#" class="nr-final-cta__btn" data-open-lead data-lead-interest="nr1">
           Agendar diagnóstico de risco psicossocial
@@ -893,7 +896,7 @@
       <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
         <div>
           <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
-          <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+          <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça, em um só lugar.</p>
         </div>
         <div>
           <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Produto</div>

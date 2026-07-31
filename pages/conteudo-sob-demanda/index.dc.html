@@ -61,7 +61,7 @@
   "offers": {
     "@type": "Offer",
     "priceCurrency": "BRL",
-    "description": "SaaS por colaborador/mês — faixas em /precos (a publicar)"
+    "description": "SaaS por colaborador/mês, faixas em /precos (a publicar)"
   },
   "provider": { "@type": "Organization", "name": "Lector" }
 }
@@ -77,7 +77,7 @@
       "name": "Preciso ter equipe de produção interna?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Não. Você descreve o que precisa e nosso time cuida do roteiro, da produção e da publicação. Se quiser, alguém da sua empresa pode aparecer no vídeo — mas não é obrigatório."
+        "text": "Não. Você descreve o que precisa e nosso time cuida do roteiro, da produção e da publicação. Se quiser, alguém da sua empresa pode aparecer no vídeo, mas não é obrigatório."
       }
     },
     {
@@ -85,7 +85,7 @@
       "name": "É uma ferramenta de IA que eu mesmo uso?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Não. É um serviço. Você faz o pedido, e um time real — apoiado por IA — produz e revisa antes de publicar. Você não precisa aprender a operar nada."
+        "text": "Não. É um serviço. Você faz o pedido, e um time real, apoiado por IA, produz e revisa antes de publicar. Você não precisa aprender a operar nada."
       }
     },
     {
@@ -101,7 +101,7 @@
       "name": "Quem garante que o conteúdo está correto?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Toda produção passa por revisão humana antes de ir ao ar, incluindo validação de compliance quando o conteúdo exige — como treinamentos obrigatórios e NR-1."
+        "text": "Toda produção passa por revisão humana antes de ir ao ar, incluindo validação de compliance quando o conteúdo exige, como treinamentos obrigatórios e NR-1."
       }
     },
     {
@@ -117,7 +117,7 @@
       "name": "Em quanto tempo um conteúdo fica pronto?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Varia pelo tamanho e criticidade do conteúdo. Comunicados simples saem em horas; trilhas completas, em poucos dias — sempre muito mais rápido que produção tradicional."
+        "text": "Varia pelo tamanho e criticidade do conteúdo. Comunicados simples saem em horas; trilhas completas, em poucos dias, sempre muito mais rápido que produção tradicional."
       }
     }
   ]
@@ -125,9 +125,9 @@
 </script>
 
 <title>Criação de Conteúdo sob Demanda | Lector</title>
-<meta name="description" content="Sua empresa pede o treinamento. A Lector produz: onboarding, compliance, trilha comercial e comunicados — com avatar, identidade da marca e publicação na Universidade Corporativa.">
+<meta name="description" content="Sua empresa pede o treinamento. A Lector produz: onboarding, compliance, trilha comercial e comunicados, com avatar, identidade da marca e publicação na Universidade Corporativa.">
 <meta property="og:title" content="Criação de Conteúdo sob Demanda | Lector">
-<meta property="og:description" content="Você descreve o que precisa. Roteiro, produção com IA, revisão humana e publicação na sua universidade — com a cara da sua marca.">
+<meta property="og:description" content="Você descreve o que precisa. Roteiro, produção com IA, revisão humana e publicação na sua universidade, com a cara da sua marca.">
 <link rel="stylesheet" href="/design-system/tokens/fonts.css">
 <link rel="stylesheet" href="/design-system/tokens/colors.css">
 <link rel="stylesheet" href="/design-system/tokens/typography.css">
@@ -224,9 +224,12 @@
   .lk-nav-dd { position: relative; display: inline-flex; align-items: center; }
   .lk-nav-dd__trigger {
     display: inline-flex; align-items: center; gap: 5px; background: none; border: none;
-    padding: 0; margin: 0; font: inherit; font-weight: 700; font-size: inherit;
-    color: var(--brand); cursor: pointer; transition: color .2s;
+    padding: 0; margin: 0; font: inherit; font-weight: 600; font-size: inherit;
+    color: rgba(255,255,255,.85); cursor: pointer; transition: color .2s;
   }
+  .lk-nav-dd__trigger:hover,
+  .lk-nav-dd:hover .lk-nav-dd__trigger,
+  .lk-nav-dd:focus-within .lk-nav-dd__trigger { color: var(--brand); }
   .lk-nav-dd__chev {
     display: inline-flex; width: 14px; height: 14px; transition: transform .2s; opacity: .75;
   }
@@ -918,6 +921,7 @@
         <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:24px; display:block;">
       </a>
       <nav class="lk-nav-desktop" style="display:flex; align-items:center; gap:30px; font-size:14.5px; font-weight:600;">
+        <a href="/pages/sobre/index.dc.html" style="{{ navLinkStyle }}">Sobre</a>
         <div class="lk-nav-dd">
           <button type="button" class="lk-nav-dd__trigger" aria-haspopup="true" aria-expanded="false">
             Nossas Soluções
@@ -949,7 +953,7 @@
               <span class="lk-nav-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
               <span class="lk-nav-dd__item-body">
                 <span class="lk-nav-dd__item-title">Criação de Conteúdo sob Demanda</span>
-                <span class="lk-nav-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
+                <span class="lk-nav-dd__item-desc">Cursos, vídeos e materiais sob demanda, com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
               </span>
             </a>
             <a href="/pages/diagnostico-gaps/index.dc.html" class="lk-nav-dd__item" role="menuitem">
@@ -970,7 +974,6 @@
         </div>
         <a href="/pages/blog/index.dc.html" style="{{ navLinkStyle }}">Blog</a>
         <a href="/pages/clientes/index.dc.html" style="{{ navLinkStyle }}">Clientes</a>
-        <a href="/pages/sobre/index.dc.html" style="{{ navLinkStyle }}">Sobre</a>
         <a href="/pages/contato/index.dc.html" style="{{ navLinkStyle }}">Contato</a>
       </nav>
       <div class="lk-header-actions" style="display:flex; align-items:center; gap:18px; flex:none;">
@@ -993,6 +996,7 @@
         <i data-lucide="x"></i>
       </button>
     </div>
+    <a href="/pages/sobre/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
     <div class="lk-mnav-label">Nossas Soluções</div>
     <div class="lk-mnav-sub">
       <a href="/pages/plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
@@ -1004,7 +1008,6 @@
     </div>
     <a href="/pages/blog/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Blog</a>
     <a href="/pages/clientes/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
-    <a href="/pages/sobre/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
     <a href="/pages/contato/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Contato</a>
     <div class="lk-mnav-cta">
       <a href="https://lector.live" class="lk-mnav-cta__ghost" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>
@@ -1031,7 +1034,7 @@
       <div data-reveal="">
         <h1>Sua empresa pede o treinamento.<br>A Lector <em>produz</em>.</h1>
         <p class="cd-hero__sub">
-          Onboarding, compliance, trilha comercial, comunicado de mudança de processo. Você descreve o que precisa, nosso time e nossa IA roteirizam, gravam com avatar vestindo o uniforme da sua empresa e publicam — tudo com a identidade visual da sua marca, direto dentro da sua Universidade Corporativa.
+          Onboarding, compliance, trilha comercial, comunicado de mudança de processo. Você descreve o que precisa, nosso time e nossa IA roteirizam, gravam com avatar vestindo o uniforme da sua empresa e publicam. Tudo com a identidade visual da sua marca, direto dentro da sua Universidade Corporativa.
         </p>
         <div class="cd-hero__ctas">
           <a href="#cta" class="lk-hero-cta" data-open-lead data-lead-interest="conteudo">
@@ -1129,7 +1132,7 @@
     <div class="cd-dark__inner">
       <h2 class="cd-dark__title" data-reveal="">Como funciona: você pede. A gente entrega pronto.</h2>
       <p class="cd-dark__lead" data-reveal="">
-        Diferente de uma ferramenta de IA que você mesmo teria que operar, aqui o pedido entra numa fila de produção real: parte automatizada por IA, parte conduzida por especialistas em T&amp;D — e sempre com revisão humana antes de ir ao ar.
+        Diferente de uma ferramenta de IA que você mesmo teria que operar, aqui o pedido entra numa fila de produção real: parte automatizada por IA, parte conduzida por especialistas em T&amp;D, e sempre com revisão humana antes de ir ao ar.
       </p>
       <div class="cd-pipeline" data-reveal="" aria-label="Pipeline de produção">
         <span><i data-lucide="clipboard-list"></i> Seu pedido</span>
@@ -1152,7 +1155,7 @@
         <article class="cd-step">
           <div class="cd-step__n">03</div>
           <h3>Produção com IA</h3>
-          <p>Slides, narração e, se sua empresa quiser, avatar com a identidade visual e voz de um porta-voz — sem ninguém precisar gravar do zero.</p>
+          <p>Slides, narração e, se sua empresa quiser, avatar com a identidade visual e voz de um porta-voz, sem ninguém precisar gravar do zero.</p>
         </article>
         <article class="cd-step">
           <div class="cd-step__n">04</div>
@@ -1168,7 +1171,7 @@
     <div class="cd-samples__inner">
       <div class="cd-samples__header" data-reveal="">
         <h2 class="cd-samples__title">Conteúdos criados: veja o padrão de entrega.</h2>
-        <p class="cd-samples__sub">Exemplos reais de treinamentos produzidos sob demanda — com identidade, roteiro e publicação prontos.</p>
+        <p class="cd-samples__sub">Exemplos reais de treinamentos produzidos sob demanda, com identidade, roteiro e publicação prontos.</p>
       </div>
 
       <div class="cd-carousel" data-cd-carousel="" data-reveal="">
@@ -1273,7 +1276,7 @@
     <div class="cd-catalog__inner">
       <div class="cd-catalog__header" data-reveal="">
         <h2 class="cd-catalog__title">O que dá pra pedir: um catálogo de conteúdo, não um produto engessado.</h2>
-        <p class="cd-catalog__sub">Do onboarding ao NR-1 — cada pedido vira trilha publicada com a cara da sua empresa.</p>
+        <p class="cd-catalog__sub">Do onboarding ao NR-1, cada pedido vira trilha publicada com a cara da sua empresa.</p>
       </div>
       <div class="cd-catalog__grid">
         <article class="cd-card" data-reveal="">
@@ -1314,7 +1317,7 @@
   <section class="cd-variety" id="variedade" aria-label="Variedade de formatos">
     <div class="cd-variety__inner" data-reveal="">
       <h2 class="cd-variety__title">Variedade, não modelo único</h2>
-      <p class="cd-variety__sub">Cada conteúdo sai com a cara certa — não um template genérico repetido.</p>
+      <p class="cd-variety__sub">Cada conteúdo sai com a cara certa, não um template genérico repetido.</p>
       <div class="cd-chips">
         <span>Onboarding</span>
         <span>Compliance</span>
@@ -1334,7 +1337,7 @@
       <div data-reveal="">
         <h2 class="cd-avatar-sec__title">O avatar veste o uniforme da sua empresa. O treinamento nasce com a sua identidade.</h2>
         <p class="cd-avatar-sec__body">
-          Nada de avatar genérico com fundo neutro. O porta-voz é gerado com o uniforme, o crachá e as cores da sua empresa — e todo o treinamento, do slide ao vídeo, sai com a identidade visual, o logo e o tom de voz da sua marca. Fica com cara de conteúdo interno, não de curso comprado pronto.
+          Nada de avatar genérico com fundo neutro. O porta-voz é gerado com o uniforme, o crachá e as cores da sua empresa, e todo o treinamento, do slide ao vídeo, sai com a identidade visual, o logo e o tom de voz da sua marca. Fica com cara de conteúdo interno, não de curso comprado pronto.
         </p>
         <div class="cd-avatar-sec__note">
           <i data-lucide="shirt"></i>
@@ -1351,7 +1354,7 @@
           <span class="cd-face" style="background:linear-gradient(135deg,#0E7490,#155E75);">PM</span>
           <span class="cd-face cd-face--plus" aria-hidden="true">+</span>
         </div>
-        <p>Cada avatar reflete o time e a marca — pronto para narração, slide e publicação na universidade.</p>
+        <p>Cada avatar reflete o time e a marca, pronto para narração, slide e publicação na universidade.</p>
       </div>
     </div>
   </section>
@@ -1360,7 +1363,7 @@
   <section class="cd-included" id="incluso" aria-label="O que está incluso">
     <div class="cd-included__inner">
       <h2 class="cd-included__title" data-reveal="">O que está incluso: cada pedido sai com tudo pronto pra rodar.</h2>
-      <p class="cd-included__sub" data-reveal="">Do roteiro à publicação — sem você montar estúdio nem equipe de autoria.</p>
+      <p class="cd-included__sub" data-reveal="">Do roteiro à publicação, sem você montar estúdio nem equipe de autoria.</p>
       <div class="cd-checks" data-reveal="">
         <div class="cd-check"><span class="cd-check__icon" aria-hidden="true"><i data-lucide="check"></i></span><p>Roteiro estruturado por especialistas em T&amp;D</p></div>
         <div class="cd-check"><span class="cd-check__icon" aria-hidden="true"><i data-lucide="check"></i></span><p>Avatar com uniforme, crachá e identidade visual da sua empresa</p></div>
@@ -1381,11 +1384,11 @@
       <div class="cd-faq" data-reveal="">
         <details>
           <summary>Preciso ter equipe de produção interna?</summary>
-          <p>Não. Você descreve o que precisa e nosso time cuida do roteiro, da produção e da publicação. Se quiser, alguém da sua empresa pode aparecer no vídeo — mas não é obrigatório.</p>
+          <p>Não. Você descreve o que precisa e nosso time cuida do roteiro, da produção e da publicação. Se quiser, alguém da sua empresa pode aparecer no vídeo, mas não é obrigatório.</p>
         </details>
         <details>
           <summary>É uma ferramenta de IA que eu mesmo uso?</summary>
-          <p>Não. É um serviço. Você faz o pedido, e um time real — apoiado por IA — produz e revisa antes de publicar. Você não precisa aprender a operar nada.</p>
+          <p>Não. É um serviço. Você faz o pedido, e um time real, apoiado por IA, produz e revisa antes de publicar. Você não precisa aprender a operar nada.</p>
         </details>
         <details>
           <summary>Dá pra usar avatar com IA ou precisa gravar de verdade?</summary>
@@ -1393,7 +1396,7 @@
         </details>
         <details>
           <summary>Quem garante que o conteúdo está correto?</summary>
-          <p>Toda produção passa por revisão humana antes de ir ao ar, incluindo validação de compliance quando o conteúdo exige — como treinamentos obrigatórios e NR-1.</p>
+          <p>Toda produção passa por revisão humana antes de ir ao ar, incluindo validação de compliance quando o conteúdo exige, como treinamentos obrigatórios e NR-1.</p>
         </details>
         <details>
           <summary>Isso substitui a plataforma Lector?</summary>
@@ -1401,7 +1404,7 @@
         </details>
         <details>
           <summary>Em quanto tempo um conteúdo fica pronto?</summary>
-          <p>Varia pelo tamanho e criticidade do conteúdo. Comunicados simples saem em horas; trilhas completas, em poucos dias — sempre muito mais rápido que produção tradicional.</p>
+          <p>Varia pelo tamanho e criticidade do conteúdo. Comunicados simples saem em horas; trilhas completas, em poucos dias, sempre muito mais rápido que produção tradicional.</p>
         </details>
       </div>
     </div>
@@ -1412,7 +1415,7 @@
     <img class="cd-final-cta__orbit" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <div class="cd-final-cta__inner">
       <h2 data-reveal="">Pronto pra começar? Peça o primeiro conteúdo da sua universidade corporativa.</h2>
-      <p data-reveal="">Você descreve o que precisa. A Lector produz, revisa e publica — com a cara da sua marca.</p>
+      <p data-reveal="">Você descreve o que precisa. A Lector produz, revisa e publica, com a cara da sua marca.</p>
       <ul class="cd-final-cta__checks" data-reveal="">
         <li><i data-lucide="check"></i> Sem equipe de produção interna</li>
         <li><i data-lucide="check"></i> Roteiro, slides, voz e vídeo prontos</li>
@@ -1434,7 +1437,7 @@
       <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
         <div>
           <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
-          <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+          <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça, em um só lugar.</p>
         </div>
         <div>
           <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Produto</div>

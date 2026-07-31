@@ -61,15 +61,15 @@
   "offers": {
     "@type": "Offer",
     "priceCurrency": "BRL",
-    "description": "SaaS por colaborador/mês — faixas em /precos (a publicar)"
+    "description": "SaaS por colaborador/mês, faixas em /precos (a publicar)"
   },
   "provider": { "@type": "Organization", "name": "Lector" }
 }
 </script>
 
-<title>Plataforma Lector — LMS, IA e universidade corporativa</title>
+<title>Plataforma Lector | LMS, IA e universidade corporativa</title>
 <meta name="description" content="LMS, webconferência e IA nativa em um só ambiente. Transforme treinamento em performance medível e compliance NR-1 auditável.">
-<meta property="og:title" content="Plataforma Lector — LMS, IA e universidade corporativa">
+<meta property="og:title" content="Plataforma Lector | LMS, IA e universidade corporativa">
 <meta property="og:description" content="LMS, webconferência e IA nativa em um só ambiente. Transforme treinamento em performance medível e compliance NR-1 auditável.">
 <link rel="stylesheet" href="/design-system/tokens/fonts.css">
 <link rel="stylesheet" href="/design-system/tokens/colors.css">
@@ -174,9 +174,12 @@
   .lk-nav-dd { position: relative; display: inline-flex; align-items: center; }
   .lk-nav-dd__trigger {
     display: inline-flex; align-items: center; gap: 5px; background: none; border: none;
-    padding: 0; margin: 0; font: inherit; font-weight: 700; font-size: inherit;
-    color: var(--brand); cursor: pointer; transition: color .2s;
+    padding: 0; margin: 0; font: inherit; font-weight: 600; font-size: inherit;
+    color: rgba(255,255,255,.85); cursor: pointer; transition: color .2s;
   }
+  .lk-nav-dd__trigger:hover,
+  .lk-nav-dd:hover .lk-nav-dd__trigger,
+  .lk-nav-dd:focus-within .lk-nav-dd__trigger { color: var(--brand); }
   .lk-nav-dd__chev {
     display: inline-flex; width: 14px; height: 14px; transition: transform .2s; opacity: .75;
   }
@@ -1168,6 +1171,7 @@
         <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:24px; display:block;">
       </a>
       <nav class="lk-nav-desktop" style="display:flex; align-items:center; gap:30px; font-size:14.5px; font-weight:600;">
+        <a href="/pages/sobre/index.dc.html" style="{{ navLinkStyle }}">Sobre</a>
         <div class="lk-nav-dd">
           <button type="button" class="lk-nav-dd__trigger" aria-haspopup="true" aria-expanded="false">
             Nossas Soluções
@@ -1199,7 +1203,7 @@
               <span class="lk-nav-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
               <span class="lk-nav-dd__item-body">
                 <span class="lk-nav-dd__item-title">Criação de Conteúdo sob Demanda</span>
-                <span class="lk-nav-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
+                <span class="lk-nav-dd__item-desc">Cursos, vídeos e materiais sob demanda, com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
               </span>
             </a>
             <a href="/pages/diagnostico-gaps/index.dc.html" class="lk-nav-dd__item" role="menuitem">
@@ -1220,7 +1224,6 @@
         </div>
         <a href="/pages/blog/index.dc.html" style="{{ navLinkStyle }}">Blog</a>
         <a href="/pages/clientes/index.dc.html" style="{{ navLinkStyle }}">Clientes</a>
-        <a href="/pages/sobre/index.dc.html" style="{{ navLinkStyle }}">Sobre</a>
         <a href="/pages/contato/index.dc.html" style="{{ navLinkStyle }}">Contato</a>
       </nav>
       <div class="lk-header-actions" style="display:flex; align-items:center; gap:18px; flex:none;">
@@ -1243,6 +1246,7 @@
         <i data-lucide="x"></i>
       </button>
     </div>
+    <a href="/pages/sobre/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
     <div class="lk-mnav-label">Nossas Soluções</div>
     <div class="lk-mnav-sub">
       <a href="/pages/plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
@@ -1254,7 +1258,6 @@
     </div>
     <a href="/pages/blog/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Blog</a>
     <a href="/pages/clientes/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
-    <a href="/pages/sobre/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
     <a href="/pages/contato/index.dc.html" class="lk-mnav-link" onClick="{{ closeMobile }}">Contato</a>
     <div class="lk-mnav-cta">
       <a href="https://lector.live" class="lk-mnav-cta__ghost" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>
@@ -1287,7 +1290,7 @@
           Uma plataforma.<br>Todas as ferramentas.<br><span style="color:var(--brand); font-style:italic;">IA nativa.</span>
         </h1>
         <p style="font-size:18px; line-height:1.55; color:rgba(230,238,250,.8); max-width:560px; margin:0 auto 36px;">
-          A Lector é a plataforma brasileira de educação corporativa com IA nativa: LMS, webconferência, autoria e compliance NR-1 para provar resultado de treinamento — não só engajamento.
+          A Lector é a plataforma brasileira de educação corporativa com IA nativa: LMS, webconferência, autoria e compliance NR-1 para provar resultado de treinamento, não só engajamento.
         </p>
 
         <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:14px;">
@@ -1328,7 +1331,7 @@
         É também a inteligência que <span style="color:var(--brand);">conecta tudo</span>.
       </p>
       <p data-reveal="" style="font-size:18px; line-height:1.55; color:var(--ink-500); max-width:560px; margin:24px 0 0;">
-        Um documento novo dispara uma cadeia inteira de aprendizagem — atualiza a base, ajusta trilhas, notifica gestores — no mesmo ambiente.
+        Um documento novo dispara uma cadeia inteira de aprendizagem. Atualiza a base, ajusta trilhas e notifica gestores, no mesmo ambiente.
       </p>
     </div>
   </section>
@@ -1338,13 +1341,13 @@
     <div class="pl-diff__inner">
       <div class="pl-diff__header" data-reveal="">
         <h2 class="pl-diff__title">Por que a Lector: nativo, proprietário e feito para resultado.</h2>
-        <p class="pl-diff__sub">Substitua <strong style="color:var(--navy-800); font-weight:700;">seis contratos por um ambiente único</strong> de aprendizagem, comunicação e compliance.</p>
+        <p class="pl-diff__sub">Nativa, proprietária e desenvolvida para oferecer <strong style="color:var(--navy-800); font-weight:700;">segurança, desempenho e evolução contínua</strong>.</p>
       </div>
       <div class="pl-diff__grid">
         <article class="pl-diff__card" data-reveal="">
           <div class="pl-diff__icon" aria-hidden="true"><i data-lucide="layers"></i></div>
           <h3>Nativo, não apenas integrado.</h3>
-          <p>Ferramentas unidas desde a origem — não um mosaico de plugins conectados por API.</p>
+          <p>Ferramentas unidas desde a origem, não um mosaico de plugins conectados por API.</p>
         </article>
         <article class="pl-diff__card" data-reveal="">
           <div class="pl-diff__icon" aria-hidden="true"><i data-lucide="code-2"></i></div>
@@ -1359,7 +1362,7 @@
         <article class="pl-diff__card" data-reveal="">
           <div class="pl-diff__icon" aria-hidden="true"><i data-lucide="heart-handshake"></i></div>
           <h3>Implantação humanizada</h3>
-          <p>Suporte que foca no que faz diferença para o cliente — não só no go-live.</p>
+          <p>Suporte que foca no que faz diferença para o cliente, não só no go-live.</p>
         </article>
         <article class="pl-diff__card" data-reveal="">
           <div class="pl-diff__icon" aria-hidden="true"><i data-lucide="briefcase"></i></div>
@@ -1409,7 +1412,7 @@
     <div class="pl-uni__head" data-reveal="">
       <h2 class="pl-uni__title">Universidade corporativa: universidade.suaempresa.com</h2>
       <p class="pl-uni__body">
-        Cada empresa tem a sua própria universidade — com domínio, marca e identidade. LMS, trilhas, comunidade e ao vivo no mesmo lugar, com assistente de IA que recomenda o próximo passo.
+        Cada empresa tem a sua própria universidade, com domínio, marca e identidade. LMS, trilhas, comunidade e ao vivo no mesmo lugar, com assistente de IA que recomenda o próximo passo.
       </p>
       <div class="pl-uni__actions">
         <a href="#cta" class="lk-spotlight__btn-primary" data-lead-interest="demonstracao">
@@ -1426,7 +1429,7 @@
         <div class="pl-uni__screen">
           <img
             src="/assets/media/home/universidade-corporativa.png"
-            alt="Interface da universidade corporativa Lector — trilhas e cursos do aluno"
+            alt="Interface da universidade corporativa Lector, trilhas e cursos do aluno"
             loading="lazy"
             decoding="async"
           >
@@ -1446,7 +1449,7 @@
     <div class="lk-modules__inner">
       <div data-reveal="" class="lk-modules__intro">
         <h2 class="lk-modules__title">Uma plataforma: tudo conectado em um único ambiente.</h2>
-        <p class="lk-modules__sub">Aprendizagem, conhecimento, comunicação e compliance — sem trocar de ferramenta.</p>
+        <p class="lk-modules__sub">Aprendizagem, conhecimento, comunicação e compliance, sem trocar de ferramenta.</p>
       </div>
       <div class="lk-modules__grid">
         <sc-for list="{{ modules }}" as="m" hint-placeholder-count="9">
@@ -1463,7 +1466,7 @@
 
       <div class="pl-exclusive" id="ambiente-exclusivo" data-reveal="">
         <h3>Um ambiente criado exclusivamente para a sua empresa.</h3>
-        <p>Sua marca, seu domínio, sua cultura — nada de plataforma genérica com logo colada em cima.</p>
+        <p>Sua marca, seu domínio, sua cultura. Nada de plataforma genérica com logo colada em cima.</p>
         <div class="pl-exclusive__grid">
           <div class="pl-exclusive__item"><i data-lucide="tag"></i> Sua marca</div>
           <div class="pl-exclusive__item"><i data-lucide="globe"></i> Seu domínio</div>
@@ -1487,7 +1490,7 @@
           class="lk-spotlight__img lk-lms-carousel__img"
           src="/assets/media/home/lms-diagnostico.png"
           data-slides="/assets/media/home/lms-diagnostico.png,/assets/media/home/lms.png"
-          alt="Interface do LMS Lector — trilhas, turmas e aprendizado"
+          alt="Interface do LMS Lector, trilhas, turmas e aprendizado"
           loading="lazy"
           decoding="async"
         >
@@ -1498,10 +1501,10 @@
           LMS: o núcleo do aprendizado da sua empresa, em um só ambiente.
         </h2>
         <p class="lk-spotlight__body">
-          Trilhas, turmas, certificados e app mobile no mesmo lugar onde o conteúdo nasce. Cada pessoa vê o que precisa — e o RH enxerga conclusão, prazo e impacto sem planilha paralela.
+          Trilhas, turmas, certificados e app mobile no mesmo lugar onde o conteúdo nasce. Cada pessoa vê o que precisa, e o RH enxerga conclusão, prazo e impacto sem planilha paralela.
         </p>
         <p class="lk-spotlight__meta">
-          Menos ferramentas soltas. <strong>Mais gente terminando o que importa</strong> — com registro pronto para auditoria.
+          Menos ferramentas soltas. <strong>Mais gente terminando o que importa</strong>, com registro pronto para auditoria.
         </p>
         <div class="lk-spotlight__actions">
           <a href="#cta" class="lk-spotlight__btn-primary">
@@ -1524,10 +1527,10 @@
           Autoria: os melhores recursos de conteúdo em um só lugar.
         </h2>
         <p class="lk-spotlight__body">
-          Construa cursos com precisão — do roteiro ao SCORM — com IA que acelera o rascunho, editor de vídeo e templates de marca. Você descreve o objetivo; a Lector monta a primeira versão pronta para refinar e publicar.
+          Construa cursos com precisão, do roteiro ao SCORM, com IA que acelera o rascunho, editor de vídeo e templates de marca. Você descreve o objetivo; a Lector monta a primeira versão pronta para refinar e publicar.
         </p>
         <p class="lk-spotlight__meta">
-          Do brief ao curso publicado em <strong>horas, não semanas</strong> — sem depender de um time de produção externo.
+          Do brief ao curso publicado em <strong>horas, não semanas</strong>, sem depender de um time de produção externo.
         </p>
         <div class="lk-spotlight__actions">
           <a href="#cta" class="lk-spotlight__btn-primary">
@@ -1562,7 +1565,7 @@
         <img
           class="lk-spotlight__img"
           src="/assets/media/home/webconferencia.png"
-          alt="Interface de webconferência Lector — sala ao vivo com participantes e controles"
+          alt="Interface de webconferência Lector, sala ao vivo com participantes e controles"
           loading="lazy"
           decoding="async"
         >
@@ -1570,13 +1573,13 @@
 
       <div class="lk-spotlight__copy" data-reveal="">
         <h2 class="lk-spotlight__title">
-          Webconferência: aulas e reuniões ao vivo — nativas, sem plugin e sem ferramenta a mais.
+          Webconferência: aulas e reuniões ao vivo, nativas, sem plugin e sem ferramenta a mais.
         </h2>
         <p class="lk-spotlight__body">
-          Webconferência integrada ao LMS: presença, gravação, material e chat no mesmo lugar. A IA transcreve, resume e devolve ata com decisões e tarefas — sem ninguém anotar na correria.
+          Webconferência integrada ao LMS: presença, gravação, material e chat no mesmo lugar. A IA transcreve, resume e devolve ata com decisões e tarefas, sem ninguém anotar na correria.
         </p>
         <p class="lk-spotlight__meta">
-          Do encontro ao registro em <strong>minutos, não em e-mails soltos</strong> — e o conteúdo volta para a trilha.
+          Do encontro ao registro em <strong>minutos, não em e-mails soltos</strong>, e o conteúdo volta para a trilha.
         </p>
         <div class="lk-spotlight__actions">
           <a href="#cta" class="lk-spotlight__btn-primary">
@@ -1637,7 +1640,7 @@
         <img
           class="lk-spotlight__img"
           src="/assets/media/home/gestao-talentos.png"
-          alt="Gestão de talentos Lector — competências, evolução e desenvolvimento de pessoas"
+          alt="Gestão de talentos Lector, competências, evolução e desenvolvimento de pessoas"
           loading="lazy"
           decoding="async"
         >
@@ -1651,7 +1654,7 @@
           Gerencie competências, avaliações, desempenho, feedbacks, planos de desenvolvimento e indicadores em uma plataforma inteligente que acompanha a evolução de cada colaborador.
         </p>
         <p class="lk-spotlight__meta">
-          Do gap ao PDI: o mesmo ambiente em que o time <strong>aprende, é avaliado e evolui</strong> — sem planilha paralela de RH.
+          Do gap ao PDI: o mesmo ambiente em que o time <strong>aprende, é avaliado e evolui</strong>, sem planilha paralela de RH.
         </p>
         <div class="lk-spotlight__actions">
           <a href="#cta" class="lk-spotlight__btn-primary">
@@ -1673,13 +1676,13 @@
         <img
           class="lk-spotlight__img"
           src="/assets/media/home/rede-social.png"
-          alt="Rede social corporativa Lector — feed, grupos e engajamento do time"
+          alt="Rede social corporativa Lector, feed, grupos e engajamento do time"
           loading="lazy"
           decoding="async"
         >
       </div>
       <div class="lk-spotlight__copy" data-reveal="">
-        <h2 class="lk-spotlight__title">Rede social corporativa: a sua empresa também tem a própria rede — dentro da universidade.</h2>
+        <h2 class="lk-spotlight__title">Rede social corporativa: a sua empresa também tem a própria rede, dentro da universidade.</h2>
         <p class="lk-spotlight__body">
           Colaboradores publicam, interagem e constroem cultura sem apps externos. O conhecimento do dia a dia deixa de se perder em grupos paralelos e entra no ecossistema de aprendizagem.
         </p>
@@ -1698,7 +1701,7 @@
       <div class="lk-spotlight__copy" data-reveal="">
         <h2 class="lk-spotlight__title">Onboarding que não depende de quem está de plantão.</h2>
         <p class="lk-spotlight__body">
-          Trilha padronizada por cargo no primeiro dia, autoria com IA a partir do que a empresa já tem e dashboard em tempo real para o RH — sem loteria de integração.
+          Trilha padronizada por cargo no primeiro dia, autoria com IA a partir do que a empresa já tem e dashboard em tempo real para o RH, sem loteria de integração.
         </p>
         <p class="lk-spotlight__meta">
           Menos turnover nos primeiros 90 dias. Mais clareza do que a empresa espera de cada pessoa.
@@ -1721,7 +1724,7 @@
     <img class="pl-dark__orbit pl-dark__orbit--bl" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <div class="pl-dark__inner">
       <h2 class="pl-dark__title" data-reveal="">Sistema operacional do conhecimento: enquanto seus colaboradores aprendem, a plataforma aprende junto.</h2>
-      <p class="pl-dark__lead" data-reveal="">Um único evento dispara uma cadeia inteira de aprendizagem — automaticamente, no mesmo ecossistema.</p>
+      <p class="pl-dark__lead" data-reveal="">Um único evento dispara uma cadeia inteira de aprendizagem, automaticamente, no mesmo ecossistema.</p>
       <div class="pl-chain" data-reveal="">
         <div class="pl-step"><span class="pl-step__n">01</span><p>Um documento novo é publicado.</p></div>
         <div class="pl-step"><span class="pl-step__n">02</span><p>A IA identifica impacto em processos existentes.</p></div>
@@ -1735,7 +1738,7 @@
         <div class="pl-step"><span class="pl-step__n">10</span><p>Monitora aplicação e lacunas remanescentes.</p></div>
       </div>
       <div class="pl-nr1-note" data-reveal="">
-        NR‑1 em fiscalização ativa. Empresas com empregados CLT precisam de inventário de riscos psicossociais, plano de ação e trilha de evidências — a Lector gera as três a partir do que sua empresa já publica.
+        NR‑1 em fiscalização ativa. Empresas com empregados CLT precisam de inventário de riscos psicossociais, plano de ação e trilha de evidências. A Lector gera as três a partir do que sua empresa já publica.
       </div>
       <div class="pl-os" data-reveal="">
         <h3>O verdadeiro produto da Lector</h3>
@@ -1756,7 +1759,7 @@
   <section class="pl-leaders" id="lideranca" aria-label="Liderança e talentos">
     <div class="pl-leaders__inner">
       <h2 class="pl-leaders__title" data-reveal="">Liderança e talentos: decisões de sucessão com dado, não com achismo.</h2>
-      <p class="pl-leaders__sub" data-reveal="">Do diagnóstico de competências à trilha de formação contínua — líderes prontos e talentos identificados antes de saírem pela porta.</p>
+      <p class="pl-leaders__sub" data-reveal="">Do diagnóstico de competências à trilha de formação contínua. Líderes prontos e talentos identificados antes de saírem pela porta.</p>
       <div class="pl-two">
         <article class="pl-offer" data-reveal="">
           <h3>Desenvolvimento de lideranças</h3>
@@ -1841,7 +1844,7 @@
       <div class="pl-faq" data-reveal="">
         <details>
           <summary>Quanto tempo leva para montar uma trilha de onboarding do zero?</summary>
-          <p>Com a autoria assistida por IA, a trilha de boas-vindas pode ser montada em horas a partir de materiais que a empresa já tem — em vez de semanas de produção manual.</p>
+          <p>Com a autoria assistida por IA, a trilha de boas-vindas pode ser montada em horas a partir de materiais que a empresa já tem, em vez de semanas de produção manual.</p>
         </details>
         <details>
           <summary>A trilha de onboarding pode variar por cargo ou área?</summary>
@@ -1849,7 +1852,7 @@
         </details>
         <details>
           <summary>Isso integra com nosso sistema de RH ou folha?</summary>
-          <p>Sim. ERP, CRM, RH, SSO, Active Directory, APIs e automações — a Lector entra na rotina da organização.</p>
+          <p>Sim. ERP, CRM, RH, SSO, Active Directory, APIs e automações. A Lector entra na rotina da organização.</p>
         </details>
         <details>
           <summary>O que a NR‑1 exige sobre riscos psicossociais?</summary>
@@ -1857,7 +1860,7 @@
         </details>
         <details>
           <summary>A Lector substitui quais ferramentas?</summary>
-          <p>LMS, base de conhecimento, IA, rede social, webconferência, gravação, chat, avaliações, permissões, BI, trilhas e integrações — em um só ambiente.</p>
+          <p>LMS, base de conhecimento, IA, rede social, webconferência, gravação, chat, avaliações, permissões, BI, trilhas e integrações, em um só ambiente.</p>
         </details>
         <details>
           <summary>Quanto custa a Lector?</summary>
@@ -1872,7 +1875,7 @@
     <img class="pl-final-cta__orbit" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
     <div class="pl-final-cta__inner">
       <h2 data-reveal="">Faça um diagnóstico gratuito.</h2>
-      <p data-reveal="">Converse com um especialista e receba um diagnóstico gratuito de maturidade — aprendizagem, liderança, talentos ou compliance NR‑1.</p>
+      <p data-reveal="">Converse com um especialista e receba um diagnóstico gratuito de maturidade. Aprendizagem, liderança, talentos ou compliance NR‑1.</p>
       <div class="pl-final-cta__actions" data-reveal="">
         <a href="#" class="pl-final-cta__btn" data-open-lead data-lead-interest="diagnostico">
           Fazer diagnóstico gratuito
@@ -1888,7 +1891,7 @@
       <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
         <div>
           <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
-          <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+          <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça, em um só lugar.</p>
         </div>
         <div>
           <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Produto</div>
@@ -2443,13 +2446,13 @@ class Component extends DCLogic {
     const modules = [
       { icon: 'graduation-cap', title: 'LMS & Trilhas', body: 'LMS e certificações com acompanhamento de progresso por pessoa, time e área.', badge: 'Nativo' },
       { icon: 'video', title: 'Webconferência', body: 'Aulas ao vivo, treinamentos e reuniões dentro da plataforma. Sem Zoom, sem Meet, sem link externo.', badge: 'Nativo' },
-      { icon: 'sparkles', title: 'Autoria de conteúdo', body: 'Crie cursos, avaliações e materiais com editor próprio — acelerado por IA treinada no seu conteúdo.', badge: 'Nativo' },
+      { icon: 'sparkles', title: 'Autoria de conteúdo', body: 'Crie cursos, avaliações e materiais com editor próprio, acelerado por IA treinada no seu conteúdo.', badge: 'Nativo' },
       { icon: 'target', title: 'Gestão de talentos', body: 'Mapeie competências, defina trilhas de desenvolvimento e acompanhe a evolução de cada colaborador.', badge: 'Nativo' },
-      { icon: 'message-circle', title: 'Rede social corporativa', body: 'Comunicação interna, comunidades e engajamento — informação circulando onde o time já está.', badge: 'Nativo' },
-      { icon: 'library', title: 'Gestão de documentos', body: 'Centralize documentos e arquivos da empresa em um só lugar. Busca, versionamento e acesso controlado — organizado e acessível.', badge: 'Nativo' },
+      { icon: 'message-circle', title: 'Rede social corporativa', body: 'Comunicação interna, comunidades e engajamento. Informação circulando onde o time já está.', badge: 'Nativo' },
+      { icon: 'library', title: 'Gestão de documentos', body: 'Centralize documentos e arquivos da empresa em um só lugar. Busca, versionamento e acesso controlado, organizado e acessível.', badge: 'Nativo' },
       { icon: 'shield-check', title: 'Solução NR-1', body: 'Riscos psicossociais com trilha de evidências: inventário no formato PGR, plano de ação, monitoramento e prontidão para auditoria.', badge: 'Solução' },
-      { icon: 'trending-up', title: 'Copiloto de Vendas', body: 'Diagnóstico de técnica comercial com IA, trilhas e certificação — antes, durante e depois da reunião — para reduzir o ramp-up.', badge: 'Solução' },
-      { icon: 'clapperboard', title: 'Criação de Conteúdo sob Demanda', body: 'Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.', badge: 'Solução' },
+      { icon: 'trending-up', title: 'Copiloto de Vendas', body: 'Diagnóstico de técnica comercial com IA, trilhas e certificação. Antes, durante e depois da reunião, para reduzir o ramp-up.', badge: 'Solução' },
+      { icon: 'clapperboard', title: 'Criação de Conteúdo sob Demanda', body: 'Cursos, vídeos e materiais sob demanda, com qualidade editorial, prazo previsível e publicação na plataforma Lector.', badge: 'Solução' },
     ];
 
     const clients = ['unimed', 'sicoob', 'sesi-senai', 'lideranca', 'acats', 'cnmp', 'esmpsp', 'hospital-sapiranga', 'cigam', 'benner'];

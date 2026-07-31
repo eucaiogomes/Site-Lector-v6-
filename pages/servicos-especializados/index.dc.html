@@ -61,7 +61,7 @@
   "offers": {
     "@type": "Offer",
     "priceCurrency": "BRL",
-    "description": "SaaS por colaborador/mês — faixas em /precos (a publicar)"
+    "description": "SaaS por colaborador/mês, faixas em /precos (a publicar)"
   },
   "provider": { "@type": "Organization", "name": "Lector" }
 }
@@ -70,7 +70,7 @@
 <title>Serviços Especializados | Consultoria Lector</title>
 <meta name="description" content="Especialistas ao seu lado em cada fase: T&D, conteúdo e gestão do conhecimento. Da universidade corporativa à operação.">
 <meta property="og:title" content="Serviços Especializados | Consultoria Lector">
-<meta property="og:description" content="Apoio em estruturação, conteúdo e estratégia da educação corporativa — da universidade corporativa à gestão do conhecimento.">
+<meta property="og:description" content="Apoio em estruturação, conteúdo e estratégia da educação corporativa, da universidade corporativa à gestão do conhecimento.">
 <link rel="stylesheet" href="/design-system/tokens/fonts.css">
 <link rel="stylesheet" href="/design-system/tokens/colors.css">
 <link rel="stylesheet" href="/design-system/tokens/typography.css">
@@ -197,9 +197,12 @@
   .lec-dd { position: relative; }
   .lec-dd__trigger {
     display: inline-flex; align-items: center; gap: 5px; background: none; border: none;
-    padding: 0; margin: 0; font: inherit; font-size: 14.5px; font-weight: 700;
-    color: var(--brand); cursor: pointer;
+    padding: 0; margin: 0; font: inherit; font-size: 14.5px; font-weight: 600;
+    color: #243653; cursor: pointer; transition: color .2s;
   }
+  .lec-dd__trigger:hover,
+  .lec-dd:hover .lec-dd__trigger,
+  .lec-dd:focus-within .lec-dd__trigger { color: var(--brand); }
   .lec-dd__chev { display: inline-flex; width: 14px; height: 14px; transition: transform .25s ease; }
   .lec-dd__chev i, .lec-dd__chev svg { width: 14px; height: 14px; }
   .lec-dd:hover .lec-dd__chev, .lec-dd:focus-within .lec-dd__chev { transform: rotate(180deg); }
@@ -487,6 +490,7 @@
     <img src="/assets/brand/logo-lector.svg" alt="Lector">
   </a>
   <div class="lec-nav-links">
+    <a href="/pages/sobre/index.dc.html">Sobre</a>
     <div class="lec-dd">
       <button type="button" class="lec-dd__trigger" aria-haspopup="true">
         Nossas Soluções
@@ -518,7 +522,7 @@
           <span class="lec-dd__item-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></span>
           <span class="lec-dd__item-body">
             <span class="lec-dd__item-title">Criação de Conteúdo sob Demanda</span>
-            <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda — com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
+            <span class="lec-dd__item-desc">Cursos, vídeos e materiais sob demanda, com qualidade editorial, prazo previsível e publicação na plataforma Lector.</span>
           </span>
         </a>
         <a href="/pages/diagnostico-gaps/index.dc.html" class="lec-dd__item" role="menuitem">
@@ -539,7 +543,6 @@
     </div>
     <a href="/pages/blog/index.dc.html">Blog</a>
     <a href="/pages/clientes/index.dc.html">Clientes</a>
-    <a href="/pages/sobre/index.dc.html">Sobre</a>
     <a href="/pages/contato/index.dc.html">Contato</a>
   </div>
   <div class="lec-nav-cta">
@@ -560,6 +563,7 @@
       <i data-lucide="x" style="width:16px;height:16px;"></i>
     </button>
   </div>
+  <a href="/pages/sobre/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
   <div class="lec-mnav-sub">
     <a href="/pages/plataforma-lector/index.dc.html" onClick="{{ closeMobile }}">Plataforma Lector</a>
     <a href="/pages/copiloto-vendas/index.dc.html" onClick="{{ closeMobile }}">Copiloto de Vendas</a>
@@ -570,7 +574,6 @@
   </div>
   <a href="/pages/blog/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Blog</a>
   <a href="/pages/clientes/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Clientes</a>
-  <a href="/pages/sobre/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Sobre</a>
   <a href="/pages/contato/index.dc.html" class="lec-mnav-link" onClick="{{ closeMobile }}">Contato</a>
   <div class="lec-mnav-cta">
     <a href="https://lector.live" class="lec-nav-cta__ghost" style="text-align:center; justify-content:center;" target="_blank" rel="noopener noreferrer" onClick="{{ closeMobile }}">Sou cliente</a>
@@ -582,12 +585,12 @@
 <section class="se-hero" id="hero" aria-label="Serviços Especializados">
   <div class="se-wrap se-hero__inner">
     <h1>Especialistas ao seu lado,<br>em <em>cada fase</em>.</h1>
-    <p class="se-hero__sub">Assista e veja como apoiamos a estruturação, o conteúdo e a estratégia da educação corporativa — da universidade corporativa à gestão do conhecimento.</p>
+    <p class="se-hero__sub">Assista e veja como apoiamos a estruturação, o conteúdo e a estratégia da educação corporativa, da universidade corporativa à gestão do conhecimento.</p>
 
 <!-- GEO: cápsula de resposta (specs/geo.md) -->
 <p class="geo-capsule geo-capsule--dark" data-geo-capsule="">
   <strong>Em uma frase</strong>
-  Os Serviços Especializados da Lector apoiam T&D, conteúdo e gestão do conhecimento em todas as fases — da universidade corporativa à operação do dia a dia.
+  Os Serviços Especializados da Lector apoiam T&D, conteúdo e gestão do conhecimento em todas as fases, da universidade corporativa à operação do dia a dia.
 </p>
 
     <div class="se-hero__ctas">
@@ -634,7 +637,7 @@
   <div class="se-wrap se-phases">
     <div>
       <h2 class="se-h2">Apoio em todas as fases: do diagnóstico à <em>operação</em></h2>
-      <p class="se-lead">Um time de especialistas caminha com o seu RH e T&amp;D — sem receita de bolo, com método e entrega.</p>
+      <p class="se-lead">Um time de especialistas caminha com o seu RH e T&amp;D, sem receita de bolo, com método e entrega.</p>
       <ul class="se-phase-list">
         <li>
           <span aria-hidden="true"><i data-lucide="scan-search"></i></span>
@@ -657,7 +660,7 @@
     <div class="se-card-dark" style="background:var(--ink-950);">
       <div class="se-card-dark__label">Serviços Lector</div>
       <h3>T&amp;D · Conteúdo · Gestão do Conhecimento</h3>
-      <p>Consultoria especializada para estruturar, produzir e sustentar a educação corporativa na mesma lógica da plataforma Lector — com prova de aprendizado e fluxo de informação sob controle.</p>
+      <p>Consultoria especializada para estruturar, produzir e sustentar a educação corporativa na mesma lógica da plataforma Lector, com prova de aprendizado e fluxo de informação sob controle.</p>
       <div class="se-tags">
         <span>Universidade corporativa</span>
         <span>Mapa de competências</span>
@@ -688,7 +691,7 @@
     <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
       <div>
         <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
-        <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça — em um só lugar.</p>
+        <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça, em um só lugar.</p>
       </div>
       <div>
         <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Soluções</div>
