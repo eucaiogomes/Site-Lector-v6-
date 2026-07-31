@@ -6,7 +6,7 @@
 | **Status** | `live` |
 | **Código** | `pages/blog/index.dc.html` (~940 linhas) |
 | **Rota pública** | `/blog` |
-| **Última atualização** | 2026-07-17 |
+| **Última atualização** | 2026-07-31 |
 | **Lead form** | `shared/lead-form` (CTA nav) |
 | **Nav** | Item principal “Blog” ativo |
 | **Variante de header** | `light` (`.lec-nav`) |
@@ -37,9 +37,9 @@ Publicar conteúdo de educação corporativa, carreira e T&D para atrair e nutri
 | 0 | — | Promo bar + nav sticky | Nav clara; Blog ativo |
 | 1 | `hero` | Masthead | Eyebrow + headline + sub |
 | 2 | `featured` | Em alta | Card overlay grande + 3 horizontais |
-| 3 | `publicacoes` | Grade + filtros | Tabs: Todos, T&D e Onboarding, IA na Educação, Compliance & NR-1, Enablement de Vendas, Métricas & ROI |
+| 3 | `publicacoes` | Grade + filtros | Tabs: Todos, T&D e Onboarding, Gestão do Conhecimento, Comunicação Corporativa |
 | 4 | `newsletter` | Newsletter CTA | E-mail + inscrição (placeholder) |
-| 5 | `artigo` | Leitura (estado) | View de artigo com voltar, capa, corpo B2B de referência, relacionados |
+| 5 | `artigo` | Leitura (estado) | View de artigo com voltar, capa, corpo próprio por post (`blocks`), relacionados |
 | 6 | — | Footer | Logo light + copyright |
 
 ## CTAs
@@ -52,9 +52,10 @@ Publicar conteúdo de educação corporativa, carreira e T&D para atrair e nutri
 
 ## Conteúdo e dados
 
-- Posts mock em JS (`POSTS`) — artigos de exemplo  
-- Imagens Unsplash (placeholder até mídia própria)  
-- Corpo de artigo: texto de demonstração compartilhado  
+- 4 posts em JS (`_posts()`): 1 institucional de T&D + 3 artigos migrados do site antigo (gestão do conhecimento, treinamento online/onboarding, comunicação corporativa)
+- Cada post tem `blocks`: `P` (parágrafo), `H` (h2), `Q` (citação), `UL` (lista), `CTA` (parágrafo + link). O template renderiza por tipo com `sc-if`
+- Imagens Unsplash (placeholder até mídia própria)
+- Autoria: "Equipe Lector" nos posts migrados; datas de publicação são provisórias
 
 ## SEO
 

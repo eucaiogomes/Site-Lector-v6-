@@ -607,6 +607,35 @@
     font-size: 18px;
     color: var(--accent-navy, #00204D);
   }
+  .article-body ul {
+    margin: 0 0 24px;
+    padding: 0;
+    list-style: none;
+  }
+  .article-body li {
+    position: relative;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #3A455E;
+    padding-left: 26px;
+    margin: 0 0 14px;
+  }
+  .article-body li::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 11px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--brand);
+  }
+  .article-body a {
+    color: var(--brand);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
   .back-btn {
     display: inline-flex;
     align-items: center;
@@ -814,7 +843,7 @@
     <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap;">
       <h2 style="font-family:var(--font-display);font-size:24px;font-weight:800;color:var(--accent-navy,#00204D);margin:0;">Últimas publicações</h2>
       <div class="filter-tabs" role="tablist" aria-label="Filtrar por categoria">
-        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
           <button type="button" class="filter-tab {{ f.activeClass }}" onClick="{{ f.onClick }}">{{ f.label }}</button>
         </sc-for>
       </div>
@@ -827,7 +856,7 @@
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;">
-      <sc-for list="{{ filtered }}" as="p" hint-placeholder-count="6">
+      <sc-for list="{{ filtered }}" as="p" hint-placeholder-count="4">
         <button type="button" class="article-card" onClick="{{ p.onOpen }}">
           <img src="{{ p.img }}" alt="Capa: {{ p.title }}">
           <div class="content">
@@ -925,18 +954,27 @@
       </div>
       <div class="cover" style="background-image:url('{{ article.img }}')" role="img" aria-label="Capa do artigo"></div>
       <div class="article-body" style="max-width:720px;">
-        <p>As equipes de Treinamento & Desenvolvimento enfrentam uma pressão sem precedentes em 2026: provar o impacto financeiro e operacional de cada programa de capacitação enquanto administram ecossistemas de software fragmentados e custos crescentes de licenciamento.</p>
-        <p>Na busca por agilidade, muitas empresas acumularam ferramentas isoladas — um LMS tradicional para compliance, um aplicativo de autoria externo, uma plataforma de videoconferência de terceiros e repositórios descentralizados de conteúdo. O resultado? Baixa adesão dos colaboradores, dados desintegrados e alto custo total de propriedade (TCO).</p>
-        <h2>A virada de chave: Inteligência Artificial Nativa e consolidação de plataformas</h2>
-        <p>A consolidação não significa apenas cortar custos operacionais; trata-se de transformar a experiência de aprendizagem em um ecossistema fluido. Quando o LMS integra <strong>IA nativa</strong>, autoria em tempo real e análise preditiva de competências, o tempo de lançamento de um treinamento cai de semanas para poucas horas.</p>
-        <blockquote>A verdadeira eficiência em T&D não vem de criar mais conteúdo, mas de entregar o conhecimento exato no momento em que a operação necessita, com evidências claras de aplicação.</blockquote>
-        <p>Com um <strong>Grafo de Conhecimento</strong> estruturado, a Inteligência Artificial mapeia lacunas de conhecimento individuais automaticamente e sugere trilhas cirúrgicas para cada perfil profissional, eliminando treinamentos genéricos que desperdiçam horas de trabalho útil.</p>
-        <h2>Quatro pilares para modernizar sua estratégia de T&D</h2>
-        <p>Para elevar a maturidade educacional da sua organização e garantir suporte da diretoria executiva, estruture sua jornada em quatro diretrizes:</p>
-        <p>1. <strong>Centralização Tecnológica:</strong> Unifique LMS, autoria, webconferência e comunicação interna em uma única plataforma adaptável.</p>
-        <p>2. <strong>Automação de Compliance e NR-1:</strong> Automatize a emissão de certificados, a coleta de evidências auditáveis e a gestão contínua de riscos psicossociais sem sobrecarregar a equipe médica ou jurídica.</p>
-        <p>3. <strong>Copilotos de Performance Comercial:</strong> Ofereça treinamento em tempo real para equipes de vendas com simulações com IA antes de reuniões decisivas com clientes.</p>
-        <p>4. <strong>Diagnóstico Contínuo por Habilidades:</strong> Substitua métricas passivas de conclusão de vídeo por avaliações práticas de domínio e análise de impacto em KPIs de negócio.</p>
+        <sc-for list="{{ article.blocks }}" as="b" hint-placeholder-count="8">
+          <sc-if value="{{ b.isP }}" hint-placeholder-val="{{ true }}">
+            <p>{{ b.text }}</p>
+          </sc-if>
+          <sc-if value="{{ b.isH2 }}" hint-placeholder-val="{{ false }}">
+            <h2>{{ b.text }}</h2>
+          </sc-if>
+          <sc-if value="{{ b.isQuote }}" hint-placeholder-val="{{ false }}">
+            <blockquote>{{ b.text }}</blockquote>
+          </sc-if>
+          <sc-if value="{{ b.isList }}" hint-placeholder-val="{{ false }}">
+            <ul>
+              <sc-for list="{{ b.items }}" as="it" hint-placeholder-count="4">
+                <li>{{ it.text }}</li>
+              </sc-for>
+            </ul>
+          </sc-if>
+          <sc-if value="{{ b.isCta }}" hint-placeholder-val="{{ false }}">
+            <p>{{ b.text }} <a href="{{ b.href }}">{{ b.linkText }}</a></p>
+          </sc-if>
+        </sc-for>
       </div>
       <div style="margin:40px 0 20px;padding-top:24px;border-top:1px solid #E7EAF1;display:flex;gap:12px;flex-wrap:wrap;">
         <a href="/pages/home/index.dc.html#contato" style="background:var(--brand);color:#fff;border-radius:999px;padding:12px 24px;font-weight:700;display:inline-block;">Falar com a Lector</a>
@@ -1050,16 +1088,139 @@ class Component extends DCLogic {
   }
 
   _posts() {
+    // Blocos do corpo do artigo. O template renderiza cada tipo com sc-if.
+    const P = (text) => ({ isP: true, text });
+    const H = (text) => ({ isH2: true, text });
+    const Q = (text) => ({ isQuote: true, text });
+    const UL = (items) => ({ isList: true, items: items.map((text) => ({ text })) });
+    const CTA = (text, linkText, href) => ({ isCta: true, text, linkText, href });
+
     return [
-      { id: 1, cat: 'T&D e Onboarding', title: 'Como consolidar ferramentas de T&D e reduzir custos de treinamento corporativo', excerpt: 'Um guia prático para unificar LMS, autoria e webconferência em uma única plataforma com IA nativa e provar o ROI para a diretoria.', author: 'Alex Sandro', date: '12 jun 2026', read: '7 min', img: 'https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?w=1200&q=80' },
-      { id: 2, cat: 'Compliance & NR-1', title: 'Fiscalização da NR-1 em vigor: como comprovar a gestão de riscos psicossociais sem burocracia', excerpt: 'Saiba como estruturar trilhas de compliance, registros auditáveis e evidências exigidas pela legislação em uma plataforma automatizada.', author: 'Alex Sandro', date: '9 jun 2026', read: '6 min', img: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?w=1000&q=80' },
-      { id: 3, cat: 'IA na Educação', title: 'Grafo de Conhecimento e IA nativa: o futuro do aprendizado personalizado nas empresas', excerpt: 'Descubra como a autoria automatizada por IA acelera a criação de conteúdos e personaliza o aprendizado por perfil e maturidade.', author: 'Alex Sandro', date: '6 jun 2026', read: '8 min', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&q=80' },
-      { id: 4, cat: 'Enablement de Vendas', title: 'Reduzindo o tempo de ramp-up comercial de meses para semanas com Copiloto de IA', excerpt: 'Como utilizar simuladores de inteligência artificial para treinar a força de vendas antes, durante e depois de reuniões com clientes.', author: 'Alex Sandro', date: '2 jun 2026', read: '5 min', img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&q=80' },
-      { id: 5, cat: 'Métricas & ROI', title: 'Diagnóstico de Gaps de Habilidade: como provar o ROI real de T&D para o C-Level', excerpt: 'Substitua métricas passivas de conclusão de vídeo por matrizes práticas de competências e análise de impacto direto no negócio.', author: 'Alex Sandro', date: '28 mai 2026', read: '6 min', img: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1000&q=80' },
-      { id: 6, cat: 'T&D e Onboarding', title: 'Universidades Corporativas de Alta Performance: do onboarding ao plano de sucessão', excerpt: 'Estratégias para estruturar academias corporativas escaláveis, promovendo engajamento e retenção de talentos estratégicos.', author: 'Alex Sandro', date: '24 mai 2026', read: '7 min', img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&q=80' },
-      { id: 7, cat: 'Conteúdo sob Demanda', title: 'Produção de Conteúdo sob Demanda: agilidade e padrão editorial sem sobrecarregar sua equipe', excerpt: 'Como terceirizar a criação de cursos, vídeos e objetos de aprendizagem com prazo previsível e publicação direta na plataforma.', author: 'Alex Sandro', date: '19 mai 2026', read: '5 min', img: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1000&q=80' },
-      { id: 8, cat: 'Compliance & NR-1', title: 'Evidências auditáveis em T&D: como garantir conformidade total em fiscalizações do MTE', excerpt: 'Passo a passo técnico para emitir certificados invioláveis, logs de presença em videoconferência e históricos de avaliação.', author: 'Alex Sandro', date: '14 mai 2026', read: '7 min', img: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1000&q=80' },
-      { id: 9, cat: 'Enablement de Vendas', title: 'Treinamento de Vendas em tempo real: a jornada do Copiloto Lector na webconferência', excerpt: 'Alertas ao vivo de contorno de objeções, feedbacks pós-reunião e certificação automatizada de técnicas comerciais.', author: 'Alex Sandro', date: '10 mai 2026', read: '6 min', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1000&q=80' },
+      {
+        id: 1,
+        cat: 'T&D e Onboarding',
+        title: 'Como consolidar ferramentas de T&D e reduzir custos de treinamento corporativo',
+        excerpt: 'Um guia prático para unificar LMS, autoria e webconferência em uma única plataforma com IA nativa e provar o ROI para a diretoria.',
+        author: 'Alex Sandro',
+        date: '12 jun 2026',
+        read: '7 min',
+        img: 'https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?w=1200&q=80',
+        blocks: [
+          P('As equipes de Treinamento & Desenvolvimento enfrentam uma pressão sem precedentes em 2026: provar o impacto financeiro e operacional de cada programa de capacitação enquanto administram ecossistemas de software fragmentados e custos crescentes de licenciamento.'),
+          P('Na busca por agilidade, muitas empresas acumularam ferramentas isoladas: um LMS tradicional para compliance, um aplicativo de autoria externo, uma plataforma de videoconferência de terceiros e repositórios descentralizados de conteúdo. O resultado? Baixa adesão dos colaboradores, dados desintegrados e alto custo total de propriedade (TCO).'),
+          H('A virada de chave: Inteligência Artificial Nativa e consolidação de plataformas'),
+          P('A consolidação não significa apenas cortar custos operacionais; trata-se de transformar a experiência de aprendizagem em um ecossistema fluido. Quando o LMS integra IA nativa, autoria em tempo real e análise preditiva de competências, o tempo de lançamento de um treinamento cai de semanas para poucas horas.'),
+          Q('A verdadeira eficiência em T&D não vem de criar mais conteúdo, mas de entregar o conhecimento exato no momento em que a operação necessita, com evidências claras de aplicação.'),
+          P('Com um Grafo de Conhecimento estruturado, a Inteligência Artificial mapeia lacunas de conhecimento individuais automaticamente e sugere trilhas cirúrgicas para cada perfil profissional, eliminando treinamentos genéricos que desperdiçam horas de trabalho útil.'),
+          H('Quatro pilares para modernizar sua estratégia de T&D'),
+          P('Para elevar a maturidade educacional da sua organização e garantir suporte da diretoria executiva, estruture sua jornada em quatro diretrizes:'),
+          UL([
+            'Centralização tecnológica. Unifique LMS, autoria, webconferência e comunicação interna em uma única plataforma adaptável.',
+            'Automação de compliance e NR-1. Automatize a emissão de certificados, a coleta de evidências auditáveis e a gestão contínua de riscos psicossociais sem sobrecarregar a equipe médica ou jurídica.',
+            'Copilotos de performance comercial. Ofereça treinamento em tempo real para equipes de vendas com simulações com IA antes de reuniões decisivas com clientes.',
+            'Diagnóstico contínuo por habilidades. Substitua métricas passivas de conclusão de vídeo por avaliações práticas de domínio e análise de impacto em KPIs de negócio.',
+          ]),
+        ],
+      },
+      {
+        id: 2,
+        cat: 'Gestão do Conhecimento',
+        title: 'Gestão do Conhecimento: mantendo o saber na empresa',
+        excerpt: 'Como levantar, organizar e proteger os saberes da sua empresa para ganhar produtividade e evitar que o conhecimento vá embora junto com quem sai.',
+        author: 'Equipe Lector',
+        date: '5 jun 2026',
+        read: '5 min',
+        img: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1200&q=80',
+        blocks: [
+          P('Toda empresa tem um conjunto de saberes que precisa manter para funcionar: o entendimento de processos internos, o conhecimento necessário para a realização de cada atividade por cada colaborador, informações sobre a atuação de parceiros, fornecedores, clientes e tudo mais.'),
+          P('Se a empresa levantar quais são esses saberes, organizá-los e avaliá-los, poderá saber como usá-los melhor, obtendo vantagens competitivas e aumentando a produtividade. Poderá identificar quais desses conhecimentos têm deficiências, ou identificar a falta de alguns que melhorariam o trabalho. Poderá gerar mais conhecimento. Poderá proteger e conservar esse conhecimento, como se deve fazer com qualquer bem importante de uma organização. Poderá deixá-lo organizado e disponível para colaboradores realizarem atividades com eficiência.'),
+          P('Isto é, em resumo, gestão de conhecimento. Um processo que engloba as áreas de sistemas de informação, administração, gerenciamento, biblioteconomia e várias outras. Como se pode imaginar, um processo que se bem executado pode criar um grande impacto em todos os aspectos de uma empresa.'),
+          H('Como aplicar a Gestão do Conhecimento na empresa?'),
+          P('A gestão do conhecimento precisa ser inserida na cultura organizacional. O ambiente da empresa precisa incentivar a criação de conhecimento, tanto ligado às competências da empresa quanto às individuais.'),
+          P('Este conteúdo precisa ser disseminado ao máximo. Mais do que manter as pessoas conectadas ao conhecimento necessário, isto gera um ambiente de troca de ideias e criação de mais conhecimento.'),
+          P('A organização do conteúdo gerado requer documentação na forma de textos, apostilas, vídeos, etc. utilizando ferramentas adequadas, como a plataforma do Lector Live. Isto também garante que o conhecimento se mantenha na empresa, independentemente de quem esteja, ou saia, da empresa.'),
+          P('E é sobre isso que vamos falar agora.'),
+          H('Como impedir que o conhecimento vá embora'),
+          P('Muito do conhecimento que mencionamos no começo pode sair da empresa junto com um colaborador que deixa o posto. Perda de conhecimento nunca é bom: recuperar este saber perdido tomará tempo e prejudica a capacidade de ação. Algumas práticas associadas à gestão do conhecimento vão ajudar a evitar este tipo de prejuízo:'),
+          UL([
+            'Estabeleça um ambiente onde possam continuar contribuindo. Algumas pessoas investem muito no que construíram na empresa, e teriam interesse de manter contato e continuar colaborando.',
+            'Mantenha a maior parte do conhecimento hospedada online. Além de facilitar processos, as informações ficam disponíveis mesmo com as pessoas mudando de cargo.',
+            'Torne o compartilhamento de conhecimento um hábito, uma necessidade, quase uma obsessão. Use ferramentas que permitam modos diferentes de armazenar e organizar as informações, já que pessoas têm formas diferentes de trabalhar.',
+            'Dê o devido crédito. É preciso criar um ambiente onde os colegas saibam que terão reconhecimento pelas suas contribuições. As pessoas serão motivadas a compartilhar o conhecimento quando seu mérito é generosamente reconhecido.',
+          ]),
+          CTA(
+            'Uma ferramenta que permite uma eficiente gestão do conhecimento, incluindo o gerenciamento de ideias e contribuições fornecidas pelos colaboradores com controle de autoria é o Lector Live.',
+            'Saiba mais aqui',
+            '/pages/plataforma-lector/index.dc.html'
+          ),
+        ],
+      },
+      {
+        id: 3,
+        cat: 'T&D e Onboarding',
+        title: 'Treinamento online para novos colaboradores',
+        excerpt: 'As vantagens de conduzir o onboarding em uma plataforma online: menos custo, flexibilidade de horário, mais produtividade e retenção do conhecimento.',
+        author: 'Equipe Lector',
+        date: '29 mai 2026',
+        read: '6 min',
+        img: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80',
+        blocks: [
+          P('As ferramentas digitais de comunicação têm transformado a forma como nos comunicamos, como consumimos conteúdo e como trabalhamos. Também está mudando a forma com que aprendemos. A tecnologia permite que o aprendizado seja cada vez mais autodirigido, colaborativo e contínuo ao longo da vida. E isto traz enormes possibilidades para expandir o conhecimento e as capacidades dos colaboradores na empresa, bem como no treinamento de novos integrantes da equipe, o onboarding.'),
+          P('Empresas têm recorrido a recursos de treinamento online graças a um grande número de vantagens:'),
+          UL([
+            'Relação custo-benefício. O uso de uma plataforma online para treinamento torna o onboarding mais fácil e de maior qualidade. E também o deixa mais barato, ao dispensar um espaço físico, material impresso, presença de instrutor, deslocamento, estadia e alimentação.',
+            'Flexibilidade de horário, duração e local. O colaborador pode acessar o material na hora que lhe convier e dá seu próprio ritmo ao treinamento. O aprendizado pode ser feito por meia hora ou duas horas, às 6 da tarde ou 6 da manhã, em São Paulo ou em Pequim.',
+            'Melhoria do aprendizado. Ajustando o conteúdo às necessidades específicas da rotina do colaborador, o conteúdo recebe maior atenção.',
+            'Maior produtividade. Com melhor treinamento, o colaborador está apto a realizar suas atividades da melhor forma e no menor tempo possível.',
+            'Aumento da motivação e da confiança. Com melhor preparo e maior segurança sobre o que se sabe, trabalha-se melhor.',
+            'Retenção do conhecimento. O material referente ao treinamento garante que aquele saber permaneça na empresa mesmo quando pessoas saem do time. Especialmente se é atualizado e complementado pelos próprios colaboradores.',
+          ]),
+          H('Quem ganha com isso?'),
+          P('Com boas ferramentas, o treinamento online é benéfico para todos. A empresa ganha com custos reduzidos e menos tempo para preparar os novos colegas, contando com colaboradores mais produtivos.'),
+          P('Da mesma forma, o gestor ganha com medição eficiente do uso do material, controle sobre o desempenho do treinamento, avaliação da satisfação dos colaboradores e com informações padronizadas, permitindo qualidade elevada e contínua.'),
+          P('O colaborador tem acesso facilitado a todo o conteúdo que precisa, podendo tirar dúvidas com facilidade. Ele pode opinar e colaborar com o próprio treinamento, exercita os conhecimentos, relaciona-os à prática e obtém maior preparo e motivação.'),
+          H('Boas práticas para o treinamento online em onboarding'),
+          P('Vale ressaltar que a ferramenta por si só não resolve tudo. É preciso que a empresa abrace o uso de boas práticas em relação ao treinamento de colaboradores online.'),
+          P('Desenvolver conteúdo rápido e objetivo, por exemplo, vai garantir maior engajamento e fixação do conhecimento. É algo que merece especial atenção, já que um conteúdo longo e/ou maçante pode prejudicar muito os resultados.'),
+          P('Também é importante dar espaço ao feedback sincero dos usuários. Como em muitas outras áreas de atividade de uma empresa, quem está aberto a críticas está em vantagem. Este retorno dos colaboradores garante o controle da qualidade e a constante melhoria do onboarding.'),
+          P('Além de saber o que fazer, é preciso saber como fazer. Para isso, deve-se escolher uma ferramenta que melhor se adeque às necessidades da empresa, seus objetivos e da equipe.'),
+          CTA(
+            'Saiba mais sobre o Lector Live, uma plataforma colaborativa com os recursos que a sua empresa precisa para atingir estes objetivos, aumentando a produtividade e estimulando inovação.',
+            'Conheça a plataforma',
+            '/pages/plataforma-lector/index.dc.html'
+          ),
+        ],
+      },
+      {
+        id: 4,
+        cat: 'Comunicação Corporativa',
+        title: 'Entendendo a comunicação corporativa',
+        excerpt: 'O que é comunicação corporativa, a diferença entre interna e externa e as boas práticas que reduzem erros, agilizam processos e elevam a produtividade.',
+        author: 'Equipe Lector',
+        date: '22 mai 2026',
+        read: '6 min',
+        img: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1200&q=80',
+        blocks: [
+          P('As ações de uma organização para transmitir informações, motivar e convencer seus diversos grupos de interesse, sejam colaboradores, clientes, fornecedores até a comunidade onde a empresa está inserida. Fazer isto tendo em vista a eficiência de processos e à produtividade. Isto é, basicamente, o que podemos chamar de comunicação corporativa.'),
+          P('A Comunicação Corporativa Externa trata de ações voltadas a clientes, investidores, instituições governamentais e público em geral. É dela que se forma a imagem da organização diante destes agentes externos. Nela incluem-se ferramentas como relações públicas, o marketing e a propaganda.'),
+          P('Já a Comunicação Corporativa Interna é voltada a colaboradores, parceiros e prestadores de serviço da empresa.'),
+          P('Saber trabalhar com as possibilidades da comunicação interna permite algumas vantagens, inclusive competitivas, para a empresa como:'),
+          UL([
+            'Estabelecer uma relação de maior confiança com seu pessoal. É sempre melhor quando os envolvidos tomam conhecimento dos fatos pela própria organização do que a partir de fontes externas.',
+            'Manter um canal aberto entre pessoas e equipes. Valoriza a troca de informações, opiniões e feedback sobre o andamento de projetos. As coisas acontecem com mais agilidade e acaba-se por favorecer uma cultura de inovação.',
+          ]),
+          H('E como acertar na comunicação corporativa?'),
+          P('Reuniões, entrevistas, apresentações, brochuras, newsletters, web conferências, jornais redes sociais corporativas, etc. As ferramentas disponíveis para desenvolver estratégias da comunicação corporativa são quase infinitas. E o uso inteligente dessas ferramentas torna mais fácil seguir algumas boas práticas:'),
+          UL([
+            'Simplificar processos. Comunicação direta e facilitada diminui a burocracia de processos, permitindo que a equipe se envolva muito mais. Menos formulários, menos distância e menos obstáculos são garantia de maior produtividade.',
+            'Manter a comunicação acessível. Se todos compreendem a informação, temos menos erros e uma comunicação mais dinâmica. É sempre melhor evitar que a hierarquia ou o nível de instrução interfiram na mensagem.',
+            'Estimular uma cultura de feedback. Garantir a facilidade para dar sugestões, fazer críticas ou pedir uma nova explicação quando não se entendeu algo. Isto cria um ambiente mais democrático, tornando a interação entre as pessoas mais estimulante e fluída.',
+            'Diversificar os canais. Assegura-se uma comunicação efetiva se não a limitamos num único formato, planejando no uso dos canais e explorando-os ao máximo.',
+            'Não subestimar a importância da linguagem corporal. Ela reforça a mensagem e ajuda na assimilação de forma incomparável. Por isso, vale sempre considerar ter vídeos, webinars, web conferências, etc. entre os canais que a empresa utiliza.',
+          ]),
+          P('Finalmente, é importante ressaltar que a comunicação empresarial não deve ser usada como uma ferramenta de doutrinação, ou de fazer com que todos os envolvidos apenas aceitem o que é proposto. Ela deve explorar canais onde a troca de informações relevantes às atividades da empresa trafeguem de forma transparente, em uma via de mão dupla. Assim a empresa pode manter os colaboradores em um ambiente estimulante e favorável à cooperação, onde os processos são facilitados e menos sujeitos a erros, e a produtividade melhora, incluindo aqui a redução de custos.'),
+        ],
+      },
     ];
   }
 
@@ -1074,7 +1235,7 @@ class Component extends DCLogic {
     const posts = this._posts();
     const filter = this.state.filter;
     const query = (this.state.searchQuery || '').toLowerCase().trim();
-    const cats = ['Todos', 'T&D e Onboarding', 'IA na Educação', 'Compliance & NR-1', 'Enablement de Vendas', 'Métricas & ROI', 'Conteúdo sob Demanda'];
+    const cats = ['Todos', 'T&D e Onboarding', 'Gestão do Conhecimento', 'Comunicação Corporativa'];
 
     const filteredRaw = posts.filter((p) => {
       const matchCat = filter === 'Todos' || p.cat === filter;
