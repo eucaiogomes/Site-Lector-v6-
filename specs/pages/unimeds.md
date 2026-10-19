@@ -38,7 +38,7 @@ Briefing do cliente (landing Unimeds, aprovado para implementação). Textos das
 
 | Elemento | Implementação |
 |----------|----------------|
-| Header | Pill **branco** fixo (1356 px, 72 px de altura), logo escura sem link externo, 3 âncoras + CTA "Acessar o microlearning" com círculo laranja. No mobile: só logo + CTA |
+| Header | Pill **branco** fixo (1356 px, 72 px de altura), logo escura com link para a home (`/pages/home/index.dc.html`), 3 âncoras + CTA "Acessar o microlearning" com círculo laranja. No mobile: só logo + CTA |
 | Hero | Reproduz o mockup aprovado do cliente (1728×910). Foto `assets/media/unimeds/hero-unimeds.{webp,jpg}` com gradiente navy já aplicado à esquerda; H1 Sora 800 com trecho em `--brand` itálico; CTAs empilhados (laranja + contorno branco) |
 | Prévia do hero | Card de interface **em HTML** (texto real) sobre a foto, na área reservada a ele |
 | Seções | Dor (light) → Microlearning (dark, destaque) → Autoria (light) → Processo (dark) → Possibilidades (light) → Depoimento (oculto) → Formulário (faixa `--brand`) → Footer (ink-950) |
@@ -57,7 +57,7 @@ Exceções de texto simples (não são badges de seção):
 
 | # | ID | Nome | Conteúdo / notas |
 |---|-----|------|------------------|
-| 0 | `topo` | Header | Pill branco; âncoras `#unimeds`, `#microlearning`, `#ferramenta-autoria`; CTA → `#formulario`. Sem links externos |
+| 0 | `topo` | Header | Pill branco; logo → home; âncoras `#unimeds`, `#microlearning`, `#ferramenta-autoria`; CTA → `#formulario` |
 | 1 | `unimeds` | Hero | H1 do briefing; CTA primário → `#formulario` (`hero_microlearning_click`); secundário → `#ferramenta-autoria` (`authoring_cta_click`); microcopy; prévia em moldura |
 | 2 | `dor` | Dor | Título que acende palavra por palavra ao rolar ("rapidamente em treinamento?" em laranja) + bento 7/5 · 5/7 com micro-animação em cada card: Cursos genéricos, Produção lenta, Fornecedores caros, Plataforma subutilizada |
 | 3 | `microlearning` | Microlearning gratuito | Mídia (config) + bloco de oferta + 4 pontos (Contexto, Simulação, Feedback, Transferência) |
