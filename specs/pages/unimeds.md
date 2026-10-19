@@ -38,7 +38,7 @@ Briefing do cliente (landing Unimeds, aprovado para implementação). Textos das
 
 | Elemento | Implementação |
 |----------|----------------|
-| Header | Pill **branco** fixo (1356 px, 72 px de altura), logo escura com link para a home (`/pages/home/index.dc.html`), 3 âncoras + CTA "Acessar o microlearning" com círculo laranja. No mobile: só logo + CTA |
+| Header | Pill **branco** fixo, **mesmo tamanho da navbar da home** (1160 × 70 px, logo 24 px, links 14,5 px, botão 46 px com quadrado laranja de 32 px), a 14 px do topo; logo escura com link para a home (`/pages/home/index.dc.html`), 3 âncoras + CTA "Acessar o microlearning" com círculo laranja. No mobile: só logo + CTA |
 | Hero | Reproduz o mockup aprovado do cliente (1728×910). Foto `assets/media/unimeds/hero-unimeds.{webp,jpg}` com gradiente navy já aplicado à esquerda; H1 Sora 800 com trecho em `--brand` itálico; CTAs empilhados (laranja + contorno branco) |
 | Prévia do hero | Card de interface **em HTML** (texto real) sobre a foto, na área reservada a ele |
 | Seções | Dor (light) → Microlearning (dark, destaque) → Autoria (light) → Processo (dark) → Possibilidades (light) → Depoimento (oculto) → Formulário (faixa `--brand`) → Footer (ink-950) |
