@@ -14,7 +14,8 @@
     { "source": "/servicos-especializados", "destination": "/pages/servicos-especializados/index.dc.html" },
     { "source": "/clientes", "destination": "/pages/clientes/index.dc.html" },
     { "source": "/sobre", "destination": "/pages/sobre/index.dc.html" },
-    { "source": "/unimeds", "destination": "/pages/unimeds/index.dc.html" }
+    { "source": "/unimeds", "destination": "/pages/unimeds/index.dc.html" },
+    { "source": "/treinamentos-proprios", "destination": "/pages/treinamentos-proprios/index.dc.html" }
   ],
   "headers": [
     {

@@ -29,6 +29,7 @@ Fonte de dados paralela: `content/site.json`.
 | `servicos-especializados` | Serviços Especializados | `specs/pages/servicos-especializados.md` | `pages/servicos-especializados/index.dc.html` | `wip` | light |
 | `clientes` | Clientes | `specs/pages/clientes.md` | `pages/clientes/index.dc.html` | `wip` | light |
 | `unimeds` | Landing Unimeds (campanha, `noindex`, fora do menu) | `specs/pages/unimeds.md` | `pages/unimeds/index.dc.html` | `wip` | dark |
+| `treinamentos-proprios` | Landing genérica de tráfego pago — Criativo A (campanha, `noindex`, fora do menu) | `specs/pages/treinamentos-proprios.md` | `pages/treinamentos-proprios/index.dc.html` | `wip` | dark |
 | `solucoes` | Hub Nossas Soluções | — | — | `planned` | — |
 
 ### Rotas no deploy
@@ -47,6 +48,7 @@ Fonte de dados paralela: `content/site.json`.
 | `/servicos-especializados` | `pages/servicos-especializados/index.dc.html` |
 | `/clientes` | `pages/clientes/index.dc.html` |
 | `/unimeds` | `pages/unimeds/index.dc.html` |
+| `/treinamentos-proprios` | `pages/treinamentos-proprios/index.dc.html` |
 
 Nav e CTAs no HTML usam **paths absolutos do arquivo estático** (`/pages/<slug>/index.dc.html`), que funcionam na Vercel sem depender do rewrite. Rewrites limpos (`/blog`, …) continuam no `vercel.json` como alias amigável.
 

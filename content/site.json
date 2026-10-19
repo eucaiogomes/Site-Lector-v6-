@@ -128,6 +128,16 @@
       "status": "wip",
       "route": "/solucao-nr-1"
     },
+    "treinamentos-proprios": {
+      "slug": "treinamentos-proprios",
+      "title": "Crie seus próprios treinamentos (tráfego pago, Criativo A)",
+      "path": "pages/treinamentos-proprios/index.dc.html",
+      "spec": "specs/pages/treinamentos-proprios.md",
+      "status": "wip",
+      "route": "/treinamentos-proprios",
+      "campaign": true,
+      "noindex": true
+    },
     "unimeds": {
       "slug": "unimeds",
       "title": "Conteúdos de treinamento para Unimeds",
