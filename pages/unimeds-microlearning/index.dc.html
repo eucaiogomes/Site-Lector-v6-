@@ -70,6 +70,40 @@
   .ml-sub { margin: 0 0 32px; max-width: 640px; font-size: 18px; line-height: 1.6; color: var(--ink-500); }
   .ml-player { position: relative; border-radius: 18px; overflow: hidden; background: #062a1f; box-shadow: 0 40px 80px -48px rgba(0,26,61,.55); }
   .ml-player video { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; background: #062a1f; }
+  .ml-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: var(--brand);
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 16px 40px rgba(246,107,10,.55), 0 0 0 10px rgba(255,255,255,.18);
+    transition: transform .25s cubic-bezier(.2,0,0,1), background .2s, opacity .25s ease;
+    z-index: 5;
+    pointer-events: auto;
+  }
+  .ml-play-btn:hover {
+    background: var(--brand-hover);
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  .ml-play-btn svg {
+    width: 34px;
+    height: 34px;
+    margin-left: 4px;
+  }
+  .ml-player.is-playing .ml-play-btn {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
   .ml-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
   .ml-meta { margin: 0; font-size: 14px; color: var(--ink-500); }
   .ml-actions { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -127,11 +161,16 @@
       <h1 class="ml-title">Segurança de dados na saúde</h1>
       <p class="ml-sub">5 situações que exigem atenção no dia a dia. Assista online ou baixe o vídeo para usar com a sua equipe.</p>
 
-      <div class="ml-player">
-        <video id="ml-video" controls playsinline preload="metadata" poster="/assets/media/unimeds/microlearning-poster.jpg" aria-label="Microlearning Segurança de dados na saúde">
+      <div class="ml-player" id="ml-player">
+        <video id="ml-video" src="/assets/media/unimeds/microlearning-seguranca-dados.mp4" controls playsinline preload="auto" poster="/assets/media/unimeds/microlearning-poster.jpg" aria-label="Microlearning Segurança de dados na saúde">
           <source src="/assets/media/unimeds/microlearning-seguranca-dados.mp4" type="video/mp4">
           Seu navegador não reproduz vídeo. <a href="/assets/media/unimeds/microlearning-seguranca-dados.mp4" download>Baixe o microlearning</a>.
         </video>
+        <button type="button" class="ml-play-btn" id="ml-play-btn" aria-label="Assistir ao vídeo">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </button>
       </div>
 
       <div class="ml-bar">
@@ -210,10 +249,37 @@ class Component extends DCLogic {
       const a = e.target.closest && e.target.closest('[data-track]');
       if (a) track(a.getAttribute('data-track'), a.getAttribute('data-track-ctx'));
     });
+    const player = document.getElementById('ml-player');
     const v = document.getElementById('ml-video');
+    const playBtn = document.getElementById('ml-play-btn');
     if (v) {
+      if (!v.src || v.src === window.location.href) {
+        v.src = '/assets/media/unimeds/microlearning-seguranca-dados.mp4';
+      }
+      try { v.load(); } catch (e) {}
+
       let started = false;
-      v.addEventListener('play', () => { if (!started) { started = true; track('microlearning_view', 'access_page'); } });
+      const onPlay = () => {
+        if (player) player.classList.add('is-playing');
+        if (!started) {
+          started = true;
+          track('microlearning_view', 'access_page');
+        }
+      };
+      const onPause = () => {
+        if (player) player.classList.remove('is-playing');
+      };
+
+      v.addEventListener('play', onPlay);
+      v.addEventListener('pause', onPause);
+      v.addEventListener('ended', onPause);
+
+      if (playBtn) {
+        playBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          v.play();
+        });
+      }
     }
     this._icons(0);
   }
