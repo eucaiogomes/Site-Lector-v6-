@@ -128,6 +128,16 @@
       "status": "wip",
       "route": "/solucao-nr-1"
     },
+    "unimeds": {
+      "slug": "unimeds",
+      "title": "Conteúdos de treinamento para Unimeds",
+      "path": "pages/unimeds/index.dc.html",
+      "spec": "specs/pages/unimeds.md",
+      "status": "wip",
+      "route": "/unimeds",
+      "campaign": true,
+      "noindex": true
+    },
     "conteudo-sob-demanda": {
       "slug": "conteudo-sob-demanda",
       "title": "Criação de Conteúdo sob Demanda",
