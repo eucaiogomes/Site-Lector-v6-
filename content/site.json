@@ -138,6 +138,16 @@
       "campaign": true,
       "noindex": true
     },
+    "unimeds-microlearning": {
+      "slug": "unimeds-microlearning",
+      "title": "Microlearning Segurança de dados na saúde (acesso após o formulário da landing Unimeds)",
+      "path": "pages/unimeds-microlearning/index.dc.html",
+      "spec": "specs/pages/unimeds.md",
+      "status": "wip",
+      "route": "/unimeds/microlearning",
+      "campaign": true,
+      "noindex": true
+    },
     "unimeds": {
       "slug": "unimeds",
       "title": "Conteúdos de treinamento para Unimeds",

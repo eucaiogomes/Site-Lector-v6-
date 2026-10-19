@@ -1028,6 +1028,13 @@
   .lp-success p { margin: 0 0 26px; font-size: 16px; line-height: 1.55; color: var(--ink-500); }
   .lp-success__actions { display: flex; flex-direction: column; gap: 12px; }
   .lp-success__actions a { min-height: 54px; }
+  .lp-success__video { margin: -6px 0 20px; border-radius: 14px; overflow: hidden; background: #062a1f; box-shadow: 0 20px 40px -28px rgba(0,26,61,.55); }
+  .lp-success__video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #062a1f; }
+  /* com o vídeo na própria tela: baixar vira a ação principal e "abrir em outra página" fica secundário */
+  .lp-success.has-video #lp-download-btn { order: -1; background: var(--brand); border-color: var(--brand); color: #fff; }
+  .lp-success.has-video #lp-download-btn:hover { background: var(--brand-hover); }
+  .lp-success.has-video #lp-view-btn { background: #fff; color: var(--navy-800); border: 1.5px solid var(--ink-200); box-shadow: none; animation: none; }
+  .lp-success.has-video #lp-view-btn::before, .lp-success.has-video #lp-view-btn .lp-cta__sheen { display: none; }
   .lp-divider { display: flex; align-items: center; gap: 12px; margin: 6px 0; font-size: 13px; font-weight: 600; color: var(--ink-400); }
   .lp-divider::before, .lp-divider::after { content: ''; flex: 1; height: 1px; background: var(--ink-100); }
 
@@ -1712,10 +1719,13 @@
           <div class="lp-success" id="lp-success" role="region" aria-live="polite" aria-label="Acesso liberado">
             <div class="lp-success__icon" aria-hidden="true"><i data-lucide="check"></i></div>
             <h3 id="lp-success-title" tabindex="-1">Acesso liberado com sucesso!</h3>
-            <p>Seu acesso ao microlearning sobre segurança de dados na saúde está disponível agora.</p>
+            <p>Assista aqui mesmo ou baixe o vídeo para usar com a sua equipe.</p>
+            <div class="lp-success__video" id="lp-success-video" hidden="hidden">
+              <video id="lp-success-player" controls playsinline preload="none" aria-label="Vídeo do microlearning"></video>
+            </div>
             <div class="lp-success__actions">
               <a href="#" class="lp-cta" id="lp-view-btn" target="_blank" rel="noopener" hidden="hidden" data-track="microlearning_view" data-track-ctx="success_screen">
-                <span class="lp-cta__label">Assistir ao microlearning</span>
+                <span class="lp-cta__label" id="lp-view-label">Assistir ao microlearning</span>
               </a>
               <a href="#" class="lp-ghost lp-ghost--dk" id="lp-download-btn" download hidden="hidden" data-track="microlearning_download" data-track-ctx="success_screen">
                 <i data-lucide="download" aria-hidden="true"></i>
@@ -1784,9 +1794,11 @@
 const PAGE_CONFIG = {
   FORM_SUBMIT_ENDPOINT: '/api/contact', // POST JSON do lead
   FORM_FORMAT: 'contact-api',      // 'contact-api' = contrato de api/contact.js (e-mail comercial) | 'flat' = payload completo (CRM)
-  MICROLEARNING_VIEW_URL: '',      // assistir online
-  MICROLEARNING_DOWNLOAD_URL: '',  // arquivo ou URL de download (gerar assinada após validação, se necessário)
-  DEMO_BOOKING_URL: '',            // agenda / formulário de demonstração
+  MICROLEARNING_VIEW_URL: '/unimeds/microlearning',      // página de acesso (pages/unimeds-microlearning)
+  MICROLEARNING_DOWNLOAD_URL: '/assets/media/unimeds/microlearning-seguranca-dados.mp4',  // vídeo do microlearning (MP4, 20 MB)
+  MICROLEARNING_VIDEO_SRC: '/assets/media/unimeds/microlearning-seguranca-dados.mp4',     // vídeo tocado na própria tela de sucesso (vazio = sem player)
+  MICROLEARNING_VIDEO_POSTER: '/assets/media/unimeds/microlearning-poster.jpg',
+  DEMO_BOOKING_URL: '/pages/contato/index.dc.html',            // contato comercial (trocar por agenda, se houver)
   PREVIEW: {
     type: 'mock',                  // 'mock' | 'image' | 'video'
     imageSrc: '',                  // type 'image'
@@ -2141,6 +2153,22 @@ class Component extends DCLogic {
     setLink('lp-download-btn', PAGE_CONFIG.MICROLEARNING_DOWNLOAD_URL, false);
     const demo = setLink('lp-demo-btn', PAGE_CONFIG.DEMO_BOOKING_URL, true);
     document.getElementById('lp-demo-divider').hidden = !demo;
+
+    // Vídeo na própria tela de sucesso
+    const vsrc = PAGE_CONFIG.MICROLEARNING_VIDEO_SRC;
+    const vbox = document.getElementById('lp-success-video');
+    if (vsrc && vbox) {
+      const pl = document.getElementById('lp-success-player');
+      if (PAGE_CONFIG.MICROLEARNING_VIDEO_POSTER) pl.poster = PAGE_CONFIG.MICROLEARNING_VIDEO_POSTER;
+      pl.preload = 'metadata';
+      pl.src = vsrc;
+      vbox.hidden = false;
+      document.getElementById('lp-success').classList.add('has-video');
+      const lbl = document.getElementById('lp-view-label');
+      if (lbl) lbl.textContent = 'Abrir em outra página';
+      let started = false;
+      pl.addEventListener('play', () => { if (!started) { started = true; this._track('microlearning_view', 'success_inline'); } });
+    }
 
     document.getElementById('lp-form-view').style.display = 'none';
     document.getElementById('lp-success').classList.add('is-visible');

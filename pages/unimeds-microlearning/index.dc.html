@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/brand/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<script>window.__resources = {};</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com">
+<link rel="stylesheet" href="/design-system/tokens/fonts.css">
+<link rel="stylesheet" href="/design-system/tokens/colors.css">
+<link rel="stylesheet" href="/design-system/tokens/typography.css">
+<link rel="stylesheet" href="/design-system/tokens/spacing.css">
+<link rel="stylesheet" href="/design-system/tokens/effects.css">
+<link rel="stylesheet" href="/design-system/tokens/base.css">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Microlearning: Segurança de dados na saúde | Lector</title>
+<meta name="description" content="Assista online e baixe o microlearning Segurança de dados na saúde: 5 situações que exigem atenção.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://lector.com.br/unimeds/microlearning">
+<!-- GEO: schema Organization (specs/geo.md) -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Lector","url":"https://lector.com.br","logo":"https://lector.com.br/assets/brand/logo-lector.svg"}
+</script>
+<link rel="stylesheet" href="/design-system/tokens/fonts.css">
+<link rel="stylesheet" href="/design-system/tokens/colors.css">
+<link rel="stylesheet" href="/design-system/tokens/typography.css">
+<link rel="stylesheet" href="/design-system/tokens/spacing.css">
+<link rel="stylesheet" href="/design-system/tokens/effects.css">
+<link rel="stylesheet" href="/design-system/tokens/base.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="/shared/newsletter.js" data-base=""></script>
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--surface-page); color: var(--text-body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  * { box-sizing: border-box; }
+  [data-lucide] { display: block; }
+  :focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+  .ml-wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  /* Header (mesmo da landing Unimeds) */
+  .ml-header-wrap { position: sticky; top: 0; z-index: 60; display: flex; justify-content: center; padding: 14px 20px 0; }
+  .ml-header {
+    width: 100%; max-width: 1160px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    padding: 11px 11px 11px 22px; border-radius: var(--radius-pill); background: #fff;
+    border: 1px solid rgba(0,32,77,.08); box-shadow: 0 14px 34px -22px rgba(0,8,24,.45);
+  }
+  .ml-header img { height: 24px; width: auto; display: block; }
+  .ml-header__cta {
+    display: inline-flex; align-items: center; gap: 12px; padding: 6px 6px 6px 20px; border-radius: var(--radius-pill);
+    background: #fff; border: 1px solid var(--ink-100); color: var(--navy-800); font-weight: 700; font-size: 14.5px; white-space: nowrap;
+  }
+  .ml-header__cta span { width: 32px; height: 32px; border-radius: 10px; background: var(--brand); color: #fff; display: flex; align-items: center; justify-content: center; }
+  .ml-header__cta svg { width: 16px; height: 16px; }
+
+  /* Conteúdo */
+  .ml-main { padding: 56px 0 96px; }
+  .ml-ok { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 18px; font-size: 15px; font-weight: 700; color: #12803f; }
+  .ml-ok svg { width: 18px; height: 18px; }
+  .ml-title { margin: 0 0 12px; font-family: var(--font-display); font-weight: 800; font-size: clamp(32px, 4.6vw, 56px); line-height: 1.04; letter-spacing: -.03em; color: var(--navy-800); }
+  .ml-sub { margin: 0 0 32px; max-width: 640px; font-size: 18px; line-height: 1.6; color: var(--ink-500); }
+  .ml-player { position: relative; border-radius: 18px; overflow: hidden; background: #062a1f; box-shadow: 0 40px 80px -48px rgba(0,26,61,.55); }
+  .ml-player video { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; background: #062a1f; }
+  .ml-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+  .ml-meta { margin: 0; font-size: 14px; color: var(--ink-500); }
+  .ml-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .ml-btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: var(--radius-pill); font-weight: 700; font-size: 15.5px; transition: background .2s, border-color .2s; }
+  .ml-btn svg { width: 18px; height: 18px; }
+  .ml-btn--primary { background: var(--brand); color: #fff; }
+  .ml-btn--primary:hover { background: var(--brand-hover); }
+  .ml-btn--ghost { border: 1.5px solid var(--ink-200); color: var(--navy-800); background: #fff; }
+  .ml-btn--ghost:hover { border-color: var(--navy-800); }
+
+  .ml-summary { margin-top: 72px; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 56px; border-top: 1px solid var(--ink-200); padding-top: 40px; }
+  .ml-summary h2 { margin: 0; font-family: var(--font-display); font-size: 28px; font-weight: 800; letter-spacing: -.02em; color: var(--navy-800); }
+  .ml-summary p { margin: 10px 0 0; font-size: 15px; line-height: 1.6; color: var(--ink-500); }
+  .ml-summary ol { list-style: none; margin: 0; padding: 0; }
+  .ml-summary li { display: grid; grid-template-columns: 40px minmax(0, 1fr); padding: 16px 0; border-bottom: 1px solid var(--ink-200); font-size: 17px; font-weight: 600; color: var(--navy-800); }
+  .ml-summary li span { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--brand); padding-top: 3px; }
+
+  .ml-next { margin-top: 72px; padding: 40px; border-radius: 24px; background: var(--ink-950); color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+  .ml-next h2 { margin: 0 0 8px; font-family: var(--font-display); font-size: clamp(24px, 3vw, 32px); font-weight: 800; letter-spacing: -.02em; }
+  .ml-next p { margin: 0; max-width: 520px; font-size: 16px; line-height: 1.6; color: rgba(230,238,250,.75); }
+
+  /* rodapé (grid inline, igual à home) empilha no mobile */
+  footer a { transition: color .2s; }
+  footer a:hover { color: var(--brand); }
+  @media (max-width: 960px) {
+    footer div[style*="grid-template-columns"] { grid-template-columns: 1fr 1fr !important; gap: 36px 28px !important; }
+    footer div[style*="grid-template-columns"] > div:first-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 760px) {
+    .ml-summary { grid-template-columns: 1fr; gap: 20px; }
+    .ml-actions, .ml-actions .ml-btn { width: 100%; justify-content: center; }
+    .ml-next { padding: 28px 22px; }
+    .ml-next .ml-btn { width: 100%; justify-content: center; }
+    .ml-cta-long { display: none; }
+  }
+  @media (max-width: 560px) {
+    footer div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+    .ml-wrap { padding: 0 20px; }
+    .ml-header { padding-left: 18px; }
+  }
+</style>
+</helmet>
+
+<div id="topo">
+  <div class="ml-header-wrap">
+    <header class="ml-header">
+      <a href="/pages/home/index.dc.html" aria-label="Lector, ir para a página inicial"><img src="/assets/brand/logo-lector.svg" alt="Lector" width="96" height="24"></a>
+      <a href="/pages/contato/index.dc.html" class="ml-header__cta" data-track="demo_request" data-track-ctx="microlearning_header"><em class="ml-cta-long" style="font-style:normal">Falar com um especialista</em><span aria-hidden="true"><i data-lucide="arrow-right"></i></span></a>
+    </header>
+  </div>
+
+  <main class="ml-main">
+    <div class="ml-wrap">
+      <p class="ml-ok"><i data-lucide="check-circle" aria-hidden="true"></i>Acesso liberado</p>
+      <h1 class="ml-title">Segurança de dados na saúde</h1>
+      <p class="ml-sub">5 situações que exigem atenção no dia a dia. Assista online ou baixe o vídeo para usar com a sua equipe.</p>
+
+      <div class="ml-player">
+        <video id="ml-video" controls playsinline preload="metadata" poster="/assets/media/unimeds/microlearning-poster.jpg" aria-label="Microlearning Segurança de dados na saúde">
+          <source src="/assets/media/unimeds/microlearning-seguranca-dados.mp4" type="video/mp4">
+          Seu navegador não reproduz vídeo. <a href="/assets/media/unimeds/microlearning-seguranca-dados.mp4" download>Baixe o microlearning</a>.
+        </video>
+      </div>
+
+      <div class="ml-bar">
+        <p class="ml-meta">Vídeo com legendas · 1 min 58 s · MP4 (1080p, 20 MB)</p>
+        <div class="ml-actions">
+          <a class="ml-btn ml-btn--primary" href="/assets/media/unimeds/microlearning-seguranca-dados.mp4" download="microlearning-seguranca-de-dados-na-saude.mp4" data-track="microlearning_download" data-track-ctx="access_page"><i data-lucide="download" aria-hidden="true"></i>Baixar o microlearning</a>
+        </div>
+      </div>
+
+      <section class="ml-summary" aria-labelledby="ml-summary-title">
+        <div>
+          <h2 id="ml-summary-title">Resumo da aula</h2>
+          <p>O que levar para a rotina depois de assistir.</p>
+        </div>
+        <ol>
+          <li><span aria-hidden="true">01</span>Use os canais aprovados pela Unimed.</li>
+          <li><span aria-hidden="true">02</span>Compartilhe só o que for necessário.</li>
+          <li><span aria-hidden="true">03</span>Confira destinatário e anexos antes de enviar.</li>
+          <li><span aria-hidden="true">04</span>Acesse só o que tem relação com o seu trabalho.</li>
+          <li><span aria-hidden="true">05</span>Errou? Avise o canal interno o quanto antes.</li>
+        </ol>
+      </section>
+
+      <section class="ml-next" aria-labelledby="ml-next-title">
+        <div>
+          <h2 id="ml-next-title">Sua equipe pode criar conteúdos como este.</h2>
+          <p>Com a Ferramenta de Autoria da Lector, situações reais da operação viram microtreinamentos próprios. Fale com um especialista e veja como funciona.</p>
+        </div>
+        <a class="ml-btn ml-btn--primary" href="/pages/contato/index.dc.html" data-track="demo_request" data-track-ctx="access_page">Conhecer a Ferramenta de Autoria<i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      </section>
+    </div>
+  </main>
+
+  <footer style="background:var(--ink-950); color:rgba(230,238,250,.7); padding:56px 0 32px;">
+    <div style="max-width:1240px; margin:0 auto; padding:0 28px;">
+      <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);">
+        <div>
+          <img src="/assets/brand/logo-lector-light.svg" alt="Lector" style="height:28px; margin-bottom:20px;">
+          <p style="font-size:15px; line-height:1.6; max-width:280px; margin:0;">A plataforma de aprendizado com IA nativa. Crie, ensine, engaje e meça, em um só lugar.</p>
+        </div>
+        <div>
+          <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Produto</div>
+          <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;"><a href="/pages/home/index.dc.html#ia">IA Lector</a><a href="/pages/home/index.dc.html#plataforma">Plataforma</a><a href="/pages/home/index.dc.html#autoria">Autoria</a><a href="/pages/home/index.dc.html#lms">LMS</a><a href="/pages/home/index.dc.html#rede-social">Rede social</a><a href="/pages/home/index.dc.html#webconferencia">Webconferência</a><a href="/pages/home/index.dc.html#documentos">Documentos</a><a href="/pages/home/index.dc.html#talentos">Talentos</a><a href="/pages/home/index.dc.html#numeros">Resultados</a></div>
+        </div>
+        <div>
+          <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Empresa</div>
+          <div style="display:flex; flex-direction:column; gap:11px; font-size:14.5px;"><a href="/pages/sobre/index.dc.html">Sobre</a><a href="/pages/blog/index.dc.html">Blog</a><a href="#">Carreiras</a><a href="/pages/contato/index.dc.html">Contato</a></div>
+        </div>
+        <div>
+          <div style="color:#fff; font-weight:700; font-size:14px; margin-bottom:16px;">Receba novidades</div>
+          <p style="font-size:14px; margin:0 0 14px;">T&amp;D, IA e aprendizado, sem ruído.</p>
+          <form data-newsletter data-newsletter-origem="rodape" style="display:flex; gap:8px; flex-wrap:wrap;">
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+            <input type="email" name="email" required aria-label="Seu e-mail" placeholder="seu@email.com" style="flex:1; min-width:0; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:var(--radius-pill); padding:11px 16px; color:#fff; font-size:14px; font-family:var(--font-sans);">
+            <button type="submit" style="background:var(--brand); border:none; color:#fff; border-radius:var(--radius-pill); width:44px; height:44px; flex:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;"><i data-lucide="arrow-right" style="width:18px;height:18px;"></i></button>
+          </form>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; padding-top:26px; font-size:13px; color:rgba(230,238,250,.5); flex-wrap:wrap; gap:14px;">
+        <span>© 2026 Lector Tecnologia. Todos os direitos reservados.</span>
+        <div style="display:flex; gap:22px;"><a href="#">Privacidade</a><a href="#">Segurança</a><a href="#">Termos</a></div>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  componentDidMount() {
+    const track = (name, ctx) => {
+      const data = { event: name, context: ctx || '', page: window.location.pathname, timestamp: new Date().toISOString() };
+      if (Array.isArray(window.dataLayer)) window.dataLayer.push(data);
+      if (typeof window.gtag === 'function') window.gtag('event', name, { event_category: 'unimeds_microlearning', event_label: ctx || '' });
+    };
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest && e.target.closest('[data-track]');
+      if (a) track(a.getAttribute('data-track'), a.getAttribute('data-track-ctx'));
+    });
+    const v = document.getElementById('ml-video');
+    if (v) {
+      let started = false;
+      v.addEventListener('play', () => { if (!started) { started = true; track('microlearning_view', 'access_page'); } });
+    }
+    this._icons(0);
+  }
+  componentDidUpdate() { this._icons(0); }
+  _icons(n) {
+    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    else if (n < 25) setTimeout(() => this._icons(n + 1), 120);
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

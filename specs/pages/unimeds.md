@@ -110,6 +110,15 @@ Exceções de texto simples (não são badges de seção):
 - Tablet e celular (≤1100 px): sem trilha; cada card acende quando o topo passa de 72% da tela. Grid 2 colunas → 1 coluna (≤640 px).
 - Hover: card sobe 6 px e brilho laranja segue o cursor na borda. `prefers-reduced-motion`: tudo aceso, sem transições.
 
+## Página de acesso ao microlearning (`/unimeds/microlearning`)
+
+- Código: `pages/unimeds-microlearning/index.dc.html` (rewrite no `vercel.json`), `noindex`.
+- **O vídeo também toca na própria tela de sucesso do formulário** (`MICROLEARNING_VIDEO_SRC` + `MICROLEARNING_VIDEO_POSTER`): player 16:9 com controles, sem autoplay. Com ele, "Baixar o microlearning" vira o botão principal e o antigo "Assistir" vira "Abrir em outra página" (`MICROLEARNING_VIEW_URL` → esta página). Evento `microlearning_view` com contexto `success_inline` no primeiro play. O botão "Baixar o microlearning" aponta direto para o MP4 (`MICROLEARNING_DOWNLOAD_URL`). "Conhecer a Ferramenta de Autoria" leva ao contato (`DEMO_BOOKING_URL = /pages/contato/index.dc.html`).
+- Conteúdo: confirmação "Acesso liberado", título "Segurança de dados na saúde", player com legendas queimadas no vídeo, botão de download, "Resumo da aula" (5 pontos, tirados do resumo final do próprio vídeo) e chamada para falar com um especialista. Rodapé igual ao da home.
+- Vídeo: `assets/media/unimeds/microlearning-seguranca-dados.mp4` (1 min 58 s, 1080p, H.264 + AAC, 20 MB; otimizado a partir de "video final 2.mp4", 52 MB). Capa: `microlearning-poster.jpg`.
+- Eventos: `microlearning_view` (primeiro play), `microlearning_download`, `demo_request`.
+- A página não exige login: quem tiver o link acessa. Para bloquear de verdade, seria preciso link assinado gerado após o envio do formulário.
+
 ## Componente de mídia (seção Microlearning)
 
 Configurado em `PAGE_CONFIG.PREVIEW` no script da página. Troca o formato sem mexer no resto:
@@ -207,4 +216,4 @@ Sem hospitais ou indústrias · sem segunda oferta principal · sem depoimento e
 
 ## Critérios de aceite
 
-Ver seção 13 do briefing. Pendentes: asset real de mídia da seção Microlearning, URLs reais de assistir/baixar/demonstração, depoimento autorizado.
+Ver seção 13 do briefing. Pendentes: asset real de mídia da seção Microlearning (a prévia), agenda de demonstração (hoje vai para o contato), depoimento autorizado.
