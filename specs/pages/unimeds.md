@@ -115,7 +115,7 @@ Exceções de texto simples (não são badges de seção):
 - Código: `pages/unimeds-microlearning/index.dc.html` (rewrite no `vercel.json`), `noindex`.
 - **O vídeo também toca na própria tela de sucesso do formulário** (`MICROLEARNING_VIDEO_SRC` + `MICROLEARNING_VIDEO_POSTER`): player 16:9 com controles, sem autoplay. Com ele, "Baixar o microlearning" vira o botão principal e o antigo "Assistir" vira "Abrir em outra página" (`MICROLEARNING_VIEW_URL` → esta página). Evento `microlearning_view` com contexto `success_inline` no primeiro play. O botão "Baixar o microlearning" aponta direto para o MP4 (`MICROLEARNING_DOWNLOAD_URL`). "Conhecer a Ferramenta de Autoria" leva ao contato (`DEMO_BOOKING_URL = /pages/contato/index.dc.html`).
 - Conteúdo: confirmação "Acesso liberado", título "Segurança de dados na saúde", player com legendas queimadas no vídeo, botão de download, "Resumo da aula" (5 pontos, tirados do resumo final do próprio vídeo) e chamada para falar com um especialista. Rodapé igual ao da home.
-- Vídeo: `assets/media/unimeds/microlearning-seguranca-dados.mp4` (1 min 58 s, 1080p, H.264 + AAC, 20 MB; otimizado a partir de "video final 2.mp4", 52 MB). Capa: `microlearning-poster.jpg`.
+- Vídeo: `assets/media/unimeds/microlearning-seguranca-dados.mp4` (1 min 58 s, 1080p, H.264 + AAC, 20 MB; otimizado a partir de "video final 2.mp4", 52 MB), com **marca d'água fixa da Lector** (logo branco a 80% de opacidade, 246 px, canto inferior esquerdo, do início ao fim, gravada no vídeo). Capa: `microlearning-poster.jpg`.
 - Eventos: `microlearning_view` (primeiro play), `microlearning_download`, `demo_request`.
 - A página não exige login: quem tiver o link acessa. Para bloquear de verdade, seria preciso link assinado gerado após o envio do formulário.
 
