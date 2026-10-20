@@ -1092,18 +1092,7 @@
   .lp-success__icon i, .lp-success__icon svg { width: 32px; height: 32px; }
   .lp-success h3 { margin-bottom: 10px; }
   .lp-success h3:focus { outline: none; }
-  .lp-success p { margin: 0 0 26px; font-size: 16px; line-height: 1.55; color: var(--ink-500); }
-  .lp-success__actions { display: flex; flex-direction: column; gap: 12px; }
-  .lp-success__actions a { min-height: 54px; }
-  .lp-success__video { margin: -6px 0 20px; border-radius: 14px; overflow: hidden; background: #062a1f; box-shadow: 0 20px 40px -28px rgba(0,26,61,.55); }
-  .lp-success__video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #062a1f; }
-  /* com o vídeo na própria tela: baixar vira a ação principal e "abrir em outra página" fica secundário */
-  .lp-success.has-video #lp-download-btn { order: -1; background: var(--brand); border-color: var(--brand); color: #fff; }
-  .lp-success.has-video #lp-download-btn:hover { background: var(--brand-hover); }
-  .lp-success.has-video #lp-view-btn { background: #fff; color: var(--navy-800); border: 1.5px solid var(--ink-200); box-shadow: none; animation: none; }
-  .lp-success.has-video #lp-view-btn::before, .lp-success.has-video #lp-view-btn .lp-cta__sheen { display: none; }
-  .lp-divider { display: flex; align-items: center; gap: 12px; margin: 6px 0; font-size: 13px; font-weight: 600; color: var(--ink-400); }
-  .lp-divider::before, .lp-divider::after { content: ''; flex: 1; height: 1px; background: var(--ink-100); }
+  .lp-success p { margin: 0 0 8px; font-size: 16px; line-height: 1.55; color: var(--ink-500); }
 
   /* ── Footer ── */
   footer a { transition: color .2s; }
@@ -1205,8 +1194,8 @@
         <a href="#ferramenta-autoria">Ferramenta de Autoria</a>
       </nav>
       <a href="#formulario" class="lp-header__cta" data-track="hero_microlearning_click" data-track-ctx="header_cta">
-        <span class="lp-cta-long">Acessar o microlearning</span>
-        <span class="lp-cta-short">Acessar</span>
+        <span class="lp-cta-long">Receber o microlearning</span>
+        <span class="lp-cta-short">Receber</span>
         <span class="lp-header__cta-tile" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
       </a>
     </header>
@@ -1240,7 +1229,7 @@
         </div>
         <p class="lp-hero__micro">
           <i data-lucide="gift" aria-hidden="true"></i>
-          <span>Acesso gratuito: assista online e baixe um exemplo de microlearning próprio.</span>
+          <span>Gratuito: um especialista da Lector envia para você um exemplo de microlearning próprio.</span>
         </p>
       </div>
 
@@ -1301,7 +1290,7 @@
   <section class="lp-sec lp-sec--dark lp-ml" id="microlearning" aria-labelledby="ml-title">
     <div class="lp-wrap">
       <div data-reveal="">
-        <h2 class="lp-title lp-title--lt" id="ml-title">Assista, baixe e veja como um conteúdo próprio pode ser criado.</h2>
+        <h2 class="lp-title lp-title--lt" id="ml-title">Receba um exemplo e veja como um conteúdo próprio pode ser criado.</h2>
         <p class="lp-lead lp-lead--lt">Uma prévia rápida mostra como uma necessidade real da operação pode virar uma experiência de aprendizagem interativa.</p>
       </div>
 
@@ -1347,8 +1336,8 @@
 
         <div class="lp-offer" data-reveal="">
           <span class="lp-offer__tag"><i data-lucide="gift" aria-hidden="true"></i>Microlearning gratuito</span>
-          <h3>Conheça o conteúdo e baixe a experiência completa.</h3>
-          <p>Veja como uma situação real pode ser transformada em contexto, interação, decisão e feedback. O acesso é gratuito e o conteúdo poderá ser baixado.</p>
+          <h3>Conheça a experiência completa com um especialista.</h3>
+          <p>Veja como uma situação real pode ser transformada em contexto, interação, decisão e feedback. É gratuito: um especialista da Lector envia o microlearning e mostra como criar conteúdos assim.</p>
           <a href="#formulario" class="lp-cta" data-track="hero_microlearning_click" data-track-ctx="ml_section">
             <span class="lp-cta__sheen" aria-hidden="true"></span>
             <span class="lp-cta__label">Quero receber gratuitamente</span>
@@ -1608,8 +1597,8 @@
     <div class="lp-wrap">
       <div class="lp-form-layout">
         <div class="lp-form-left" data-reveal="">
-          <h2 id="form-title">Acesse gratuitamente o microlearning e conheça a Ferramenta de Autoria.</h2>
-          <p>Preencha seus dados para receber acesso gratuito ao conteúdo. Você poderá assistir online e baixar o microlearning.</p>
+          <h2 id="form-title">Receba o microlearning e conheça a Ferramenta de Autoria com um especialista.</h2>
+          <p>Preencha seus dados e um especialista da Lector entra em contato para enviar o microlearning gratuito e apresentar a Ferramenta de Autoria.</p>
           <p class="lp-free">Gratuito.</p>
         </div>
 
@@ -1668,31 +1657,14 @@
               <div class="lp-alert" id="lp-alert" role="alert">
                 Não foi possível enviar agora. Seus dados continuam preenchidos: tente novamente em instantes.
               </div>
-              <p class="lp-privacy">Seus dados serão utilizados para liberar o conteúdo e realizar o contato relacionado à demonstração.</p>
+              <p class="lp-privacy">Seus dados serão utilizados para o envio do microlearning e o contato relacionado à demonstração.</p>
             </form>
           </div>
 
-          <div class="lp-success" id="lp-success" role="region" aria-live="polite" aria-label="Acesso liberado">
+          <div class="lp-success" id="lp-success" role="region" aria-live="polite" aria-label="Dados enviados">
             <div class="lp-success__icon" aria-hidden="true"><i data-lucide="check"></i></div>
-            <h3 id="lp-success-title" tabindex="-1">Acesso liberado com sucesso!</h3>
-            <p id="lp-success-text">Seu acesso ao microlearning está disponível agora.</p>
-            <div class="lp-success__video" id="lp-success-video" hidden="hidden">
-              <video id="lp-success-player" controls playsinline preload="none" aria-label="Vídeo do microlearning"></video>
-            </div>
-            <div class="lp-success__actions">
-              <a href="#" class="lp-cta" id="lp-view-btn" target="_blank" rel="noopener" hidden="hidden" data-track="microlearning_view" data-track-ctx="success_screen">
-                <span class="lp-cta__label" id="lp-view-label">Assistir ao microlearning</span>
-              </a>
-              <a href="#" class="lp-ghost lp-ghost--dk" id="lp-download-btn" download hidden="hidden" data-track="microlearning_download" data-track-ctx="success_screen">
-                <i data-lucide="download" aria-hidden="true"></i>
-                Baixar o microlearning
-              </a>
-              <div class="lp-divider" id="lp-demo-divider" hidden="hidden">ou explore a solução completa</div>
-              <a href="#" class="lp-ghost lp-ghost--dk" id="lp-demo-btn" target="_blank" rel="noopener" hidden="hidden" data-track="demo_request" data-track-ctx="success_screen">
-                Conhecer a Ferramenta de Autoria
-                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
+            <h3 id="lp-success-title" tabindex="-1">Recebemos seus dados!</h3>
+            <p>Em breve um especialista da Lector vai entrar em contato com você para enviar o microlearning.</p>
           </div>
         </div>
       </div>
@@ -1750,12 +1722,6 @@
 const PAGE_CONFIG = {
   FORM_SUBMIT_ENDPOINT: '/api/contact', // POST JSON do lead
   FORM_FORMAT: 'contact-api',      // 'contact-api' = contrato de api/contact.js (e-mail comercial) | 'flat' = payload completo (CRM)
-  // Microlearning: provisoriamente o da landing Unimeds (Segurança de dados na saúde), até haver um vídeo genérico.
-  MICROLEARNING_VIEW_URL: '/unimeds/microlearning',      // assistir online (página de acesso)
-  MICROLEARNING_DOWNLOAD_URL: '/assets/media/unimeds/microlearning-seguranca-dados.mp4',  // arquivo de download (gerar URL assinada após validação, se necessário)
-  MICROLEARNING_VIDEO_SRC: '/assets/media/unimeds/microlearning-seguranca-dados.mp4',     // vídeo tocado na própria tela de sucesso (vazio = sem player)
-  MICROLEARNING_VIDEO_POSTER: '/assets/media/unimeds/microlearning-poster.jpg',
-  DEMO_BOOKING_URL: '/pages/contato/index.dc.html',      // agenda / formulário de demonstração
   PREVIEW: {
     type: 'video',                 // 'mock' | 'image' | 'video'
     imageSrc: '',                  // type 'image'
@@ -1846,16 +1812,6 @@ class Component extends DCLogic {
       out.origin_url = window.location.href;
     }
     return out;
-  }
-
-  _withUtms(url) {
-    if (!url) return url;
-    try {
-      const u = new URL(url, window.location.href);
-      const utms = this._utms();
-      UTM_KEYS.forEach((k) => { if (utms[k] && !u.searchParams.has(k)) u.searchParams.set(k, utms[k]); });
-      return u.toString();
-    } catch (e) { return url; }
   }
 
   /* Foto do hero = cover de uma arte 1728x910; o card acompanha a mesma escala e posição */
@@ -2044,7 +2000,7 @@ class Component extends DCLogic {
         if (isLocal) {
           // Só em desenvolvimento: simula o envio para revisar o layout.
           console.log('[Lector LP] Envio simulado (FORM_SUBMIT_ENDPOINT não configurado):', payload);
-          setTimeout(() => { setLoading(false); this._onSuccess(true); }, 700);
+          setTimeout(() => { setLoading(false); this._onSuccess(); }, 700);
         } else {
           this._track('form_submit_error', 'endpoint_not_configured');
           setLoading(false);
@@ -2059,7 +2015,7 @@ class Component extends DCLogic {
         body: JSON.stringify(body)
       })
         .then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status); })
-        .then(() => { setLoading(false); this._onSuccess(isLocal); })
+        .then(() => { setLoading(false); this._onSuccess(); })
         .catch((err) => {
           console.error('[Lector LP]', err);
           this._track('form_submit_error', 'lp_form');
@@ -2107,37 +2063,9 @@ class Component extends DCLogic {
     };
   }
 
-  _onSuccess(devPreview) {
+  /* Depois do envio: só a confirmação de que um especialista vai entrar em contato (sem vídeo nem download) */
+  _onSuccess() {
     this._track('form_submit_success', 'lp_form');
-    const setLink = (id, url, withUtms) => {
-      const el = document.getElementById(id);
-      const href = url ? (withUtms ? this._withUtms(url) : url) : (devPreview ? '#' : '');
-      if (href) { el.href = href; el.hidden = false; } else { el.hidden = true; }
-      return !el.hidden;
-    };
-    setLink('lp-view-btn', PAGE_CONFIG.MICROLEARNING_VIEW_URL, true);
-    setLink('lp-download-btn', PAGE_CONFIG.MICROLEARNING_DOWNLOAD_URL, false);
-    const demo = setLink('lp-demo-btn', PAGE_CONFIG.DEMO_BOOKING_URL, true);
-    document.getElementById('lp-demo-divider').hidden = !demo;
-
-    // Vídeo na própria tela de sucesso
-    const vsrc = PAGE_CONFIG.MICROLEARNING_VIDEO_SRC;
-    const vbox = document.getElementById('lp-success-video');
-    if (vsrc && vbox) {
-      const pl = document.getElementById('lp-success-player');
-      if (PAGE_CONFIG.MICROLEARNING_VIDEO_POSTER) pl.poster = PAGE_CONFIG.MICROLEARNING_VIDEO_POSTER;
-      pl.preload = 'metadata';
-      pl.src = vsrc;
-      vbox.hidden = false;
-      document.getElementById('lp-success').classList.add('has-video');
-      const lbl = document.getElementById('lp-view-label');
-      if (lbl) lbl.textContent = 'Abrir em outra página';
-      const txt = document.getElementById('lp-success-text');
-      if (txt) txt.textContent = 'Assista aqui mesmo ou baixe o microlearning para usar com a sua equipe.';
-      let started = false;
-      pl.addEventListener('play', () => { if (!started) { started = true; this._track('microlearning_view', 'success_inline'); } });
-    }
-
     document.getElementById('lp-form-view').style.display = 'none';
     document.getElementById('lp-success').classList.add('is-visible');
     const h = document.getElementById('lp-success-title');
