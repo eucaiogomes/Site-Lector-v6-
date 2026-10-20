@@ -1800,11 +1800,11 @@ const PAGE_CONFIG = {
   MICROLEARNING_VIDEO_POSTER: '/assets/media/unimeds/microlearning-poster.jpg',
   DEMO_BOOKING_URL: '/pages/contato/index.dc.html',            // contato comercial (trocar por agenda, se houver)
   PREVIEW: {
-    type: 'mock',                  // 'mock' | 'image' | 'video'
+    type: 'video',                 // 'mock' | 'image' | 'video'
     imageSrc: '',                  // type 'image'
-    videoSrc: '',                  // type 'video' (teaser ~10 s)
-    posterSrc: '',                 // type 'video'
-    alt: ''                        // texto alternativo (image) / descrição (video)
+    videoSrc: '/assets/media/unimeds/microlearning-teaser.mp4',          // type 'video' (teaser ~10 s, sem som)
+    posterSrc: '/assets/media/unimeds/microlearning-teaser-poster.jpg',  // type 'video'
+    alt: 'Teaser de 10 segundos, sem som, do microlearning Segurança de dados na saúde: abertura, pedido por aplicativo de mensagens, perguntas antes de compartilhar, o que conferir antes de enviar e resumo da aula.'
   },
   TESTIMONIAL: {                   // só preencher com autorização do cliente
     quote: '', author: '', role: '', org: ''
@@ -1951,6 +1951,7 @@ class Component extends DCLogic {
     if (type === 'video') {
       const v = pick('video');
       const btn = document.getElementById('lp-media-play');
+      v.muted = true;
       v.src = cfg.videoSrc;
       if (cfg.posterSrc) v.poster = cfg.posterSrc;
       v.setAttribute('aria-label', cfg.alt || 'Teaser do microlearning Segurança de dados na saúde');

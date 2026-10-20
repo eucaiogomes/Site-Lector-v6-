@@ -126,11 +126,13 @@ Configurado em `PAGE_CONFIG.PREVIEW` no script da página. Troca o formato sem m
 
 | `type` | Comportamento |
 |--------|----------------|
-| `mock` (padrão) | Prévia desenhada em HTML. Usada enquanto não houver asset aprovado |
+| `mock` | Prévia desenhada em HTML. Usada enquanto não houver asset aprovado |
 | `image` | `<img src=imageSrc alt=alt>`. Sem botão de play (não simula ação inexistente) |
-| `video` | Teaser ~10 s: `<video playsinline muted preload="metadata" poster=posterSrc>`, botão de play por teclado/toque, sem áudio automático, evento `microlearning_preview_play` ao iniciar |
+| `video` (atual) | Teaser ~10 s: `<video playsinline muted preload="metadata" poster=posterSrc>`, botão de play por teclado/toque, sem áudio automático, evento `microlearning_preview_play` ao iniciar |
 
-**Pendência de asset:** `assets/media/unimeds/microlearning-preview.jpg` foi gerado por IA e traz texto ilegível/incorreto em português ("O hospital worker é so trabalho…"). **Não usar como asset final.** Trocar por captura real da abertura do microlearning ou pelo teaser de 10 s.
+**Teaser em uso:** `assets/media/unimeds/microlearning-teaser.mp4` (9,9 s, 1280×720, sem áudio, 0,9 MB) + `microlearning-teaser-poster.jpg`. Montado a partir do microlearning com dissolves de 0,35 s: abertura "Segurança de dados na Saúde" (1,7 s), pedido por aplicativo de mensagens (30 s), "Pare e pense" (42,4 s), "Antes de enviar, confira" (62,3 s) e "Resumo da aula" (114,9 s), com a marca d'água da Lector e escurecendo no fim. As legendas estão gravadas no vídeo. Os trechos foram escolhidos para a legenda não bater na marca d'água.
+
+`assets/media/unimeds/microlearning-preview.jpg` (gerado por IA, texto incorreto) não é usado. **Não usar como asset final.**
 
 ## Depoimento
 
