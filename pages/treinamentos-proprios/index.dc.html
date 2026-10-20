@@ -914,53 +914,6 @@
     .lp-proc__num { font-size: 150px; }
   }
 
-  /* ── Hero em duas colunas: profissional de T&D + tela de treinamento (Criativo A) ── */
-  .lp-hero--split { background: var(--ink-950); }
-  .lp-hero__glow { position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background:
-      radial-gradient(55% 60% at 78% 38%, rgba(246,107,10,.24), rgba(246,107,10,0) 62%),
-      radial-gradient(50% 55% at 8% 92%, rgba(26,65,115,.6), rgba(26,65,115,0) 62%),
-      linear-gradient(180deg, #001a3d 0%, #001026 100%); }
-  .lp-hero__glow img { position: absolute; width: min(860px, 110vw); right: -180px; top: 50%; transform: translateY(-50%); opacity: .09; filter: brightness(0) invert(1); }
-  .lp-hero--split .lp-hero__inner {
-    position: relative; z-index: 1; max-width: 1240px; padding: 0 28px;
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: 48px; align-items: center;
-  }
-  .lp-hero--split .lp-hero__audience { margin-left: 0; }
-  .lp-hero--split .lp-hero__title { font-size: clamp(38px, 4.1vw, 62px); }
-  .hv { position: relative; height: 580px; }
-  .hv__photo {
-    position: absolute; right: 0; top: 0; width: 76%; height: 100%; margin: 0;
-    border-radius: 30px; overflow: hidden; border: 1px solid rgba(255,255,255,.1);
-    box-shadow: 0 50px 90px -46px rgba(0,0,0,.8);
-  }
-  .hv__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 45% 0; }
-  .hv__photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,16,38,0) 52%, rgba(0,16,38,.6) 100%), linear-gradient(90deg, rgba(0,16,38,.35) 0%, rgba(0,16,38,0) 35%); }
-  .hv__ring { position: absolute; z-index: 0; width: 200px; height: 200px; right: -46px; top: -40px; border-radius: 50%; border: 2px dashed rgba(246,107,10,.45); animation: hvSpin 40s linear infinite; }
-  .hv__screen { position: absolute; z-index: 2; left: 0; bottom: 30px; width: 392px; animation: hvFloat 7s ease-in-out infinite; }
-  .hv__chip {
-    position: absolute; z-index: 3; display: inline-flex; align-items: center; gap: 10px;
-    padding: 9px 14px 9px 9px; border-radius: 16px; background: #fff; color: var(--navy-800);
-    font-size: 13.5px; font-weight: 700; white-space: nowrap; box-shadow: 0 20px 44px -18px rgba(0,0,0,.6);
-    animation: hvFloat 6s ease-in-out infinite;
-  }
-  .hv__chip b { width: 32px; height: 32px; flex: none; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; background: var(--brand); }
-  .hv__chip b svg { width: 16px; height: 16px; }
-  .hv__chip small { display: block; font-size: 11.5px; font-weight: 600; color: var(--ink-500); }
-  .hv__chip--top { top: 38px; left: 4%; animation-delay: -2s; }
-  .hv__chip--side { right: -18px; bottom: 150px; animation-delay: -4s; }
-  .hv__chip--side b { background: #12A150; }
-  @keyframes hvFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-  @keyframes hvSpin { to { transform: rotate(360deg); } }
-  @media (max-width: 960px) {
-    .lp-hero--split .lp-hero__inner { grid-template-columns: 1fr; gap: 40px; }
-    .hv { height: auto; display: flex; flex-direction: column; align-items: center; }
-    .hv__photo { position: relative; width: min(100%, 420px); height: auto; aspect-ratio: 4 / 5; }
-    .hv__screen { position: relative; left: auto; bottom: auto; width: min(100%, 380px); margin-top: -130px; }
-    .hv__chip--side, .hv__ring { display: none; }
-    .hv__chip--top { left: 0; top: 18px; }
-  }
-
   /* ── Sobretítulo das seções (linha simples com traço laranja; sem pílula nem caixa alta) ── */
   .lp-kicker { display: flex; align-items: center; gap: 10px; margin: 0 0 16px; font-size: 15px; font-weight: 700; color: var(--brand-hover); }
   .lp-kicker::before {
@@ -990,15 +943,11 @@
     box-shadow: 0 18px 30px -14px rgba(0,32,77,.7), inset 0 2px 0 rgba(255,255,255,.3), inset 0 -6px 12px rgba(0,0,0,.4);
   }
   .lp-card--3d:hover .lp-ico3d { transform: perspective(300px) rotateX(0) rotateY(0) translateY(-4px) scale(1.06); }
-  @media (prefers-reduced-motion: reduce) { .hv__screen, .hv__chip, .hv__ring { animation: none; } }
 
   /* ── Versão sóbria (menos efeito, mais tipografia) ── */
   .lp-cta, .lp-cta__icon { animation: none !important; }
   .lp-cta__sheen { display: none; }
   .lp-cta { box-shadow: none; }
-  .lp-hero__glow { background: linear-gradient(180deg, #001a3d 0%, #001026 100%); }
-  .hv__screen { animation: none; }
-  .hv__photo::after { background: linear-gradient(180deg, rgba(0,16,38,0) 60%, rgba(0,16,38,.45) 100%); }
   .lp-title--plain-lt { color: #fff; }
   .lp-proc__card::after { display: none; }
   .lp-proc__card:hover, .lp-proc__card.is-on:hover .lp-proc__num { transform: none; }
@@ -1266,8 +1215,13 @@
   <main>
 
   <!-- SECTION: hero -->
-  <section class="lp-hero lp-hero--split" id="empresas" aria-label="Apresentação">
-    <div class="lp-hero__glow" aria-hidden="true"></div>
+  <section class="lp-hero" id="empresas" aria-label="Apresentação">
+    <div class="lp-hero__media">
+      <picture>
+        <source srcset="/assets/media/treinamentos-proprios/hero.webp" type="image/webp">
+        <img class="lp-hero__photo" src="/assets/media/treinamentos-proprios/hero.jpg" alt="Profissional de T&amp;D criando um treinamento no notebook" width="1728" height="910" fetchpriority="high">
+      </picture>
+    </div>
     <div class="lp-hero__inner">
       <div data-reveal="">
         <p class="lp-hero__audience">Para RH, T&amp;D e Educação Corporativa</p>
@@ -1290,14 +1244,8 @@
         </p>
       </div>
 
-      <div class="hv" data-reveal="">
-        <figure class="hv__photo">
-          <picture>
-            <source srcset="/assets/media/treinamentos-proprios/profissional.webp" type="image/webp">
-            <img src="/assets/media/treinamentos-proprios/profissional.jpg" alt="Profissional de T&amp;D criando um treinamento no notebook" width="819" height="1024" fetchpriority="high">
-          </picture>
-        </figure>
-        <div class="hv__screen">
+      <div class="lp-hero__visual" data-reveal="">
+        <div class="lp-hero__scale">
         <div class="mlm" role="img" aria-label="Prévia de um microtreinamento próprio: como transformar uma necessidade real em treinamento, com contexto da operação, escolha de como agir, feedback aplicável, barra de progresso e indicação de conteúdo próprio e interativo.">
           <div class="mlm__bar" aria-hidden="true">
             <div class="mlm__dots"><span></span><span></span><span></span></div>
@@ -1832,6 +1780,7 @@ class Component extends DCLogic {
   componentDidMount() {
     this._captureUtms();
     this._wireHeader();
+    this._wireHeroStage();
     this._wireTracking();
     this._wirePreview();
     this._wireTestimonial();

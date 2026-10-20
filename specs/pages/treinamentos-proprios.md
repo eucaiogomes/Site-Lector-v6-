@@ -57,7 +57,7 @@ Pedido da Lector: o site estava com aparência de gerado por IA. Nesta página:
 | # | ID | Nome | Conteúdo |
 |---|-----|------|----------|
 | 0 | `topo` | Header | Âncoras: Para empresas (`#empresas`), Microlearning, Ferramenta de Autoria; CTA → `#formulario` |
-| 1 | `empresas` | Hero | **Duas colunas** (estrutura do briefing): texto à esquerda; à direita, composição "profissional de T&D + tela de treinamento": foto em card (`profissional.webp`, 819×1024, pessoa gerada por IA no ChatGPT) e card de tela de treinamento sobreposto ("Como transformar uma necessidade real em treinamento?", Contexto da operação / Escolha como agir / Feedback aplicável, progresso; sinal de conteúdo próprio e interativo no título da barra e no rótulo "Interativo"). No celular: foto e tela empilhadas. Linha de público, H1 do Criativo A, texto de apoio, CTAs "Quero ver o microlearning" e "Conhecer a Ferramenta de Autoria", microcopy de acesso gratuito |
+| 1 | `empresas` | Hero | **Mesmo hero da landing Unimeds** (pedido da Lector em 2026-10-20): foto em tela cheia (`hero.webp`/`.jpg`, 1728×910, profissional de T&D no notebook com caneca da Lector, gerada por IA, com o degradê navy já na imagem) e o card de tela de treinamento posicionado sobre a foto pelo mesmo "palco" em JS (`_wireHeroStage`). Card: "Como transformar uma necessidade real em treinamento?", texto de apoio, Contexto da operação / Escolha como agir / Feedback aplicável, progresso; sinal de conteúdo próprio e interativo no título da barra e no rótulo "Interativo". Até 960 px: foto escurecida ao fundo e card abaixo do texto. Linha de público, H1 do Criativo A, texto de apoio, CTAs "Quero ver o microlearning" e "Conhecer a Ferramenta de Autoria", microcopy de acesso gratuito |
 | 2 | `dor` | Dor | "O curso pronto conhece a sua operação?" + texto do briefing + lista numerada em 2 colunas: Cursos genéricos, Produção demorada, Fornecedores caros, Plataforma subutilizada |
 | 3 | `microlearning` | Microlearning gratuito | "Assista, baixe e veja como um conteúdo próprio pode ser criado." Mídia configurável (mock/imagem/vídeo) com legenda "Prévia do microlearning · Como criar um microtreinamento próprio"; oferta; 4 pontos (Contexto, Simulação, Feedback, Transferência) |
 | 4 | `ferramenta-autoria` | Ferramenta de Autoria | Vitrine com 6 abas + mockup do Lector Studio. Tema neutro das cenas: "Novo processo de atendimento" (cliente, pedido, exceção ao processo; versões Comercial/Operações/Atendimento/Liderança; publicar na "Sua plataforma de aprendizagem") |
@@ -87,7 +87,7 @@ Analytics: mesmos eventos da Unimeds; `event_category: lp_treinamentos_proprios`
 
 ## Mídia
 
-`assets/media/treinamentos-proprios/`: `profissional.webp`/`.jpg` (foto do hero), `hero.webp`/`hero.jpg` (usado só como `og:image`), `autoria-video.mp4` + `autoria-video-poster.jpg` (cena da IA no editor).
+`assets/media/treinamentos-proprios/`: `hero.webp`/`hero.jpg` (foto do hero e `og:image`; mesma imagem do hero da landing Unimeds), `autoria-video.mp4` + `autoria-video-poster.jpg` (cena da IA no editor). `profissional.webp`/`.jpg` era a foto do hero em duas colunas e não é mais usada.
 
 ## SEO
 
