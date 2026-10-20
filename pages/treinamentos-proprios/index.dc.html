@@ -287,10 +287,12 @@
   .lp-hero__inner > div:first-child { position: relative; z-index: 1; }
   .lp-hero__visual {
     position: absolute; z-index: 1; width: 422px;
-    left: calc(var(--stage-x, 0px) + var(--stage-w, 100%) * .69502);
+    left: calc(var(--stage-x, 0px) + var(--stage-w, 100%) * .69502 + var(--card-dx, 0px));
     top: calc(var(--stage-y, 0px) + var(--stage-h, 100%) * .19011);
   }
-  .lp-hero__scale { transform: scale(var(--stage-s, 1)); transform-origin: 0 0; }
+  /* --card-s = --stage-s e --card-dx = 0 enquanto o card couber; entre 961px e ~1440px
+     (ou em telas muito altas) o JS encolhe o card para não passar da borda direita. */
+  .lp-hero__scale { transform: scale(var(--card-s, var(--stage-s, 1))); transform-origin: 0 0; }
 
   /* Card do hero (variação mais leve da prévia) */
   .lp-hero .mlm {
@@ -1817,18 +1819,30 @@ class Component extends DCLogic {
   /* Foto do hero = cover de uma arte 1728x910; o card acompanha a mesma escala e posição */
   _wireHeroStage() {
     const hero = document.getElementById('empresas');
-    if (!hero) return;
+    const visual = hero && hero.querySelector('.lp-hero__visual');
+    const lead = hero && hero.querySelector('.lp-hero__lead');
+    if (!visual || !lead) return;
     const RW = 1728, RH = 910;
+    const stacked = window.matchMedia('(max-width: 960px)'); // mesmo breakpoint do CSS (inclui a barra de rolagem)
     const update = () => {
       const w = hero.clientWidth, h = hero.clientHeight;
       if (!w || !h) return;
       const sw = Math.max(w, h * RW / RH), sh = sw * RH / RW;
-      const fx = w <= 960 ? 0.56 : 0.70;
+      const fx = stacked.matches ? 0.56 : 0.70;
       hero.style.setProperty('--stage-w', sw + 'px');
       hero.style.setProperty('--stage-h', sh + 'px');
       hero.style.setProperty('--stage-x', ((w - sw) * fx) + 'px');
       hero.style.setProperty('--stage-y', ((h - sh) * 0.08) + 'px');
       hero.style.setProperty('--stage-s', String(sw / RW));
+      if (stacked.matches) return;
+      // Card ancorado na área reservada da foto; nunca anda para a esquerda (rosto). Se não couber
+      // entre o texto (+24px) e a borda (-20px, alinhado ao header), desliza para a direita e encolhe.
+      hero.style.setProperty('--card-dx', '0px');
+      const left = visual.offsetLeft;
+      const dx = Math.max(0, lead.getBoundingClientRect().right - hero.getBoundingClientRect().left + 24 - left);
+      const fit = (w - 20 - left - dx) / visual.offsetWidth;
+      hero.style.setProperty('--card-dx', dx + 'px');
+      hero.style.setProperty('--card-s', String(Math.min(sw / RW, fit)));
     };
     update();
     if ('ResizeObserver' in window) {

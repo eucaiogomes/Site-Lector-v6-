@@ -75,6 +75,7 @@ Exceções de texto simples (não são badges de seção):
 - Origem: o próprio mockup aprovado pelo cliente (imagem de referência 1728×910). Navbar, textos, botões e card foram removidos da imagem; as áreas foram preenchidas com o fundo ao redor. A área atrás do card ficou como janela desfocada, porque o card a cobre.
 - O gradiente navy da esquerda faz parte da foto. No desktop não há overlay CSS; no mobile (≤960 px) há overlay navy forte.
 - Posicionamento: `_wireHeroStage()` calcula um "palco" 1728×910 em modo cover (`--stage-x/y/w/h/s`). Foto e card usam o mesmo palco, e o card fica sempre em 69,5% × 19% da foto, escalado junto. Em 1728×910 o resultado coincide com o mockup.
+- Telas estreitas ou altas (entre 961 px e ~1440 px de largura, ou com proporção mais alta que a da foto): a área do card na foto chega perto da borda direita. O card então **encolhe** (`--card-s` < `--stage-s`) para terminar a 20 px da borda, alinhado ao pill do header. Ele nunca anda para a esquerda, onde está o rosto; só desliza um pouco para a direita (`--card-dx`) se ficaria a menos de 24 px do texto de apoio (≈961–990 px). Em 1440×900 e 1920×1080 a composição fica igual (no máximo 1 px menor em 1440 com barra de rolagem fixa, como no Windows). O JS usa o mesmo breakpoint do CSS (`matchMedia('(max-width: 960px)')`, que conta a barra de rolagem).
 - A foto gerada no ChatGPT (homem de frente, enquadramento fechado) **não** foi usada.
 
 ## Seção da dor (animações)
