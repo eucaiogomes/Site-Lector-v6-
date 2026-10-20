@@ -6,7 +6,7 @@
 | **Status** | `wip` |
 | **Código** | `pages/treinamentos-proprios/index.dc.html` |
 | **Rota pública** | `/treinamentos-proprios` |
-| **Última atualização** | 2026-10-19 |
+| **Última atualização** | 2026-10-20 |
 | **Lead form** | Embutido na página (mesmo componente da landing Unimeds) |
 | **Nav** | Fora do menu do site. Landing de campanha (Meta Ads, Criativo A), `noindex` |
 | **Variante de header** | pill branco (mesmo tamanho da navbar da home) sobre hero `dark` |
@@ -39,6 +39,7 @@ RH, T&D, Educação Corporativa, DHO, Desenvolvimento Organizacional, Universida
 - **Sem sobretítulos/badges acima dos títulos** (pedido da Lector; regra do site). Os sobretítulos do briefing (A dor, Acesso gratuito, O processo, Possibilidades…) não aparecem. Só fica a linha de público do hero ("Para RH, T&D e Educação Corporativa").
 - Navbar do tamanho da home; logo leva para a home. Rodapé e botão de WhatsApp iguais aos da home (diverge do briefing, que pede para não ter links de saída — decisão da Lector).
 - **Mockup do briefing não disponível nesta máquina** (`/home/ubuntu/lector_lp_generica_mockup/...`). A composição segue a landing Unimeds; ajustar quando o mockup for enviado.
+- **Revisão de 2026-10-20 (briefing reenviado pelo cliente, idêntico ao original):** todo o texto do briefing está na página. A Lector confirmou as quatro divergências: sem sobretítulos, visual da home (não a paleta azul/Inter), logo/rodapé/WhatsApp mantidos e, por enquanto, o microlearning da landing Unimeds na tela de sucesso.
 
 ## Versão sóbria (menos "cara de IA")
 
@@ -56,14 +57,14 @@ Pedido da Lector: o site estava com aparência de gerado por IA. Nesta página:
 | # | ID | Nome | Conteúdo |
 |---|-----|------|----------|
 | 0 | `topo` | Header | Âncoras: Para empresas (`#empresas`), Microlearning, Ferramenta de Autoria; CTA → `#formulario` |
-| 1 | `empresas` | Hero | **Duas colunas** (estrutura do briefing): texto à esquerda; à direita, composição "profissional de T&D + tela de treinamento": foto em card (`profissional.webp`, 819×1024, pessoa gerada por IA no ChatGPT), card de tela de treinamento sobreposto ("Como transformar uma necessidade real em treinamento?", Contexto da operação / Escolha como agir / Feedback aplicável, progresso, selo "Conteúdo próprio"), selos flutuantes "Criado pela sua equipe — com apoio de IA e revisão humana" e "Pronto para publicar — na sua plataforma". No celular: foto e tela empilhadas. H1 do Criativo A; CTAs "Quero ver o microlearning" e "Conhecer a Ferramenta de Autoria" |
-| 2 | `dor` | Dor | "O curso pronto conhece a sua operação?" + bento: Cursos genéricos, Produção demorada, Fornecedores caros, Plataforma subutilizada |
+| 1 | `empresas` | Hero | **Duas colunas** (estrutura do briefing): texto à esquerda; à direita, composição "profissional de T&D + tela de treinamento": foto em card (`profissional.webp`, 819×1024, pessoa gerada por IA no ChatGPT) e card de tela de treinamento sobreposto ("Como transformar uma necessidade real em treinamento?", Contexto da operação / Escolha como agir / Feedback aplicável, progresso; sinal de conteúdo próprio e interativo no título da barra e no rótulo "Interativo"). No celular: foto e tela empilhadas. Linha de público, H1 do Criativo A, texto de apoio, CTAs "Quero ver o microlearning" e "Conhecer a Ferramenta de Autoria", microcopy de acesso gratuito |
+| 2 | `dor` | Dor | "O curso pronto conhece a sua operação?" + texto do briefing + lista numerada em 2 colunas: Cursos genéricos, Produção demorada, Fornecedores caros, Plataforma subutilizada |
 | 3 | `microlearning` | Microlearning gratuito | "Assista, baixe e veja como um conteúdo próprio pode ser criado." Mídia configurável (mock/imagem/vídeo) com legenda "Prévia do microlearning · Como criar um microtreinamento próprio"; oferta; 4 pontos (Contexto, Simulação, Feedback, Transferência) |
 | 4 | `ferramenta-autoria` | Ferramenta de Autoria | Vitrine com 6 abas + mockup do Lector Studio. Tema neutro das cenas: "Novo processo de atendimento" (cliente, pedido, exceção ao processo; versões Comercial/Operações/Atendimento/Liderança; publicar na "Sua plataforma de aprendizagem") |
 | 5 | `processo` | Processo | "Da necessidade da equipe ao treinamento publicado." (sem texto de apoio, como no briefing) + 4 cards com número laranja e trilha |
-| 6 | `possibilidades` | Possibilidades | "Conteúdos que sua empresa pode criar internamente." 6 cards com ícones com volume (estilo 3D em CSS, laranja e navy alternados) (Integração, Atualização de processos, Compliance e segurança, Atendimento e vendas, Educação continuada, Lideranças) |
-| 7 | `depoimento` | Depoimento | **Oculta** até haver depoimento autorizado (`PAGE_CONFIG.TESTIMONIAL`). Textos: "Conteúdo conectado à realidade da sua operação." |
-| 8 | `formulario` | Formulário | Indicação curta "Conteúdo gratuito" abaixo do texto (sem lista de benefícios). 6 campos: Nome, E-mail corporativo, Empresa, Cargo, Plataforma (seleção), Principal desafio (seleção) |
+| 6 | `possibilidades` | Possibilidades | "Conteúdos que sua empresa pode criar internamente." 6 temas em 3 colunas de texto (Integração de novos colaboradores, Atualização de processos, Compliance e segurança, Atendimento e vendas, Educação continuada, Desenvolvimento de lideranças) |
+| 7 | `depoimento` | Depoimento | Título "Depoimento". **Oculta** até haver depoimento autorizado (`PAGE_CONFIG.TESTIMONIAL`). Textos: "Conteúdo conectado à realidade da sua operação." + texto institucional do briefing |
+| 8 | `formulario` | Formulário | Linha curta "Gratuito." (sem lista de benefícios). 6 campos: Nome, E-mail corporativo, Empresa, Cargo, Plataforma (seleção), Principal desafio (seleção). Botão "Receber o microlearning gratuito" + mensagem de privacidade |
 | 9 | — | Footer | Mesmo rodapé da home + WhatsApp flutuante |
 
 ## Formulário e dados
@@ -76,7 +77,11 @@ Payload completo:
 
 `origem` no e-mail: `lp-treinamentos-proprios · utm_source · utm_campaign`.
 
-Configuração em `PAGE_CONFIG` (mesmas chaves da Unimeds): `FORM_SUBMIT_ENDPOINT`, `MICROLEARNING_VIEW_URL`, `MICROLEARNING_DOWNLOAD_URL`, `DEMO_BOOKING_URL`, `PREVIEW`, `TESTIMONIAL`. **Não publicar para o anúncio antes de preencher as URLs de assistir e baixar.**
+E-mail pessoal (gmail, hotmail, outlook, live, yahoo, icloud, bol, uol, terra, ig) **não é bloqueado**: o lead segue normalmente e ganha a linha "Qualificação: e-mail pessoal, qualificar manualmente" em `mensagem` (`email_personal: true` no payload completo).
+
+Configuração em `PAGE_CONFIG` (mesmas chaves da Unimeds): `FORM_SUBMIT_ENDPOINT`, `MICROLEARNING_VIDEO_SRC`/`MICROLEARNING_VIDEO_POSTER`, `MICROLEARNING_VIEW_URL`, `MICROLEARNING_DOWNLOAD_URL`, `DEMO_BOOKING_URL`, `PREVIEW`, `TESTIMONIAL`.
+
+**Tela de sucesso (provisória):** usa o microlearning da landing Unimeds ("Segurança de dados na saúde", `assets/media/unimeds/microlearning-seguranca-dados.mp4` + `microlearning-poster.jpg`), decisão da Lector até haver um vídeo genérico. O vídeo toca na própria tela ("Assista aqui mesmo ou baixe o microlearning para usar com a sua equipe."), com "Baixar o microlearning" (MP4 direto), "Abrir em outra página" (`/unimeds/microlearning`) e "Conhecer a Ferramenta de Autoria" (`/pages/contato/index.dc.html`). Links de assistir e demonstração levam as UTMs. Ao trocar pelo vídeo genérico, mudar só essas quatro chaves.
 
 Analytics: mesmos eventos da Unimeds; `event_category: lp_treinamentos_proprios`; contexto do form `lp_form`.
 
@@ -93,6 +98,7 @@ Analytics: mesmos eventos da Unimeds; `event_category: lp_treinamentos_proprios`
 ## Pendências
 
 - Mockup aprovado da landing genérica.
-- URLs reais de assistir/baixar o microlearning e de demonstração.
+- Microlearning genérico (sem marca de cliente) para substituir o da Unimed na tela de sucesso, e teaser de ~10 s para a área de prévia (hoje a prévia é a tela desenhada, `PREVIEW.type = 'mock'`).
+- Agenda ou formulário próprio de demonstração, se houver (hoje vai para a página de contato).
 - Depoimento autorizado (ou manter a seção oculta).
 - `og:image` específica da campanha, se houver.
