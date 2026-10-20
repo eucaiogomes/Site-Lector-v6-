@@ -59,7 +59,7 @@ Pedido da Lector: o site estava com aparência de gerado por IA. Nesta página:
 | 0 | `topo` | Header | Âncoras: Para empresas (`#empresas`), Microlearning, Ferramenta de Autoria; CTA → `#formulario` |
 | 1 | `empresas` | Hero | **Mesmo hero da landing Unimeds** (pedido da Lector em 2026-10-20): foto em tela cheia (`hero.webp`/`.jpg`, 1728×910, profissional de T&D no notebook com caneca da Lector, gerada por IA, com o degradê navy já na imagem) e o card de tela de treinamento posicionado sobre a foto pelo mesmo "palco" em JS (`_wireHeroStage`). Card: "Como transformar uma necessidade real em treinamento?", texto de apoio, Contexto da operação / Escolha como agir / Feedback aplicável, progresso; sinal de conteúdo próprio e interativo no título da barra e no rótulo "Interativo". Até 960 px: foto escurecida ao fundo e card abaixo do texto. Linha de público, H1 do Criativo A, texto de apoio, CTAs "Quero ver o microlearning" e "Conhecer a Ferramenta de Autoria", microcopy de acesso gratuito |
 | 2 | `dor` | Dor | "O curso pronto conhece a sua operação?" + texto do briefing + lista numerada em 2 colunas: Cursos genéricos, Produção demorada, Fornecedores caros, Plataforma subutilizada |
-| 3 | `microlearning` | Microlearning gratuito | "Assista, baixe e veja como um conteúdo próprio pode ser criado." Mídia configurável (mock/imagem/vídeo) com legenda "Prévia do microlearning · Como criar um microtreinamento próprio"; oferta; 4 pontos (Contexto, Simulação, Feedback, Transferência) |
+| 3 | `microlearning` | Microlearning gratuito | "Assista, baixe e veja como um conteúdo próprio pode ser criado." Mídia configurável (mock/imagem/vídeo), hoje o **teaser em vídeo** (ver Mídia), com legenda "Prévia do microlearning · Como criar um microtreinamento próprio"; oferta; 4 pontos (Contexto, Simulação, Feedback, Transferência) |
 | 4 | `ferramenta-autoria` | Ferramenta de Autoria | Vitrine com 6 abas + mockup do Lector Studio. Tema neutro das cenas: "Novo processo de atendimento" (cliente, pedido, exceção ao processo; versões Comercial/Operações/Atendimento/Liderança; publicar na "Sua plataforma de aprendizagem") |
 | 5 | `processo` | Processo | "Da necessidade da equipe ao treinamento publicado." (sem texto de apoio, como no briefing) + 4 cards com número laranja e trilha |
 | 6 | `possibilidades` | Possibilidades | "Conteúdos que sua empresa pode criar internamente." 6 temas em 3 colunas de texto (Integração de novos colaboradores, Atualização de processos, Compliance e segurança, Atendimento e vendas, Educação continuada, Desenvolvimento de lideranças) |
@@ -89,6 +89,8 @@ Analytics: mesmos eventos da Unimeds; `event_category: lp_treinamentos_proprios`
 
 `assets/media/treinamentos-proprios/`: `hero.webp`/`hero.jpg` (foto do hero e `og:image`; mesma imagem do hero da landing Unimeds), `autoria-video.mp4` + `autoria-video-poster.jpg` (cena da IA no editor). `profissional.webp`/`.jpg` era a foto do hero em duas colunas e não é mais usada.
 
+**Teaser da área de prévia** (`PREVIEW.type = 'video'`): `microlearning-teaser.mp4` (9,6 s, 1280×720, sem áudio, 1 MB) + `microlearning-teaser-poster.jpg`. Montagem com dissolves de 0,35 s de trechos de treinamentos produzidos pela Lector: `conteudo-sob-demanda/video-demonstracao-2.mp4` (Comunicação Assertiva), `-3` (apresentador de terno), `-1` (Engenharia de Prompts), `-4` (apresentadora de blazer, recortada para 16:9) e `autoria-video.mp4` (apresentadora Lector, recorte do vídeo de assédio sem mostrar o tema). Marca d'água da Lector no canto inferior esquerdo e escurecendo no fim. Tocado sem som, com botão de play e evento `microlearning_preview_play`.
+
 ## SEO
 
 - Title: `Crie seus próprios treinamentos | Lector`
@@ -98,7 +100,7 @@ Analytics: mesmos eventos da Unimeds; `event_category: lp_treinamentos_proprios`
 ## Pendências
 
 - Mockup aprovado da landing genérica.
-- Microlearning genérico (sem marca de cliente) para substituir o da Unimed na tela de sucesso, e teaser de ~10 s para a área de prévia (hoje a prévia é a tela desenhada, `PREVIEW.type = 'mock'`).
+- Microlearning genérico (sem marca de cliente) para substituir o da Unimed na tela de sucesso.
 - Agenda ou formulário próprio de demonstração, se houver (hoje vai para a página de contato).
 - Depoimento autorizado (ou manter a seção oculta).
 - `og:image` específica da campanha, se houver.
