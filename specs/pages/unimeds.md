@@ -17,7 +17,7 @@
 
 Receber leads da cadência de prospecção no LinkedIn para Unimeds. A página mostra uma dor (dificuldade de produzir conteúdo próprio de treinamento), entrega uma experiência concreta (microlearning gratuito **"Segurança de dados na saúde: 5 situações que exigem atenção"**) e converte em dois passos:
 
-1. Formulário simples → acesso gratuito (assistir online + baixar).
+1. Formulário simples → acesso gratuito (assistir online + baixar o vídeo ou o pacote SCORM).
 2. Demonstração da Ferramenta de Autoria da Lector.
 
 ## Público
@@ -65,7 +65,7 @@ Exceções de texto simples (não são badges de seção):
 | 5 | `processo` | Processo | Título palavra a palavra ("treinamento publicado." em laranja) + 4 cards altos (Identifique, Estruture, Crie, Publique) com número gigante em laranja chapado e trilha ligada à rolagem |
 | 6 | `possibilidades` | Possibilidades | 6 cards de conteúdo |
 | 7 | `depoimento` | Depoimento | **Oculta** até haver depoimento autorizado (ver abaixo) |
-| 8 | `formulario` | Formulário | Texto + card com 6 campos; estados de carregando, erro e sucesso |
+| 8 | `formulario` | Formulário | Texto + card com 6 campos; estados de carregando e erro; depois do envio, agradecimento com "Acessar microlearning" e então a tela de sucesso (vídeo + downloads) |
 | 9 | — | Footer | **Mesmo rodapé da home** (Produto, Empresa, newsletter `shared/newsletter.js`, Privacidade/Segurança/Termos). Links da coluna Produto apontam para `/pages/home/index.dc.html#…` |
 
 > Ao editar o HTML, mantenha os comentários `<!-- SECTION: … -->` alinhados a esta tabela.
@@ -114,9 +114,17 @@ Exceções de texto simples (não são badges de seção):
 ## Página de acesso ao microlearning (`/unimeds/microlearning`)
 
 - Código: `pages/unimeds-microlearning/index.dc.html` (rewrite no `vercel.json`), `noindex`.
-- **O vídeo também toca na própria tela de sucesso do formulário** (`MICROLEARNING_VIDEO_SRC` + `MICROLEARNING_VIDEO_POSTER`): player 16:9 com controles, sem autoplay. Com ele, "Baixar o microlearning" vira o botão principal e o antigo "Assistir" vira "Abrir em outra página" (`MICROLEARNING_VIEW_URL` → esta página). Evento `microlearning_view` com contexto `success_inline` no primeiro play. O botão "Baixar o microlearning" aponta direto para o MP4 (`MICROLEARNING_DOWNLOAD_URL`). "Conhecer a Ferramenta de Autoria" leva ao contato (`DEMO_BOOKING_URL = /pages/contato/index.dc.html`).
-- Conteúdo: confirmação "Acesso liberado", título "Segurança de dados na saúde", player com legendas queimadas no vídeo, botão de download, "Resumo da aula" (5 pontos, tirados do resumo final do próprio vídeo) e chamada para falar com um especialista. Rodapé igual ao da home.
+- **Fluxo depois do envio (atualizado em 2026-10-21):**
+  - **Tela de sucesso direta no card do formulário:** Ao enviar, o formulário é substituído diretamente pela tela de sucesso:
+    - Ícone de check em círculo verde claro
+    - Título: "Acesso liberado com sucesso!"
+    - Subtítulo: "Assista aqui mesmo ou baixe o vídeo e o pacote SCORM para usar com a sua equipe."
+    - Player de vídeo com capa `microlearning-poster.jpg` (`assets/media/unimeds/microlearning-poster.jpg`) e controles para assistir direto no card
+    - Botão primário laranja: "Acessar o microlearning" levando para a página dedicada (`/pages/unimeds-microlearning/index.dc.html`), onde estão o player ampliado, resumo de 5 pontos e os downloads do vídeo MP4 e pacote SCORM 1.2.
+  - Os CTAs de acesso da landing (header, hero, seção Microlearning) levam ao `#formulario`: o microlearning só é liberado depois do envio.
+- Conteúdo: confirmação "Acesso liberado", título "Segurança de dados na saúde", player com legendas queimadas no vídeo, botões de download (MP4 e SCORM), seção "Resumo da aula" (faixa full-bleed com fundo laranja da marca e marca d'água de órbita branca, contendo os 5 pontos do vídeo) e chamada para falar com um especialista. Rodapé igual ao da home.
 - Vídeo: `assets/media/unimeds/microlearning-seguranca-dados.mp4` (2 min 6 s, 1080p, H.264 + AAC, 22 MB; otimizado a partir de "video final 2.mp4", 52 MB), com **marca d'água fixa da Lector** (logo branco a 80% de opacidade, 246 px, canto inferior esquerdo, do início ao fim, gravada no vídeo). Capa: `microlearning-poster.jpg`.
+- Pacote SCORM: `assets/media/unimeds/seguranca-de-dados-na-saude-unimed-scorm.zip` (SCORM 1.2, 22 MB, nota mínima 70; curso interativo com o vídeo da aula, gerado no Criador de Videoaulas). O `.gitignore` bloqueia `*.zip`; este arquivo tem exceção própria. Para trocar o pacote, manter o mesmo nome ou atualizar a exceção e o `PAGE_CONFIG`.
 - **Encerramento:** logo depois do "Resumo da aula" entra, com dissolve de 1 s (a música do microlearning sai enquanto a voz entra), o vídeo da apresentadora com a chamada "Quer produzir conteúdos como este para o seu time? Conheça a Ferramenta de Autoria da Lector. Fale com o nosso time de especialistas." (8 s, origem `Woman_speaking_in_office_20261020082906.mp4`, ampliado de 720p para 1080p). Termina com o último quadro escurecendo para preto (0,65 s). O encerramento não tem legenda.
 - Eventos: `microlearning_view` (primeiro play), `microlearning_download`, `demo_request`.
 - A página não exige login: quem tiver o link acessa. Para bloquear de verdade, seria preciso link assinado gerado após o envio do formulário.
@@ -157,7 +165,7 @@ Campos do formulário (`nome`, `email`, `empresa`, `cargo`, `plataforma`, `desaf
 
 `segment=unimeds` · `lead_source=linkedin_unimeds` · `campaign=microlearning_seguranca_dados` · `utm_source` · `utm_medium` · `utm_campaign` · `utm_content` · `submitted_at` (ISO) · `origin_url`.
 
-UTMs são guardados em `sessionStorage` na entrada e reenviados no submit e anexados às URLs de assistir e de demonstração.
+UTMs são guardados em `sessionStorage` na entrada e reenviados no submit e anexados à URL de demonstração.
 
 ### Configuração (placeholders, sem URL inventada)
 
@@ -167,13 +175,13 @@ Em `PAGE_CONFIG`:
 |-------|-----|
 | `FORM_SUBMIT_ENDPOINT` | POST JSON do lead. Hoje `/api/contact` (e-mail comercial) |
 | `FORM_FORMAT` | `contact-api` (padrão): adapta o payload ao contrato de `api/contact.js`. `flat`: envia o payload completo, para um CRM |
-| `MICROLEARNING_VIEW_URL` | Botão "Assistir ao microlearning" |
 | `MICROLEARNING_DOWNLOAD_URL` | Botão "Baixar o microlearning" (gerar URL assinada após validação, se necessário) |
+| `MICROLEARNING_SCORM_URL` | Botão "Baixar em SCORM para o seu LMS" (vazio = botão oculto) |
 | `DEMO_BOOKING_URL` | Botão "Conhecer a Ferramenta de Autoria" |
 
 Comportamento sem configuração:
-- **localhost / 127.0.0.1:** mostra os três botões (`href="#"`) na tela de sucesso, só para revisar layout. Sem `FORM_SUBMIT_ENDPOINT`, o envio é simulado.
-- **Produção:** sem `FORM_SUBMIT_ENDPOINT` o envio mostra erro. Não há sucesso falso. Botão sem URL não aparece. **Enquanto `MICROLEARNING_VIEW_URL` e `MICROLEARNING_DOWNLOAD_URL` estiverem vazias, a tela de sucesso fica sem ação: não publicar a página antes de preenchê-las.**
+- **localhost / 127.0.0.1:** mostra os botões sem URL configurada (`href="#"`) na tela de sucesso, só para revisar layout. Sem `FORM_SUBMIT_ENDPOINT`, o envio é simulado.
+- **Produção:** sem `FORM_SUBMIT_ENDPOINT` o envio mostra erro. Não há sucesso falso. Botão sem URL não aparece. **Enquanto `MICROLEARNING_VIDEO_SRC`, `MICROLEARNING_DOWNLOAD_URL` e `MICROLEARNING_SCORM_URL` estiverem vazias, a tela de sucesso fica sem vídeo e sem download: não publicar a página antes de preenchê-las.**
 
 ### Mapeamento para `/api/contact`
 
@@ -193,7 +201,7 @@ Teste local sem enviar e-mail: `MAIL_DRY_RUN=1 node devserver.js 4322` e abrir `
 
 ## Analytics (`lectorTrack` → `dataLayer` / `gtag`)
 
-`hero_microlearning_click` · `authoring_cta_click` · `microlearning_preview_play` · `form_start` · `form_validation_error` · `form_submit_success` · `form_submit_error` · `microlearning_view` · `microlearning_download` · `demo_request`.
+`hero_microlearning_click` · `authoring_cta_click` · `microlearning_preview_play` · `form_start` · `form_validation_error` · `form_submit_success` · `form_submit_error` · `microlearning_access` · `microlearning_view` · `microlearning_download` · `demo_request`.
 
 Eventos não carregam identificadores de usuário nem dados do formulário. A página não carrega GTM/GA por conta própria; sem eles os eventos só vão para o console.
 

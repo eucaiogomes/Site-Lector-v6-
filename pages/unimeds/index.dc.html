@@ -1018,27 +1018,31 @@
   .lp-alert.is-visible { display: block; }
   .lp-privacy { margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: var(--ink-500); }
 
-  .lp-success { display: none; text-align: center; padding: 8px 0 4px; }
+  .lp-success { display: none; text-align: center; padding: 4px 0 0; }
   .lp-success.is-visible { display: block; }
   .lp-success__icon {
-    width: 68px; height: 68px; margin: 0 auto 20px; border-radius: 50%;
-    background: var(--green-50); color: var(--green-500); display: flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%;
+    background: #EAF7EE; color: #16A34A; display: flex; align-items: center; justify-content: center;
   }
-  .lp-success__icon i, .lp-success__icon svg { width: 32px; height: 32px; }
-  .lp-success h3 { margin-bottom: 10px; }
+  .lp-success__icon i, .lp-success__icon svg { width: 26px; height: 26px; stroke-width: 2.4; }
+  .lp-success h3 {
+    font-family: var(--font-display); font-weight: 800; font-size: 22px;
+    letter-spacing: -.02em; color: var(--navy-800); margin: 0 0 10px;
+  }
   .lp-success h3:focus { outline: none; }
-  .lp-success p { margin: 0 0 26px; font-size: 16px; line-height: 1.55; color: var(--ink-500); }
-  .lp-success__actions { display: flex; flex-direction: column; gap: 12px; }
-  .lp-success__actions a { min-height: 54px; }
-  .lp-success__video { margin: -6px 0 20px; border-radius: 14px; overflow: hidden; background: #062a1f; box-shadow: 0 20px 40px -28px rgba(0,26,61,.55); }
-  .lp-success__video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #062a1f; }
-  /* com o vídeo na própria tela: baixar vira a ação principal e "abrir em outra página" fica secundário */
-  .lp-success.has-video #lp-download-btn { order: -1; background: var(--brand); border-color: var(--brand); color: #fff; }
-  .lp-success.has-video #lp-download-btn:hover { background: var(--brand-hover); }
-  .lp-success.has-video #lp-view-btn { background: #fff; color: var(--navy-800); border: 1.5px solid var(--ink-200); box-shadow: none; animation: none; }
-  .lp-success.has-video #lp-view-btn::before, .lp-success.has-video #lp-view-btn .lp-cta__sheen { display: none; }
-  .lp-divider { display: flex; align-items: center; gap: 12px; margin: 6px 0; font-size: 13px; font-weight: 600; color: var(--ink-400); }
-  .lp-divider::before, .lp-divider::after { content: ''; flex: 1; height: 1px; background: var(--ink-100); }
+  .lp-success p {
+    margin: 0 auto 20px; font-size: 14.5px; line-height: 1.5; color: var(--ink-500); max-width: 420px;
+  }
+  .lp-success__video {
+    margin: 0 0 20px; border-radius: 14px; overflow: hidden; background: #062a1f;
+    box-shadow: 0 18px 36px -22px rgba(0,26,61,.45);
+  }
+  .lp-success__video video {
+    display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #062a1f; object-fit: cover;
+  }
+  .lp-success #lp-access-btn {
+    text-decoration: none;
+  }
 
   /* ── Footer ── */
   footer a { transition: color .2s; }
@@ -1718,27 +1722,17 @@
             </form>
           </div>
 
+          <!-- Tela de sucesso após envio do formulário -->
           <div class="lp-success" id="lp-success" role="region" aria-live="polite" aria-label="Acesso liberado">
             <div class="lp-success__icon" aria-hidden="true"><i data-lucide="check"></i></div>
             <h3 id="lp-success-title" tabindex="-1">Acesso liberado com sucesso!</h3>
-            <p>Assista aqui mesmo ou baixe o vídeo para usar com a sua equipe.</p>
-            <div class="lp-success__video" id="lp-success-video" hidden="hidden">
-              <video id="lp-success-player" controls playsinline preload="none" aria-label="Vídeo do microlearning"></video>
+            <p>Assista aqui mesmo ou baixe o vídeo e o pacote SCORM para usar com a sua equipe.</p>
+            <div class="lp-success__video" id="lp-success-video">
+              <video id="lp-success-player" controls playsinline preload="metadata" poster="/assets/media/unimeds/microlearning-poster.jpg" src="/assets/media/unimeds/microlearning-seguranca-dados.mp4" aria-label="Vídeo do microlearning"></video>
             </div>
-            <div class="lp-success__actions">
-              <a href="#" class="lp-cta" id="lp-view-btn" target="_blank" rel="noopener" hidden="hidden" data-track="microlearning_view" data-track-ctx="success_screen">
-                <span class="lp-cta__label" id="lp-view-label">Assistir ao microlearning</span>
-              </a>
-              <a href="#" class="lp-ghost lp-ghost--dk" id="lp-download-btn" download hidden="hidden" data-track="microlearning_download" data-track-ctx="success_screen">
-                <i data-lucide="download" aria-hidden="true"></i>
-                Baixar o microlearning
-              </a>
-              <div class="lp-divider" id="lp-demo-divider" hidden="hidden">ou explore a solução completa</div>
-              <a href="#" class="lp-ghost lp-ghost--dk" id="lp-demo-btn" target="_blank" rel="noopener" hidden="hidden" data-track="demo_request" data-track-ctx="success_screen">
-                Conhecer a Ferramenta de Autoria
-                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
+            <a href="/pages/unimeds-microlearning/index.dc.html" class="lp-submit" id="lp-access-btn" data-track="microlearning_access" data-track-ctx="success_screen">
+              Acessar o microlearning
+            </a>
           </div>
         </div>
       </div>
@@ -1796,8 +1790,9 @@
 const PAGE_CONFIG = {
   FORM_SUBMIT_ENDPOINT: '/api/contact', // POST JSON do lead
   FORM_FORMAT: 'contact-api',      // 'contact-api' = contrato de api/contact.js (e-mail comercial) | 'flat' = payload completo (CRM)
-  MICROLEARNING_VIEW_URL: '/unimeds/microlearning',      // página de acesso (pages/unimeds-microlearning)
+  MICROLEARNING_ACCESS_URL: '/pages/unimeds-microlearning/index.dc.html',
   MICROLEARNING_DOWNLOAD_URL: '/assets/media/unimeds/microlearning-seguranca-dados.mp4',  // vídeo do microlearning (MP4, 22 MB)
+  MICROLEARNING_SCORM_URL: '/assets/media/unimeds/seguranca-de-dados-na-saude-unimed-scorm.zip',  // pacote SCORM 1.2 do mesmo microlearning (ZIP, 22 MB)
   MICROLEARNING_VIDEO_SRC: '/assets/media/unimeds/microlearning-seguranca-dados.mp4',     // vídeo tocado na própria tela de sucesso (vazio = sem player)
   MICROLEARNING_VIDEO_POSTER: '/assets/media/unimeds/microlearning-poster.jpg',
   DEMO_BOOKING_URL: '/pages/contato/index.dc.html',            // contato comercial (trocar por agenda, se houver)
@@ -1833,6 +1828,7 @@ class Component extends DCLogic {
     this._wireShowcase();
     this._wireReveal();
     this._icons(0);
+    this._scrollToHash();
   }
 
   componentDidUpdate() {
@@ -1859,6 +1855,18 @@ class Component extends DCLogic {
     if (Array.isArray(window.dataLayer)) window.dataLayer.push(data);
     if (typeof window.gtag === 'function') window.gtag('event', name, { event_category: 'unimeds_lp', event_label: ctx || '' });
     if (window.console) console.log('[Lector Track]', name, ctx || '');
+  }
+
+  /* Chegada com âncora (ex.: /unimeds#formulario, para onde vai o link antigo /unimeds/microlearning):
+     a página é montada depois do load, então o navegador não rola sozinho até a seção. */
+  _scrollToHash() {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    const el = id && document.getElementById(id);
+    if (!el) return;
+    const root = document.documentElement;
+    root.style.scrollBehavior = 'auto';
+    el.scrollIntoView();
+    root.style.scrollBehavior = '';
   }
 
   _wireTracking() {
@@ -2158,35 +2166,31 @@ class Component extends DCLogic {
 
   _onSuccess(devPreview) {
     this._track('form_submit_success', 'unimeds_form');
-    const setLink = (id, url, withUtms) => {
-      const el = document.getElementById(id);
-      const href = url ? (withUtms ? this._withUtms(url) : url) : (devPreview ? '#' : '');
-      if (href) { el.href = href; el.hidden = false; } else { el.hidden = true; }
-      return !el.hidden;
-    };
-    setLink('lp-view-btn', PAGE_CONFIG.MICROLEARNING_VIEW_URL, true);
-    setLink('lp-download-btn', PAGE_CONFIG.MICROLEARNING_DOWNLOAD_URL, false);
-    const demo = setLink('lp-demo-btn', PAGE_CONFIG.DEMO_BOOKING_URL, true);
-    document.getElementById('lp-demo-divider').hidden = !demo;
+
+    const accessUrl = PAGE_CONFIG.MICROLEARNING_ACCESS_URL || '/pages/unimeds-microlearning/index.dc.html';
+    const accessBtn = document.getElementById('lp-access-btn');
+    if (accessBtn) {
+      accessBtn.href = this._withUtms ? this._withUtms(accessUrl) : accessUrl;
+    }
 
     // Vídeo na própria tela de sucesso
     const vsrc = PAGE_CONFIG.MICROLEARNING_VIDEO_SRC;
     const vbox = document.getElementById('lp-success-video');
     if (vsrc && vbox) {
       const pl = document.getElementById('lp-success-player');
-      if (PAGE_CONFIG.MICROLEARNING_VIDEO_POSTER) pl.poster = PAGE_CONFIG.MICROLEARNING_VIDEO_POSTER;
-      pl.preload = 'metadata';
-      pl.src = vsrc;
+      if (pl) {
+        if (PAGE_CONFIG.MICROLEARNING_VIDEO_POSTER) pl.poster = PAGE_CONFIG.MICROLEARNING_VIDEO_POSTER;
+        pl.preload = 'metadata';
+        pl.src = vsrc;
+        let started = false;
+        pl.addEventListener('play', () => { if (!started) { started = true; this._track('microlearning_view', 'success_inline'); } });
+      }
       vbox.hidden = false;
-      document.getElementById('lp-success').classList.add('has-video');
-      const lbl = document.getElementById('lp-view-label');
-      if (lbl) lbl.textContent = 'Abrir em outra página';
-      let started = false;
-      pl.addEventListener('play', () => { if (!started) { started = true; this._track('microlearning_view', 'success_inline'); } });
     }
 
+    const success = document.getElementById('lp-success');
     document.getElementById('lp-form-view').style.display = 'none';
-    document.getElementById('lp-success').classList.add('is-visible');
+    if (success) success.classList.add('is-visible');
     const h = document.getElementById('lp-success-title');
     if (h) h.focus();
     this._icons(0);

@@ -13,6 +13,8 @@ Thumbs.db
 *.pkg
 *.exe
 *.zip
+# exceção: pacote SCORM baixado na tela de sucesso da landing Unimeds
+!assets/media/unimeds/seguranca-de-dados-na-saude-unimed-scorm.zip
 *.tar
 *.tar.gz
 *.tgz

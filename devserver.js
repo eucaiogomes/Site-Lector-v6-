@@ -79,24 +79,56 @@ function resolveFile(pathname) {
   return null;
 }
 
+// Auto-carrega .env se existir
+const envFile = path.join(ROOT, '.env');
+if (fs.existsSync(envFile)) {
+  try {
+    const envLines = fs.readFileSync(envFile, 'utf8').split(/\r?\n/);
+    for (const rawLine of envLines) {
+      const line = rawLine.trim();
+      if (!line || line.startsWith('#')) continue;
+      const eqIdx = line.indexOf('=');
+      if (eqIdx !== -1) {
+        const k = line.slice(0, eqIdx).trim();
+        let v = line.slice(eqIdx + 1).trim();
+        if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) {
+          v = v.slice(1, -1);
+        }
+        if (process.env[k] === undefined) {
+          process.env[k] = v;
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('[devserver] Erro ao carregar .env:', err.message);
+  }
+}
+
 /**
  * Rotas /api/* — executa as funções de lector-site/api/ como a Vercel faria.
- * Com MAIL_DRY_RUN=1 o envio real é substituído por um stub que apenas registra
- * a mensagem no console (útil para testar os formulários sem credenciais SMTP).
+ * Se MAIL_DRY_RUN=1 ou se EMAIL_* não estiverem configurados no ambiente local,
+ * o envio real é substituído por um stub que apenas registra no console.
+ * Isso garante que formulários funcionem para testes locais sem credenciais SMTP.
  */
-if (process.env.MAIL_DRY_RUN === '1') {
+const needsDryRun =
+  process.env.MAIL_DRY_RUN === '1' ||
+  (!process.env.EMAIL_USER || !process.env.EMAIL_PASS || !process.env.EMAIL_TO);
+
+if (needsDryRun && process.env.MAIL_DRY_RUN !== '0') {
   const nodemailer = require('nodemailer');
   nodemailer.createTransport = () => ({
     sendMail: async (msg) => {
-      console.log('[dry-run] e-mail NÃO enviado:', JSON.stringify({
-        to: msg.to, replyTo: msg.replyTo, subject: msg.subject,
-      }));
-      return { messageId: 'dry-run' };
+      console.log('\n[devserver][dry-run] E-mail simulado com sucesso:');
+      console.log('  Para:', msg.to);
+      console.log('  Assunto:', msg.subject);
+      console.log('  Responder para:', msg.replyTo);
+      return { messageId: 'dry-run-' + Date.now() };
     },
   });
   process.env.EMAIL_USER = process.env.EMAIL_USER || 'dry-run@local';
   process.env.EMAIL_PASS = process.env.EMAIL_PASS || 'dry-run';
-  process.env.EMAIL_TO = process.env.EMAIL_TO || 'dry-run@local';
+  process.env.EMAIL_TO = process.env.EMAIL_TO || 'comercial@lector.com.br';
+  console.log('[devserver] Modo dry-run ativado para /api/* (formulários funcionarão localmente sem SMTP).');
 }
 
 function handleApi(req, res, pathname) {

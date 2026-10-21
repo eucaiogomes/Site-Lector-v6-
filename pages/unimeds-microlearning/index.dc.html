@@ -113,14 +113,72 @@
   .ml-btn--ghost { border: 1.5px solid var(--ink-200); color: var(--navy-800); background: #fff; }
   .ml-btn--ghost:hover { border-color: var(--navy-800); }
 
-  .ml-summary { margin-top: 72px; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 56px; border-top: 1px solid var(--ink-200); padding-top: 40px; }
-  .ml-summary h2 { margin: 0; font-family: var(--font-display); font-size: 28px; font-weight: 800; letter-spacing: -.02em; color: var(--navy-800); }
-  .ml-summary p { margin: 10px 0 0; font-size: 15px; line-height: 1.6; color: var(--ink-500); }
+  /* Seção Resumo da aula (estilo laranja da seção do formulário) */
+  .ml-summary-sec {
+    background: var(--brand);
+    padding: 88px 0;
+    margin-top: 64px;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+  }
+  .ml-summary-sec :focus-visible { outline-color: #fff; }
+  .ml-summary-sec__orbit {
+    position: absolute;
+    bottom: -180px;
+    left: -140px;
+    width: 600px;
+    opacity: .16;
+    filter: brightness(0) invert(1);
+    pointer-events: none;
+  }
+  .ml-summary {
+    display: grid;
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+    gap: 56px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+  }
+  .ml-summary h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -.03em;
+    color: #fff;
+  }
+  .ml-summary p {
+    margin: 14px 0 0;
+    font-size: 18px;
+    line-height: 1.55;
+    color: rgba(255,255,255,.92);
+    max-width: 440px;
+  }
   .ml-summary ol { list-style: none; margin: 0; padding: 0; }
-  .ml-summary li { display: grid; grid-template-columns: 40px minmax(0, 1fr); padding: 16px 0; border-bottom: 1px solid var(--ink-200); font-size: 17px; font-weight: 600; color: var(--navy-800); }
-  .ml-summary li span { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--brand); padding-top: 3px; }
+  .ml-summary li {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr);
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,.22);
+    font-size: 17.5px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: #fff;
+    align-items: baseline;
+  }
+  .ml-summary li:last-child { border-bottom: none; }
+  .ml-summary li span {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 800;
+    color: rgba(255,255,255,.85);
+    letter-spacing: .02em;
+    padding-top: 1px;
+  }
 
-  .ml-next { margin-top: 72px; padding: 40px; border-radius: 24px; background: var(--ink-950); color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+  .ml-next { margin-top: 64px; padding: 40px; border-radius: 24px; background: var(--ink-950); color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
   .ml-next h2 { margin: 0 0 8px; font-family: var(--font-display); font-size: clamp(24px, 3vw, 32px); font-weight: 800; letter-spacing: -.02em; }
   .ml-next p { margin: 0; max-width: 520px; font-size: 16px; line-height: 1.6; color: rgba(230,238,250,.75); }
 
@@ -132,9 +190,10 @@
     footer div[style*="grid-template-columns"] > div:first-child { grid-column: 1 / -1; }
   }
   @media (max-width: 760px) {
-    .ml-summary { grid-template-columns: 1fr; gap: 20px; }
+    .ml-summary-sec { padding: 56px 0; margin-top: 48px; }
+    .ml-summary { grid-template-columns: 1fr; gap: 24px; }
     .ml-actions, .ml-actions .ml-btn { width: 100%; justify-content: center; }
-    .ml-next { padding: 28px 22px; }
+    .ml-next { padding: 28px 22px; margin-top: 48px; }
     .ml-next .ml-btn { width: 100%; justify-content: center; }
     .ml-cta-long { display: none; }
   }
@@ -175,23 +234,32 @@
       <div class="ml-bar">
         <div class="ml-actions">
           <a class="ml-btn ml-btn--primary" href="/assets/media/unimeds/microlearning-seguranca-dados.mp4" download="microlearning-seguranca-de-dados-na-saude.mp4" data-track="microlearning_download" data-track-ctx="access_page"><i data-lucide="download" aria-hidden="true"></i>Baixar o microlearning</a>
+          <a class="ml-btn ml-btn--ghost" href="/assets/media/unimeds/seguranca-de-dados-na-saude-unimed-scorm.zip" download="seguranca-de-dados-na-saude-unimed-scorm.zip" data-track="microlearning_download" data-track-ctx="access_scorm"><i data-lucide="package" aria-hidden="true"></i>Baixar em SCORM para o seu LMS</a>
         </div>
       </div>
+    </div>
 
-      <section class="ml-summary" aria-labelledby="ml-summary-title">
-        <div>
-          <h2 id="ml-summary-title">Resumo da aula</h2>
-          <p>O que levar para a rotina depois de assistir.</p>
+    <!-- SEÇÃO: Resumo da aula no estilo laranja da seção do formulário -->
+    <section class="ml-summary-sec" aria-labelledby="ml-summary-title">
+      <img class="ml-summary-sec__orbit" src="/assets/brand/orbit.svg" alt="" aria-hidden="true">
+      <div class="ml-wrap">
+        <div class="ml-summary">
+          <div>
+            <h2 id="ml-summary-title">Resumo da aula</h2>
+            <p>O que levar para a rotina depois de assistir.</p>
+          </div>
+          <ol>
+            <li><span aria-hidden="true">01</span>Use os canais aprovados pela Unimed.</li>
+            <li><span aria-hidden="true">02</span>Compartilhe só o que for necessário.</li>
+            <li><span aria-hidden="true">03</span>Confira destinatário e anexos antes de enviar.</li>
+            <li><span aria-hidden="true">04</span>Acesse só o que tem relação com o seu trabalho.</li>
+            <li><span aria-hidden="true">05</span>Errou? Avise o canal interno o quanto antes.</li>
+          </ol>
         </div>
-        <ol>
-          <li><span aria-hidden="true">01</span>Use os canais aprovados pela Unimed.</li>
-          <li><span aria-hidden="true">02</span>Compartilhe só o que for necessário.</li>
-          <li><span aria-hidden="true">03</span>Confira destinatário e anexos antes de enviar.</li>
-          <li><span aria-hidden="true">04</span>Acesse só o que tem relação com o seu trabalho.</li>
-          <li><span aria-hidden="true">05</span>Errou? Avise o canal interno o quanto antes.</li>
-        </ol>
-      </section>
+      </div>
+    </section>
 
+    <div class="ml-wrap">
       <section class="ml-next" aria-labelledby="ml-next-title">
         <div>
           <h2 id="ml-next-title">Sua equipe pode criar conteúdos como este.</h2>
