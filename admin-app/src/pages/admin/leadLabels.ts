@@ -80,3 +80,12 @@ const EXTRAS: Record<string, string> = {
 export const extraLabel = (key: string) => EXTRAS[key] ?? key;
 
 export const extraValue = (v: string | number | boolean) => (typeof v === 'boolean' ? (v ? 'Sim' : 'Não') : String(v));
+
+/** Coluna "Portal": situação do cadastro do lead como usuário no portal Lector. Newsletter não gera usuário. */
+export function portalLabel(lead: Pick<Lead, 'tipo' | 'portal_status'>): string {
+  if (lead.tipo === 'newsletter') return '';
+  if (lead.portal_status === 'criado') return 'Cadastrado';
+  if (lead.portal_status === 'ja_existia') return 'Já existia';
+  if (lead.portal_status === 'erro') return 'Erro';
+  return 'Não enviado';
+}

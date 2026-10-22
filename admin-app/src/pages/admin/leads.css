@@ -28,11 +28,11 @@
   }
 }
 
-/* Interesse das landings é um texto longo: quebra linha em vez de alargar a tabela */
+/* Interesse e Formulário podem ser textos longos: quebram linha em vez de alargar a tabela */
 .adm-ld-table td.is-wrap {
   white-space: normal;
-  min-width: 11rem;
-  max-width: 18rem;
+  min-width: 8.5rem;
+  max-width: 16rem;
 }
 
 /* Modal de detalhes: grade rótulo/valor, mensagem e dados adicionais */
@@ -89,6 +89,31 @@
   color: #1f2937;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+/* Portal Lector: ação (Cadastrar / Tentar de novo / Reenviar acesso) com confirmação na própria seção */
+.adm-ld-portal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+.adm-ld-portal-confirm {
+  margin-top: 0.85rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--adm-rc-orange, #f2680d) 35%, white);
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--adm-rc-orange, #f2680d) 6%, white);
+}
+.adm-ld-portal-confirm p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #1f2937;
+}
+.adm-ld-portal-confirm .adm-ld-portal-actions {
+  margin-top: 0.65rem;
 }
 
 @media (max-width: 560px) {

@@ -12,7 +12,7 @@
  * este arquivo como função.
  */
 const TABLE = 'leads_site';
-const SELECT = 'id,criado_em,tipo,nome,empresa,email,telefone,interesse,mensagem,origem,pagina,dados';
+const SELECT = 'id,criado_em,tipo,nome,empresa,email,telefone,interesse,mensagem,origem,pagina,dados,portal_status,portal_usuario_id,portal_detalhe,portal_em';
 /** Teto da listagem do admin (os filtros e a paginação do relatório rodam no navegador). */
 const MAX_LIST = 5000;
 
@@ -95,10 +95,23 @@ function pgPool() {
 }
 
 async function pgInsert(row) {
-  await pgPool().query(
+  const { rows } = await pgPool().query(
     `INSERT INTO ${TABLE} (tipo, nome, empresa, email, telefone, interesse, mensagem, origem, pagina, dados)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`,
     [row.tipo, row.nome, row.empresa, row.email, row.telefone, row.interesse, row.mensagem, row.origem, row.pagina, JSON.stringify(row.dados)]
+  );
+  return rows[0].id;
+}
+
+async function pgGet(id) {
+  const { rows } = await pgPool().query(`SELECT ${SELECT} FROM ${TABLE} WHERE id = $1`, [id]);
+  return rows[0] || null;
+}
+
+async function pgSetPortal(id, r) {
+  await pgPool().query(
+    `UPDATE ${TABLE} SET portal_status = $2, portal_usuario_id = $3, portal_detalhe = $4, portal_em = now() WHERE id = $1`,
+    [id, r.status, r.userId || null, r.detalhe || null]
   );
 }
 
@@ -130,10 +143,28 @@ async function supabaseFail(r) {
 }
 
 async function supabaseInsert(row) {
-  const r = await supabaseRequest(TABLE, {
+  const r = await supabaseRequest(`${TABLE}?select=id`, {
     method: 'POST',
-    headers: { Prefer: 'return=minimal' },
+    headers: { Prefer: 'return=representation' },
     body: JSON.stringify(row),
+  });
+  if (!r.ok) throw await supabaseFail(r);
+  const [created] = await r.json();
+  return created.id;
+}
+
+async function supabaseGet(id) {
+  const r = await supabaseRequest(`${TABLE}?select=${SELECT}&id=eq.${encodeURIComponent(id)}`);
+  if (!r.ok) throw await supabaseFail(r);
+  const [row] = await r.json();
+  return row || null;
+}
+
+async function supabaseSetPortal(id, res) {
+  const r = await supabaseRequest(`${TABLE}?id=eq.${encodeURIComponent(id)}`, {
+    method: 'PATCH',
+    headers: { Prefer: 'return=minimal' },
+    body: JSON.stringify({ portal_status: res.status, portal_usuario_id: res.userId || null, portal_detalhe: res.detalhe || null, portal_em: new Date().toISOString() }),
   });
   if (!r.ok) throw await supabaseFail(r);
 }
@@ -167,7 +198,7 @@ function toRow(lead) {
 
 /**
  * Grava um lead. Nunca lança: falha de banco não pode derrubar o envio do formulário.
- * @returns {Promise<{ configured: boolean, saved: boolean }>}
+ * @returns {Promise<{ configured: boolean, saved: boolean, id?: string|number }>}
  */
 async function saveLead(lead) {
   const p = provider();
@@ -175,13 +206,27 @@ async function saveLead(lead) {
   const row = toRow(lead);
   if (!row.email) return { configured: true, saved: false };
   try {
-    if (p === 'postgres') await pgInsert(row);
-    else await supabaseInsert(row);
-    return { configured: true, saved: true };
+    const id = p === 'postgres' ? await pgInsert(row) : await supabaseInsert(row);
+    return { configured: true, saved: true, id };
   } catch (err) {
     console.error(`[leads-db] falha ao gravar lead (${p}):`, err.message);
     return { configured: true, saved: false };
   }
+}
+
+/** Um lead pelo id (null se não existe). Lança em erro de banco. */
+async function getLead(id) {
+  const p = provider();
+  if (!p) return null;
+  return p === 'postgres' ? pgGet(id) : supabaseGet(id);
+}
+
+/** Registra o resultado do cadastro no portal Lector. Lança em erro de banco. */
+async function setPortalResult(id, result) {
+  const p = provider();
+  if (!p) return;
+  if (p === 'postgres') await pgSetPortal(id, result);
+  else await supabaseSetPortal(id, result);
 }
 
 /**
@@ -241,4 +286,4 @@ function pageFrom(req, body, dados) {
   return pagina;
 }
 
-module.exports = { provider, saveLead, listLeads, extrasFrom, pageFrom };
+module.exports = { provider, saveLead, getLead, setPortalResult, listLeads, extrasFrom, pageFrom };

@@ -102,8 +102,15 @@ O e-mail para o comercial continua saindo como antes; se o e-mail falhar, o lead
 | Tabela | `db/schema.sql` (Huawei e Supabase) + `db/supabase-rls.sql` (só Supabase) |
 | Banco | `api/_lib/leads-db.js` — `DB_PROVIDER=postgres` (`DATABASE_URL`) ou `supabase` (`SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`) |
 | Login | `api/_lib/admin-auth.js` — `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET` |
-| API do admin | `api/admin/{login,logout,session,leads}.js` |
+| API do admin | `api/admin/{login,logout,session,leads,portal-access}.js` |
 | Tela | `admin-app/` (Vite + React, copiado do admin da Tela-Recompensas) → build em `admin/` |
+
+**Cadastro no portal Lector:** cada lead de contato vira usuário no portal (`LECTOR_PORTAL_ID`, hoje o
+lector_modelo) com perfil Aluno e grupo/cargo Leads, e recebe um e-mail com login e senha inicial
+(`Nome@1234`). Roda em segundo plano depois do envio (o formulário não espera). E-mail que já existe na
+Lector — em qualquer portal — nunca é alterado (nem dados, nem senha). O resultado aparece na coluna
+**Portal** do relatório; no modal do lead dá para cadastrar, tentar de novo ou reenviar o acesso.
+Código: `api/_lib/lector-portal.js` (API) e `api/_lib/portal-access.js` (e-mail + registro).
 
 Variáveis: ver `.env.example`. Local:
 

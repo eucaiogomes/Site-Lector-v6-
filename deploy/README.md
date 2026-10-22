@@ -76,9 +76,15 @@ DATABASE_URL=postgresql://usuario:senha@IP-PRIVADO-DO-RDS:5432/lector
 ADMIN_EMAIL=admin@lectortec.com
 ADMIN_PASSWORD=a senha do admin
 ADMIN_SESSION_SECRET=saída de: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+# Cadastro do lead no portal Lector (opcional; sem usuário/senha fica desligado)
+LECTOR_PORTAL_ID=1115
+LECTOR_API_USER=conta de serviço do portal
+LECTOR_API_PASSWORD=senha da conta de serviço
+LECTOR_PROFILE_ID=10790
+LECTOR_GROUP_IDS=406925,406930
 ```
 
-Crie a tabela uma vez: `psql "$DATABASE_URL" -f /var/www/lector-site/db/schema.sql`.
+Crie (ou atualize) a tabela: `psql "$DATABASE_URL" -f /var/www/lector-site/db/schema.sql` — pode rodar de novo a cada versão.
 Ao subir, o log do serviço diz qual banco está em uso e avisa se o login do admin não estiver configurado.
 
 ## 5. Serviço systemd

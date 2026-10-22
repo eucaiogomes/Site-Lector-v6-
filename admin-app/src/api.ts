@@ -15,6 +15,19 @@ export interface Lead {
   pagina: string | null;
   /** Campos extras do formulário (cargo, desafio, utm_*…). */
   dados: Record<string, string | number | boolean> | null;
+  /** Cadastro no portal Lector: criado | ja_existia | erro | null (não enviado). */
+  portal_status: PortalStatus;
+  portal_usuario_id: string | number | null;
+  portal_detalhe: string | null;
+  portal_em: string | null;
+}
+
+export type PortalStatus = 'criado' | 'ja_existia' | 'erro' | null;
+
+export interface PortalResult {
+  status: PortalStatus;
+  userId: number | null;
+  detalhe: string | null;
 }
 
 export interface LeadsResponse {
@@ -54,3 +67,7 @@ export const login = (email: string, password: string) =>
 export const logout = () => call<{ ok: true }>('/api/admin/logout', { method: 'POST', body: '{}' });
 
 export const getLeads = () => call<LeadsResponse>('/api/admin/leads');
+
+/** Cadastra o lead no portal Lector (ou reenvia o acesso com senha nova). */
+export const grantPortalAccess = (id: string | number) =>
+  call<{ result: PortalResult }>('/api/admin/portal-access', { method: 'POST', body: JSON.stringify({ id: String(id) }) });

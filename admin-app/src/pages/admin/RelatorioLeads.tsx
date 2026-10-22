@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ApiError, getLeads, type Lead, type LeadsResponse } from '../../api';
-import { Modal, fmt, useAdminToast } from './adminUi';
+import { ApiError, getLeads, grantPortalAccess, type Lead, type LeadsResponse } from '../../api';
+import { ConfirmDialog, Modal, fmt, useAdminToast } from './adminUi';
 import { LoadingState } from './PageHeader';
 import {
   ExportsModal,
@@ -22,7 +22,7 @@ import {
   useReportController,
   type ReportColumn,
 } from './relatorioUi';
-import { extraLabel, extraValue, formularioLabel, interesseLabel, paginaLabel } from './leadLabels';
+import { extraLabel, extraValue, formularioLabel, interesseLabel, paginaLabel, portalLabel } from './leadLabels';
 import './leads.css';
 
 /**
@@ -42,15 +42,16 @@ type LeadRow = {
   telefone: string;
   interesse: string;
   formulario: string;
+  portal: string;
   pagina: string;
   mensagem: string;
   extras: [string, string][];
   lead: Lead;
 };
-type SortField = 'data' | 'nome' | 'email' | 'empresa' | 'telefone' | 'interesse' | 'formulario' | 'pagina' | 'tipo' | 'mensagem' | 'extras';
-type Filters = { from: string; to: string; busca: string; formulario: string; interesse: string };
+type SortField = 'data' | 'nome' | 'email' | 'empresa' | 'telefone' | 'interesse' | 'formulario' | 'portal' | 'pagina' | 'tipo' | 'mensagem' | 'extras';
+type Filters = { from: string; to: string; busca: string; formulario: string; interesse: string; portal: string };
 
-const EMPTY_FILTERS: Filters = { from: '', to: '', busca: '', formulario: '', interesse: '' };
+const EMPTY_FILTERS: Filters = { from: '', to: '', busca: '', formulario: '', interesse: '', portal: '' };
 const EMPTY_ROWS: LeadRow[] = [];
 const FILTERS_ID = 'adm-ld-filtros';
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -65,15 +66,16 @@ const COLUMNS: ReportColumn<LeadRow, SortField>[] = [
   { field: 'telefone', label: 'Telefone', sort: (a, b) => byText(a.telefone, b.telefone), cell: (r) => r.telefone },
   { field: 'interesse', label: 'Interesse', sort: (a, b) => byText(a.interesse, b.interesse), cell: (r) => r.interesse },
   { field: 'formulario', label: 'Formulário', sort: (a, b) => byText(a.formulario, b.formulario), cell: (r) => r.formulario },
+  { field: 'portal', label: 'Portal', sort: (a, b) => byText(a.portal, b.portal), cell: (r) => r.portal },
   { field: 'pagina', label: 'Página', sort: (a, b) => byText(a.pagina, b.pagina), cell: (r) => r.pagina },
   { field: 'mensagem', label: 'Mensagem', sort: (a, b) => byText(a.mensagem, b.mensagem), cell: (r) => r.mensagem },
   { field: 'extras', label: 'Dados adicionais', sort: () => 0, cell: (r) => r.extras.map(([k, v]) => `${k}: ${v}`).join(' | ') },
 ];
-/** Página fica no modal de detalhes e nas exportações: com ela a tabela não cabe sem rolagem lateral. */
-const VISIBLE: SortField[] = ['data', 'nome', 'email', 'empresa', 'telefone', 'interesse', 'formulario'];
+/** Telefone e Página ficam no modal de detalhes e nas exportações: com eles a tabela não cabe sem rolagem lateral. */
+const VISIBLE: SortField[] = ['data', 'nome', 'email', 'empresa', 'interesse', 'formulario', 'portal'];
 const VISIBLE_COLUMNS = VISIBLE.map((f) => COLUMNS.find((c) => c.field === f)!);
-/** Colunas que podem quebrar linha (textos longos das landings). */
-const WRAP: SortField[] = ['interesse'];
+/** Colunas que podem quebrar linha (textos longos das landings, "Landing Treinamentos próprios"…). */
+const WRAP: SortField[] = ['interesse', 'formulario'];
 
 /** Empate: mais recente primeiro. */
 const tieBreak = (a: LeadRow, b: LeadRow) => b.ts - a.ts;
@@ -93,6 +95,7 @@ const matches = (r: LeadRow, f: Filters) => {
   if (to !== null && r.ts >= to + DAY_MS) return false;
   if (f.formulario && r.formulario !== f.formulario) return false;
   if (f.interesse && r.interesse !== f.interesse) return false;
+  if (f.portal && r.portal !== f.portal) return false;
   if (f.busca && !norm(`${r.nome} ${r.email} ${r.empresa} ${r.telefone}`).includes(norm(f.busca.trim()))) return false;
   return true;
 };
@@ -103,6 +106,7 @@ const describe = (f: Filters) => {
   if (f.busca) parts.push(`Busca “${f.busca}”`);
   if (f.formulario) parts.push(`Formulário “${f.formulario}”`);
   if (f.interesse) parts.push(`Interesse “${f.interesse}”`);
+  if (f.portal) parts.push(`Portal “${f.portal}”`);
   return parts.length ? parts.join(' · ') : 'Sem filtros';
 };
 
@@ -120,6 +124,7 @@ function toRow(lead: Lead): LeadRow {
     telefone: lead.telefone ?? '',
     interesse: interesseLabel(lead.interesse),
     formulario: formularioLabel(lead),
+    portal: portalLabel(lead),
     pagina: paginaLabel(lead.pagina),
     mensagem: lead.mensagem ?? '',
     extras: Object.entries(lead.dados ?? {}).map(([k, v]) => [extraLabel(k), extraValue(v)]),
@@ -141,7 +146,8 @@ export const RelatorioLeads: React.FC<{ onExpired: () => void }> = ({ onExpired 
   const toast = useAdminToast();
   const [load, setLoad] = useState<LoadState>({ status: 'loading' });
   const [refreshing, setRefreshing] = useState(false);
-  const [detail, setDetail] = useState<LeadRow | null>(null);
+  /** Lead aberto no modal (pelo id: depois de "Atualizar" ou de uma ação, o modal mostra os dados novos). */
+  const [detailId, setDetailId] = useState<string | null>(null);
   // O valor do contexto do toast muda a cada aviso: via ref, um aviso não dispara outro carregamento.
   const toastRef = useRef(toast);
   toastRef.current = toast;
@@ -174,6 +180,8 @@ export const RelatorioLeads: React.FC<{ onExpired: () => void }> = ({ onExpired 
   const rows = useMemo(() => (load.status === 'ready' ? load.data.leads.map(toRow) : EMPTY_ROWS), [load]);
   const formularioOptions = useMemo(() => optionsOf(rows, (r) => r.formulario, 'Todos os formulários'), [rows]);
   const interesseOptions = useMemo(() => optionsOf(rows, (r) => r.interesse, 'Todos os interesses'), [rows]);
+  const portalOptions = useMemo(() => optionsOf(rows, (r) => r.portal, 'Todas as situações'), [rows]);
+  const detail = detailId ? rows.find((r) => r.id === detailId) ?? null : null;
 
   const rc = useReportController({
     rows,
@@ -240,7 +248,7 @@ export const RelatorioLeads: React.FC<{ onExpired: () => void }> = ({ onExpired 
                 })}
                 <td>
                   <div className="adm-rc-row-actions">
-                    <button type="button" className="adm-rc-pill-btn" onClick={() => setDetail(r)} aria-label={`Ver detalhes do lead ${r.nome || r.email}`}>
+                    <button type="button" className="adm-rc-pill-btn" onClick={() => setDetailId(r.id)} aria-label={`Ver detalhes do lead ${r.nome || r.email}`}>
                       Detalhes
                     </button>
                   </div>
@@ -306,6 +314,15 @@ export const RelatorioLeads: React.FC<{ onExpired: () => void }> = ({ onExpired 
           options={interesseOptions}
           onChange={(v) => rc.setField('interesse', v)}
         />
+        <ReportSelectFilter
+          id="ld-portal"
+          label="PORTAL"
+          className="adm-rc-field-wide"
+          icon={FILTER_ICONS.shield}
+          value={rc.draft.portal}
+          options={portalOptions}
+          onChange={(v) => rc.setField('portal', v)}
+        />
       </ReportFilterCard>
 
       {ready && (
@@ -344,7 +361,7 @@ export const RelatorioLeads: React.FC<{ onExpired: () => void }> = ({ onExpired 
         />
       )}
 
-      {detail && <LeadDetailModal row={detail} onClose={() => setDetail(null)} />}
+      {detail && <LeadDetailModal row={detail} onClose={() => setDetailId(null)} onChanged={() => fetchLeads()} onExpired={onExpired} />}
     </div>
   );
 };
@@ -357,10 +374,55 @@ function whatsappUrl(phone: string): string | null {
   return null;
 }
 
-const LeadDetailModal: React.FC<{ row: LeadRow; onClose: () => void }> = ({ row, onClose }) => {
+const PORTAL_ERRORS: Record<string, string> = {
+  portal_not_configured: 'A integração com o portal Lector ainda não foi configurada no servidor.',
+  user_already_existed: 'Esse e-mail já existia na Lector; nada foi alterado.',
+  newsletter_lead: 'Lead de newsletter não gera usuário no portal (só tem e-mail).',
+  network: 'Sem conexão com o servidor. Tente de novo.',
+};
+
+const LeadDetailModal: React.FC<{ row: LeadRow; onClose: () => void; onChanged: () => void; onExpired: () => void }> = ({ row, onClose, onChanged, onExpired }) => {
   const toast = useAdminToast();
   const { lead } = row;
   const wa = row.telefone ? whatsappUrl(row.telefone) : null;
+  const [confirming, setConfirming] = useState(false);
+  const [portalBusy, setPortalBusy] = useState(false);
+
+  // Quem já existia na Lector não é alterado; quem esta integração criou pode receber um acesso novo.
+  const canPortal = row.tipo === 'contato' && lead.portal_status !== 'ja_existia';
+  const resend = lead.portal_status === 'criado';
+
+  const runPortal = async () => {
+    setPortalBusy(true);
+    try {
+      const { result } = await grantPortalAccess(lead.id);
+      if (result.status === 'criado') {
+        toast.push(result.detalhe ? `Cadastrado no portal, com pendência: ${result.detalhe}` : resend ? 'Acesso reenviado: o lead recebeu uma senha nova.' : 'Usuário cadastrado no portal e e-mail de acesso enviado.', result.detalhe ? 'info' : 'success');
+      } else if (result.status === 'ja_existia') {
+        toast.push(PORTAL_ERRORS.user_already_existed, 'info');
+      } else {
+        toast.push(`Não foi possível cadastrar: ${result.detalhe || 'erro desconhecido'}`, 'error');
+      }
+      onChanged();
+    } catch (err) {
+      const code = err instanceof ApiError ? err.code : 'unknown';
+      if (code === 'unauthorized') {
+        onExpired();
+        return;
+      }
+      toast.push(PORTAL_ERRORS[code] ?? 'Não foi possível falar com o portal agora.', 'error');
+    } finally {
+      setPortalBusy(false);
+      setConfirming(false);
+    }
+  };
+
+  const portalFields: [string, React.ReactNode][] = [
+    ['Situação', row.portal || '—'],
+    ['Usuário no portal', lead.portal_usuario_id ? `ID ${lead.portal_usuario_id}` : '—'],
+    ['Detalhe', lead.portal_detalhe || '—'],
+    ['Atualizado em', lead.portal_em ? stampDateTime(new Date(lead.portal_em)) : '—'],
+  ];
 
   const copyEmail = async () => {
     const ok = await copyText(row.email);
@@ -435,6 +497,43 @@ const LeadDetailModal: React.FC<{ row: LeadRow; onClose: () => void }> = ({ row,
               </div>
             ))}
           </dl>
+        </section>
+      )}
+
+      {row.tipo === 'contato' && (
+        <section className="adm-ld-sec" aria-labelledby="adm-ld-portal">
+          <h3 id="adm-ld-portal">Portal Lector</h3>
+          <dl className="adm-ld-dl">
+            {portalFields.map(([k, v]) => (
+              <div key={k} className="adm-ld-dl-row">
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+          {canPortal && (
+            confirming ? (
+              <div className="adm-ld-portal-confirm" role="group" aria-label="Confirmar envio ao portal">
+                <p>
+                  {resend
+                    ? `Uma senha nova será gerada e enviada para ${row.email}. A senha atual deixa de valer.`
+                    : `${row.nome || row.email} será cadastrado no portal e receberá em ${row.email} um e-mail com login e senha.`}
+                </p>
+                <div className="adm-ld-portal-actions">
+                  <button type="button" className="adm-btn is-ghost" onClick={() => setConfirming(false)} disabled={portalBusy}>Cancelar</button>
+                  <button type="button" className="adm-btn is-primary" onClick={runPortal} disabled={portalBusy}>
+                    {portalBusy ? 'Enviando…' : 'Confirmar'}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="adm-ld-portal-actions">
+                <button type="button" className="adm-btn is-ghost" onClick={() => setConfirming(true)}>
+                  {resend ? 'Reenviar acesso' : lead.portal_status === 'erro' ? 'Tentar de novo' : 'Cadastrar no portal'}
+                </button>
+              </div>
+            )
+          )}
         </section>
       )}
     </Modal>

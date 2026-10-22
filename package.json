@@ -7,6 +7,7 @@
     "admin:build": "npm --prefix admin-app run build"
   },
   "dependencies": {
+    "@vercel/functions": "^3.10.3",
     "nodemailer": "^6.9.14",
     "pg": "^8.23.1"
   }

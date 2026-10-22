@@ -29,5 +29,13 @@ CREATE TABLE IF NOT EXISTS public.leads_site (
     dados      JSONB NOT NULL DEFAULT '{}'::jsonb
 );
 
+-- Cadastro do lead como usuário no portal Lector (api/_lib/lector-portal.js).
+-- ADD COLUMN IF NOT EXISTS: também atualiza tabelas criadas antes desta versão.
+-- portal_status: criado | ja_existia | erro | NULL (não enviado)
+ALTER TABLE public.leads_site ADD COLUMN IF NOT EXISTS portal_status     TEXT;
+ALTER TABLE public.leads_site ADD COLUMN IF NOT EXISTS portal_usuario_id BIGINT;
+ALTER TABLE public.leads_site ADD COLUMN IF NOT EXISTS portal_detalhe    TEXT;
+ALTER TABLE public.leads_site ADD COLUMN IF NOT EXISTS portal_em         TIMESTAMPTZ;
+
 CREATE INDEX IF NOT EXISTS leads_site_criado_em_idx ON public.leads_site (criado_em DESC);
 CREATE INDEX IF NOT EXISTS leads_site_email_idx ON public.leads_site (lower(email));
