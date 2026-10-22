@@ -12,6 +12,7 @@
 const nodemailer = require('nodemailer');
 const portal = require('./lector-portal');
 const db = require('./leads-db');
+const { buildPortalAccessEmail } = require('./emails/portal-access-email');
 
 const PORTAL_URL = () => String(process.env.LECTOR_PORTAL_URL || 'https://lector.live/lector_modelo').replace(/\/+$/, '');
 
@@ -41,41 +42,21 @@ const INTERESSES = {
   outro: 'outro assunto',
 };
 
-function escapeHtml(str) {
-  return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
-
-function accessEmailHtml({ firstname, login, password, url }) {
-  const row = (k, v) =>
-    `<tr><td style="padding:8px 14px;color:#5A6B85;font-size:13px">${k}</td><td style="padding:8px 14px;font-size:15px;font-weight:700;color:#00204D">${v}</td></tr>`;
-  return (
-    '<div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;color:#1f2937">' +
-    `<h2 style="color:#00204D;margin:0 0 12px">Olá, ${escapeHtml(firstname)}!</h2>` +
-    '<p style="line-height:1.55">Seu acesso ao portal Lector está pronto. É lá que você assiste ao microlearning <strong>Segurança de dados na saúde</strong> e conhece a plataforma por dentro.</p>' +
-    '<table cellspacing="0" style="background:#F7F9FC;border-radius:10px;margin:18px 0;border-collapse:separate">' +
-    row('Portal', `<a href="${escapeHtml(url)}" style="color:#F66B0A">${escapeHtml(url)}</a>`) +
-    row('Login', escapeHtml(login)) +
-    row('Senha', escapeHtml(password)) +
-    '</table>' +
-    `<p><a href="${escapeHtml(url)}" style="display:inline-block;background:#F66B0A;color:#fff;text-decoration:none;font-weight:700;padding:12px 26px;border-radius:999px">Acessar o microlearning</a></p>` +
-    '<p style="line-height:1.55;font-size:13px;color:#5A6B85">No primeiro acesso, troque a senha por uma só sua. Em breve um especialista Lector entra em contato.</p>' +
-    '<p style="font-size:13px;color:#5A6B85">Equipe Lector</p>' +
-    '</div>'
-  );
-}
-
 async function sendAccessEmail(lead, password) {
   const { EMAIL_USER, EMAIL_PASS, EMAIL_TO } = process.env;
   if (!EMAIL_USER || !EMAIL_PASS) throw new Error('SMTP não configurado (EMAIL_USER / EMAIL_PASS)');
   const firstname = portal.splitName(lead.nome).firstname;
   const login = String(lead.email).trim().toLowerCase();
+  const email = buildPortalAccessEmail({ firstname, login, password, url: PORTAL_URL() });
   const transporter = nodemailer.createTransport({ service: 'gmail', auth: { user: EMAIL_USER, pass: EMAIL_PASS } });
   await transporter.sendMail({
     from: `"Lector" <${EMAIL_USER}>`,
     to: login,
     replyTo: String(EMAIL_TO || EMAIL_USER).split(',')[0].trim(),
-    subject: 'Seu acesso ao microlearning: Segurança de dados na saúde',
-    html: accessEmailHtml({ firstname, login, password, url: PORTAL_URL() }),
+    subject: email.subject,
+    html: email.html,
+    text: email.text,
+    attachments: email.attachments,
   });
 }
 

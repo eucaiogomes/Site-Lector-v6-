@@ -1,6 +1,10 @@
 {
   "cleanUrls": false,
   "trailingSlash": false,
+  "functions": {
+    "api/contact.js": { "includeFiles": "assets/brand/logo-lector-light-email.png" },
+    "api/admin/portal-access.js": { "includeFiles": "assets/brand/logo-lector-light-email.png" }
+  },
   "rewrites": [
     { "source": "/", "destination": "/pages/home/index.dc.html" },
     { "source": "/home", "destination": "/pages/home/index.dc.html" },
