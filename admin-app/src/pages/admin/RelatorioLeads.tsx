@@ -378,6 +378,7 @@ const PORTAL_ERRORS: Record<string, string> = {
   portal_not_configured: 'A integração com o portal Lector ainda não foi configurada no servidor.',
   user_already_existed: 'Esse e-mail já existia na Lector; nada foi alterado.',
   newsletter_lead: 'Lead de newsletter não gera usuário no portal (só tem e-mail).',
+  not_eligible: 'Só leads da landing Unimeds ganham acesso ao portal.',
   network: 'Sem conexão com o servidor. Tente de novo.',
 };
 
@@ -388,8 +389,9 @@ const LeadDetailModal: React.FC<{ row: LeadRow; onClose: () => void; onChanged: 
   const [confirming, setConfirming] = useState(false);
   const [portalBusy, setPortalBusy] = useState(false);
 
-  // Quem já existia na Lector não é alterado; quem esta integração criou pode receber um acesso novo.
-  const canPortal = row.tipo === 'contato' && lead.portal_status !== 'ja_existia';
+  // Só landing Unimeds (o servidor decide em portal_elegivel). Quem já existia na Lector não é alterado.
+  const showPortal = row.tipo === 'contato' && (Boolean(lead.portal_elegivel) || Boolean(lead.portal_status));
+  const canPortal = Boolean(lead.portal_elegivel) && lead.portal_status !== 'ja_existia';
   const resend = lead.portal_status === 'criado';
 
   const runPortal = async () => {
@@ -500,7 +502,7 @@ const LeadDetailModal: React.FC<{ row: LeadRow; onClose: () => void; onChanged: 
         </section>
       )}
 
-      {row.tipo === 'contato' && (
+      {showPortal && (
         <section className="adm-ld-sec" aria-labelledby="adm-ld-portal">
           <h3 id="adm-ld-portal">Portal Lector</h3>
           <dl className="adm-ld-dl">

@@ -1,11 +1,11 @@
 const auth = require('../_lib/admin-auth');
 const db = require('../_lib/leads-db');
 const portal = require('../_lib/lector-portal');
-const { grantPortalAccess } = require('../_lib/portal-access');
+const { grantPortalAccess, isEligible } = require('../_lib/portal-access');
 
 /**
- * POST { id } → cadastra o lead no portal Lector (ou reenvia o acesso com senha nova, se foi esta
- * integração que criou o usuário) e devolve o resultado. Botão do modal de detalhes do admin.
+ * POST { id } → cadastra o lead da landing Unimeds no portal Lector (ou reenvia o acesso com senha nova,
+ * se foi esta integração que criou o usuário) e devolve o resultado. Botão do modal de detalhes do admin.
  */
 module.exports = async function handler(req, res) {
   auth.noStore(res);
@@ -44,6 +44,10 @@ module.exports = async function handler(req, res) {
   }
   if (lead.tipo !== 'contato') {
     res.status(400).json({ ok: false, error: 'newsletter_lead' });
+    return;
+  }
+  if (!isEligible(lead)) {
+    res.status(400).json({ ok: false, error: 'not_eligible' });
     return;
   }
   if (lead.portal_status === 'ja_existia') {

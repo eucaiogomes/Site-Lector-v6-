@@ -1,5 +1,6 @@
 const auth = require('../_lib/admin-auth');
 const db = require('../_lib/leads-db');
+const { isEligible } = require('../_lib/portal-access');
 
 /** GET → leads do site, mais recentes primeiro (Relatórios › Leads site). Exige sessão do admin. */
 module.exports = async function handler(req, res) {
@@ -15,7 +16,8 @@ module.exports = async function handler(req, res) {
 
   try {
     const { provider, leads, truncated } = await db.listLeads();
-    res.status(200).json({ ok: true, provider, truncated, leads });
+    // portal_elegivel: o admin mostra a situação/botão do portal só para quem pode ter acesso (landing Unimeds).
+    res.status(200).json({ ok: true, provider, truncated, leads: leads.map((l) => ({ ...l, portal_elegivel: isEligible(l) })) });
   } catch (err) {
     if (err.code === 'db_not_configured') {
       res.status(503).json({ ok: false, error: 'db_not_configured' });

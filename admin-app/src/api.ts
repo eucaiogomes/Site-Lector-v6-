@@ -20,6 +20,8 @@ export interface Lead {
   portal_usuario_id: string | number | null;
   portal_detalhe: string | null;
   portal_em: string | null;
+  /** Calculado pelo servidor: lead da landing Unimeds (ou já criado no portal pela integração). */
+  portal_elegivel?: boolean;
 }
 
 export type PortalStatus = 'criado' | 'ja_existia' | 'erro' | null;

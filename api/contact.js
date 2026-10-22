@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const { waitUntil } = require('@vercel/functions');
 const db = require('./_lib/leads-db');
 const portal = require('./_lib/lector-portal');
-const { grantPortalAccess } = require('./_lib/portal-access');
+const { grantPortalAccess, isEligible } = require('./_lib/portal-access');
 
 /** Campos com coluna própria em leads_site; o resto do corpo vai para `dados`. */
 const KNOWN_FIELDS = ['nome', 'empresa', 'email', 'telefone', 'interesse', 'mensagem', 'origem', 'pagina', 'website'];
@@ -60,9 +60,9 @@ module.exports = async function handler(req, res) {
   const lead = { tipo: 'contato', nome, empresa, email, telefone, interesse, mensagem, origem, pagina, dados };
   const { saved, id } = await db.saveLead(lead);
 
-  // Usuário no portal Lector + e-mail de acesso ao lead: em segundo plano, o formulário não espera.
-  // Na Vercel o waitUntil mantém a função viva até terminar; no server.js o processo já continua rodando.
-  if (saved && id && portal.isConfigured()) {
+  // Landing Unimeds: usuário no portal Lector + e-mail de acesso ao microlearning, em segundo plano
+  // (o formulário não espera). Na Vercel o waitUntil mantém a função viva; no server.js o processo continua.
+  if (saved && id && portal.isConfigured() && isEligible(lead)) {
     waitUntil(grantPortalAccess({ ...lead, id }).catch((err) => console.error('[contact] acesso ao portal falhou:', err)));
   }
 

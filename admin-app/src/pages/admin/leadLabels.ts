@@ -81,9 +81,10 @@ export const extraLabel = (key: string) => EXTRAS[key] ?? key;
 
 export const extraValue = (v: string | number | boolean) => (typeof v === 'boolean' ? (v ? 'Sim' : 'Não') : String(v));
 
-/** Coluna "Portal": situação do cadastro do lead como usuário no portal Lector. Newsletter não gera usuário. */
-export function portalLabel(lead: Pick<Lead, 'tipo' | 'portal_status'>): string {
+/** Coluna "Portal": acesso ao microlearning no portal Lector — só leads da landing Unimeds ("—" nos demais). */
+export function portalLabel(lead: Pick<Lead, 'tipo' | 'portal_status' | 'portal_elegivel'>): string {
   if (lead.tipo === 'newsletter') return '';
+  if (!lead.portal_elegivel && !lead.portal_status) return '';
   if (lead.portal_status === 'criado') return 'Cadastrado';
   if (lead.portal_status === 'ja_existia') return 'Já existia';
   if (lead.portal_status === 'erro') return 'Erro';
