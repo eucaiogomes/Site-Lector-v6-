@@ -5,3 +5,6 @@
 # exatamente igual.
 server.js
 deploy/
+
+# Código-fonte do admin (Vite/React). A Vercel publica só o build já commitado em admin/.
+admin-app/

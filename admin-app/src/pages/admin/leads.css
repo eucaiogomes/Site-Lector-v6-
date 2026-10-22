@@ -1,0 +1,99 @@
+/* Relatórios › Leads site: complementos ao padrão .adm-rc-* (admin.css). */
+
+/* Linha "Banco: PostgreSQL · N leads" entre os filtros e a tabela */
+.adm-ld-source {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+.adm-ld-source strong {
+  font-weight: 600;
+  color: var(--adm-rc-ink);
+}
+
+/* Filtros: período + busca + 2 selects + ações não cabem em uma linha com o menu aberto; a linha quebra
+   em vez de rolar (mesmo padrão de .adm-an-page em admin.css), e no celular cada campo ocupa a largura toda. */
+.adm-ld-page .adm-rc-fields-row {
+  flex-wrap: wrap;
+  overflow-x: visible;
+}
+@media (max-width: 640px) {
+  .adm-ld-page .adm-rc-fields-row > .adm-rc-field {
+    flex: 1 1 100%;
+    width: auto;
+    min-width: 0;
+  }
+  .adm-ld-page .adm-rc-actions-wrap {
+    margin-left: 0;
+  }
+}
+
+/* Interesse das landings é um texto longo: quebra linha em vez de alargar a tabela */
+.adm-ld-table td.is-wrap {
+  white-space: normal;
+  min-width: 11rem;
+  max-width: 18rem;
+}
+
+/* Modal de detalhes: grade rótulo/valor, mensagem e dados adicionais */
+.adm-ld-dl {
+  display: grid;
+  margin: 0;
+  border-top: 1px solid #e5e7eb;
+}
+.adm-ld-dl-row {
+  display: grid;
+  grid-template-columns: minmax(9rem, 32%) 1fr;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+.adm-ld-dl dt {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #4b5563;
+}
+.adm-ld-dl dd {
+  margin: 0;
+  min-width: 0;
+  font-size: 0.875rem;
+  color: #111827;
+  overflow-wrap: anywhere;
+}
+.adm-ld-dl a {
+  color: var(--navy-700, #0f2d6b);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.adm-ld-sec {
+  margin-top: 1.5rem;
+}
+.adm-ld-sec h3 {
+  margin: 0 0 0.6rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy-800, #08204d);
+}
+.adm-ld-msg {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 0.5rem;
+  background: #f7f9fc;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: #1f2937;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+  .adm-ld-dl-row {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}

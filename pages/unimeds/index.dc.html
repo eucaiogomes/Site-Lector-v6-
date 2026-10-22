@@ -2160,6 +2160,20 @@ class Component extends DCLogic {
       interesse: 'Microlearning gratuito (segurança de dados na saúde) + Ferramenta de Autoria',
       origem: 'lp-unimeds' + (p.utm_source ? ' · ' + p.utm_source : '') + (p.utm_campaign ? ' · ' + p.utm_campaign : ''),
       mensagem: lines.join('\n'),
+      // Campos estruturados: api/contact.js grava em leads_site.dados (admin › Relatórios › Leads site).
+      cargo: p.cargo,
+      plataforma: label('u-plataforma'),
+      desafio: label('u-desafio'),
+      segment: p.segment,
+      lead_source: p.lead_source,
+      campaign: p.campaign,
+      submitted_at: p.submitted_at,
+      origin_url: p.origin_url,
+      utm_source: p.utm_source,
+      utm_medium: p.utm_medium,
+      utm_campaign: p.utm_campaign,
+      utm_content: p.utm_content,
+      utm_term: p.utm_term,
       website: ''
     };
   }

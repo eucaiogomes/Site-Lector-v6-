@@ -142,10 +142,13 @@ setInterval(() => {
 
 /* ── rotas /api/* — mesmo contrato da Vercel ────────────────────────────── */
 function handleApi(req, res, pathname) {
+  // api/_lib/* são módulos compartilhados, não rotas (a Vercel também não publica "_").
+  if (pathname.split('/').some((seg) => seg.startsWith('_'))) return false;
   const file = path.join(ROOT, pathname.replace(/^\//, '') + '.js');
   if (!file.startsWith(path.join(ROOT, 'api') + path.sep) || !fs.existsSync(file)) return false;
 
-  if (req.method === 'POST' && rateLimited(clientIp(req))) {
+  // Cota por IP e por rota: o login do admin não divide limite com os formulários.
+  if (req.method === 'POST' && rateLimited(`${clientIp(req)} ${pathname}`)) {
     res.writeHead(429, { 'Content-Type': 'application/json; charset=utf-8' });
     res.end(JSON.stringify({ ok: false, error: 'rate_limited' }));
     console.log(`429 ${req.method} ${pathname}`);
@@ -198,7 +201,14 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (pathname.startsWith('/api/') && handleApi(req, res, pathname)) return;
+  if (pathname.startsWith('/api/')) {
+    if (handleApi(req, res, pathname)) return;
+    // Nunca cai no estático: o código de api/ não é servido como arquivo.
+    res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify({ ok: false, error: 'not_found' }));
+    console.log(`404 ${pathname}`);
+    return;
+  }
 
   const file = resolveFile(applyRewrites(pathname));
 
@@ -233,7 +243,12 @@ server.listen(PORT, HOST, () => {
   console.log(`[server] lector-site em http://${HOST}:${PORT}`);
   const faltando = ['EMAIL_USER', 'EMAIL_PASS', 'EMAIL_TO'].filter((k) => !process.env[k]);
   if (faltando.length) {
-    console.warn(`[server] ATENÇÃO: faltam variáveis ${faltando.join(', ')} — os formulários vão responder 500.`);
+    console.warn(`[server] ATENÇÃO: faltam variáveis ${faltando.join(', ')} — sem banco de leads, os formulários vão responder 500.`);
+  }
+  const banco = require('./api/_lib/leads-db').provider();
+  console.log(banco ? `[server] leads gravados no banco (${banco}).` : '[server] ATENÇÃO: banco de leads não configurado — /admin fica sem dados.');
+  if (!require('./api/_lib/admin-auth').isConfigured()) {
+    console.warn('[server] ATENÇÃO: ADMIN_EMAIL / ADMIN_PASSWORD / ADMIN_SESSION_SECRET (32+ caracteres) não configurados — login do /admin desativado.');
   }
 });
 

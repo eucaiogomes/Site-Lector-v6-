@@ -2,7 +2,12 @@
   "name": "lector-site",
   "private": true,
   "version": "1.0.0",
+  "scripts": {
+    "admin:dev": "npm --prefix admin-app run dev",
+    "admin:build": "npm --prefix admin-app run build"
+  },
   "dependencies": {
-    "nodemailer": "^6.9.14"
+    "nodemailer": "^6.9.14",
+    "pg": "^8.23.1"
   }
 }

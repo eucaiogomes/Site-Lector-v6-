@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const db = require('./_lib/leads-db');
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -43,8 +44,15 @@ module.exports = async function handler(req, res) {
     return;
   }
 
+  // Grava primeiro: com o lead no banco, uma falha no e-mail não perde a inscrição.
+  const { saved } = await db.saveLead({ tipo: 'newsletter', email, origem, pagina: db.pageFrom(req, body, null) });
+
   const { EMAIL_USER, EMAIL_PASS, EMAIL_TO } = process.env;
   if (!EMAIL_USER || !EMAIL_PASS || !EMAIL_TO) {
+    if (saved) {
+      res.status(200).json({ ok: true });
+      return;
+    }
     res.status(500).json({ ok: false, error: 'server_not_configured' });
     return;
   }
@@ -89,6 +97,10 @@ module.exports = async function handler(req, res) {
     res.status(200).json({ ok: true });
   } catch (err) {
     console.error('newsletter send error', err);
+    if (saved) {
+      res.status(200).json({ ok: true });
+      return;
+    }
     res.status(500).json({ ok: false, error: 'send_failed' });
   }
 };

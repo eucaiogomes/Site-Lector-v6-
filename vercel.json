@@ -16,9 +16,16 @@
     { "source": "/sobre", "destination": "/pages/sobre/index.dc.html" },
     { "source": "/unimeds", "destination": "/pages/unimeds/index.dc.html" },
     { "source": "/unimeds/microlearning", "destination": "/pages/unimeds-microlearning/index.dc.html" },
-    { "source": "/treinamentos-proprios", "destination": "/pages/treinamentos-proprios/index.dc.html" }
+    { "source": "/treinamentos-proprios", "destination": "/pages/treinamentos-proprios/index.dc.html" },
+    { "source": "/admin", "destination": "/admin/index.html" }
   ],
   "headers": [
+    {
+      "source": "/admin(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
     {
       "source": "/(.*)\\.dc\\.html",
       "headers": [

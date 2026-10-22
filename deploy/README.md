@@ -66,6 +66,21 @@ Detalhes que costumam quebrar aqui:
 - `EMAIL_TO` aceita vários endereços separados por vírgula.
 - Esse arquivo **não** fica no repositório e **não** é sobrescrito pelo `rsync`.
 
+### Banco de leads e login do `/admin`
+
+No mesmo `/etc/lector-site.env`, acrescente (lista completa em `.env.example`):
+
+```bash
+DB_PROVIDER=postgres
+DATABASE_URL=postgresql://usuario:senha@IP-PRIVADO-DO-RDS:5432/lector
+ADMIN_EMAIL=admin@lectortec.com
+ADMIN_PASSWORD=a senha do admin
+ADMIN_SESSION_SECRET=saída de: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+Crie a tabela uma vez: `psql "$DATABASE_URL" -f /var/www/lector-site/db/schema.sql`.
+Ao subir, o log do serviço diz qual banco está em uso e avisa se o login do admin não estiver configurado.
+
 ## 5. Serviço systemd
 
 ```bash
@@ -129,6 +144,7 @@ O `/etc/lector-site.env` fica intocado — credenciais são configuradas uma vez
 - O Gmail pode pedir confirmação no primeiro envio a partir de um IP novo (a AWS
   fica nos EUA). Se der `send_failed` só em produção, verifique os alertas de
   segurança da conta `sitelector@gmail.com`.
-- O `server.js` aplica rate limit de 5 POSTs por IP a cada 10 min em `/api/*`
-  (ajustável por `RATE_LIMIT_MAX` / `RATE_LIMIT_WINDOW_MS`). Na Vercel não existe
-  esse limite — lá o endpoint fica exposto a spam no formulário.
+- O `server.js` aplica rate limit de 5 POSTs por IP **e por rota** a cada 10 min em `/api/*`
+  (ajustável por `RATE_LIMIT_MAX` / `RATE_LIMIT_WINDOW_MS`) — vale também para tentativas de
+  login em `/api/admin/login`. Na Vercel não existe esse limite — lá o endpoint fica exposto a
+  spam no formulário.

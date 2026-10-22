@@ -1,0 +1,181 @@
+/* Login do /admin: fundo azul-marinho institucional (--gradient-hero) e cartão branco central.
+   Mesmos tokens do admin (src/index.css); laranja do botão = --orange-600, como "Aplicar filtros". */
+.adm-login-page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: var(--gradient-hero);
+  font-family: var(--font-sans);
+  color: var(--neutral-900);
+}
+.adm-login-orbit {
+  position: absolute;
+  right: -12rem;
+  bottom: -14rem;
+  width: 44rem;
+  max-width: none;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.adm-login-card {
+  position: relative;
+  width: 100%;
+  max-width: 26rem;
+  padding: 2.5rem 2.25rem 2.25rem;
+  box-sizing: border-box;
+  border-radius: 1.125rem;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(4, 20, 51, 0.35);
+}
+.adm-login-logo {
+  display: block;
+  height: 2.1rem;
+  width: auto;
+  margin-bottom: 1.75rem;
+}
+.adm-login-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--navy-900);
+}
+.adm-login-sub {
+  margin: 0.4rem 0 1.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--neutral-600);
+}
+
+.adm-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.adm-login-field label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--navy-800);
+}
+.adm-login-input {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 2.875rem;
+  padding: 0 0.4rem 0 0.9rem;
+  border: 1px solid #dcdfe4;
+  border-radius: 0.625rem;
+  background: #fff;
+  color: #94a3b8;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.adm-login-input:focus-within {
+  border-color: var(--navy-700);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--navy-700) 16%, transparent);
+  color: var(--navy-700);
+}
+.adm-login-input input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9375rem;
+  color: var(--neutral-900);
+}
+.adm-login-input input::placeholder {
+  color: #a3acb9;
+}
+.adm-login-eye {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+}
+.adm-login-eye:hover {
+  background: var(--neutral-100);
+  color: var(--navy-800);
+}
+.adm-login-eye:focus-visible,
+.adm-login-submit:focus-visible,
+.adm-login-foot a:focus-visible {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+.adm-login-alert {
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid color-mix(in srgb, #dc2626 25%, white);
+  border-radius: 0.625rem;
+  background: color-mix(in srgb, #dc2626 6%, white);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #b91c1c;
+}
+
+.adm-login-submit {
+  height: 3rem;
+  margin-top: 0.35rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--orange-600);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.adm-login-submit:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--orange-600) 85%, black);
+}
+.adm-login-submit:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.adm-login-foot {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.25rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+.adm-login-foot a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.adm-login-foot a:hover {
+  color: #fff;
+}
+
+@media (max-width: 480px) {
+  .adm-login-card {
+    padding: 2rem 1.25rem 1.5rem;
+  }
+}

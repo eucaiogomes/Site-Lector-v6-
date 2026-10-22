@@ -17,7 +17,7 @@ A página **Contato** também tem formulário **embutido** (não é o modal); o 
 - Modal **branco** com identidade Lector (logo `assets/brand/logo-lector.svg`, faixa brand, CTA laranja)
 - Abre ao clicar em CTAs de conversão, classes de botão primário, announcement de diagnóstico, ou links `#contato` / `#cta`
 - Fecha com X, backdrop ou Escape
-- Sucesso local (sem backend ainda — log no console)
+- Envio: `POST /api/contact` → e-mail para o comercial + registro em `leads_site` (admin › Relatórios › Leads site)
 
 ## Como incluir
 

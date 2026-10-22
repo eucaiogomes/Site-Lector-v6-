@@ -2073,6 +2073,23 @@ class Component extends DCLogic {
       interesse: 'Microlearning gratuito + Ferramenta de Autoria (tráfego pago)',
       origem: 'lp-treinamentos-proprios' + (p.utm_source ? ' · ' + p.utm_source : '') + (p.utm_campaign ? ' · ' + p.utm_campaign : ''),
       mensagem: lines.filter((l) => l !== null).join('\n'),
+      // Campos estruturados: api/contact.js grava em leads_site.dados (admin › Relatórios › Leads site).
+      cargo: p.cargo,
+      plataforma: label('u-plataforma'),
+      desafio: label('u-desafio'),
+      email_personal: p.email_personal,
+      segment: p.segment,
+      lead_source: p.lead_source,
+      campaign: p.campaign,
+      creative: p.creative,
+      landing_page: p.landing_page,
+      submitted_at: p.submitted_at,
+      origin_url: p.origin_url,
+      utm_source: p.utm_source,
+      utm_medium: p.utm_medium,
+      utm_campaign: p.utm_campaign,
+      utm_content: p.utm_content,
+      utm_term: p.utm_term,
       website: ''
     };
   }

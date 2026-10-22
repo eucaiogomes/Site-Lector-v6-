@@ -132,6 +132,8 @@ if (needsDryRun && process.env.MAIL_DRY_RUN !== '0') {
 }
 
 function handleApi(req, res, pathname) {
+  // api/_lib/* são módulos compartilhados, não rotas (a Vercel também não publica "_").
+  if (pathname.split('/').some((seg) => seg.startsWith('_'))) return false;
   const file = path.join(ROOT, pathname.replace(/^\//, '') + '.js');
   if (!file.startsWith(path.join(ROOT, 'api')) || !fs.existsSync(file)) return false;
 
@@ -164,7 +166,13 @@ function handleApi(req, res, pathname) {
 const server = http.createServer((req, res) => {
   const { pathname } = url.parse(req.url);
 
-  if (pathname.startsWith('/api/') && handleApi(req, res, pathname)) return;
+  if (pathname.startsWith('/api/')) {
+    if (handleApi(req, res, pathname)) return;
+    res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify({ ok: false, error: 'not_found' }));
+    console.log(`404 ${pathname}`);
+    return;
+  }
 
   const file = resolveFile(applyRewrites(pathname));
 
@@ -185,4 +193,6 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, () => {
   console.log(`[devserver] lector-site em http://localhost:${PORT}`);
+  const banco = require('./api/_lib/leads-db').provider();
+  console.log(banco ? `[devserver] leads gravados no banco (${banco}). Admin: http://localhost:${PORT}/admin` : '[devserver] banco de leads não configurado (DATABASE_URL ou SUPABASE_URL no .env).');
 });

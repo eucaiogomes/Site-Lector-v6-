@@ -44,5 +44,7 @@ Disallow: /references/
 Disallow: /specs/
 Disallow: /design-system/
 Disallow: /support.js
+Disallow: /admin
+Disallow: /api/
 
 Sitemap: /sitemap.xml

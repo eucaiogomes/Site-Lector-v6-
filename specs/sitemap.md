@@ -32,6 +32,7 @@ Fonte de dados paralela: `content/site.json`.
 | `unimeds-microlearning` | Acesso ao microlearning da landing Unimeds (assistir + baixar; `noindex`) | `specs/pages/unimeds.md` | `pages/unimeds-microlearning/index.dc.html` | `wip` | light |
 | `treinamentos-proprios` | Landing genérica de tráfego pago — Criativo A (campanha, `noindex`, fora do menu) | `specs/pages/treinamentos-proprios.md` | `pages/treinamentos-proprios/index.dc.html` | `wip` | dark |
 | `solucoes` | Hub Nossas Soluções | — | — | `planned` | — |
+| `admin` | Admin interno: login + Relatórios › Leads site (`noindex`, fora do menu) | `README.md` (seção Admin) | `admin-app/` → build em `admin/` | `live` | admin |
 
 ### Rotas no deploy
 
@@ -51,6 +52,7 @@ Fonte de dados paralela: `content/site.json`.
 | `/unimeds` | `pages/unimeds/index.dc.html` |
 | `/unimeds/microlearning` | `pages/unimeds-microlearning/index.dc.html` |
 | `/treinamentos-proprios` | `pages/treinamentos-proprios/index.dc.html` |
+| `/admin` | `admin/index.html` (fora do `sitemap.xml` e do `llms.txt`; `Disallow` no `robots.txt`) |
 
 Nav e CTAs no HTML usam **paths absolutos do arquivo estático** (`/pages/<slug>/index.dc.html`), que funcionam na Vercel sem depender do rewrite. Rewrites limpos (`/blog`, …) continuam no `vercel.json` como alias amigável.
 
